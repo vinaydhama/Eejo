@@ -1,0 +1,32 @@
+<html >
+  <body >
+<input id="clickMe" type="button" value="clickme" onclick="PostRequest();" />
+</body>
+<script>
+async function PostRequest()
+{
+await fetch("http://localhost:5001/json-example", {
+  method: "POST",
+  body: JSON.stringify({
+   
+    language : "Python",
+    framework : "Flask",
+    website : "Scotch",
+    version_info : {
+        python : "3.9.0",
+        flask : "1.1.2"
+    },
+    examples : ["query", "form", "json"],
+    boolean_test : true
+
+  },'mode= no-cors'),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then((response) => console.log(response))
+  .then((json) => console.log(response));
+}
+</script>
+
+</html>
