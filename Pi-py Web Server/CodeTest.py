@@ -1,10 +1,8 @@
 from flask import Flask, jsonify,Response,json,render_template,request
 import threading
 from Lib.StopwatchLib import StopTimerServicecls
-from Lib.SwimDataHolder import HeatDataDisplay,MeetHeaderDisplay
-from Lib.JsonLib import JsonHelper
+from Lib.SwimDataHolder import HeatDataDisplay
 #eventholder= EventHolder()
-JSONFilePath= "/home/pks/Desktop/Pi-py Web Server/Data/MeetDetails.json"
 
 SetStartTimercmd=0
 
@@ -14,14 +12,6 @@ class RestServicecls:
     port = 5002
     app = Flask(__name__)
 
-    def GetNextHeatID():
-        #JSONFilePath= "/home/pks/Desktop/Pi-py Web Server/Data/MeetDetails.json"
-        data= JsonHelper.GetJSONFromFile(JSONFilePath)
-        # VCR TO BE DONE Check if any Request from Reffree Console
-        HeatID= JsonHelper.GetNextHeatIDFromFile(data)
-        return HeatID
-#JsonHelper.GetMeetHeader(data)
-#JsonHelper.GetHeatDataDisplay(data)
 # API For Setting Meet Headers to Display
 # API For Setting Heat Details to Swimmer Names & Swimmer timeings to Display
 # API For Getting Swimmer timeings to Server
@@ -36,11 +26,6 @@ class RestServicecls:
     # GET requests will be blocked
     @app.route('/SetEventDetails', methods=['POST'])
     def SetEventDetails():
-       JsonHelper.GetJSONFromFile(JSONFilePath)
-       return
-
-
-
         #try:
        #  request_data = request.get_json()
 #         eventData= eventJSONDecoder(request_data)
@@ -59,19 +44,10 @@ class RestServicecls:
 #         return '''
 #                The eventID value is: {}, The eventName value is: {},The eventAddress value is: {}
 #                '''.format(eventData.eventID,eventData,eventAddress)
+        return
 
-
-    @app.route('/GetMeetHeader', methods=['GET'])
-    def GetDisplayHeader():
-
-        data= JsonHelper.GetJSONFromFile(JSONFilePath)
-        MeetDetail=JsonHelper.GetMeetHeader(data)
-
-        response =  jsonify({'MeetDetail': MeetDetail})
-        response.headers.add("Access-Control-Allow-Origin", "*")
-        response.headers.add("Access-Control-Allow-Headers", "*")
-        response.headers.add("Access-Control-Allow-Methods", "*")
-        return response
+    @app.route('/SetDisplayHeader', methods=['GET'])
+    def SetDisplayHeader():
 
         return
  # GET requests will be blocked
@@ -112,6 +88,32 @@ class RestServicecls:
 
        #  except:
 #             print("Error in setting Next Heat")
+
+
+
+
+    ##GET requests will be blocked
+#     @app.route('/json-example', methods=['POST'])
+#     def json_example():
+#         request_data = request.get_json()
+
+#         language = request_data['eventID']
+#         framework = request_data['framework']
+
+        ##two keys are needed because of the nested object
+#         python_version = request_data['version_info']['python']
+
+        ##an index is needed because of the array
+#         example = request_data['examples'][0]
+
+#         boolean_test = request_data['boolean_test']
+
+#         return '''
+#                The language value is: {}
+#                The framework value is: {}
+#                The Python version is: {}
+#                The item at index 0 in the example list is: {}
+#                The boolean value is: {}'''.format(language, framework, python_version, example, boolean_test)
 
 
     @app.route('/LiveTimer', methods=['GET'])

@@ -22,7 +22,7 @@
         <tr width="100%">
             <th colspan="2" width="8%" style="font-size: 200%; font-weight:bolder; column-span: 2; text-align: center;">
             <td style="font-size: 100%;" id="HeaderDisplay">
-                <h3>Event Nam-asasasasasas </h3>
+                <h3 id="HeaderAddress">Event Nam-asasasasasas </h3>
                 <h6>asasasasasasasasasasasasasasasasasasasasasasas</h6>
             </td>
             <td colspan="2" style="font-size: 100%;" id="CurrentTimeDisplay">Date Name</td>
@@ -92,7 +92,34 @@
 <script>
 
     {
-        const url = 'http://192.168.0.104:5001/todo/api/v1.0/tasks';
+        const LiveTimerurl = 'http://192.168.0.104:5001/LiveTimer';
+        const Headerurl = 'http://192.168.0.104:5001/SetDisplayHeader;
+        
+          async function fetchAndDisplayHeaderData() {
+            try {
+                await fetch(Headerurl)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Display Header data                        
+                         const CurrentTimeDisplay = document.getElementById("HeaderDisplay")
+                        CurrentTimeDisplay.innerHTML = new Date().toLocaleString();
+                    })
+
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+            
+        
 
         setInterval(fetchAndDisplayData, 500);
         //clearInterval(t);
@@ -102,7 +129,7 @@
             try {
                
 
-                await fetch(url)
+                await fetch(LiveTimerurl)
                     .then(response => {
                         // Check if the response is successful
                         if (!response.ok) {
@@ -111,8 +138,8 @@
                         return response.json();
                     })
                     .then(data => {
-                        // Display the data
-                        displayData(data);
+                        // Display Time data
+                        displayTimeData(data);
                          const CurrentTimeDisplay = document.getElementById("CurrentTimeDisplay")
                 CurrentTimeDisplay.innerHTML = new Date().toLocaleString();
                     })
@@ -128,7 +155,7 @@
 
         }
 
-        function displayData(data) {
+        function displayTimeData(data) {
 
             // const hearDisplay = document.getElementById("head");
             // hearDisplay.innerHTML = Math.random();
