@@ -1,108 +1,79 @@
 <!DOCTYPE html>
 <html style=" background-color: black;">
-<!-- <meta http-equiv="refresh" content="2"> -->
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">    </script>
+<!-- 
+    <div id="p3" style=" color: #00ff11;font-family:Impact, Haettenschweiler ; font-size:500%; text-align: center;">B1:
+        10:20.23</div>
+    </div> -->
 
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid aqua;
-            border-collapse: collapse;
-            padding: 6px;
-        }
-    </style>
 </head>
 
-<body style="text-align:center">
+<body id="PageBody">
+    <style>
+        table {
+            width: "400PX";
+        }
 
+        th,
+        td {
+            border: 1px solid #8a8b805b;
+            padding: 0px;
 
-    <table style="color: aqua;">
-        <tr width="100%">
-            <th colspan="2" width="8%" style="font-size: 200%; font-weight:bolder; column-span: 2; text-align: center;">
-            <td style="font-size: 100%;" id="HeaderDisplay">
-                <h3>Event Nam-asasasasasas </h3>
-                <h6>asasasasasasasasasasasasasasasasasasasasasasas</h6>
-            </td>
-            <td colspan="2" style="font-size: 100%;" id="CurrentTimeDisplay">Date Name</td>
-            </th>
-        </tr>
-        <tr>
-            <td rowspan="2" style="font-size: 300%;">1</td>
-            <td colspan="4" style='font-family:"Courier New", Courier, monospace; font-size:80%' id="NameDisplay0"> Name
-                1 Hereeeeee
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4" style='color: #c6ee59;font-family:Arial narrow Bold ; font-size:500% ' id="TimeDisplay0">
-                MM:SS.ss</td>
-        </tr>
+        }
 
-        <tr>
-            <td rowspan="2">2</td>
-            <td colspan="4" style=' font-family:"Courier New", Courier, monospace; font-size:80%' id="NameDisplay1">
-                Name 2
-                Hereeeeee
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4" style='color: #c6ee59;font-family:Arial narrow Bold ; font-size:500% ' id="TimeDisplay1">
-                MM:SS.ss</td>
-        </tr>
+        #p3,
+        #f3 {
+            padding: 0px;
+            text-align: justify;
+            background-color: black;
+        }
 
-        <tr>
-            <td rowspan="2">3</td>
-            <td colspan="4" style='font-family:"Courier New", Courier, monospace; font-size:80%' id="NameDisplay2"> Name
-                3 Hereeeeee
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4" style=' color: #c6ee59;font-family:Arial narrow Bold ; font-size:500% ' id="TimeDisplay2">
-                MM:SS.ss</td>
-        </tr>
-
-        <tr>
-            <td rowspan="2">4</td>
-            <td colspan="4" style='font-family:"Courier New", Courier, monospace; font-size:80%' id="NameDisplay3"> Name
-                4 Hereeeeee
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4" style=' color: #fb4d4d;font-family:Arial narrow Bold ; font-size:500% ' id="TimeDisplay3">
-                MM:SS.ss</td>
-        </tr>
-
-        <tr>
-            <td rowspan="2">5</td>
-            <td colspan="4" style='font-family:"Courier New", Courier, monospace; font-size:80%' id="NameDisplay4"> Name
-                5 Hereeeeee
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4" style=' color: #c6ee59;font-family:Arial narrow Bold ; font-size:500% ' id="TimeDisplay4">
-                MM:SS.ss</td>
-        </tr>
-        <tr>
-
-        </tr>
-    </table>
-
+        #p3 {
+            padding: 0px;
+            width: 355px;
+            color: green;
+            font-style: bold;
+        }
+    </style>
+    <div>
+        <table id="Tab1"></table>
+    </div>
+    <div>
+        <marquee bgcolor="black" scrollamount="1" direction="left" loop="true" style="font-size: 10PX;">
+            <center>
+                <font color="#ffffff"><strong>WWW.TINYTECHNIQUES.COM << EEJO-SWIM MEET MANAGER V 1.0.0 </strong>
+                </font>
+            </center>
+        </marquee>
+    </div>
 </body>
+
 <script>
 
-    {
-        const url = 'http://127.0.0.1:5002/LiveTimer';
+    {        //const baseURL = "http://192.168.0.104:5002/"
+        //const baseURL = "http://192.168.214.69:5002/"
+        const baseURL = "http://LocalHost:5002/"
+        const MeetDetailsurl = baseURL + 'GetMeetHeader';
+        const LiveTimersurl = baseURL + 'LiveTimer';
+        const HeatDetailsurl = baseURL + 'GetHeatHeader';
 
-        setInterval(fetchAndDisplayData, 500);
+        tableCreate(10);
+       // fetchAndDisplayMeetData();
+        fetchAndDisplayHeatData();
+        setInterval(fetchAndDisplayTimeData, 500);
+        setInterval(fetchAndDisplayHeatData, 2000);
+
+
         //clearInterval(t);
 
         // Function to fetch and display JSON data
-        async function fetchAndDisplayData() {
+        async function fetchAndDisplayTimeData() {
             try {
-               
 
-                await fetch(url)
+                urlToFetch = LiveTimersurl;
+                await fetch(urlToFetch)
                     .then(response => {
                         // Check if the response is successful
                         if (!response.ok) {
@@ -112,9 +83,8 @@
                     })
                     .then(data => {
                         // Display the data
-                        displayData(data);
-                         const CurrentTimeDisplay = document.getElementById("CurrentTimeDisplay")
-                CurrentTimeDisplay.innerHTML = new Date().toLocaleString();
+                        displayTimeData(data);
+                        return data;
                     })
 
                     .catch(error => {
@@ -124,36 +94,246 @@
             catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
-
-
         }
 
-        function displayData(data) {
-
-            // const hearDisplay = document.getElementById("head");
-            // hearDisplay.innerHTML = Math.random();
-
+        async function fetchAndDisplayMeetData() {
             try {
-                for (var i = 0; i < data.tasks.length; i++) {
-                    const NameDisplay = document.getElementById("NameDisplay" + i);
-                    const TimeDisplay = document.getElementById("TimeDisplay" + i);
-                    // const RankDisplay = document.getElementById("Rank" + i);
+                urlToFetch = MeetDetailsurl;
 
-                    NameDisplay.innerHTML = data.tasks[i].SwimmerName;
-                    TimeDisplay.innerHTML = data.tasks[i].swmTimeing;
+                await fetch(urlToFetch)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Display the data
+                        DispplayMeetData(data);
+                        return data;
+                    })
+
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+
+        async function fetchAndDisplayHeatData() {
+            try {
+
+                urlToFetch = HeatDetailsurl;
+                await fetch(urlToFetch)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Display the data
+                        DisplayHeatData(data);
+                        return data;
+                    })
+
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+
+
+        function DispplayMeetData(jsonData) {
+            try {
+                console.info("Data Received" + jsonData);
+                const obj = JSON.parse(jsonData["MeetDetail"]);
+                // For Single Prop obj.MeetName
+                document.getElementById("MeetName").innerHTML = obj.MeetName;
+                document.getElementById("MeetDate").innerHTML = obj.MeetDate;
+
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        function DisplayHeatData(jsonData) {
+            try {
+                console.info("Data Received" + jsonData);
+                // const obj = JSON.parse(jsonData["HeatDetails"]);
+                // For Single Prop obj.MeetName
+                document.getElementById("HeatNumber").innerHTML = "Heat: " + jsonData["HeatDetails"].HeatID;
+                // document.getElementById("HeatEndTime").innerHTML = obj.HeatEndTime ;  
+                // document.getElementById("HeatStartTime").innerHTML = obj.HeatStartTime ;  
+                document.getElementById("EventName").innerHTML = jsonData["HeatDetails"].EventName
+
+
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        function tableCreate(NoOfBoard) {
+            const body = document.body;
+            tbl = document.getElementById('Tab1');
+
+            tbl.style = "color: aqua";
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("MEET NAME")));
+            td.setAttribute('colSpan', '3');
+            td.id = "MeetName"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:250%; text-align: center;')
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("Heat: 123")));
+            td.id = "HeatNumber"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+            
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("Address")));
+            td.id = "MeetAddress"
+            td.setAttribute('colSpan', '1');
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("Dec 2024")));
+            td.id = "MeetDate"
+            td.setAttribute('colSpan', '1');
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("BOARD")));
+            td.id = "HeatNumbesr"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("100 M Free Style G-5 Boys")));
+            td.id = "EventName"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("RANK")));
+            td.id = "Ranklbl"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+            //Row
+            for (let i = 0; i < (NoOfBoard * 2); i++) {
+                tr = tbl.insertRow();
+                tr.style = "width="
+                tr.style = "color: aqua";
+                // Col
+                for (let j = 0; j <= 1; j++) {
+                    {
+                        if (j == 1 && i % 2 != 0) {
+                            //break
+
+                            // if (i % 2 == 0 && j % 2 == 0) {
+                            td1 = tr.insertCell();
+                            td1.appendChild(document.createTextNode( 1+(i-j)/2));
+                            td1.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:80px; text-align: center;')
+                            td1.id = "Rank" + 1+(i-j)/2
+                            // td1.setAttribute('rowSpan', '');
+                        //}
+                        }
+                        else
+                            td = tr.insertCell();
+                        if (i % 2 == 0 && j % 2 == 0) {
+                            td.appendChild(document.createTextNode((i / 2)));
+                            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:80px; text-align: center;')
+                            td.id = "BordNum" + (((i / 2) - 0) + 1)                           
+                        }
+                        else if (i % 2 == 0 && j % 2 != 0) {
+                            td.appendChild(document.createTextNode(`SW Namesdsdssdsdsds ` + i + j));
+                            td.setAttribute('style', ' color: #f6f7f6bb;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+                            td.setAttribute('colSpan', '3');
+                            td.id = "SwName" + (((i / 2) - 0) + 1)
+                        }
+                        else {
+                            td.appendChild(document.createTextNode(`10:59.59` + (((i / 2) - 0.5) + 1)));
+                            td.setAttribute('style', ' color: #00ff11;font-family:Impact, Haettenschweiler ; font-size:400%; text-align: center;')
+                            td.id = "TimerDisp" + (((i / 2) - 0.5) + 1)
+
+
+                        }
+                       
+
+                        td.style.border = '2px solid #8a8b805b';
+                        if (i % 2 == 0 && j === 0) {
+                            td.setAttribute('rowSpan', '2');
+                        }
+                    }
+                }
+            }
+
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("WWW.TINYTECHNIQUES.COM   << EEJO-SWIM MEET MANAGER V 1.0.0>>")));
+            td.id = "marqueDisplay"
+            // td.setAttribute('style', ' color: #e7f705;font-family:arial ; font-size:8px; text-align: center;')
+            td.setAttribute('colSpan', '3');
+            mrq = document.getElementById('marqueDisplay');
+            mrq.appendChild = ''
+            body.appendChild(tbl);
+        }
+
+        function displayTimeData(data) {
+            // const CurrentTimeDisplay = document.getElementById("CurrentTimeDisplay")
+            //     CurrentTimeDisplay.innerHTML = new Date().toLocaleString();
+            try {
+                let jdata =[]
+
+                for (var i = 1; i <= data.Boards.length; i++) {                   
+                    const obj = JSON.parse(data.Boards[i-1]);
+                    jdata[i]= obj;
+                }
+
+                for (let i = 0; i < jdata.length - 1; i++) {
+                    for (let j = 1; j < jdata.length - i - 1; j++) {
+                        if (jdata[j].timerValue > jdata[j + 1].timerValue) {
+                            let temp = jdata[j];
+                            jdata[j] = jdata[j + 1];
+                            jdata[j + 1] = temp;
+                        }
+                    }
+                }
+                console.log(jdata);
+                for (var i = 1; i <= jdata.length - 1; i++) {
+                    const BoardIDDisp = document.getElementById("BordNum" + i);
+                    const NameDisplay = document.getElementById("SwName" + i);
+                    const TimeDisplay = document.getElementById("TimerDisp" + i);
+                    // const RankDisplay = document.getElementById("Rank" + i);
+                    // const obj = JSON.parse(data.Boards[i - 1]);
+
+                    BoardIDDisp.innerHTML = jdata[i].boardId+1;
+                    NameDisplay.innerHTML = jdata[i].swimmername;
+                    TimeDisplay.innerHTML = jdata[i].timerValue;
+
                     // RankDisplay.innerHTML = data.myRank + i;
                 }
 
             }
-
             catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
-            // const hearDisplay = document.getElementById("head");
-            // hearDisplay.innerHTML = Math.random();
         }
+        // Main function
 
-        
+        //fetchAndDisplayTimeData(LiveTimersurl);
+        //fetchAndDisplayTimeData(LiveTimersurl)
+        // displayTimeData);
     }
 </script>
 
