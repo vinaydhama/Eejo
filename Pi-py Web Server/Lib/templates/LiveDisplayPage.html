@@ -3,7 +3,7 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">    </script>
-<!-- 
+    <!-- 
     <div id="p3" style=" color: #00ff11;font-family:Impact, Haettenschweiler ; font-size:500%; text-align: center;">B1:
         10:20.23</div>
     </div> -->
@@ -53,14 +53,14 @@
 <script>
 
     {        //const baseURL = "http://192.168.0.104:5002/"
-        //const baseURL = "http://192.168.214.69:5002/"
-        const baseURL = "http://LocalHost:5002/"
+        const baseURL = "http://192.168.214.69:5002/"
+        //const baseURL = "http://LocalHost:5002/"
         const MeetDetailsurl = baseURL + 'GetMeetHeader';
         const LiveTimersurl = baseURL + 'LiveTimer';
         const HeatDetailsurl = baseURL + 'GetHeatHeader';
 
-        tableCreate(10);
-       // fetchAndDisplayMeetData();
+        tableCreate(5);
+        // fetchAndDisplayMeetData();
         fetchAndDisplayHeatData();
         setInterval(fetchAndDisplayTimeData, 500);
         setInterval(fetchAndDisplayHeatData, 2000);
@@ -152,6 +152,17 @@
         }
 
 
+        
+        function ConvertTime(sec)
+        {
+            ConvertedTime="";                      
+            mins = sec / 60          
+            
+            sec = sec % 60
+            ConvertedTime=  parseInt(mins)+":" + sec.toFixed(3);
+
+            return ConvertedTime
+        }
 
         function DispplayMeetData(jsonData) {
             try {
@@ -169,15 +180,9 @@
 
         function DisplayHeatData(jsonData) {
             try {
-                console.info("Data Received" + jsonData);
-                // const obj = JSON.parse(jsonData["HeatDetails"]);
-                // For Single Prop obj.MeetName
-                document.getElementById("HeatNumber").innerHTML = "Heat: " + jsonData["HeatDetails"].HeatID;
-                // document.getElementById("HeatEndTime").innerHTML = obj.HeatEndTime ;  
-                // document.getElementById("HeatStartTime").innerHTML = obj.HeatStartTime ;  
+                console.info("Data Received" + jsonData);               
+                document.getElementById("HeatNumber").innerHTML = "Heat: " + jsonData["HeatDetails"].HeatID;                  
                 document.getElementById("EventName").innerHTML = jsonData["HeatDetails"].EventName
-
-
             }
             catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -200,7 +205,7 @@
             td.appendChild(document.createTextNode(("Heat: 123")));
             td.id = "HeatNumber"
             td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
-            
+
             td = tr.insertCell();
             td.appendChild(document.createTextNode(("Address")));
             td.id = "MeetAddress"
@@ -212,7 +217,6 @@
             td.id = "MeetDate"
             td.setAttribute('colSpan', '1');
             td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
-
 
             tr = tbl.insertRow();
             td = tr.insertCell();
@@ -242,18 +246,18 @@
 
                             // if (i % 2 == 0 && j % 2 == 0) {
                             td1 = tr.insertCell();
-                            td1.appendChild(document.createTextNode( 1+(i-j)/2));
-                            td1.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:80px; text-align: center;')
-                            td1.id = "Rank" + 1+(i-j)/2
+                            td1.appendChild(document.createTextNode("0"));
+                            td1.setAttribute('style', ' color: #ef1927f705;font-family:Arial narrow Bold ; font-size:80px; text-align: center;')
+                        td1.id = "Rank" + (1+(i - j) / 2)
                             // td1.setAttribute('rowSpan', '');
-                        //}
+                            //}
                         }
                         else
                             td = tr.insertCell();
                         if (i % 2 == 0 && j % 2 == 0) {
                             td.appendChild(document.createTextNode((i / 2)));
                             td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:80px; text-align: center;')
-                            td.id = "BordNum" + (((i / 2) - 0) + 1)                           
+                            td.id = "BordNum" + (((i / 2) - 0) + 1)
                         }
                         else if (i % 2 == 0 && j % 2 != 0) {
                             td.appendChild(document.createTextNode(`SW Namesdsdssdsdsds ` + i + j));
@@ -265,11 +269,7 @@
                             td.appendChild(document.createTextNode(`10:59.59` + (((i / 2) - 0.5) + 1)));
                             td.setAttribute('style', ' color: #00ff11;font-family:Impact, Haettenschweiler ; font-size:400%; text-align: center;')
                             td.id = "TimerDisp" + (((i / 2) - 0.5) + 1)
-
-
                         }
-                       
-
                         td.style.border = '2px solid #8a8b805b';
                         if (i % 2 == 0 && j === 0) {
                             td.setAttribute('rowSpan', '2');
@@ -293,11 +293,11 @@
             // const CurrentTimeDisplay = document.getElementById("CurrentTimeDisplay")
             //     CurrentTimeDisplay.innerHTML = new Date().toLocaleString();
             try {
-                let jdata =[]
+                let jdata = []
 
-                for (var i = 1; i <= data.Boards.length; i++) {                   
-                    const obj = JSON.parse(data.Boards[i-1]);
-                    jdata[i]= obj;
+                for (var i = 1; i <= data.Boards.length; i++) {
+                    const obj = JSON.parse(data.Boards[i - 1]);
+                    jdata[i] = obj;
                 }
 
                 for (let i = 0; i < jdata.length - 1; i++) {
@@ -314,12 +314,14 @@
                     const BoardIDDisp = document.getElementById("BordNum" + i);
                     const NameDisplay = document.getElementById("SwName" + i);
                     const TimeDisplay = document.getElementById("TimerDisp" + i);
+                    const RankDisplay = document.getElementById("Rank" + i);
                     // const RankDisplay = document.getElementById("Rank" + i);
                     // const obj = JSON.parse(data.Boards[i - 1]);
-
-                    BoardIDDisp.innerHTML = jdata[i].boardId+1;
+                    BoardIDDisp.setAttribute('background-color', 'red');
+                    BoardIDDisp.innerHTML = jdata[i].boardId + 1;
                     NameDisplay.innerHTML = jdata[i].swimmername;
-                    TimeDisplay.innerHTML = jdata[i].timerValue;
+                    TimeDisplay.innerHTML = ConvertTime(jdata[i].timerValue);
+                    RankDisplay.innerHTML = i;
 
                     // RankDisplay.innerHTML = data.myRank + i;
                 }
