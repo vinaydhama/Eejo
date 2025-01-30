@@ -1,0 +1,1 @@
+@reboot sh /home/pks/Desktop/Eejo_Swimmer/Autorun.sh >/home/pks/Desktop/Eejo_Swimmer/Autolaunch_logs
