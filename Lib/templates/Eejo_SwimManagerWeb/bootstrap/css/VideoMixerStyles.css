@@ -1,0 +1,54 @@
+
+
+
+.board1{
+    height: 100px;
+    width: 300px;
+  
+    transform:
+    matrix(1,0.01,-0.4,0.8,450,60);  
+    opacity: 0.9;
+    background-color:rgba(15, 15, 16, 0.606);
+   }
+  
+   .board2{
+    height: 100px;
+    width: 300px;
+  
+    transform:
+    matrix(1,0.01,-0.4,0.8,410,40);  
+    opacity: 0.9;
+    background-color:rgba(15, 15, 16, 0.606);
+   }
+  
+  
+   .board3{
+    height: 100px;
+    width: 300px;
+  
+    transform:
+    matrix(1,0.01,-0.4,0.8,370,21);  
+    opacity: 0.9;
+    background-color:rgba(15, 15, 16, 0.606);
+   }
+  
+   .board4{
+    height: 100px;
+    width: 300px;
+  
+    transform:
+    matrix(1,0.01,-0.5,1.1,325,16);  
+    opacity: 0.9;
+    background-color:rgba(15, 15, 16, 0.606);
+   }
+  
+   .board5{
+    height: 100px;
+    width: 300px;
+  
+    transform:
+    matrix(1,0.01,-0.8,1.8,260,60);  
+    opacity: 0.9;
+    background-color:rgba(15, 15, 16, 0.606);
+   }
+  
