@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+<body>
+  <div>
+    <table id="Tab1"></table>
+  </div>
+  <div>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+  </div>
+  <div>
+    <label>Name:</label>
+    <Select name="SelectSwName" id="SelectSwName"></Select>
+  </div>
+  <div>
+    <label>Stroke:</label>
+    <Select id="SelectStroke"> </Select>
+  </div>
+  </div>
+</body>
+
+
+<style>
+  table {
+    display: block;
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+  }
+</style>
+<table>
+  <!-- table content -->
+</table>
+</style>
+
+
+<script>
+  // const xValues = ["sd", 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+  jsonData = "";
+
+
+  //tableCreate(50)  
+
+  function tableCreate(NoOfBoard) {
+    const body = document.body;
+    tbl = document.getElementById('Tab1');
+
+
+    tr = tbl.insertRow();
+    tbl.borderColor = "RED";
+
+    td1 = tr.insertCell();
+    // td1.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:20px; text-align: center;') 
+    td1.appendChild(document.createTextNode("SlNo."));
+
+    td1 = tr.insertCell();
+    td1.appendChild(document.createTextNode("Name."));
+    td1 = tr.insertCell();
+    td1.appendChild(document.createTextNode("School\\Club."));
+    td1 = tr.insertCell();
+    td1.appendChild(document.createTextNode("Timeings"));
+    td1.appendChild(document.createTextNode("RANK."));
+    td1 = tr.insertCell();
+
+
+    for (let i = 0; i < (NoOfBoard * 2); i++) {
+      tr = tbl.insertRow();
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode(i));
+      td1 = tr.insertCell();
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode("Name " + i));
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode("School " + i));
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode("Timeings " + i));
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode("Rank " + i));
+
+    }
+
+
+    body.appendChild(tbl);
+  }
+
+  
+  Firebaseurl = "https://eejo-managerdb-default-rtdb.firebaseio.com/Swimmers.json";
+  // Function to fetch and display JSON data
+  fetchAndEventResults(Firebaseurl);
+  async function fetchAndEventResults(Firebaseurl) {
+    var dataAPI = fetch(Firebaseurl) // append .json at the end of the url to make a RESTful request
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        // Work with JSON data here
+        jsonData = data;
+        displayEventResults(jsonData);
+        return data;
+      }, error => {
+        console.error('onRejected function called: ' + error.message);
+      })
+  }
+  function PlotStroke(data,SwName,StrokecomboBox) {
+    var timearray=[]
+    var xValues=[]
+    for (let i = 0; i < (data.length); i++) {
+      if (SwName == data[i]["Name"]) {
+        for (let j = 0; j < (data[i]["MeetResults"].length); j++) {
+          if (data[i]["MeetResults"][j]["EventID"]!== "") {
+         var stroketypa = data[i]["MeetResults"][j]["EventID"].split("_");
+         var stroketyp= stroketypa[0]+"_"+ stroketypa[1]          
+            if (stroketyp == StrokecomboBox) {
+              // var newOption = document.createElement("option"); // Create a new option
+              // newOption.value = stroketyp; // Set the value
+              // newOption.text = stroketyp; // Set the text
+              // StrokecomboBox.add(newOption); // Add the new option to the ComboBox
+              
+              timearray.push(data[i]["MeetResults"][j]["timeings"]);
+              let heattime= (data[i]["MeetResults"][j]["HeatDateTime"]).toString()
+              xValues.push(heattime.substring(8, 6)+"-" + heattime.substring(6, 4)+"-" + heattime.substring(0, 4)+"  "
+              +heattime.substring(10, 8)+":" + heattime.substring(12, 10)+":"+ heattime.substring(14, 12
+
+              ));
+            }
+          }
+        }
+
+      }
+    }
+
+
+    new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        data: timearray,
+        borderColor: "red",
+        fill: false
+      }]
+    },
+    options: {
+      legend: { display: true }
+    }
+  });
+  //   timearray=[1,2,3,4,7]
+  //   new Chart("myChart", {
+  //   type: "line",
+  //   data: {
+  //     labels: xValues,
+  //     datasets: [{
+  //       data: [2,3,4,5],
+  //       borderColor: "red",
+  //       fill: false
+  //     }]
+  //   },
+  //   options: {
+  //     legend: { display: true }
+  //   }
+  // });
+  }
+
+  function LoadStrokes(data, SwName) {
+    var StrokecomboBox = document.getElementById("SelectStroke"); // Get the ComboBox
+    StrokecomboBox.addEventListener("change", function () {
+      PlotStroke(data, SwName,StrokecomboBox.value);
+    });
+    var items = []; // Array to hold the items
+    for (let i = 0; i < (data.length); i++) {
+      if (SwName == data[i]["Name"]) {
+        for (let j = 0; j < (data[i]["MeetResults"].length); j++) {
+          if (data[i]["MeetResults"][j]["EventID"]!== "") {
+         var stroketypa = data[i]["MeetResults"][j]["EventID"].split("_");
+         var stroketyp= stroketypa[0]+"_"+ stroketypa[1]
+          
+            const foundElement = items.find(element => element === stroketyp);
+            if (foundElement == undefined) {
+              var newOption = document.createElement("option"); // Create a new option
+              newOption.value = stroketyp; // Set the value
+              newOption.text = stroketyp; // Set the text
+              StrokecomboBox.add(newOption); // Add the new option to the ComboBox
+              items.push(stroketyp);
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+
+  function LoadSwNames(data) {
+    var namecomboBox = document.getElementById("SelectSwName"); // Get the ComboBox
+    //LoadStrokes(data,"SW_G6-B1")
+
+    namecomboBox.addEventListener("change", function () {
+      LoadStrokes(data, namecomboBox.value);
+    });
+
+    for (let i = 0; i < (data.length); i++) {
+
+      var newOption = document.createElement("option"); // Create a new option
+      newOption.value = data[i]["Name"]; // Set the value
+      newOption.text = data[i]["Name"]; // Set the text
+      namecomboBox.add(newOption); // Add the new option to the ComboBox
+
+    }
+  }
+  function displayEventResults(jsonData) {
+
+    try {
+      let jdata = []
+
+      const body = document.body;
+      tbl = document.getElementById('Tab1');
+
+      tr = tbl.insertRow();
+      tbl.borderColor = "RED";
+
+      td1 = tr.insertCell();
+      // td1.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:20px; text-align: center;') 
+      td1.appendChild(document.createTextNode("SlNo."));
+
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode("Name."));
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode("School\\Club."));
+      td1 = tr.insertCell();
+      td1.appendChild(document.createTextNode("Timeings"));
+      td1.appendChild(document.createTextNode("RANK."));
+      td1 = tr.insertCell();
+      LoadSwNames(jsonData)
+
+      for (let i = 0; i < (jsonData["HeatList"].length); i++) {
+        for (let j = 0; j < (jsonData["HeatList"][i]["BoardList"].length); j++) {
+          tr = tbl.insertRow();
+          td1 = tr.insertCell();
+          td1.appendChild(document.createTextNode(j));
+          td1 = tr.insertCell();
+          td1 = tr.insertCell();
+          td1.appendChild(document.createTextNode(jsonData["HeatList"][i]["BoardList"][j].SwimerName));
+          td1 = tr.insertCell();
+          td1.appendChild(document.createTextNode("School " + i));
+          td1 = tr.insertCell();
+          td1.appendChild(document.createTextNode(jsonData["HeatList"][i]["BoardList"][j].SwimTimings.toString()));
+          td1 = tr.insertCell();
+          td1.appendChild(document.createTextNode("Rank " + i));
+        }
+      }
+      body.appendChild(tbl);
+    }
+    catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
+  }
+</script>

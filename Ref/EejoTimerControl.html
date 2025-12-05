@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html style=" background-color: rgb(0, 0, 0);">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">    </script>
+</head>
+
+<body id="PageBody">
+
+    <div>
+        <table id="Tab1"></table>
+    </div>
+    <div>
+        <marquee bgcolor="black" scrollamount="1" direction="left" loop="true" style="font-size: 10PX;">
+            <center>
+                <font color="#ffffff"><strong>WWW.TINYTECHNIQUES.COM << EEJO-SWIM MEET MANAGER V 1.0.0 </strong>
+                </font>
+            </center>
+        </marquee>
+    </div>
+</body>
+<style>
+    /* Select*/
+    select {
+        /* width: 10rem; */
+        background-color: #2f72de;
+        border: #b2eeac 2px solid;
+    }
+
+    select>option {
+        background-color: #2f72de;
+    }
+</style>
+<script>
+
+    {
+        function GetEejoHostID() {
+    urlString= window.location.href;
+    // urlString= "http://192.168.0.101:8000/EejoPages/MeetEditor.html"
+    HostID = urlString.substring(urlString.indexOf("/")+2, urlString.lastIndexOf(':'));
+    return HostID;
+  }
+  baseURL = "http://" + GetEejoHostID() + ":5002/";
+
+       // baseURL = "http://192.168.0.101:5002";
+        MeetingID=1;
+       // FirebaseurlHeats = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/"+MeetingID+"/EventDetails.json";
+        TableCreated = false;
+        tableCreate(10)
+        HeatSetURL = baseURL + "/SetNextHeat";
+        cmdurl = baseURL + "/SetLiveHeatCommands?";
+        GetHeatsURL= "GetAllHeatIDsFromFile";
+
+        fetchAndUpdateHeatList(cmdurl+"CmdName=" + GetHeatsURL);
+       
+
+        async function fetchAndUpdateHeatList(Firebaseurl) {
+            var dataAPI = fetch(Firebaseurl) // append .json at the end of the url to make a RESTful request
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    // Work with JSON data here
+                    jsonData = data;
+
+                    var HeatSelectorComboBox = document.getElementById("HeatSelector"); // Get the ComboBox
+            // HeatSelectorComboBox.addEventListener("change", function () {
+            //     // PlotStroke(data, SwName, HeatSelectorComboBox.value);
+            // });
+            var items = []; // Array to hold the items
+            for (let i = 0; i < (data.commandReturnData.length); i++) {
+                // event= data[i];
+                // for (let j = 0; j < (event.HeatList.length); j++) {
+                    var newOption = document.createElement("option"); // Create a new option
+                    HeatName= data.commandReturnData[i];
+                    newOption.value = HeatName; // Set the value
+                    newOption.text = HeatName; // Set the text  
+                    HeatSelectorComboBox.add(newOption)                  
+                // }
+            }
+                    
+                    return data;
+                }, error => {
+                    console.error('onRejected function called: ' + error.message);
+                })
+        }
+
+
+        function ExecuteLiveCmd(CmdToSend, CmdDict) {
+
+            // if (btnid.textContent("_"))
+            // {
+            //     var cmdarray =btnid.Split("_");
+            //     CmdToSend= cmdarray;
+            // }
+
+            switch (CmdToSend) {
+                case 'SetNextHeat':
+                    HeatName = CmdDict;
+                    CmdToSend = "CmdName=" + "SetNextHeat" + "&HeatName=" + HeatName;
+                    break;
+
+                case 'AutoFindHeat':
+                    AutoCmd = CmdDict;
+                    CmdToSend = "CmdName=" + "AutoFindHeat" + "&AutoCmd=" + AutoCmd;
+                    break;
+
+                case 'Start': // 1-Start, 2-Pause,3-Stop,4-Repeat
+                    CmdToSend = "CmdName=" + "HeatCommand" + "&HeatCmdValue=" + "1";
+                    break;
+
+                case 'Pause': // 1-Start, 2-Pause,3-Stop,4-Repeat
+                    CmdToSend = "CmdName=" + "HeatCommand" + "&HeatCmdValue=" + "2";
+                    break;
+                case 'Stop': // 1-Start, 2-Pause,3-Stop,4-Repeat
+                    CmdToSend = "CmdName=" + "HeatCommand" + "&HeatCmdValue=" + "3";
+                    break;
+                case 'Complete': // 1-Start, 2-Pause,3-Stop,4-Complete
+                    CmdToSend = "CmdName=" + "HeatCommand" + "&HeatCmdValue=" + "4";
+                    break;
+
+                case 'SwimmerNameDispCmd': // SwBoardID=""&SwNameValue=""
+                    SwBoardID = CmdDict["SwBoardID"];
+                    SwNameValue = CmdDict["SwNameValue"];
+                    CmdToSend = "CmdName=" + "SwimmerNameDispCmd" + "&SwBoardID=" + SwBoardID + "&SwNameValue=" + SwNameValue;
+                    break;
+                //TBD
+
+                case 'SwimmerTimeDispCmd': // SwBoardID=""&SwTimeValue=""
+                    SwBoardID = CmdDict["SwBoardID"];
+                    SwTimeValue = CmdDict["SwTimeValue"];
+                    // SwBoardID = request.args.get('SwBoardID')
+                    // SwTimeValue = request.args.get('SwTimeValue')
+                    CmdToSend = "CmdName=" + "SwimmerTimeDispCmd" + "&SwBoardID=" + SwBoardID + "&SwTimeValue=" + SwTimeValue;
+                    break;
+                //TBD
+
+                case 'SwimmerStatusCmd':  // SwBoardID=""&SwStatusCmdValue="" 0-NA, 1-AB,2-DQ,3-DNC
+                    SwBoardID = CmdDict["SwBoardID"];
+                    SwStatusCmdValue = CmdDict["SwStatusCmdValue"];
+                    CmdToSend = "CmdName=" + "SwimmerStatusCmd" + "&SwBoardID=" + SwBoardID + "&SwStatusCmdValue=" + SwStatusCmdValue;
+                    break;
+                //TBD
+
+                case 'BoardTimerCmd': // SwBoardID=""&BoardTimerCmdValue="" //  1-Pause,2-Continue,3-Disable,4-Bypass
+                    SwBoardID = CmdDict["SwBoardID"];
+                    BoardTimerCmdValue = CmdDict["BoardTimerCmdValue"];
+                    CmdToSend = "CmdName=" + "BoardTimerCmd" + "&SwBoardID=" + SwBoardID + "&BoardTimerCmdValue=" + BoardTimerCmdValue;
+                    break;
+
+            }
+            if (CmdToSend != "") {
+                SendLiveCmd(CmdToSend);
+            }
+
+        }
+
+        async function SendLiveCmd(CmdtoSend) {
+            try {
+                urlToFetch = cmdurl + CmdtoSend;
+                await fetch(urlToFetch)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Display the data
+                        // displayTimeData(data);
+                        return data;
+                    })
+
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        function tableCreate(NoOfBoard) {
+            const body = document.body;
+            tbl = document.getElementById('Tab1');
+
+            tbl.style = "color: aqua";
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("MEET NAME")));
+            td.setAttribute('colSpan', '3');
+            td.id = "MeetName"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:250%; text-align: center;')
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("Heat: 123")));
+            td.id = "HeatNumber"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("Address")));
+            td.id = "MeetAddress"
+            td.setAttribute('colSpan', '1');
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("Dec 2024")));
+            td.id = "MeetDate"
+            td.setAttribute('colSpan', '1');
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("BOARD")));
+            td.id = "HeatNumbesr"
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode(("100 M Free Style G-5 Boys")));
+            td.id = "EventName"
+            td.setAttribute('colSpan', '2');
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            // tr = tbl.insertRow();
+            // td = tr.insertCell();
+            // x = document.createElement("button");
+            // x.id = "btnStart";
+            // x.addEventListener("click", function () {
+
+            //     ExecuteLiveCmd("btnStart");
+            // });
+
+            // x.textContent = "START";
+            // td.appendChild(x);
+
+            td.setAttribute('colSpan', '3');
+            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+            var HeatList_select = document.createElement("select");
+            HeatList_select.id="HeatSelector";
+            var newOption = document.createElement("option"); // Create a new option
+            newOption.value = ""; // Set the value
+            newOption.text = ""; // Set the text
+            HeatList_select.add(newOption); // Add the new option to the ComboBox           
+            // var newOption = document.createElement("option"); // Create a new option
+            // newOption.value = "heat1"; // Set the value
+            // newOption.text = "heat1"; // Set the text
+            // HeatList_select.add(newOption); // Add the new option to the ComboBox           
+            td.appendChild(HeatList_select);
+
+            //td.id = "btnPause";
+            HeatList_select.addEventListener("change", function () {
+                if (HeatList_select.value != "") {
+                    ExecuteLiveCmd("SetNextHeat", HeatList_select.value);
+                }
+                else
+                {
+                    ExecuteLiveCmd("AutoFindHeat", "1");
+                }
+
+            });
+
+            var HeatCmd_select = document.createElement("select");
+            var newOption = document.createElement("option"); // Create a new option
+            newOption.value = ""; // Set the value
+            newOption.text = ""; // Set the text
+            HeatCmd_select.add(newOption); // Add the new option to the ComboBox
+            var newOption = document.createElement("option"); // Create a new option
+            newOption.style = "background: #5cb85c;";
+            newOption.value = "Start"; // Set the value
+            newOption.text = "Start"; // Set the text
+            HeatCmd_select.add(newOption); // Add the new option to the ComboBox
+            var newOption = document.createElement("option");
+            newOption.style = "background: #F90003;";
+            newOption.value = "Stop"; // Set the value
+            newOption.text = "Stop"; // Set the text
+            HeatCmd_select.add(newOption); // Add the new option to the ComboBox
+            var newOption = document.createElement("option");
+            newOption.style = "background: #1D6B31;";
+            newOption.value = "Complete"; // Set the value
+            newOption.text = "Complete"; // Set the text            
+            HeatCmd_select.add(newOption); // Add the new option to the ComboBox
+
+            //HeatCmd_select.textContent = "Pause";
+            td.appendChild(HeatCmd_select);
+            //td.id = "btnPause";
+            HeatCmd_select.addEventListener("change", function () {
+                if (HeatCmd_select.value != "") {
+                    ExecuteLiveCmd(HeatCmd_select.value);
+                }
+            });
+
+            // x = document.createElement("button");
+            // x.textContent = "Stop";
+            // td.appendChild(x);
+            // td.id = "btnStop"
+            // x.addEventListener("click", function () {
+
+            //     ExecuteLiveCmd("btnStop");
+            // });
+
+            // x = document.createElement("button");
+            // x.textContent = "Repeat";
+            // td.appendChild(x);
+            // td.id = "btnRepeat"
+            // x.addEventListener("click", function () {
+
+            //     ExecuteLiveCmd("btnRepeat");
+            // });
+
+            //Row
+            for (let i = 0; i < (NoOfBoard * 2); i++) {
+                tr = tbl.insertRow();
+                tr.style = "width="
+                tr.style = "color: aqua";
+                // Col
+                for (let j = 0; j <= 1; j++) {
+                    {
+                        if (j == 1 && i % 2 != 0) {
+                        }
+                        else
+                            td = tr.insertCell();
+                        if (i % 2 == 0 && j % 2 == 0) {
+                            td.appendChild(document.createTextNode((i / 2) + 1));
+                            td.setAttribute('style', ' color: #e7f705;font-family:Arial narrow Bold ; font-size:50PX; text-align: center;')
+                            td.id = "BordNum" + (((i / 2) - 0) + 1)
+                        }
+                        else if (i % 2 == 0 && j % 2 != 0) {
+                            var swnamevar = document.createElement("input");
+                            //swnamevar.value = "SwName";
+                            swnamevar.id = "SwName" + ((i / 2));
+                            swnamevar.addEventListener("keyup", function (event) {
+                                if (event.key === "Enter") {
+                                    states_dictionary = { "SwBoardID": (i / 2), "SwNameValue": document.getElementById("SwName" + ((i / 2))).value };
+                                    ExecuteLiveCmd("SwimmerNameDispCmd", states_dictionary);
+                                    // Do work
+                                }
+                            });
+
+                            td.appendChild(swnamevar);
+                            td.setAttribute('style', ' color: #f6f7f6bb;font-family:Arial narrow Bold ; font-size:100%; text-align:center;')
+                            td.setAttribute('colSpan', '1');
+                            td = tr.insertCell();
+                            //SwBoardID=""&SwStatusCmdValue="" 0-NA, 1-AB,2-DQ,3-DNC
+
+                            var SwStatusCmd_select = document.createElement("select");
+                            var newOption = document.createElement("option"); // Create a new option
+                            newOption.value = "0"; // Set the value
+                            newOption.text = ""; // Set the text
+                            SwStatusCmd_select.add(newOption); // Add the new option to the ComboBox
+                            var newOption = document.createElement("option"); // Create a new option
+                            newOption.style = "background: #A0A0A0;";
+                            newOption.value = "1"; // Set the value
+                            newOption.text = "AB"; // Set the text
+                            SwStatusCmd_select.add(newOption); // Add the new option to the ComboBox
+                            var newOption = document.createElement("option");
+                            newOption.style = "background: #565656;";
+                            newOption.value = "3"; // Set the value
+                            newOption.text = "DNC"; // Set the text            
+                            SwStatusCmd_select.add(newOption); // Add the new option to the ComboBox
+                            var newOption = document.createElement("option");
+                            newOption.style = "background: #161616;";
+                            newOption.value = "2"; // Set the value
+                            newOption.text = "DQ"; // Set the text
+                            SwStatusCmd_select.add(newOption); // Add the new option to the ComboBox
+
+
+                            //SwStatusCmd_select.textContent = "Pause";
+                            td.appendChild(SwStatusCmd_select);
+                            SwStatusCmd_select.id = "SwStatusCmd_select" + (i / 2);
+                            SwStatusCmd_select.addEventListener("change", function () {
+                                
+                                var SwStatusCmd_select = document.getElementById("SwStatusCmd_select" + (i / 2))
+                                if (SwStatusCmd_select.value != '0') {
+                                    states_dictionary = { "SwBoardID": (i / 2), "SwStatusCmdValue": SwStatusCmd_select.value };
+                                    ExecuteLiveCmd("SwimmerStatusCmd", states_dictionary);
+                                    // if (SwStatusCmd_select.value!= ""){
+                                    //     ExecuteLiveCmd(SwStatusCmd_select.value);
+                                    // }
+                                }
+                            });
+
+                            // SwBoardID=""&BoardTimerCmdValue="" //  1-Pause,2-Continue,3-Disable,4-Bypass
+
+                            var BoardCmd_select = document.createElement("select");
+                            var newOption = document.createElement("option"); // Create a new option               
+                            newOption.value = "0"; // Set the value
+                            newOption.text = ""; // Set the text
+                            BoardCmd_select.add(newOption); // Add the new option to the ComboBox
+                            var newOption = document.createElement("option"); // Create a new option
+                            newOption.style = "background: #5cb85c;";
+                            newOption.value = "2"; // Set the value
+                            newOption.text = "Continue"; // Set the text
+                            BoardCmd_select.add(newOption); // Add the new option to the ComboBox
+                            var newOption = document.createElement("option");
+                            newOption.style = "background: #F90003;";
+                            newOption.value = "1"; // Set the value
+                            newOption.text = "Stop"; // Set the text
+                            BoardCmd_select.add(newOption); // Add the new option to the ComboBox
+                            var newOption = document.createElement("option");
+                            newOption.style = "background: #4D0003;";
+                            newOption.value = "3"; // Set the value
+                            newOption.text = "Disable"; // Set the text
+                            BoardCmd_select.add(newOption); // Add the new option to the ComboBox
+
+                            var newOption = document.createElement("option");
+                            newOption.style = "background: #4D0003;";
+                            newOption.value = "4"; // Set the value
+                            newOption.text = "Bypass"; // Set the text
+                            BoardCmd_select.add(newOption); // Add the new option to the ComboBox
+
+                            //BoardCmd_select.textContent = "Pause";
+                            td.appendChild(BoardCmd_select);
+                            BoardCmd_select.id = "BoardCmd_select" + (i / 2);
+                            BoardCmd_select.addEventListener("change", function () {
+                                var SelectedBoard_Cmd = document.getElementById("BoardCmd_select" + (i / 2))
+                                if (SelectedBoard_Cmd.value != '0') {
+                                    states_dictionary = { "SwBoardID": (i / 2), "BoardTimerCmdValue": SelectedBoard_Cmd.value };
+                                    ExecuteLiveCmd("BoardTimerCmd", states_dictionary);
+                                }
+                                // ExecuteLiveCmd(BoardCmd_select.value);
+                            });
+
+                            // x = document.createElement("button");
+                            // x.textContent = "AB";
+                            // td.appendChild(x);
+                            // td.id = "btnAB" + + ((i / 2));
+                            // x.addEventListener("click", function () {
+                            //     states_dictionary = { "SwBoardID": (i / 2), "SwStatusCmdValue": 1 };
+                            //     ExecuteLiveCmd("SwimmerStatusCmd", states_dictionary);
+                            // });
+
+                            // x = document.createElement("button");
+                            // x.textContent = "DQ";
+                            // td.appendChild(x);
+                            // td.id = "btnDQ" + ((i / 2));
+
+                            // x.addEventListener("click", function () {
+                            //     states_dictionary = { "SwBoardID": (i / 2), "SwStatusCmdValue": 2 };
+                            //     ExecuteLiveCmd("SwimmerStatusCmd", states_dictionary);
+                            // });
+
+                            // x = document.createElement("button");
+                            // x.textContent = "DNC";
+                            // td.appendChild(x);
+                            // td.id = "btnDNC" + ((i / 2))
+                            // x.addEventListener("click", function () {
+                            //     states_dictionary = { "SwBoardID": (i / 2), "SwStatusCmdValue": 3 };
+                            //     ExecuteLiveCmd("SwimmerStatusCmd", states_dictionary);
+                            // });
+                            // //1-Pause,2-Continue,3-Disable,4-Bypass
+                            // x = document.createElement("button");
+                            // x.textContent = "Stop";
+                            // td.appendChild(x);
+                            // td.id = "btnBoardStop" + ((i / 2))
+                            // x.addEventListener("click", function () {
+                            //     states_dictionary = { "SwBoardID": (i / 2), "BoardTimerCmdValue": 1 };
+                            //     ExecuteLiveCmd("BoardTimerCmd", states_dictionary);
+                            //     //ExecuteLiveCmd("btnPause_" + ((i / 2)));
+                            // });
+
+                            // x = document.createElement("button");
+                            // x.textContent = "Cont";
+                            // td.appendChild(x);
+                            // td.id = "btnCont" + ((i / 2))
+                            // x.addEventListener("click", function () {
+                            //     states_dictionary = { "SwBoardID": (i / 2), "BoardTimerCmdValue": 2 };
+                            //     ExecuteLiveCmd("BoardTimerCmd", states_dictionary);
+                            // });
+                            // x = document.createElement("button");
+                            // x.textContent = "Disable";
+                            // td.appendChild(x);
+                            // td.id = "btnDisa" + ((i / 2))
+                            // x.addEventListener("click", function () {
+                            //     states_dictionary = { "SwBoardID": (i / 2), "BoardTimerCmdValue": 3 };
+                            //     ExecuteLiveCmd("BoardTimerCmd", states_dictionary);
+                            // });
+
+
+                            // x = document.createElement("button");
+                            // x.textContent = "Bypass";
+                            // td.appendChild(x);
+                            // x.addEventListener("click", function () {
+
+                            //     states_dictionary = { "SwBoardID": (i / 2), "BoardTimerCmdValue": 4 };
+                            //     ExecuteLiveCmd("BoardTimerCmd", states_dictionary);
+                            // });
+                            // td.setAttribute('style', ' color: #00ff11;font-family:Impact, Haettenschweiler ; font-size:200%; text-align: center;')
+                            // td.setAttribute('rowSpan', '2');
+
+                        }
+                        else if (i % 2 != 0 && j % 2 != 0) {
+
+                            var Timerdisp = document.createElement("input");
+                            Timerdisp.value = "TimerDisp";
+                            Timerdisp.id = "TimerDisp" + (((i / 2) - 0.5));
+
+
+                            Timerdisp.addEventListener("keyup", function (event) {
+                                if (event.key === "Enter") {
+                                    // SwBoardID = request.args.get('SwBoardID')
+                                    // SwTimeValue = request.args.get('SwTimeValue')
+
+                                    states_dictionary = { "SwBoardID": (((i / 2) - 0.5)), "SwTimeValue": document.getElementById("TimerDisp" + (((i / 2) - 0.5))).value };
+                                    ExecuteLiveCmd("SwimmerTimeDispCmd", states_dictionary);
+                                    //ExecuteLiveCmd("TimerDisp_" + (((i / 2) - 0.5)) + "_" + document.getElementById("TimerDisp" + (((i / 2) - 0.5))).value)
+                                    //ExecuteLiveCmd("TimerDisp_" + i + j + x.innerHTML)
+                                    // Do work
+                                }
+                            });
+                            td.appendChild(Timerdisp);
+                        }
+                        td.style.border = '2px solid #8a8b805b';
+                        if (i % 2 == 0 && j === 0) {
+                            td.setAttribute('rowSpan', '2');
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+
+</html>

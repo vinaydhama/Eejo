@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .header,
+    .header-space,
+    .footer,
+    .footer-space {
+        height: 100px;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+    }
+</style>
+
+<style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: 1px;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+    }
+  </style>
+
+
+
+
+<head>
+
+    <div >
+        <h1 class="header__content-text">
+            <b> Eejo Meet Report Generator.</b>
+            <br><br>
+            <label for="dynamic1" >Select Meet</label>
+            <select id="dynamic1" name="dynamic1"></select>
+            <!-- <label for="dynamic2" >Select Event</label>
+            <select id="dynamic2" name="dynamic2"></select> -->
+            <!-- <button type="button" onclick="SerachSwimRecords()">Search</button> -->
+            <br>
+        </h1>
+    </div>
+
+    <table id="tblMeetResult"> </table>
+  <br>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>Eejo Meet Report Generator</title>
+
+<body>
+    <div class="popup" id="BusyIndicatorpop">
+        <div class="loader"></div>
+        <p id="BusyMsg"> </p>
+    </div>
+    <script charset="utf-8" type="text/javascript" src="Scripts/MultiSelectScript.js"></script>
+    <script charset="utf-8" type="text/javascript" src="Scripts/FireBaseDataRetrive.js"></script>
+    <script charset="utf-8" type="text/javascript" src="Scripts/Utility.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="Styles/MultiSelectStyle.css">
+    <link rel="stylesheet" type="text/css" href="Styles/Tabledesign.css">
+    <link rel="stylesheet" type="text/css" href="Styles/GeneralStyle.css">
+
+    <script>
+        MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets.json";
+        let SelectedMeetName = [];
+        let SelectedEventName = [];
+        let MeetNameArray = [];
+        let EventNameArray = [];
+
+        var MeetDataFirebase = FetchEventNames();
+        function ClearTable(TableName) {
+    var tableHeaderRowCount = 1;
+    if (TableName == 'tblMeet') {
+      tableHeaderRowCount = 0;
+    }
+
+    var table = document.getElementById(TableName);
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+      table.deleteRow(tableHeaderRowCount);
+    }
+
+  }
+
+        function SerachSwimRecords() {
+            ClearTable('tblMeetResult');
+            //tbl.innerHTML = "";
+
+            let table = document.getElementById("tblMeetResult");
+            // table.innerHTML = "";
+            let HeaderRow = table.insertRow();
+            td = HeaderRow.insertCell();
+            td.appendChild(document.createTextNode("Event Results:  " + SelectedMeetName));
+            td.setAttribute('colSpan', '5');
+            EventResultArray = [];
+            meet= MeetDataFirebase[SelectedMeetName];
+
+                    meet.EventDetails.forEach(evendetail => {
+                        evendetail.HeatList.forEach(Boards => {
+                            Boards.BoardList.forEach(Board => {
+                                //evendetail.HeatList[0].BoardList[0].BoardID
+                                EventResultArray.push({
+                                    'SwName': Board.SwimerName, 'SwimerClub': 'SwimerClub',
+                                    'SwimStatus': Board.SwimStatus, 'SwimTimings': Board.SwimTimings
+                                })
+                            });
+                        });
+                        PltEventTable(evendetail.eventID,"eventName", EventResultArray);
+                    });
+               
+        }
+
+        async function FetchEventNames() {
+            showhide("BusyIndicatorpop", "Loading Swimmer table");
+            // busyi.show();
+
+            var dataAPI = fetch(MeetDataFirebaseURL)
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    MeetNameArray = LoadMeetNames(data)
+                    initMeetNames();
+                    MeetDataFirebase = data;
+                    showhide("BusyIndicatorpop");
+                    return;
+                }, error => {
+                    console.error('onRejected function called: ' + error.message);
+                })
+        }
+
+        function initMeetNames() {
+            new MultiSelect('#dynamic1', {
+                data: MeetNameArray,
+                placeholder: 'Select Meet',
+                search: true,
+                selectAll: true,
+                listAll: true,
+                onChange: function (value, text, element) {
+                    ////console.log('Change:', value, text, element);
+                },
+                onSelect: function (value, text, element) {
+                    SelectedMeetName=text;
+                    EventNameArray = LoadEventNames(MeetDataFirebase, SelectedMeetName);
+                    initEventNames();
+                    SerachSwimRecords()
+                    //console.log('Selected:', value, text, element);
+                },
+                onUnselect: function (value, text, element) {
+                    SelectedMeetName.pop(text);
+                    EventNameArray = LoadEventNames(MeetDataFirebase, SelectedMeetName);
+                    initEventNames();
+                    //console.log('Unselected:', value, text, element);
+                }
+            });
+        }
+
+
+        function initEventNames() {
+            new MultiSelect('#dynamic2', {
+                data: EventNameArray,
+                placeholder: 'Select Events',
+                search: true,
+                selectAll: true,
+                listAll: true,
+                onChange: function (value, text, element) {
+                    //console.log('Change:', value, text, element);
+                },
+                onSelect: function (value, text, element) {
+                    SelectedEventName.push(text);
+                    // EventNameArray = LoadEventNames(MeetDataFirebase,SelectedMeetName);
+                    // init;oke();
+                    //console.log('Selected:', value, text, element);
+                },
+                onUnselect: function (value, text, element) {
+                    SelectedEventName.pop(text);
+                    // EventNameArray = LoadEventNames(MeetDataFirebase,SelectedMeetName);
+                    //   init;oke();
+                    //console.log('Unselected:', value, text, element);
+                }
+            });
+        }
+
+        async function FetchEventData() {
+            showhide("BusyIndicatorpop", "Loading Swimmer table");
+            // busyi.show();
+
+            var dataAPI = fetch(MeetDataFirebaseURL)
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    MeetNameArray = LoadSwNames(data)
+                    // initSwNames();
+                    MeetDataFirebase = data;
+                    showhide("BusyIndicatorpop");
+                    return;
+                }, error => {
+                    console.error('onRejected function called: ' + error.message);
+                })
+        }
+
+        function PltEventTable(eventID,eventName, EventResultArray) {
+
+            // Get the table and insert a new row at the end
+            let tbl1 = document.getElementById("tblMeetResult");
+
+
+            // td.setAttribute('colSpan', '3');
+
+            let HeaderRow = tbl1.insertRow();
+            td = HeaderRow.insertCell();
+            td.appendChild(document.createTextNode("Event: " + eventID));
+            td.setAttribute('colSpan', '5');
+            td.setAttribute('style', ' color: black ;font-family:Arial narrow Bold ; font-size:250%; text-align: Left;')            
+
+            newRow = tbl1.insertRow();
+            newRow.insertCell().innerHTML = " <h1>Sl.NO</h1>";
+            newRow.insertCell().innerHTML = " <h1>SwimerName</h1>";
+            newRow.insertCell().innerHTML = " <h1>Swimer Club / School</h1>";
+            newRow.insertCell().innerHTML = " <h1>SwimStatus</h1>";            
+            newRow.insertCell().innerHTML = " <h1>SwimTimings</h1>";
+
+            // Sorting Results
+            for (let i = 0; i < EventResultArray.length - 1; i++) {
+                for (let j = 0; j < EventResultArray.length - i - 1; j++) {
+                    if (EventResultArray[j].SwimTimings > EventResultArray[j + 1].SwimTimings) {
+                        let temp = EventResultArray[j];
+                        EventResultArray[j] = EventResultArray[j + 1];
+                        EventResultArray[j + 1] = temp;
+                    }
+                }
+            }
+
+            // EventResultArray.append({'SwName':Board.SwimerName,'SwimerClub':'SwimerClub',
+            //                 'SwimStatus':Board.SwimStatus,'SwimTimings':Board.SwimTimings})
+
+
+            for (let i = 0; i < (EventResultArray.Length * 2); i++) {
+                //console.log(i);
+
+            }
+
+
+            for (let eventIndex = 0; eventIndex < EventResultArray.length; eventIndex++) {
+                newRow = tbl1.insertRow();
+
+                //evendetail.HeatList[0].BoardList[0].BoardID
+                newRow.insertCell().innerHTML = eventIndex + 1;
+                newRow.insertCell().innerHTML = EventResultArray[eventIndex].SwName;
+                newRow.insertCell().innerHTML = EventResultArray[eventIndex].SwimerClub;
+                newRow.insertCell().innerHTML = EventResultArray[eventIndex].SwimStatus;
+                newRow.insertCell().innerHTML = ConvertTime(EventResultArray[eventIndex].SwimTimings);
+            }
+            //console.log("sdss");
+        }
+
+    </script>
+</body>
+
+</html>
