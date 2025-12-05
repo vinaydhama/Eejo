@@ -34,7 +34,7 @@ threading.Thread(target=lambda: RestServicecls.app.run(host=RestServicecls.host_
 
 # initModbusdevice(ModbusPortID,1,115200,8,serial.PARITY_NONE,1)
 
-ModbusLibcls.ConnecttoDevice()
+#ModbusLibcls.ConnecttoDevice()
 RestServicecls.Synced_JSONData=RestServicecls.InitTimerStart()
 WebServerCls.HTTPIP = RestServicecls.GetRestIP()
 WebServerCls.init(WebServerCls.HTTPIP, WebServerCls.PORT)
