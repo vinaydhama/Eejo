@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="../../bootstrap/css/Dark_Light.css" rel="stylesheet" type="text/css" />
+
+<head>
+  <button onclick="{document.body.classList.toggle('dark')}">B</button>
+
+  <meta charset="UTF-8">
+  <title>Iframe Control Panel</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    select,
+    input[type="range"] {
+      width: 500px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 6px 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>🧭 Eejo live Broadcast Controller</h2>
+
+
+  <fieldset>
+    <legend> TimerControl </legend>
+
+    <label>TimerIP: <input style="width: auto;" type="text"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Video setting</legend>
+
+    <label>Select IFrame:
+      <select id="iframeSelector">
+        <option value="1">IFrame 1</option>
+        <option value="2">IFrame 2</option>
+        <option value="3">IFrame 3</option>
+      </select>
+    </label>
+
+    <label>Select Source:
+      <select id="CamSelector"
+        onchange="sendCommand('CAMSource', parseInt(document.getElementById('iframeSelector').value), { cam: parseInt(this.value) })">
+        <option value="0">CAM 1</option>
+        <option value="1">CAM 2</option>
+        <option value="2">CAM 3</option>
+      </select>
+    </label>
+    <label>X Position: <input type="range" id="xSlider" min="-500" max="2000" value="0"></label>
+    <label>Y Position: <input type="range" id="ySlider" min="-500" max="1000" value="0"></label>
+    <label>X Scale: <input type="range" id="xScale" min="0" max="1" value="0" step="0.01"></label>
+    <label>Y Scale: <input type="range" id="yScale" min="0" max="1" value="0" step="0.01"></label>
+    <label>Width: <input type="range" id="wSlider" min="0" max="2000" value="400"></label>
+    <label>Height: <input type="range" id="hSlider" min="0" max="1100" value="300"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Video Play option </legend>
+    <button onclick="sendCommand('toggle', parseInt(document.getElementById('iframeSelector').value))">Toggle
+      IFrame</button>
+    <button onclick="sendCommand('PlayAnimation', 1,data)">Ad</button>
+    <button onclick="sendCommand('ShowTimeings', 1,enrichedBoards)">Result</button>
+    <button onclick="sendCommand('PlayIntro', 1,data)">Intro</button>
+
+    <button onclick="sendCommand('HideAd', 1,[1,2])">HideAd</button>
+    <button onclick="sendCommand('HideTabs', 1,[1,2])">HideTabs</button>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Video Recorder</legend>
+    <label>HeatFileName: <input style="width: auto;" type="text"></label>
+    <button onclick="sendCommand('StartRecording')">Start</button>
+    <button onclick="sendCommand('StopRecording')">Stop</button>
+    <button onclick="sendCommand('SaveRecording')">Save</button>
+  </fieldset>
+
+
+
+
+  <button onclick="resetControls()">Reset Controls</button>
+
+  <script>
+    const channel = new BroadcastChannel('Eejo-Video-control');
+    const sliders = ['xSlider', 'ySlider', 'wSlider', 'hSlider', 'xScale', 'yScale'];
+    let URLSource = ["http://10.24.224.228:8080/video", "www.google.com", ""]
+    sliders.forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        const iframeNum = parseInt(document.getElementById('iframeSelector').value);
+        const x = parseInt(document.getElementById('xSlider').value);
+        const y = parseInt(document.getElementById('ySlider').value);
+        const w = parseInt(document.getElementById('wSlider').value);
+        const h = parseInt(document.getElementById('hSlider').value);
+        const Sx = parseFloat(document.getElementById('xScale').value);
+        const Sy = parseFloat(document.getElementById('yScale').value);
+
+        switch (id) {
+          case "xSlider":
+          case "ySlider":
+            sendCommand('move', iframeNum, { x, y });
+            break;
+          case "wSlider":
+          case "hSlider":
+            sendCommand('resize', iframeNum, { width: w, height: h });
+            break;
+          case "xScale":
+          case "yScale":
+            sendCommand('ScaleIFrame', iframeNum, { ScaleX: Sx, ScaleY: Sy });
+            break;
+        }
+      });
+    });
+
+    function sendCommand(action, iframeNum = 1, value = {}) {
+      channel.postMessage({ action, iframeNum, value });
+    }
+
+    function resetControls() {
+      sliders.forEach(id => {
+        const el = document.getElementById(id);
+        el.value = el.defaultValue;
+        el.dispatchEvent(new Event('input'));
+      });
+    }
+
+    document.addEventListener("keydown", function (event) {
+      switch (event.key.toLowerCase()) {
+        case "1":
+        case "2":
+        case "3":
+          sendCommand('CAMSource', 1, { cam: parseInt(event.key) - 1 });
+          break;
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

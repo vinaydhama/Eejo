@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>EEJO Manager | Time Keeper</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/MultiSelectStyle.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/Tabledesign.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/GeneralStyle.css">
+
+  <!-- Bootstrap 3.3.2 -->
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <!-- Font Awesome Icons -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css" />
+  <!-- Ionicons -->
+  <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <!-- Theme style -->
+  <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+  <link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-blue" width="100%" height="100%">
+  <div class="wrapper" width="100%" height="100%">
+
+    <header class="main-header">
+      <a href="../MainPage.html" class="logo"><b>EEJO </b>Manager</a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+            <li class="dropdown messages-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-envelope-o"></i>
+                <span class="label label-success">4</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">You have 4 messages</li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <li><!-- start message -->
+                      <a href="#">
+                        <div class="pull-left">
+                          <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                        </div>
+                        <h4>
+                          Support Team
+                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        </h4>
+                        <p>Why not buy a new awesome theme?</p>
+                      </a>
+                    </li><!-- end message -->
+                  </ul>
+                </li>
+                <li class="footer"><a href="#">See All Messages</a></li>
+              </ul>
+            </li>
+            <!-- Notifications: style can be found in dropdown.less -->
+            <li class="dropdown notifications-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-warning">10</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">You have 10 notifications</li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <li>
+                      <a href="#">
+                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="footer"><a href="#">View all</a></li>
+              </ul>
+            </li>
+            <!-- Tasks: style can be found in dropdown.less -->
+            <li class="dropdown tasks-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-flag-o"></i>
+                <span class="label label-danger">9</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">You have 9 tasks</li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <li><!-- Task item -->
+                      <a href="#">
+                        <h3>
+                          Design some buttons
+                          <small class="pull-right">20%</small>
+                        </h3>
+                        <div class="progress xs">
+                          <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">20% Complete</span>
+                          </div>
+                        </div>
+                      </a>
+                    </li><!-- end task item -->
+                  </ul>
+                </li>
+                <li class="footer">
+                  <a href="#">View all tasks</a>
+                </li>
+              </ul>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
+                <span class="hidden-xs">Eejo_User</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                  <p>
+                    Eejo_User - Web Developer
+                    <small>Member since Nov. 2012</small>
+                  </p>
+                </li>
+                <!-- Menu Body -->
+                <li class="user-body">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="./Util/index.html" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+ <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+          </div>
+          <div class="pull-left info">
+            <p>Eejo_User</p>
+
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search..." />
+            <span class="input-group-btn">
+              <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i
+                  class="fa fa-search"></i></button>
+            </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+          <!-- <li class="header">MAIN NAVIGATION</li> -->
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-files-o"></i>
+              <span>Layout Options</span>
+              <span class="label label-primary pull-right">4</span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="../pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+              <li><a href="../pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
+              <li><a href="../pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
+              <li><a href="../pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a>
+              </li>
+            </ul>
+          </li>
+          <li class="active treeview">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>Live Control</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li class="active"><a href="./LiveDisplayPage.html"><i class="fa fa-circle-o"></i> Live
+                  Display</a></li>
+              <li class="active"><a href="./HostControl.html"><i class="fa fa-circle-o"></i> Host Control </a>
+              </li>
+              <li><a href="./RefereeControl.html"><i class="fa fa-circle-o"></i> Referee Control</a></li>
+              <li><a href="./TimeKeeper.html"><i class="fa fa-circle-o"></i> Time Keeper</a></li>
+                <li><a href="./clerkofcourts.html"><i class="fa fa-circle-o"></i> Clerk Of Courts</a></li>
+
+
+            </ul>
+          </li>
+
+          <!-- <li>
+              <a href="pages/widgets.html">
+                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li> -->
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-pie-chart"></i>
+              <span>Results</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="EejoPages/HeatResults.html"><i class="fa fa-circle-o"></i> Heat Results</a></li>
+              <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Event Results</a></li>
+              <li><a href="./MeetResults.html"><i class="fa fa-circle-o"></i> Meet Results</a></li>
+                <li><a href="./SwimmerRecords.html"><i class="fa fa-circle-o"></i> Swimmer Records</a></li>
+            </ul>
+          </li>
+          
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-pie-chart"></i>
+              <span>Editor</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">           
+              <li><a href="./MeetEditor.html"><i class="fa fa-circle-o"></i>Meet Editor</a> </li>
+              <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Swimmer Editor</a></li>
+              <!--   <li><a href="./SwimmerRecords.html"><i class="fa fa-circle-o"></i> Swimmer Records</a></li> -->
+            </ul>
+          </li>
+
+    </aside>
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <div class="content-wrapper" id="MainViewr">
+    
+      <div class="popup" id="BusyIndicatorpop">
+        <div class="loader"></div>
+        <p id="BusyMsg"> </p>
+    </div>   
+    
+      <select id="dynamic1" name="dynamic1"></select>
+      <select id="dynamic2" name="dynamic2"></select>      
+
+      <button onclick=SerachSwimRecords()>
+        <h5><i> <span class="glyphicon glyphicon-search"></span>
+            <h5></h5>
+          </i> </h5>
+      </button>
+      <!-- <button type="button" onclick="">Search</button> -->
+      <br>
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+
+
+    
+        <canvas id="myChart" style="width:90%;"></canvas>
+        <table class="table table-bordered table-hover" id="Tab1"></table>
+    
+
+      
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.3 -->
+    <script src="../plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="../plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='../../plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/app.min.js" type="text/javascript"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js" type="text/javascript"></script>
+    <!-- page script -->
+  
+</body>
+<script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseDataRetrive.js"></script>
+
+<script charset="utf-8" type="text/javascript" src="../bootstrap/js/MultiSelectScript.js"></script>
+
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+<script>
+
+  FireBaseSwimmerURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/SwimmerDetails.json";
+  let SelectedNames = [];
+  let SelectedStroke = [];
+  let NameArray = [];
+  let StrokeArray = [];
+
+  var SwimmerFirebaseData = fetchSwimmersData();
+
+
+  function SerachSwimRecords() {
+      let yValues = [];
+      let xValues = [];
+      var retval = GetSwTimeing(SwimmerFirebaseData, SelectedNames, SelectedStroke[0])
+      for (let i = 0; i < retval.length - 1; i++) {
+          for (let j = 1; j < retval.length - i - 1; j++) {
+              if (retval[j].dateval > retval[j + 1].dateval) {
+                  let temp = retval[j];
+                  retval[j] = retval[j + 1];
+                  retval[j + 1] = temp;
+              }
+          }
+      }
+
+      retval.forEach(retvaldateval => {
+
+          heattime = retvaldateval.dateval.toString();
+          heattimeformated = (heattime.substring(8, 6) + "-" + heattime.substring(6, 4) + "-" + heattime.substring(0, 4) + "  "
+              + heattime.substring(10, 8) + ":" + heattime.substring(12, 10) + ":" + heattime.substring(14, 12));
+          xValues.push(heattimeformated)
+      });
+
+      for (let j = 0; j < SelectedNames.length; j++) {
+          {
+              yval = [];
+
+              for (let i = 0; i < retval.length; i++) {
+
+                  if (SelectedNames[j] == retval[i].Swname) {
+                      yval.push(retval[i].timeval);
+                  }
+                  else
+                      yval.push(0);
+
+              }
+              yValues.push(yval);
+          }
+      }
+      PlotGraph(yValues, xValues, SelectedNames)
+      PltTable(yValues, xValues, SelectedNames);
+  }
+
+  function PlotGraph(yValues, XValue, SelectedNames) {
+      var datasetsval = []
+      var color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow ", "Brown", "Gray", "black"];
+
+      for (let i = 0; i < (yValues.length); i++) {
+          datasetsval.push({ data: yValues[i], label: SelectedNames[i], borderColor: color[i], fill: false })
+      }
+
+
+
+      chart = document.getElementById('Tab1');
+      chart.innerHTML = "";
+      new Chart("myChart", {
+          type: "line",
+          data: {
+              labels: XValue,
+              datasets: datasetsval
+          },
+          options: {
+              legend: { display: true }
+          }
+      });
+
+  }
+
+  async function fetchSwimmersData() {
+      showhide("BusyIndicatorpop", "Loading Swimmer table");
+      // busyi.show();
+      
+
+      var dataAPI = fetch(FireBaseSwimmerURL)
+          .then(response => {
+              return response.json()
+          })
+          .then(data => {
+              NameArray = LoadSwNames(data)
+              initSwNames();
+              SwimmerFirebaseData = data;
+              showhide("BusyIndicatorpop");
+              return;
+          }, error => {
+              console.error('onRejected function called: ' + error.message);
+          })
+  }
+  initStroke();
+
+  function initSwNames() {
+      new MultiSelect('#dynamic1', {
+          data: NameArray,
+          placeholder: 'Select Name',
+          search: true,
+          selectAll: true,
+          listAll: true,
+          onChange: function (value, text, element) {
+              console.log('Change:', value, text, element);
+          },
+          onSelect: function (value, text, element) {
+              SelectedNames.push(text);
+              StrokeArray = UpdateStrokes(SelectedNames, SwimmerFirebaseData, StrokeArray);
+              initStroke();
+              console.log('Selected:', value, text, element);
+          },
+          onUnselect: function (value, text, element) {
+              SelectedNames.pop(text);
+              StrokeArray = UpdateStrokes(SelectedNames, SwimmerFirebaseData, StrokeArray);
+              initStroke();
+              console.log('Unselected:', value, text, element);
+          }
+      });
+  }
+  function initStroke() {
+
+      document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));
+      // Initialize the Multi Select dropdown
+
+      new MultiSelect('#dynamic2', {
+          data: StrokeArray,
+          placeholder: 'Select Stroke',
+          search: true,
+          selectAll: true,
+          listAll: true,          
+          onChange: function (value, text, element) {
+              console.log('Change:', value, text, element);
+          },
+          onSelect: function (value, text, element) {
+              SelectedStroke.push(text);
+              console.log('Selected:', SelectedNames);
+          },
+          onUnselect: function (value, text, element) {
+              SelectedStroke.pop(text);
+              console.log('Unselected:', value, text, element);
+          }
+      });
+  }
+  function PltTable(yValues, xValues, SelectedNames) {
+      const body = document.body;
+      tbl = document.getElementById('Tab1');
+      tbl.innerHTML = "";
+      var header = tbl.createTHead();
+      var row = header.insertRow();
+      var cell = row.insertCell();
+      cell.innerHTML = "<b>SlNo.<b>";
+      var cell = row.insertCell();
+      cell.innerHTML = "<b>Date Time<b>";
+
+      SelectedNames.forEach(swName => {
+          var cell = row.insertCell();
+          cell.innerHTML = "<b>" + swName + "<b>";
+
+      });
+
+      // row.setAttribute('style', ' background:Green; color: Black;font-family:Arial narrow Bold ; font-size:50px; text-align: center;')
+
+
+      for (let j = 0; j < (xValues.length); j++) {
+          tr = tbl.insertRow();
+          td1 = tr.insertCell();
+          td1.appendChild(document.createTextNode(j + 1));
+          td1 = tr.insertCell();
+          td1.appendChild(document.createTextNode(xValues[j]));
+
+          for (nameindex = 0; nameindex < (SelectedNames.length); nameindex++) {
+              td1 = tr.insertCell();
+              td1.appendChild(document.createTextNode(ConvertTime(yValues[nameindex][j])));
+          }
+
+      }
+
+  }
+
+</script>
+
+</html>

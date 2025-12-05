@@ -1,0 +1,79 @@
+<html>
+
+<body>
+  <div id="An1" style="display:none;">Ani-1</div>
+  <br>
+  <div id="An2" style="display:none;">Ani-2</div>
+  <br>
+  <div id="An3" style="display:none;">Ani-3</div>
+  <br>
+</body>
+
+</html>
+
+<script>
+  class AnimationPlayer {
+    constructor() {
+      this.animationQueue = [];
+      this.isPlaying = false;
+    }
+
+    // Add animation to the queue
+    addAnimation(name, durationInSeconds) {
+      this.animationQueue.push({ name, duration: durationInSeconds * 1000 });
+      this.playNext(); // Try to play if not already playing
+    }
+
+    // Play animations one by one
+    async playNext() {
+      if (this.isPlaying || this.animationQueue.length === 0) return;
+
+      this.isPlaying = true;
+
+      while (this.animationQueue.length > 0) {
+        const { name, duration } = this.animationQueue.shift();
+        switch (name) {
+          case "An1":
+            document.getElementById(name).style.display = "block";
+            break;
+          case "An2":
+            document.getElementById(name).style.display = "block";
+            break;
+          case "An3":
+            document.getElementById(name).style.display = "block";
+            break;
+
+          default:
+            break;
+        }
+        console.log(`Playing ${name} for ${duration / 1000} seconds`);
+        await this.sleep(duration);
+        document.getElementById(name).style.display = "none";
+      }
+
+      this.isPlaying = false;
+
+
+    }
+
+    // Utility to wait
+    sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Clear the animation queue
+    clearAnimations() {
+      this.animationQueue = [];
+      console.log("Animation backlog cleared.");
+    }
+  }
+
+  const player = new AnimationPlayer();
+
+  player.addAnimation("An1", 2);
+  player.addAnimation("An2", 2);
+  player.addAnimation("An3", 2);
+
+  // To clear the backlog
+  // player.clearAnimations();
+</script>
