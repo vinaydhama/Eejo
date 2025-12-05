@@ -1,0 +1,2 @@
+sudo rsync -avx /home/pks/Desktop/Eejo/  /home/Eejo
+

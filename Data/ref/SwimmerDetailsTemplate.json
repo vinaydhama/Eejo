@@ -1,0 +1,58 @@
+{
+	"SwimmerDetails": [
+		{
+			"Name": "name",
+			"DOB": 202122121,
+			"Events": [
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				},
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				},
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				}
+			]
+		},
+		{
+			"Name": "name",
+			"DOB": 202122121,
+			"Events": [
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				},
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				},
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				}
+			]
+		},
+		{
+			"Name": "name",
+			"DOB": 202122121,
+			"Events": [
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				},
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				},
+				{
+					"EventName": "sdsd",
+					"Timeings": 123
+				}
+			]
+		}
+	]
+}
