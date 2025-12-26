@@ -1,0 +1,270 @@
+<html>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/LiveTimeDisplayHelper.js"></script>
+<style>
+    table {
+        width: "400PX";
+    }
+
+    th,
+    td {
+        border: 1px solid #8a8b805b;
+        padding: 0px;
+
+    }
+
+    #p3,
+    #f3 {
+        padding: 0px;
+        text-align: justify;
+        background-color: black;
+    }
+
+    #p3 {
+        padding: 0px;
+        width: 355px;
+        color: green;
+        font-style: bold;
+    }
+</style>
+
+<select id="MeetSelect" name="MeetSelect"></select>
+
+<table id="tblBoards">
+    <tr>
+
+        <th> <input type="checkbox" id="tblgrpchkbox" onchange=SelectAllRows('tblgrpchkbox','tblBoards','GrpCheckcell')>
+        </th>
+        <th> Board </th>
+        <th> Swname </th>
+    </tr>
+</table>
+<script>
+
+
+
+async function GetTimerStatusforTK()
+{
+  let TimerStatus=  await FetchValuesFromTimer('TimerStatus'); 
+//   elem =  document.getElementById("TimerState");
+//   if (elem)
+//     {
+//   elem.innerHTML="<b>"+TimerStatus.Message+ " </b>";
+//     }
+//   console.log(TimerStatus.Message)
+
+  switch (TimerStatus.Message) {
+    // case 'HideQR':
+    //   HideQR(1);
+    //   break;
+
+    //   case 'ShowQR':
+    //   HideQR(0);
+    //   break;
+    case 'TimerStatus.loadedToStart':
+    UpdateNames();
+
+    //   cleartextnode("SwName",10);
+    //   // cleartextnode("SwTimer",10);
+    //   GetSwNames("SwTimer");
+    break;
+  }
+}
+
+function GetEejoHostID() {
+    urlString= window.location.href;
+    // urlString= "http://192.168.0.101:8000/EejoPages/MeetEditor.html"
+    HostID = urlString.substring(urlString.indexOf("/")+2, urlString.lastIndexOf(':'));
+    return HostID;
+  }
+  const cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";  
+    //cmdurlwithHost = "http://LocalHost:5002"
+    const MeetDetailsurl = cmdurlwithHost + '/GetMeetHeader';
+    const LiveTimersurl = cmdurlwithHost + '/LiveTimer';
+    let Boarddata;
+    for (var i = 1; i <= 10; i++) {
+                        // let obj = JSON.parse(data.Boards[i - 1]);
+                        //AddGroupRow.length=0;
+                        AddGroupRow(i, { 'BoardNum': "", 'BoardSwname': "", 'LockTime':"" })
+                    }
+
+    setInterval(async () => {GetTimerStatusforTK()}, 500);
+
+    //fetchAndDisplayTimeData();
+    // AddGroupRow(2,{'BoardNum':'1','BoardSwname':'Sw1'})
+    // AddGroupRow(3,{'BoardNum':'2','BoardSwname':'Sw2'})
+    // AddGroupRow(4,{'BoardNum':'3','BoardSwname':'Sw3'})
+    // AddGroupRow(5,{'BoardNum':'4','BoardSwname':'Sw4'})
+
+
+    //showhide("BusyIndicatorpop", "Loading Swimmer table");
+    async function fetchAndDisplayTimeData() {
+        try {
+            // tblBoards = document.getElementById('tblBoards');
+            // tblBoards.innerHTML="";
+            // tblBoards.deleteRow();
+            //tblBoards.row.length=0;
+
+            urlToFetch = LiveTimersurl;
+            await fetch(urlToFetch)
+                .then(response => {
+                    // Check if the response is successful
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display the data
+                    for (var i = 1; i <= data.Boards.length; i++) {
+                        let obj = JSON.parse(data.Boards[i - 1]);
+                        //AddGroupRow.length=0;
+                        AddGroupRow(i, { 'BoardNum': obj.boardId, 'BoardSwname': obj.swimmername, 'LockTime': obj.LockTime })
+                    }
+                    Boarddata= data;
+                    return data;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+        catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    }
+
+    function startDrag() {
+        row = event.target;
+    }
+    function dragover() {
+        var e = event;
+        e.preventDefault();
+
+        let children = Array.from(e.target.parentNode.parentNode.children);
+
+        if (children.indexOf(e.target.parentNode) > children.indexOf(row))
+            e.target.parentNode.after(row);
+        else
+            e.target.parentNode.before(row);
+    }
+
+    async function SendLiveCmd(CmdtoSend) {
+            try {
+                cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?";
+                urlToFetch = cmdurl + CmdtoSend;
+                await fetch(urlToFetch)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Display the data
+                        // displayTimeData(data);
+                        return data;
+                    })
+
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+        async function UpdateNames()
+        {
+            let SwNamesRes=  await FetchValuesFromTimer('GetSwNames'); 
+            for (var i = 1; i <= 10; i++) {
+                Boardbtn = document.getElementById('BoardSwname' + i);
+                Boardbtn.innerText = "-";
+                
+            }
+
+            for (var i = 1; i <= SwNamesRes.SwNames.length; i++) {
+            var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + i)
+                if (GrpCheckcellchkbox.checked == true) {
+                    // document.getElementById('BoardNum' + i).innerText = BordDetail.BoardNum;
+                    Boardbtn = document.getElementById('BoardSwname' + i);
+                    Boardbtn.innerText = SwNamesRes.SwNames[i-1];
+                    // Boardbtn = document.getElementById('BoardSwname' + i); 
+                    Boardbtn.disabled =false;
+                    Boardbtn.setAttribute('style', 'background-color:#008CBA  color: #e7f705;font-family:Arial narrow Bold ; font-size:250%; text-align: center;')                                        
+                }
+
+        }
+    }
+
+    function AddGroupRow(index, BordDetail) {
+        // var index = 100;
+        tblBoards = document.getElementById('tblBoards');        
+        var tblgroupRow = tblBoards.insertRow()
+        tblgroupRow.draggable = true;
+        tblgroupRow.ondragstart = function () { startDrag() };
+        tblgroupRow.ondragover = function () { dragover() };
+
+        tblgroupRow.id = "tblgroupRow" + index;
+        GrpCheckcell = tblgroupRow.insertCell();
+        GrpCheckcell.innerHTML = "<input type='Checkbox' id ='GrpCheckcell" + index + "'>";
+        var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + index)
+        // GrpCheckcellchkbox.checked = true;
+        GrpCheckcellchkbox.addEventListener("change",
+            function () {               
+                var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + index)
+                if (GrpCheckcellchkbox.checked == true) {
+                    Boardbtn = document.getElementById('BoardSwname' + index); 
+                    Boardbtn.disabled =false;
+                    let obj = JSON.parse(Boarddata.Boards[index - 1]);
+                    Boardbtn.innerHTML= obj.swimmername;
+                    Boardbtn.setAttribute('style', 'background-color:#008CBA  color: #e7f705;font-family:Arial narrow Bold ; font-size:250%; text-align: center;')                                        
+                }
+                else {
+                    Boardbtn = document.getElementById('BoardSwname' + index);                
+                    Boardbtn.setAttribute('style', 'background-color: #008CAA; color: #e7f7A5;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+                    Boardbtn.disabled =true;
+                }
+
+            });
+
+        // Grpslnocell = tblgroupRow.insertCell();
+        // Grpslnocell.innerHTML = (index + 1);
+
+        var GrpNamecell = tblgroupRow.insertCell();
+        // if (GrpCheckcellchkbox.checked == true)
+        GrpNamecell.innerHTML = "<label  id ='BoardNum" + index + "'>";
+        document.getElementById('BoardNum' + index).innerText = BordDetail.BoardNum;
+
+        var GrpFromcell = tblgroupRow.insertCell();
+        GrpFromcell.innerHTML = "<button type='button' id ='BoardSwname" + index + "'>";
+        Boardbtn = document.getElementById('BoardSwname' + index);
+        Boardbtn.innerText = BordDetail.BoardSwname;
+        Boardbtn.disabled =true;
+
+        Boardbtn.addEventListener("click",
+            function () {            
+                var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + index)   
+                if (GrpCheckcellchkbox.checked == true) {
+                    Boardbtn = document.getElementById('BoardSwname' + index);
+                    Boardbtn.setAttribute('style', 'background:#f7f705  color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+                    SwBoardID =index-1;
+                    BoardTimerCmdValue =1;
+                    CmdToSend = "CmdName=" + "BoardTimerCmd" + "&SwBoardID=" + SwBoardID + "&BoardTimerCmdValue=" + BoardTimerCmdValue;
+                    SendLiveCmd(CmdToSend);
+                    Boardbtn.disabled =true;
+
+
+                }
+                // else {
+                //     // Boardbtn = document.getElementById('BoardSwname' + index);                
+                //     Boardbtn.setAttribute('style', ' color: #e7f7A5;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+
+                // }
+
+            });
+
+    }
+</script>
+
+</html>

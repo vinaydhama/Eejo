@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>EEJO Manager | MeetEditor Eejo Manager v2.0 &copy; 2025-26 &phone; +91 9620538528</title>
+
+
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <!-- Bootstrap 3.3.2 -->
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <!-- Font Awesome Icons -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css" />
+  <!-- Ionicons -->
+  <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <!-- Theme style -->
+  <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+  <link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<style>
+  input:invalid {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+    /* optional */
+  }
+
+  input:valid {
+    border: 2px solid green;
+  }
+</style>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    height: 80%;
+    border-collapse: collapse;
+    margin-top: 0px;
+  }
+
+  th,
+  td {
+    border: 1px solid #000;
+    font-size: 10px;
+    padding: 3px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Print-specific styles */
+  @media print {
+    body {
+      margin: 0;
+    }
+
+    /* Fixed header and footer */
+    .print-header,
+    .print-footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12pt;
+      color: #333;
+    }
+
+    .print-header {
+      top: 0;
+      /* border-bottom: 1px solid #ccc; */
+      padding: 10px 0;
+      margin-top: -10px;
+    }
+
+    .print-footer {
+      bottom: 0;
+      /* border-top: 1px solid #ccc; */
+      padding: 10px 0;
+
+    }
+
+    /* Space for header and footer */
+    .content {
+      margin-top: 80px;
+      margin-bottom: 60px;
+    }
+
+    /* Repeat table header on each page */
+    thead {
+      display: table-header-group;
+    }
+
+    tfoot {
+      display: table-footer-group;
+    }
+  }
+
+
+  /* input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+} */
+</style>
+
+
+
+<body class="skin-blue">
+  <!--  -->
+  <!-- Left side column. contains the logo and sidebar -->
+
+  <!-- Right side column. Contains the navbar and content of the page -->
+  <div id="MainViewr">
+
+    <body>
+      <div class="print-header">
+        <label style="font-size: 12px;" id="MeetHeaderName">dsdsdsdsdsdsdsd </b>
+      </div>
+
+      <div class="print-footer">
+        <img src="../Img/eejo_max.png" style="width: 20px;">
+        <label style="font-size: 8px;"> Eejo Manager v2.0 &copy; 2025-26 &phone; +91 9620538528 </label>
+      </div>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/MultiSelectScript.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseDataRetrive.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/TableUtils.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditorHelper.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditCaptureHelper.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEdit_JSONUpdate_Helper.js"></script>
+
+
+      <link rel="stylesheet" type="text/css" href="../bootstrap/css/MultiSelectStyle.css">
+      <link rel="stylesheet" type="text/css" href="../bootstrap/css/GeneralStyle.css">
+
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Source</h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+
+          <button onclick=LoadHeatNames('GetRunningHeatData')>
+            <h2><i> <span class="glyphicon glyphicon-save"></span>
+                <h5>Live Download</h5>
+              </i> </h2>
+          </button>
+
+          <button id="Onlineradiobtn" onclick=LoadHeatNames('Online')>
+            <h2><i> <span class="glyphicon glyphicon-cloud"></span>
+                <h5>Online</h5>
+              </i> </h2>
+          </button>
+
+          <button id="Offlineradiobtn" onclick=LoadHeatNames('Offline')>
+            <h2><i> <span class="glyphicon glyphicon-folder-open"></span>
+                <h5>Offline</h5>
+              </i> </h2>
+          </button>
+
+          <button id="localhost" onclick="openFilePicker()">
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+
+            <h2><i> <span class="glyphicon glyphicon-inbox"></span>
+                <h5>Local</h5>
+              </i> </h2>
+          </button>
+          <br>
+          <select id="MeetSelect" name="MeetSelect"></select>
+
+
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+
+
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Options </h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body" style="display:block" id="boxOptions">
+
+          <fieldset>
+            <legend>Live</legend>
+            <button onclick=CaptureEdits('SetRunningHeatData')>
+              <h2><i> <span class="glyphicon glyphicon-open"></span>
+                  <h5>Live Upload</h5>
+                </i> </h2>
+            </button>
+          </fieldset>
+
+
+          <fieldset>
+            <legend>Offline</legend>
+
+            <button onclick=CaptureEdits('Update')>
+              <h2><i> <span class="glyphicon glyphicon-floppy-open"></span>
+                  <h5>Update</h5>
+                </i> </h2>
+            </button>
+
+            <button onclick=CaptureEdits('SaveAs')>
+              <h2><i> <span class="glyphicon glyphicon-floppy-disk"></span>
+                  <h5>Save As</h5>
+                </i> </h2>
+            </button>
+            <button onclick=CaptureEdits('Delete')>
+              <h2><i> <span class="glyphicon glyphicon-trash"></span>
+                  <h5>Delete</h5>
+                </i> </h2>
+            </button>
+            <button onclick=CaptureEdits('InitLocal')>
+              <h2><i> <span class="glyphicon glyphicon-import"></span>
+                  <h5>Init Local</h5>
+                </i> </h2>
+            </button>
+            <button id="resetBtn">
+              <h2><i> <span class="glyphicon glyphicon-import"></span>
+                  <h5>Reset</h5>
+                </i> </h2>
+            </button>
+          </fieldset>
+          <fieldset>
+            <legend>Local</legend>
+
+            <button onclick=CaptureEdits('InitHeatFromLocalDisk')>
+              <h2><i> <span class="glyphicon glyphicon-import"></span>
+                  <h5>Init Local Disk</h5>
+                </i> </h2>
+            </button>
+          </fieldset>
+          <fieldset>
+            <legend>Online</legend>
+            <button onclick=CaptureEdits('InitFireBase')>
+              <h2><i> <span class="glyphicon glyphicon-cloud-download"></span>
+                  <h5>Init Cloud</h5>
+                </i> </h2>
+            </button>
+            <button onclick=CaptureEdits('Cloud')>
+              <h2><i> <span class="glyphicon glyphicon-cloud-upload"></span>
+                  <h5>Upload</h5>
+                </i> </h2>
+            </button>
+          </fieldset>
+          <button onclick=CaptureEdits('Cloud')>
+            <h2><i> <span class="glyphicon glyphicon-print"></span>
+                <h5>Print</h5>
+              </i> </h2>
+          </button>
+        </div>
+      </div>
+
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Meet</h3>
+          <div class="box-tools pull-right">
+            <!-- <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button> -->
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblMeetBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body" id="tblMeetBody" style="display: block;">
+          <table class="table table-bordered table-hover" id="tblMeet"> </table>
+        </div>
+      </div>
+
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Settings</h3>
+
+          <div class="box-tools pull-right">
+            <button onclick=ReloadCurrentSwbits()><i class="fa fa-fw fa-refresh"></i></button>
+            <button onclick=SaveAndUpdateBitAlocation()><i class="glyphicon glyphicon-floppy-disk"></i></button>
+
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblMeetIOSettingBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body" id="tblMeetIOSettingBody" style="display: block;">
+          [19,23,18,20,22,21,7,6,4,2,0,0]
+          <b>A S1:21, S2:22, S3:20, S4:18, S5:19, S6:23 <br>
+            B S1 S2 S3 S4 S5 S6 </b>
+
+          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
+            <th><input type="checkbox" id="Updatebits"> </th>
+            <th id="bit0"> 0 </th>
+            <th id="bit1"> 1 </th>
+            <th id="bit2"> 2 </th>
+            <th id="bit3"> 3 </th>
+            <th id="bit4"> 4 </th>
+            <th id="bit5"> 5 </th>
+            <th id="bit6"> 6 </th>
+            <th id="bit7"> 7 </th>
+            <th id="bit8"> 8 </th>
+            <th id="bit9"> 9 </th>
+            <th id="bit10"> 10 </th>
+            <th id="bit11"> 11 </th>
+            <th id="bit12"> 12 </th>
+            <th id="bit13"> 13 </th>
+            <th id="bit14"> 14 </th>
+            <th id="bit15"> 15 </th>
+            <th id="bit16"> 16 </th>
+            <th id="bit17"> 17 </th>
+            <th id="bit18"> 18 </th>
+            <th id="bit19"> 19 </th>
+            <th id="bit20"> 20 </th>
+            <th id="bit21"> 21 </th>
+            <th id="bit22"> 22 </th>
+            <th id="bit23"> 23 </th>
+            <th id="bit24"> 24 </th>
+            <th id="bit25"> 25 </th>
+            <th id="bit26"> 26 </th>
+            <th id="bit27"> 27 </th>
+            <th id="bit28"> 28 </th>
+            <th id="bit29"> 29 </th>
+            <th id="bit30"> 30 </th>
+            <th id="bit31"> 31 </th>
+            <th id="bit32"> 32 </th>
+            <th id="bit33"> 33 </th>
+            <th id="bit34"> 34 </th>
+            <th id="bit35"> 35 </th>
+            <th id="bit36"> 36 </th>
+            <th id="bit37"> 37 </th>
+            <th id="bit38"> 38 </th>
+            <th id="bit39"> 39 </th>
+            <th id="bit40"> 40 </th>
+            <th id="bit41"> 41 </th>
+            <th id="bit42"> 42 </th>
+            <th id="bit43"> 43 </th>
+            <th id="bit44"> 44 </th>
+            <th id="bit45"> 45 </th>
+            <th id="bit46"> 46 </th>
+            <th id="bit47"> 47 </th>
+            <th id="bit48"> 48 </th>
+            <th id="bit49"> 49 </th>
+            <th id="bit50"> 50 </th>
+            <th id="bit51"> 51 </th>
+            <th id="bit52"> 52 </th>
+            <th id="bit53"> 53 </th>
+            <th id="bit54"> 54 </th>
+            <th id="bit55"> 55 </th>
+            <th id="bit56"> 56 </th>
+            <th id="bit57"> 57 </th>
+            <th id="bit58"> 58 </th>
+            <th id="bit59"> 59 </th>
+            <th id="bit60"> 60 </th>
+            <th id="bit61"> 61 </th>
+            <th id="bit62"> 62 </th>
+            <th id="bit63"> 63 </th>
+            <th id="bit64"> 64 </th>
+
+
+          </table>
+
+          </table>
+          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
+            <tr>
+              <th> </th>
+              <th>Primery</th>
+              <th>Start</th>
+              <th>B1</th>
+              <th>B2</th>
+              <th>B3</th>
+              <th>B4</th>
+              <th>B5</th>
+              <th>B6</th>
+              <th>B7</th>
+              <th>B8</th>
+              <th>B9</th>
+              <th>B10</th>
+            </tr>
+
+            <tr>
+              <td><b>SIDE-A</b></td>
+              <td> <input type="radio" id="PrimeryA" name="Primeryside"> </td>
+              <td><input id="SideA-StartPin" type="number" min="1" max="100"> </td>
+              <td><input id="SideA-B1Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B2Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B3Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B4Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B5Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B6Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B7Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B8Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B9Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B10Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <td><b>SIDE-B</b></td>
+              <td> <input type="radio" id="PrimeryB" name="Primeryside"> </td>
+
+              <td><input id="SideB-StartPin" size="1" type="number" min="-1" max="100"></td>
+              <td><input id="SideB-B1Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B2Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B3Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B4Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B5Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B6Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B7Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B8Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B9Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B10Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Groups</h3>
+          <div class="box-tools pull-right">
+            <button onclick=ReloadData('Groups')><i class="fa fa-fw fa-refresh"></i></button>
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblGroupsBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+
+          </div>
+        </div>
+        <div class="box-body" id="tblGroupsBody" style="display: block;">
+          <button onclick=AppendRow('tblGroups','tblgroupRow')><i class="fa fa-fw fa-plus"></i></button>
+          <button onclick=DeleteRows('tblGroups','GrpCheckcell','tblgroupRow')><i
+              class="fa fa-fw fa-minus"></i></button>
+          <form>
+            <table class="table table-bordered table-hover" id="tblGroups">
+              <tr>
+                <th> <input type="checkbox" id="tblgrpchkbox"
+                    onchange=SelectAllRows('tblgrpchkbox','tblGroups','GrpCheckcell')>
+                </th>
+                <th>
+                  SlNo.
+                </th>
+                <th>
+                  Group ID
+                </th>
+                <th>
+                  Group Name
+                </th>
+                <th>
+                  From
+                </th>
+                <th>
+                  To
+                </th>
+              </tr>
+
+            </table>
+          </form>
+        </div>
+      </div>
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Event Details</h3>
+          <div class="box-tools pull-right">
+            <button onclick=ReloadData('Events')><i class="fa fa-fw fa-refresh"></i></button>
+
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblEventsBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+
+          </div>
+        </div>
+
+        <div class="box-body" id="tblEventsBody" style="display: block;">
+          <button onclick=AppendRow('tblEvents','tblEventsRow')><i class="fa fa-fw fa-plus"></i></button>
+          <button onclick=DeleteRows('tblEvents','EventCheckcell','tblEventsRow')><i
+              class="fa fa-fw fa-minus"></i></button>
+          <!-- <button onclick=CaptureEdits("tblEvents")>Save</button> -->
+
+
+          <table class="table table-bordered table-hover" id="tblEvents">
+
+            <tr>
+              <th> <input type="checkbox" id="tblEventschkbox"
+                  onchange="SelectAllRows('tblEventschkbox','tblEvents','EventCheckcell')"> </th>
+              <th>
+                SlNo.
+              </th>
+              <th>
+                Group
+              </th>
+              <th>
+                Gender
+              </th>
+              <th>
+                Stroke
+              </th>
+              <th>
+                Distence
+              </th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Swimmer Details</h3>
+          <div class="box-tools pull-right">
+            <button onclick=ReloadData('SwDetails')><i class="fa fa-fw fa-refresh"></i></button>
+
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblSwDetailsBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+
+          </div>
+        </div>
+
+        <div class="box-body" id="tblSwDetailsBody" style="display: block;">
+
+          <button onclick=AppendRow('tblSwDetails','tblSwimmersRow')><i class="fa fa-fw fa-plus"></i></button>
+          <button onclick=DeleteRows('tblSwDetails','SwimmersCheckboxcell','tblSwimmersRow')><i
+              class="fa fa-fw fa-minus"></i></button>
+
+          <!-- <button onclick=CaptureEdits("tblSwDetails")>Save</button> -->
+
+          <table class="table table-bordered table-hover" id="tblSwDetails">
+            <tr>
+              <th> <input type="checkbox" id="tblSwDetailschkbox"
+                  onchange=SelectAllRows('tblSwDetailschkbox','tblSwDetails','SwimmersCheckboxcell')> </th>
+              <th>
+                SlNo.
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                DOB
+              </th>
+              <th>
+                Group
+              </th>
+              
+              <th>
+                Club\School
+              </th>
+
+              <th>
+                Club\School (Short)
+              </th>
+              <th>
+                Gender
+              </th>
+              <th>
+                Events
+              </th>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+
+      <div class="box box-solid box-default">
+        <div class="box-header">
+          <h3 class="box-title">Heat Details</h3>
+          <div class="box-tools pull-right">
+            <button onclick=ReloadData('Heats')><i class="fa fa-fw fa-refresh"></i></button>
+            <button onclick=UpdateSelectedData('Events','Events','Events')><i class="fa fa-fw fa-upload"></i></button>
+
+
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblHeatDetailsBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+
+          </div>
+        </div>
+
+        <div class="box-body" id="tblHeatDetailsBody" style="display: block;">
+
+          <button onclick="AppendRow('tblHeatDetails','tblHeatDetailsRow')"><i class="fa fa-fw fa-plus"></i></button>
+          <button onclick="DeleteRows('tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')"><i
+              class="fa fa-fw fa-minus"></i></button>
+          <button onclick="UpdateSelectedData('updateHeat','tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')"><i class="fa fa-fw fa-upload"></i></button>
+
+          <b style="font-size: 20px ;"></b>
+
+          <table id="tblHeatDetails">
+            <tr>
+              <th class="hide-on-print"></th>
+              <th class="hide-on-print">
+                Event.
+              </th>
+              <th class="hide-on-print">
+                Heat ID
+              </th>
+              <th>
+
+              </th>
+            </tr>
+          </table>
+        </div>
+      </div><!-- ./wrapper -->
+      <div class="popup" id="BusyIndicatorpop">
+        <div class="loader"></div>
+        <p id="BusyMsg"> </p>
+      </div>
+    </body>
+    <!-- jQuery 2.1.3 -->
+    <script src="../plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="../plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <!-- <script src='../../plugins/fastclick/fastclick.min.js'></script> -->
+    <!-- AdminLTE App -->
+    <script src="../dist/js/app.min.js" type="text/javascript"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js" type="text/javascript"></script>
+    <!-- page script -->
+    <script>
+
+      document.getElementById('resetBtn').addEventListener('click', function () {
+        const cmdUrl = `${cmdurlwithHost}/SetLiveHeatCommands?CmdName=ResetTimer`;
+        ExecuteRestLocalCommands(cmdUrl, '');
+      });
+
+
+      window.addEventListener("beforeprint", () => {
+        document.querySelectorAll("textarea").forEach(textarea => {
+          const div = document.createElement("div");
+          div.textContent = textarea.value;
+          div.style.cssText = "white-space: pre-wrap; font-size: 8pt;";
+          textarea.parentNode.replaceChild(div, textarea);
+        });
+
+        document.querySelectorAll("input").forEach(textarea => {
+          const div = document.createElement("div");
+          div.textContent = textarea.value;
+          div.style.cssText = "white-space: pre-wrap; font-size: 8pt;";
+          textarea.parentNode.replaceChild(div, textarea);
+        });
+
+        document.querySelectorAll("select").forEach(SelectElement => {
+          const div = document.createElement("div");
+          if (SelectElement.id.includes("SwSwimStatus")) {
+            div.textContent = DQMsg[SelectElement.value];
+          }
+          else {
+            div.textContent = SelectElement.value;
+          }
+
+
+
+
+          div.style.cssText = "white-space: pre-wrap; font-size: 8pt;";
+          SelectElement.parentNode.replaceChild(div, SelectElement);
+        });
+      });
+
+
+      // import { parse, stringify } from 'lossless-json'
+      ToggleDiv('boxOptions');
+      ToggleDiv('tblMeetBody');
+      ToggleDiv('tblMeetIOSettingBody');
+      ToggleDiv('tblGroupsBody');
+      ToggleDiv('tblEventsBody');
+      ToggleDiv('tblSwDetailsBody');
+      ToggleDiv('tblHeatDetailsBody');
+
+      GroupsSlectedRows = [];
+      EventsSlectedRows = [];
+      SwDetailsSlectedRows = [];
+      HeatDetailsSlectedRows = [];
+      Availablegroups = [];
+      AvailableEvents = [];
+      SwimmerDetailsArray = [];
+      NoofBoards = 5;
+      var MeetUpdatedData;
+
+      var distencearray = [25, 50, 100, 200, 400, 800, 1000];
+      var strokearray = ["FS", "BK", "BRS", "FLY", "IM", "IMRelay", "FSRelay", "KB"];
+      var genderArray = ["B", "G", "M"];
+      cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";
+      BASE_URL = cmdurlwithHost;
+      //cmdurlwithHost = "http://LocalHost:5002";
+
+
+      MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets.json";
+      FirebaseURLToWrite = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/"
+      showhide("BusyIndicatorpop");
+      function openFilePicker() {
+        document.getElementById('LocalFileSelector').click();
+      }
+
+      document.getElementById('LocalFileSelector').addEventListener('change', function (event) {
+        const file = event.target.files[0]; // Get the first selected file
+
+        if (file) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            try {
+              const jsonData = JSON.parse(e.target.result);
+              MeetUpdatedData = jsonData;
+              LoadHeatNames("Local")
+            } catch (error) {
+              console.error("Error parsing JSON:", error);
+              alert("Invalid JSON file.");
+            }
+          };
+
+          reader.onerror = function (e) {
+            console.error("Error reading file:", e);
+            alert("Error reading the file.");
+          };
+
+          reader.readAsText(file); // Read the file content as text
+        }
+      });
+
+
+      async function SaveAndUpdateBitAlocation() {
+        try {
+          let SIDE_A_SwBits = []
+          let SIDE_B_SwBits = []
+          let PrimerySide = "PrimeryA";
+          var PrimerySideElmt = document.getElementById('PrimeryB');
+          if (PrimerySideElmt && PrimerySideElmt.checked == true) {
+            PrimerySide = "PrimeryB";
+
+          }
+          else {
+            PrimerySide = "PrimeryA";
+
+          }
+
+          var SideA_StartPin = document.getElementById('SideA-StartPin');
+          SIDE_A_SwBits[0] = SideA_StartPin.value
+
+          for (let i = 1; i <= 10; i++) {
+            var Bitholder = document.getElementById('SideA-B' + i + 'Pin');
+            if (Bitholder) {
+              SIDE_A_SwBits[i] = Bitholder.value;
+            }
+            else {
+              SIDE_A_SwBits[i] = 0;
+            }
+          }
+
+          var SideB_StartPin = document.getElementById('SideB-StartPin');
+          SIDE_B_SwBits[0] = SideB_StartPin.value
+
+          for (let i = 1; i <= 10; i++) {
+            var Bitholder = document.getElementById('SideB-B' + i + 'Pin');
+            if (Bitholder) {
+              SIDE_B_SwBits[i] = Bitholder.value;
+            }
+            else {
+              SIDE_B_SwBits[i] = 0;
+            }
+          }
+
+          cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=SetBitAlocation";
+          CmdParams = "&SIDE_A_SwBits=" + SIDE_A_SwBits + "&SIDE_B_SwBits=" + SIDE_B_SwBits + "&PrimerySide=" + PrimerySide;
+          ExecuteRestLocalCommands(cmdurl, CmdParams);
+
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      async function ReloadCurrentSwbits() {
+
+        try {
+          cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=CurrentBitAlocation";
+          let response = await fetch(cmdurl);
+          let data = await response.json();
+
+          var SideA_StartPin = document.getElementById('SideA-StartPin');
+
+
+          if (SideA_StartPin) {
+
+            SideA_StartPin.value = data.commandReturnData.SIDE_A_SwBits[0]
+          }
+          //"SideA-B1Pin"
+          for (let i = 1; i <= 10; i++) {
+            var Bitholder = document.getElementById('SideA-B' + i + 'Pin');
+            if (Bitholder) {
+              Bitholder.value = data.commandReturnData.SIDE_A_SwBits[i];
+            }
+            else {
+              Bitholder.value = 0;
+            }
+          }
+
+          var SideB_StartPin = document.getElementById('SideB-StartPin');
+
+          if (SideB_StartPin) {
+
+            SideB_StartPin.value = data.commandReturnData.SIDE_B_SwBits[0]
+          }
+          //"SideB-B1Pin"
+          for (let i = 1; i <= 10; i++) {
+            var Bitholder = document.getElementById('SideB-B' + i + 'Pin');
+            if (Bitholder) {
+              Bitholder.value = data.commandReturnData.SIDE_B_SwBits[i];
+            }
+            else {
+              Bitholder.value = 0;
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+
+
+      }
+      setInterval(async () => { UpdateIOStatus() }, 500);
+
+
+      async function UpdateIOStatus() {
+        try {
+          var UpdateNeeded = document.getElementById('Updatebits');
+
+          if (UpdateNeeded && UpdateNeeded.checked) {
+            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=StopWatchSwStatus";
+
+            let response = await fetch(cmdurl);
+            let data = await response.json();
+
+            for (let i = 0; i < 32; i++) {
+              var Bitholder = document.getElementById('bit' + i);
+              if (Bitholder && data.commandReturnData.StopWatchSwStatus[i] == 1) {
+                Bitholder.style.backgroundColor = 'Green';
+              }
+              else {
+                Bitholder.style.backgroundColor = 'red';
+              }
+            }
+            var SideA_StartPin = document.getElementById('SideA-StartPin');
+            if (data.commandReturnData.StopWatchSwStatus[SideA_StartPin.value] == 1) {
+              SideA_StartPin.style.backgroundColor = 'Green';
+            }
+            else {
+              SideA_StartPin.style.backgroundColor = 'red';
+            }
+
+            for (let i = 1; i <= 10; i++) {
+              var Bitholder = document.getElementById('SideA-B' + i + 'Pin');
+
+              if (data.commandReturnData.StopWatchSwStatus[Bitholder.value] == 1) {
+                Bitholder.style.backgroundColor = 'Green';
+              }
+              else {
+                Bitholder.style.backgroundColor = 'red';
+              }
+            }
+
+
+            var SideB_StartPin = document.getElementById('SideB-StartPin');
+            if (data.commandReturnData.StopWatchSwStatus[SideB_StartPin.value] == 1) {
+              SideB_StartPin.style.backgroundColor = 'Green';
+            }
+            else {
+              SideB_StartPin.style.backgroundColor = 'red';
+            }
+
+            for (let i = 1; i <= 10; i++) {
+              var Bitholder = document.getElementById('SideB-B' + i + 'Pin');
+
+              if (data.commandReturnData.StopWatchSwStatus[Bitholder.value] == 1) {
+                Bitholder.style.backgroundColor = 'Green';
+              }
+              else {
+                Bitholder.style.backgroundColor = 'red';
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+
+      }
+      UpdateIOStatus();
+      async function LoadHeatNames(HeatFileSource) {
+        showhide("BusyIndicatorpop", "Loading Heat...");
+
+        MeetNameArray = [];
+        initMeetNames(HeatFileSource);
+        ClearTable('tblMeet');
+        ClearTable('tblGroups');
+        ClearTable('tblEvents');
+        ClearTable('tblSwDetails');
+        ClearTable('tblHeatDetails');
+        switch (HeatFileSource) {
+
+          case "Local":
+
+            try {
+              Meetdteails = ExtractMeetInfo(MeetUpdatedData, "");
+              GenerateMeetTable(Meetdteails.MeetName, Meetdteails.MeetAddress, Meetdteails.MeetDate, Meetdteails.Boards);
+              GenerateGroupTable(Meetdteails.GroupDetails);
+              ReloadData('Groups');
+              GenerateEventTable(Meetdteails.EventList);
+              ReloadData('Events');
+              GenerateHeatDetailsTable(Meetdteails.HeatList)
+              GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+              showhide("BusyIndicatorpop", "Loading Heat...");
+
+
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+            break;
+
+
+          case "GetRunningHeatData":
+            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=GetRunningHeatData";
+            try {
+              let response = await fetch(cmdurl);
+              let data = await response.json();
+              MeetDataFirebase = data.commandReturnData;
+              Meetdteails = ExtractMeetInfo(MeetDataFirebase, "");
+              MeetUpdatedData = Meetdteails.CurrentMeet;
+              GenerateMeetTable(Meetdteails.MeetName, Meetdteails.MeetAddress, Meetdteails.MeetDate, Meetdteails.Boards);
+              GenerateGroupTable(Meetdteails.GroupDetails);
+              ReloadData('Groups');
+              GenerateEventTable(Meetdteails.EventList);
+              ReloadData('Events');
+              GenerateHeatDetailsTable(Meetdteails.HeatList)
+              GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+            break;
+          case "Online":
+            MeetDataFirebase = FetchMeetNames();
+            break;
+
+          case "Offline":
+            cmdurl = cmdurlwithHost + "/getAvailableHeatNames";
+            try {
+              let response = await fetch(cmdurl);
+              let data = await response.json();
+              // console.log(data);
+              MeetNameArray = LoadHeatFileName(data);
+              NoofBoards = MeetNameArray.Boards;
+              // MeetNameArray = LoadHeatFileName(data);
+              initMeetNames(HeatFileSource);
+
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+
+            break;
+
+          default:
+            break;
+        }
+        showhide("BusyIndicatorpop", "");
+
+      }
+
+      async function initMeetNames(HeatFileSource) {
+        new MultiSelect('#MeetSelect', {
+          data: MeetNameArray,
+          placeholder: 'Select Meet',
+          search: true,
+          selectAll: false,
+          listAll: true,
+          max: 1,
+          onChange: function (value, text, element) {
+            ////console.log('Change:', value, text, element);
+          },
+          onSelect: async function (value, text, element) {
+            ClearTable('tblMeet');
+            ClearTable('tblGroups');
+            ClearTable('tblEvents');
+            ClearTable('tblSwDetails');
+            ClearTable('tblHeatDetails');
+
+            if (HeatFileSource == "Online") {
+              Meetdteails = GetMeetDetails(MeetDataFirebase, value);
+              MeetUpdatedData = Meetdteails.CurrentMeet;
+              GenerateMeetTable(Meetdteails.MeetName, Meetdteails.MeetAddress, Meetdteails.MeetDate, Meetdteails.Boards);
+              GenerateGroupTable(Meetdteails.GroupDetails);
+              ReloadData('Groups');
+              GenerateEventTable(Meetdteails.EventList);
+              ReloadData('Events');
+              GenerateHeatDetailsTable(Meetdteails.HeatList)
+              GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+            }
+            else if (HeatFileSource == "Offline") {
+              cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=ReadHeatFromLocalFile&HeatFileName=" + value;
+
+              try {
+                let response = await fetch(cmdurl);
+                let data = await response.json();
+                // console.log(data);
+                MeetDataFirebase = data.commandReturnData;
+                // MeetNameArray = LoadHeatFileName(data);
+                Meetdteails = ExtractMeetInfo(MeetDataFirebase, value);
+                MeetUpdatedData = Meetdteails.CurrentMeet;
+                GenerateMeetTable(Meetdteails.MeetName, Meetdteails.MeetAddress, Meetdteails.MeetDate, Meetdteails.Boards);
+                GenerateGroupTable(Meetdteails.GroupDetails);
+                ReloadData('Groups');
+                GenerateEventTable(Meetdteails.EventList);
+                ReloadData('Events');
+                GenerateHeatDetailsTable(Meetdteails.HeatList)
+                GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+
+              } catch (error) {
+                console.error('Error fetching data:', error);
+              }
+
+              // CmdToSend = "CmdName=" + "SaveHeatFileToLocalFile" + "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + "TestMeet1.EejoHeat";
+
+            }
+
+
+          },
+          onUnselect: function (value, text, element) {
+          }
+        });
+      }
+      function ClearTable(TableName) {
+        var tableHeaderRowCount = 1;
+        if (TableName == 'tblMeet') {
+          tableHeaderRowCount = 0;
+        }
+
+        var table = document.getElementById(TableName);
+        var rowCount = table.rows.length;
+        for (var i = tableHeaderRowCount; i < rowCount; i++) {
+          table.deleteRow(tableHeaderRowCount);
+        }
+
+      }
+      async function FetchMeetNames() {
+        showhide("BusyIndicatorpop", "Loading Swimmer table");
+        var dataAPI = fetch(MeetDataFirebaseURL)
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+            MeetNameArray = LoadMeetNames(data)
+            initMeetNames("Online");
+            MeetDataFirebase = data;
+            NoofBoards = MeetDataFirebase.Boards;
+            showhide("BusyIndicatorpop");
+            return;
+          }, error => {
+            console.error('onRejected function called: ' + error.message);
+          })
+      }
+
+      async function SaveEventToFB(FirebaseURL, DataTopost) {
+        showhide("BusyIndicatorpop", "Writing To Cloud");
+        await fetch(FirebaseURL, {
+          method: "PUT",
+          body: JSON.stringify(DataTopost),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        });
+        showhide("BusyIndicatorpop");
+      }
+      // To detect connectd Eejo on network
+
+      function saveJSONToFile(data, filename = "data.json") {
+        // Convert JSON object to string
+        const jsonStr = JSON.stringify(data, null, 2);
+
+        // Create a Blob from the string
+        const blob = new Blob([jsonStr], { type: "application/json" });
+
+        // Create a temporary anchor element
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+
+        // Trigger the download
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      }
+
+      async function CaptureEdits(FileOptions) {
+        showhide("BusyIndicatorpop", "Capturing Edits....");
+
+        MeetUpdatedData = CaptureMeetTable(MeetUpdatedData);
+        MeetUpdatedData = CaptureGroupTable(MeetUpdatedData);
+        ReloadData("Events")
+        MeetUpdatedData.EventList = AvailableEvents;
+        MeetUpdatedData = CaptureHeatDetailsTable(MeetUpdatedData);
+        MeetUpdatedData = CaptureSwDetailsTable(MeetUpdatedData);
+
+        SelectedMeetFile = document.getElementById("tblMeet_MeetName").value;
+
+        switch (FileOptions) {
+
+
+          case 'Update':
+            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=SaveHeatFileToLocalFile";
+            CmdParams = "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + SelectedMeetFile + ".EejoHeat";
+            ExecuteRestLocalCommands(cmdurl, CmdParams);
+            break;
+          case 'Cloud':
+            // cmdurl = cmdurlwithHost +"/SetLiveHeatCommands?CmdName=LoadHeatFromLocalFile&HeatFileName=TestMeet1.EejoHeat";
+            // CmdToSend = "CmdName=" + "SaveHeatFileToLocalFile" + "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + "TestMeet1.EejoHeat";
+            SaveEventToFB(FirebaseURLToWrite + SelectedMeetFile + ".json", MeetUpdatedData);
+            break;
+
+          case 'SaveAs':
+
+            break;
+          case 'Delete':
+
+            break;
+          case 'InitLocal':
+            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitTimerFromLocalFile";
+            CmdParams = "&HeatFileName=" + SelectedMeetFile + ".EejoHeat" + "&OverWriteOption=1";
+            ExecuteRestLocalCommands(cmdurl, CmdParams);
+            break;
+
+          case 'InitHeatFromLocalDisk':
+            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitHeatFromLocalDisk";
+            saveJSONToFile(MeetUpdatedData, SelectedMeetFile)
+            CmdParams = "&HeatFileName=" + SelectedMeetFile + ".EejoHeat" + "&OverWriteOption=1HeatFileDiskpath=" + HeatFileDiskpath;
+            ExecuteRestLocalCommands(cmdurl, CmdParams);
+            break;
+          case 'SetRunningHeatData':
+            cmdurl = cmdurlwithHost + "/SetLiveHeatDataCommands?CmdName=SetRunningHeatData";
+            CmdParams = "&HeatData=" + JSON.stringify(MeetUpdatedData);
+            fetch(cmdurl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(MeetUpdatedData)
+            });
+
+
+
+            // await fetch(cmdurl,
+            //   {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify({
+            //       MeetName: "Winter Invite 2025",
+            //       EventList: ["50m Freestyle_Heat1", "50m Freestyle_Heat2"]
+            //       // ... include your full running-heat JSON here ...
+            //     })
+            //   }
+            // );
+
+
+
+            // ExecuteRestLocalCommands(cmdurl, CmdParams);
+            break;
+
+          case 'InitFireBase':
+            // Sample for InitTimerFromFirebase 
+            // Dont Add .Json
+            FBURLToSync = FirebaseURLToWrite + SelectedMeetFile;
+            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitTimerFromFirebase";
+            CmdParams = "&URLToSync=" + FBURLToSync + "&OverWriteOption=1";
+            ExecuteRestLocalCommands(cmdurl, CmdParams);
+            break;
+
+          case 'Load':
+            //Command to LoadHeatFile
+            // cmdurl = cmdurlwithHost +"/SetLiveHeatCommands?CmdName=LoadHeatFromLocalFile";
+            // CmdParams = "&HeatFileName=" +SelectedMeetFile;
+            // ExecuteRestLocalCommands(cmdurl, CmdParams);     
+            // cmdurl = cmdurlwithHost +"/SetLiveHeatCommands?CmdName=   &HeatFileName=TestMeet1.EejoHeat";
+            // CmdToSend = "CmdName=" + "SaveHeatFileToLocalFile" + "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + SelectedMeetFile;
+            break;
+
+          default:
+            break;
+        }
+        showhide("BusyIndicatorpop", "");
+
+
+      }
+
+
+
+      async function ExecuteRestLocalCommands(cmdurl, CmdtoSend) {
+        try {
+          showhide("BusyIndicatorpop", "ExecuteRestLocalCommands");
+          urlToSend = cmdurl + CmdtoSend;
+          console.log("cmdurl" + cmdurl);
+          console.log("CmdtoSend" + CmdtoSend);
+
+
+          await fetch(urlToSend)
+            .then(response => {
+              // Check if the response is successful
+              if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+              }
+              return response.json();
+            })
+            .then(data => {
+              // MeetNameArray = LoadHeatFileName(data);
+              // initMeetNames();
+              showhide("BusyIndicatorpop");
+
+
+              return data;
+            })
+
+            .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+        catch (error) {
+          console.error('There was a problem with the fetch operation:', error);
+        }
+      }
+    </script>
+</body>
+
+
+</html>

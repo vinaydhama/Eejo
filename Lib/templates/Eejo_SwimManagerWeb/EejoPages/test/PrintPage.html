@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>EEJO Manager | Meet Results Eejo Manager v1.0 &copy; 2025-26 &phone; +91 9620538528</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <!-- Bootstrap 3.3.2 -->
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+  /* ===== CONFIG ===== */
+  :root {
+    --paper-size: A4;
+    --paper-orientation: portrait;
+    --page-margin-top: 5mm;
+    --page-margin-right: 5mm;
+    --page-margin-bottom: 5mm;
+    --page-margin-left: 5mm;
+    --header-height: 10mm;
+    --footer-height: 5mm;
+    --border-color: #000;
+    --thead-bg: #f2f2f2;
+    --font: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --accent: #0b6cf0;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+    color: #000;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .page {
+    max-width: 210mm;
+    margin: 4mm auto;
+    outline: 1px solid #e5e5e5;
+    background: #fff;
+  }
+
+  .header,
+  .footer {
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    padding: 0 12mm;
+    color: #000;
+    background: #fff;
+    z-index: 10;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8mm;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .header .logo {
+    height: calc(var(--header-height) - 6mm);
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .header .title-wrap {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 14pt;
+    font-weight: 600;
+  }
+
+  .header .meta {
+    font-size: 10pt;
+    color: #333;
+  }
+
+  .footer {
+    position: sticky;
+    bottom: 0;
+    height: var(--footer-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid var(--border-color);
+    font-size: 10pt;
+  }
+
+  .footer .page-counter::after {
+    content: "Page 1 of 1";
+  }
+
+  .print-spacer-header {
+    height: calc(var(--header-height) + 10px);
+  }
+
+  .print-spacer-footer {
+    height: calc(var(--footer-height) + 10px);
+  }
+
+  .content {
+    padding: 15mm 12mm;
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8mm;
+  }
+
+  .actions button {
+    appearance: none;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 10pt;
+  }
+
+  .actions button.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    font-size: 11pt;
+  }
+
+  thead th,
+  tbody td,
+  tfoot td {
+    border: 1.2pt solid var(--border-color);
+    padding: 6pt;
+    vertical-align: top;
+    overflow-wrap:break-word;
+  }
+
+  thead th {
+    background:silver;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  tbody tr {
+    page-break-inside: avoid;
+  }
+
+  @page {
+    size: var(--paper-size) var(--paper-orientation);
+    margin: var(--page-margin-top) var(--page-margin-right) var(--page-margin-bottom) var(--page-margin-left);
+  }
+
+  @media print {
+    .page {
+      margin: 5mm;
+      outline: none;
+    }
+
+    .header,
+    .footer {
+      position: fixed;
+    }
+
+    .header {
+      top: 0;
+      height: var(--header-height);
+      background: #fff;
+    }
+
+    .footer {
+      bottom: 0;
+      height: var(--footer-height);
+      background: #fff;
+    }
+
+    .footer .page-counter::after {
+      content: "Page " counter(page) " of " counter(pages);
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tfoot {
+      display: table-footer-group;
+    }
+
+    .print-spacer-header,
+    .print-spacer-footer {
+      display: block;
+      break-inside: avoid;
+    }
+
+    .content table {
+      margin-top: 5mm;
+    }
+
+    .content,
+    .page {
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+</style>
+
+<body width="100%" height="100%">
+
+  <div class="page">
+    <div class="header">
+      <img class="logo" src="../../Img/eejo_logo.png" height="100px" width="100px"  alt="EEJO Manager Logo" />
+      <div class="title-wrap">
+        <b> <h1 id="MeetHeaderName" >Eejo Meet Report Generator</h1> </b>
+        
+      </div>
+    </div>
+    <div class="footer">
+      <div>EEJO Manager</div>
+      <div class="meta"> v1.0 © 2025–26 · +91 9620538528</div>
+      <div class="page-counter"></div>
+    </div>
+    <!-- <div class="print-spacer-header"></div> -->
+    <div class="content">
+      <!-- <h2 style="margin-top:0">Select Report — Results</h2>
+      <div class="actions">
+        <button class="primary" id="btnLive">Live Report</button>
+        <button id="btnOnline">Online</button>
+        <button id="btnOffline">Offline</button>
+        <button id="btnRefresh">Refresh</button>
+        <button id="btnLocal">Local</button>
+      </div> -->
+      <div id="resultsContainer"></div>
+    </div>
+    <!-- <div class="print-spacer-footer"></div> -->
+  </div>
+
+
+  <div class="content">
+    <div class="box box-solid box-default">
+      <div class="box-header">
+        <b class="box-title">Heat Source</b>
+        <div class="box-tools pull-right">
+          <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+
+      <div class="box-body">
+        <button onclick='{ SelectedSource={Type:"GetRunningHeatData"}; LoadHeatNames("GetRunningHeatData")} '>
+          <h2><i> <span class="glyphicon glyphicon-save"></span>
+              <h5>Live Report</h5>
+            </i> </h2>
+        </button>
+
+        <button id="Onlineradiobtn" onclick='{ SelectedSource={Type:"Online"};LoadHeatNames("Online")}'>
+          <h2><i> <span class="glyphicon glyphicon-cloud"></span>
+              <h5>Online</h5>
+            </i> </h2>
+        </button>
+
+        <button id="Offlineradiobtn" onclick='{SelectedSource={Type:"Offline"};LoadHeatNames("Offline")}'>
+          <h2><i> <span class="glyphicon glyphicon-open"></span>
+              <h5>Offline</h5>
+            </i> </h2>
+        </button>
+
+        <button id="Offlineradiobtn" onclick=refreshMeet()>
+          <h2><i> <span class="glyphicon glyphicon-re-open"></span>
+              <h5>Refresh</h5>
+            </i> </h2>
+        </button>
+
+        <button id="localhost" onclick=openFilePicker()>
+          <input type="file" id="LocalFileSelector" style="display:none" ;>
+
+          <h2><i> <span class="glyphicon glyphicon-inbox"></span>
+              <h5>Local</h5>
+            </i> </h2>
+        </button>
+        <br>
+        <select id="dynamic1" name="dynamic1"></select>
+        <label> Select Report </label>
+        <select id="AvblTbls" name="AvblTbls"></select>
+
+        <!-- <label for="dynamic2" >Select Event</label>
+            <select id="dynamic2" name="dynamic2"></select> -->
+        <!-- <button type="button" onclick="SerachSwimRecords()">Search</button> -->
+
+      </div>
+    </div>
+  </div>
+  <div class="box box-solid box-default">
+    <div class="box-header">
+      <b class="box-title">Results</b>
+      <div class="box-tools pull-right">
+        <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+
+
+
+    <br>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>Eejo Meet Report Generator</title>
+
+    <body>
+
+      <script charset="utf-8" type="text/javascript" src="../../bootstrap/js/MultiSelectScript.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../../bootstrap/js/FireBaseDataRetrive.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../../bootstrap/js/LiveTimeDisplayHelper.js"></script>
+
+      <script charset="utf-8" type="text/javascript" src="../../bootstrap/js/Utility.js"></script>
+
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
+
+      <link rel="stylesheet" type="text/css" href="../../bootstrap/css/MultiSelectStyle.css">
+      <div id="BusyIndicatorpop"></div>
+      <!-- <link rel="stylesheet" type="text/css" href="Styles/Tabledesign.css"> -->
+      <!-- <link rel="stylesheet" type="text/css" href="../../bootstrap/css/GeneralStyle.css">
+    <div class="popup" id="BusyIndicatorpop">
+      <div class="loader"></div>
+      <p id="BusyMsg"> </p>
+    </div>
+  </body> -->
+
+
+  </div><!-- ./wrapper -->
+
+  <!-- jQuery 2.1.3 -->
+
+  <script>
+    MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets.json";
+    let AvblReports = [];
+    let SelectedReportList = [];
+    let SelectedMeetName = [];
+    let SelectedEventName = [];
+    let MeetNameArray = [];
+    let EventNameArray = [];
+    let swClubGroupDict = {};
+    let AvblClubNames = {};
+    let AvblGroup = {};
+    let SelectedSource = {};
+
+    let Rowdata = [];
+    let rows = [];
+
+
+    cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";
+    //cmdurlwithHost = "http://192.168.7.241:5002";
+    //cmdurlwithHost = "http://LocalHost:5002";
+
+    showhide("BusyIndicatorpop");
+
+    function buildTable({ containerId, columns, rows, TableID, TableTitle }) {
+      const container = document.getElementById(containerId);
+      const  spacer= document.createElement("div");
+      spacer.className= "print-spacer-header";
+      container.appendChild(spacer);
+
+      const table = document.createElement('table');
+      container.appendChild(table);
+      table.id =TableID;
+      const thead = document.createElement('thead');
+      let  headRow = document.createElement('tr');
+      TitleCell= headRow.insertCell()
+      TitleCell.innerHTML = `<h3><b>Event ${TableTitle}</b></h3>`;
+      TitleCell.colSpan = 7   ;
+      // TitleCell.style.backgroundColor = "rgb(160, 160, 160)";
+
+      thead.appendChild(headRow);
+      
+      table.appendChild(thead);
+
+      headRow = document.createElement('tr');
+      columns.forEach(col => { const th = document.createElement('th'); th.textContent = col; headRow.appendChild(th); });
+      thead.appendChild(headRow); 
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      rows.forEach(r => { const tr = document.createElement('tr'); r.forEach(cell => { const td = document.createElement('td'); td.textContent = cell; tr.appendChild(td); }); tbody.appendChild(tr); });
+      table.appendChild(tbody);      
+      // if (TableTitle) { const tfoot = document.createElement('tfoot'); const footRow = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = columns.length; td.textContent = footerText; footRow.appendChild(td); tfoot.appendChild(footRow);}
+      // container.innerHTML = ''; container.appendChild(table);
+    }
+
+    function ClearTable(TableName) {
+      var tableHeaderRowCount = 0;
+      if (TableName == 'tblMeet') {
+        tableHeaderRowCount = 0;
+      }
+
+      var table = document.getElementById(TableName);
+      if (table) {
+        var rowCount = table.rows.length;
+        for (var i = tableHeaderRowCount; i < rowCount; i++) {
+          table.deleteRow(tableHeaderRowCount);
+        }
+      }
+    }
+
+    function openFilePicker() {
+      document.getElementById('LocalFileSelector').click();
+    }
+
+    document.getElementById('LocalFileSelector').addEventListener('change', function (event) {
+      const file = event.target.files[0]; // Get the first selected file
+
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          try {
+            const jsonData = JSON.parse(e.target.result);
+            MeetUpdatedData = jsonData;
+            SerachSwimRecords(MeetUpdatedData)
+
+            //                LoadHeatNames("Local")
+          } catch (error) {
+            console.error("Error parsing JSON:", error);
+            alert("Invalid JSON file.");
+          }
+        };
+
+        reader.onerror = function (e) {
+          console.error("Error reading file:", e);
+          alert("Error reading the file.");
+        };
+
+        reader.readAsText(file); // Read the file content as text
+      }
+    });
+
+    async function LoadHeatNames(HeatFileSource) {
+      ClearTable('tblMeetResult');
+      switch (HeatFileSource) {
+
+        case "GetRunningHeatData":
+          cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=GetRunningHeatData";
+          try {
+            let response = await fetch(cmdurl);
+            let data = await response.json();
+            MeetDataFirebase = data.commandReturnData;
+            if (data.commandReturnData != "") {
+              SerachSwimRecords(MeetDataFirebase)
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+          break;
+        case "Online":
+          MeetDataFirebase = FetchEventNames();
+          break;
+
+        case "Offline":
+          cmdurl = cmdurlwithHost + "/getAvailableHeatNames";
+          try {
+            let response = await fetch(cmdurl);
+            let data = await response.json();
+            // console.log(data);
+            MeetNameArray = LoadHeatFileName(data);
+            NoofBoards = MeetNameArray.Boards;
+            initMeetNames(HeatFileSource);
+
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+
+          break;
+
+        case "Local":
+
+          try {
+
+            MeetNameArray = LoadHeatFileName(data);
+            NoofBoards = MeetNameArray.Boards;
+            initMeetNames(HeatFileSource);
+
+
+            // Meetdteails = ExtractMeetInfo(MeetUpdatedData, "");
+            // GenerateMeetTable(Meetdteails.MeetName, Meetdteails.MeetAddress, Meetdteails.MeetDate, Meetdteails.Boards);
+            // GenerateGroupTable(Meetdteails.GroupDetails);
+            // ReloadData('Groups');
+            // GenerateEventTable(Meetdteails.EventList);
+            // ReloadData('Events');
+            // GenerateHeatDetailsTable(Meetdteails.HeatList)
+            // GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    function UpdateSwClubAndGroup(SwimmerDetails) {
+      //SwKeys = Object.keys(SwimmerDetails);
+      SwKeys = Object.keys(SwimmerDetails).filter(key => key !== "length");
+
+      SwKeys.forEach(swname => {
+        swClubGroupDict[swname.trim()] = { SwClub: SwimmerDetails[swname].Club, SwGroup: SwimmerDetails[swname].Group + "_" + SwimmerDetails[swname].Gender, TotalScore: 0, EventDetails: "" }
+
+        if ((SwimmerDetails[swname].Club in AvblClubNames) == false) {
+          AvblClubNames[SwimmerDetails[swname].Club] = 0;
+        }
+        if ((swname.Group in AvblGroup) == false) {
+          AvblGroup[SwimmerDetails[swname].Group] = 0;
+        }
+      });
+    }
+
+    function SerachSwimRecords(MeetData) {
+
+      MeetHeaderName = document.getElementById("MeetHeaderName")
+      if (MeetHeaderName) {
+        MeetHeaderName.innerHTML = " " + MeetData.MeetName + " " + MeetData.MeetDate + "<br>";
+      }
+      MeetData.GroupDetails.forEach(gropuName => {
+        GroupInfoDict[gropuName.GroupName] = gropuName.FromDate + " To " + gropuName.ToDate;
+      });
+
+      // GroupInfoDict = MeetData.GroupDetails;
+      UpdateSwClubAndGroup(MeetData.SwimmerDetails);
+      // let table = document.getElementById("tblMeetResult");
+      // let HeaderRow = table.insertRow();
+
+      meet = MeetData;
+      let EventCounter = 0;
+      meet.EventDetails.forEach(evendetail => {
+        //GroupInfo= GetGroupInfoToPrint(MeetData,);
+
+        EventCounter++;
+        EventResultArray = [];
+        evendetail.HeatList.forEach(Boards => {
+          Boards.BoardList.forEach(Board => {
+            let SwClubAndGrp = {};
+            SwClubAndGrp.SwClub = "SwClub";
+            SwClubAndGrp.SwGroup = "SwGroup";
+            if (Board.SwimerName in swClubGroupDict) {
+              SwClubAndGrp = swClubGroupDict[Board.SwimerName];
+            }
+            let SwimTimings = 0;
+
+            if (Board.SwimTimings != 12.34) {
+              SwimTimings = Board.SwimTimings;
+            }
+            EventResultArray.push({
+              'SwName': Board.SwimerName, 'SwimerClub': SwClubAndGrp.SwClub, 'Group': SwClubAndGrp.SwGroup,
+              'SwimStatus': Board.SwimStatus, 'SwimTimings': Board.SwimTimings
+            })
+          });
+        });
+
+        PltEventTable((MeetData.EventList.indexOf(evendetail.eventID) + 1), formatSwimmingEvent(evendetail.eventID), EventResultArray, evendetail.eventID);
+      });
+      PltIndChampTable();
+
+      new MultiSelect('#AvblTbls', {
+        data: AvblReports,
+        placeholder: 'Select Report',
+        search: true,
+        selectAll: true,
+        listAll: true,
+        onChange: function (value, text, element) {
+        },
+        onSelect: async function (value, text, element) {
+          SelectedReportList.push(value);
+          UpdateSelection();
+        },
+        onUnselect: async function (value, text, element) {
+          SelectedReportList.pop(value);
+          UpdateSelection();
+        }
+      });
+    }
+    function UpdateSelection() {
+      AvblReports.forEach(element => {
+        const reporttbl = document.getElementById(element.value)
+
+        if (reporttbl) {
+          if (SelectedReportList.indexOf(element.value) != -1) {
+            reporttbl.style.display = 'block'
+
+          }
+          else {
+            reporttbl.style.display = 'none'
+
+          }
+        }
+
+      });
+    }
+
+    async function FetchEventNames() {
+      //showhide("BusyIndicatorpop", "Loading Swimmer table");
+      // busyi.show();
+
+      var dataAPI = fetch(MeetDataFirebaseURL)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          MeetNameArray = LoadMeetNames(data)
+          initMeetNames("Online");
+          MeetDataFirebase = data;
+          showhide("BusyIndicatorpop");
+          return;
+        }, error => {
+          console.error('onRejected function called: ' + error.message);
+        })
+    }
+    function refreshMeet() {
+      switch (SelectedSource.Type) {
+        case "GetRunningHeatData":
+          LoadHeatNames(SelectedSource.Type)
+          break;
+
+        default:
+          initMeetNames(SelectedSource.Type);
+          break;
+      }
+
+
+    }
+    function initMeetNames(HeatFileSource) {
+      new MultiSelect('#dynamic1', {
+        data: MeetNameArray,
+        placeholder: 'Select Meet',
+        search: true,
+        selectAll: false,
+        listAll: true,
+        onChange: function (value, text, element) {
+        },
+        onSelect: async function (value, text, element) {
+          switch (HeatFileSource) {
+            case "Online":
+              SerachSwimRecords(MeetDataFirebase[text])
+              break;
+            case "Local":
+              SerachSwimRecords(MeetDataFirebase[text])
+              break;
+            case "Offline":
+              try {
+                cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=ReadHeatFromLocalFile&HeatFileName=" + value;
+                let response = await fetch(cmdurl);
+                let data = await response.json();
+                // console.log(data);
+                MeetDataFirebase = data.commandReturnData;
+                SerachSwimRecords(MeetDataFirebase);
+              } catch (error) {
+                console.error('Error fetching data:', error);
+              }
+
+              break;
+
+            default:
+              break;
+          }
+
+          //console.log('Selected:', value, text, element);
+        },
+        onUnselect: function (value, text, element) {
+          SelectedMeetName.pop(text);
+          EventNameArray = LoadEventNames(MeetDataFirebase, SelectedMeetName);
+          initEventNames();
+          //console.log('Unselected:', value, text, element);
+        }
+      });
+    }
+
+
+    function initEventNames() {
+      new MultiSelect('#dynamic1', {
+        data: EventNameArray,
+        placeholder: 'Select Events',
+        search: true,
+        selectAll: true,
+        listAll: true,
+        onChange: function (value, text, element) {
+          //console.log('Change:', value, text, element);
+        },
+        onSelect: function (value, text, element) {
+          SelectedEventName.push(text);
+        },
+        onUnselect: function (value, text, element) {
+          SelectedEventName.pop(text);
+        }
+      });
+    }
+
+    async function FetchEventData() {
+      showhide("BusyIndicatorpop", "Loading Swimmer table");
+      // busyi.show();
+
+      var dataAPI = fetch(MeetDataFirebaseURL)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          MeetNameArray = LoadSwNames(data)
+          // initSwNames();
+          MeetDataFirebase = data;
+          showhide("BusyIndicatorpop");
+          return;
+        }, error => {
+          console.error('onRejected function called: ' + error.message);
+        })
+    }
+
+
+    function Resort(data) {
+
+      //       const data = [
+      //     { key: 10, value: 8 },
+      //     { key: 12, value: 7 },
+      //     { key: 2, value: 5 },
+      //     { key: 8, value: 5 },
+      //     { key: 11, value: 4 },
+      //     { key: 4, value: 1 },
+      //     { key: 6, value: 1 },
+      //     { key: 7, value: 1 },
+      //     { key: 1, value: 0 },
+      //     { key: 3, value: 0 },
+      //     { key: 5, value: 0 },
+      //     { key: 9, value: 0 },
+      //     { key: 13, value: 0 }
+      // ];
+
+      const sortedData = data.sort((a, b) => {
+        if (a.value === 0 && b.value === 0) return 0; // both zero
+        if (a.value === 0) return 1; // a goes to bottom
+        if (b.value == 0) return -1; // b goes to bottom
+        return a.value - b.value; // normal ascending sort
+      });
+      return sortedData;
+
+    }
+
+
+    function PltIndChampTable() {
+      const container = document.getElementById("resultsContainer");
+
+      const SwKeys = Object.keys(swClubGroupDict);
+      const AvblGroup = {};
+      const AvblClub = {};
+      let Dictclubscore = {}
+
+      // Group swimmers by group and club
+      SwKeys.forEach(key => {
+        const element = swClubGroupDict[key];
+        AvblGroup[element.SwGroup] = AvblGroup[element.SwGroup] ? AvblGroup[element.SwGroup] + ":" + key : key;
+        AvblClub[element.SwClub] = AvblClub[element.SwClub] ? AvblClub[element.SwClub] + ":" + key : key;
+      });
+
+      // Individual Champion by Group
+      Object.keys(AvblGroup).forEach(Grpkey => {
+        if (Grpkey != undefined) {
+          const Swimmeringroup = AvblGroup[Grpkey].split(":");
+          const ScoreArray = Swimmeringroup.map(Swname => swClubGroupDict[Swname].TotalScore);
+          const RankSorted = SortAndGetRankDescending(ScoreArray);
+
+          const sortedBoards1 = RankSorted.map((value, index) => ({ key: index + 1, value }))
+            .sort((a, b) => b.value - a.value);
+
+          let sortedBoards = Resort(sortedBoards1);
+          // Create new table
+          const tbl = document.createElement("table");
+          tbl.id = "table_IC" + Grpkey
+
+          AvblReports.push({ value: tbl.id, text: "IC " + Grpkey });
+          tbl.border = "1";
+          tbl.style.marginBottom = "20px";
+          tbl.style.width = "100%";
+          container.appendChild(tbl);
+
+          // Header
+          let HeaderRow = tbl.insertRow();
+          HeaderRow.style.backgroundColor = "rgb(160, 160, 160)";
+
+          let td = HeaderRow.insertCell();
+          td.innerHTML = `<h3><b>IC ${formatSwimmingEvent("_" + Grpkey)}</b></h3>`;
+          td.colSpan = 5;
+
+          // Column headers
+          let newRow = tbl.insertRow();
+          ["Sl.NO", "Rank", "Swimmer Name", "Swimmer Club / School", "Total Points"].forEach(header => {
+            newRow.insertCell().innerHTML = `<b>${header}</b>`;
+          });
+
+          // Data rows
+          sortedBoards.forEach((DictElement, index) => {
+            const Swname = Swimmeringroup[DictElement.key - 1];
+            const row = tbl.insertRow();
+            row.insertCell().innerHTML = index + 1;
+            row.insertCell().innerHTML = DictElement.value;
+            row.insertCell().innerHTML = Swname;
+            row.insertCell().innerHTML = swClubGroupDict[Swname].SwClub;
+            row.insertCell().innerHTML = swClubGroupDict[Swname].TotalScore;
+          });
+        }
+      });
+
+      const tblClb = document.createElement("table");
+      tblClb.id = "Club_Wise_IC"
+      AvblReports.push({ value: tblClb.id, text: tblClb.id });
+
+
+      tblClb.border = "1";
+      tblClb.style.marginBottom = "20px";
+      tblClb.style.width = "100%";
+      let HeaderRowClb = tblClb.insertRow();
+      HeaderRowClb.style.backgroundColor = "rgb(160, 160, 160)";
+      let tdclb2 = HeaderRowClb.insertCell();
+      tdclb2.innerHTML = "<h3><b>Sl.No</h3>"
+      let tdclb = HeaderRowClb.insertCell();
+      tdclb.innerHTML = "<h3><b> Club Name</h3>";
+      let tdclb1 = HeaderRowClb.insertCell();
+      tdclb1.innerHTML = "<h3><b> Score</h3>";
+
+      container.appendChild(tblClb);
+
+      // Individual Champion by Club
+      let clindex = 0;
+
+      Object.keys(AvblClub).forEach(Clbkey => {
+        const Swimmeringroup = AvblClub[Clbkey].split(":");
+        const ScoreArray = Swimmeringroup.map(Swname => swClubGroupDict[Swname].TotalScore);
+        const RankSorted = SortAndGetRankDescending(ScoreArray);
+
+        const sortedBoards = RankSorted.map((value, index) => ({ key: index + 1, value }))
+          .sort((a, b) => b.value - a.value);
+        // Create new table
+        let clbscore = 0
+        const tbl = document.createElement("table");
+        tbl.id = "Club_Table" + Clbkey
+        AvblReports.push({ value: tbl.id, text: "IC " + Clbkey });
+
+
+        tbl.border = "1";
+        tbl.style.marginBottom = "20px";
+        tbl.style.width = "100%";
+        container.appendChild(tbl);
+
+        // Header
+        let HeaderRow = tbl.insertRow();
+        let td = HeaderRow.insertCell();
+        td.colSpan = 6;
+        td.innerHTML = `<h3><b>${Clbkey}</b></h3>`;
+        td.style.backgroundColor = "rgb(160, 160, 160)";
+
+        // Column headers
+        let newRow = tbl.insertRow();
+        ["Sl.NO", "Swimmer Name", "Group", "Total Points", "EventDetails"].forEach(header => {
+          newRow.insertCell().innerHTML = `<b>${header}</b>`;
+        });
+
+        // Data rows
+        sortedBoards.forEach((DictElement, index) => {
+          const Swname = Swimmeringroup[DictElement.key - 1];
+          const row = tbl.insertRow();
+          row.insertCell().innerHTML = index + 1;
+          // row.insertCell().innerHTML = DictElement.value;
+          row.insertCell().innerHTML = Swname;
+          row.insertCell().innerHTML = swClubGroupDict[Swname].SwGroup;
+          row.insertCell().innerHTML = swClubGroupDict[Swname].TotalScore;
+          Eventlist = swClubGroupDict[Swname].EventDetails
+
+          row.insertCell().innerHTML = Eventlist.replace(/;/g, "<br>");
+          clbscore += swClubGroupDict[Swname].TotalScore;
+        });
+
+        td.innerHTML = `<h3><b> ${Clbkey} Total: ${clbscore}</b></h3>`;
+        Dictclubscore[Clbkey] = clbscore
+
+      });
+
+
+      Object.keys(AvblClub).forEach(Clbkey => {
+        const Swimmeringroup = AvblClub[Clbkey].split(":");
+        const ScoreArray = Swimmeringroup.map(Swname => swClubGroupDict[Swname].TotalScore);
+        const RankSorted = SortAndGetRankDescending(ScoreArray);
+
+        const sortedBoards = RankSorted.map((value, index) => ({ key: index + 1, value }))
+          .sort((a, b) => b.value - a.value);
+        // Create new table
+        let clbscore = 0
+        const tbl = document.createElement("table");
+        tbl.id = "Club_Results" + Clbkey
+        AvblReports.push({ value: tbl.id, text: "Club Results " + Clbkey });
+
+
+        tbl.border = "1";
+        tbl.style.marginBottom = "20px";
+        tbl.style.width = "100%";
+        container.appendChild(tbl);
+
+        // Header
+        let HeaderRow = tbl.insertRow();
+        let td = HeaderRow.insertCell();
+        td.colSpan = 6;
+        td.innerHTML = `<h3><b>${Clbkey}</b></h3>`;
+        td.style.backgroundColor = "rgb(160, 160, 160)";
+
+        // Column headers
+        let newRow = tbl.insertRow();
+        ["Sl.NO", "Swimmer Name", "Group", "EventDetails"].forEach(header => {
+          newRow.insertCell().innerHTML = `<b>${header}</b>`;
+        });
+
+        // Data rows
+        sortedBoards.forEach((DictElement, index) => {
+          const Swname = Swimmeringroup[DictElement.key - 1];
+          const row = tbl.insertRow();
+          row.insertCell().innerHTML = index + 1;
+          // row.insertCell().innerHTML = DictElement.value;
+          row.insertCell().innerHTML = Swname;
+          row.insertCell().innerHTML = swClubGroupDict[Swname].SwGroup;
+          // row.insertCell().innerHTML = swClubGroupDict[Swname].TotalScore;
+          Eventlist = swClubGroupDict[Swname].EventDetails
+
+          row.insertCell().innerHTML = Eventlist.replace(/;/g, "<br>");
+          // clbscore += swClubGroupDict[Swname].TotalScore;
+        });
+
+        td.innerHTML = `<h3><b> ${Clbkey}</b></h3>`;
+        // Dictclubscore[Clbkey] = clbscore
+
+      });
+
+      // const sortedArray = Object.entries(Dictclubscore).sort(([, valueA], [, valueB]) => valueA - valueB);
+
+
+      const sortedArray = Object.entries(Dictclubscore)
+        .filter(([, value]) => value !== 0) // ignore zeros
+        .sort(([, valueA], [, valueB]) => valueB - valueA); // descending order
+
+
+      // Convert back to object
+      const sortedObj = Object.fromEntries(sortedArray);
+
+
+      clindex = 0;
+      sortedArray.forEach(item => {
+
+        const rowcl = tblClb.insertRow();
+        clindex++;
+        rowcl.insertCell().innerHTML = clindex;
+        rowcl.insertCell().innerHTML = item[0];
+        rowcl.insertCell().innerHTML = item[1];
+      });
+    }
+
+    function GetPoints(Rank) {
+      let score = 0;
+      switch (Rank) {
+        case 0:
+          score = 0;
+          break;
+        case 1:
+          score = 7;
+          break;
+
+        case 2:
+          score = 5;
+          break;
+
+        case 3:
+          score = 4;
+          break;
+        case 4:
+          score = 3;
+          break;
+        case 5:
+          score = 2;
+          break;
+        case 6:
+          score = 1;
+          break;
+        case 7:
+          score = 0;
+          break;
+
+        default:
+          score = 0;
+          break;
+      }
+      return score
+    }
+
+    function PltEventTable(eventID, eventName, EventResultArray, eventNameID) {
+      Rowdata=[];
+      // Create a new table
+      //   let container = document.getElementById("resultsContainer");
+
+
+      //   const spacer = document.createElement('div');
+      // spacer.className = 'print-spacer-header';
+      // container.appendChild(spacer);
+
+      //   let tbl1 = document.createElement("table");
+
+
+      // Create the print spacer
+
+      // Insert spacer before the table
+
+
+
+
+      // tbl1.id = "tblMeetResult_" + eventID;
+      let TableID="tblMeetResult_" + eventID;
+      AvblReports.push({ value: TableID, text: "Event" + eventID + " " + eventName })
+      // AvblReports.push(tbl1.id);
+      // tbl1.border = "1";
+      // tbl1.style.marginBottom = "20px";
+      // tbl1.style.width = "100%";
+
+      // Append to container
+      // container.appendChild(tbl1);
+      // container.appendChild(spacer);
+
+
+      // const thead = tbl1.createTHead();
+      // const HeaderRow = thead.insertRow();
+      // Header row
+      // let HeaderRow = tbl1.insertRow();
+      // let td = HeaderRow.insertCell();
+      let TableTitleToShow =  eventID +" " + eventName;
+      // td.colSpan = 7;
+      // td.style.backgroundColor = "rgb(160, 160, 160)";
+
+      // Column titles
+      // let newRow = thead.insertRow();
+      // newRow.style.backgroundColor = "rgb(200, 200, 200)";
+      const headers = ["Sl.NO", "Rank", "Name", "Club/School", "Status", "Timings", "Points"];
+      // headers.forEach(header => {
+      //   newRow.insertCell().innerHTML = `<b>${header}</b>`;
+      // });
+
+      // Prepare data for ranking
+      let x = EventResultArray.map(result => {
+        if (result.SwimStatus === 0) {
+          return result.SwimTimings !== 12.34 ? result.SwimTimings : 0;
+        }
+        return 0;
+      });
+
+      let RankSorted = SortAndGetRank(x);
+      let BoardRanks = RankSorted.map((value, index) => ({ key: index + 1, value }));
+
+      let sortedBoards = BoardRanks.sort((a, b) => {
+        if (a.value === 0 && b.value !== 0) return 1;
+        if (a.value !== 0 && b.value === 0) return -1;
+        return a.value - b.value;
+      });
+
+      // Populate table
+      for (let eventIndex = 0; eventIndex < EventResultArray.length; eventIndex++) {
+        // newRow = tbl1.insertRow();
+        let swimmer = EventResultArray[sortedBoards[eventIndex].key - 1];
+
+        if (!(swimmer.SwName in swClubGroupDict)) {
+          swClubGroupDict[swimmer.SwName] = { SwClub: "ClubUnknown", SwGroup: "Group_Unknown", TotalScore: 0 };
+        }
+
+        let previousScore = swClubGroupDict[swimmer.SwName].TotalScore;
+        let currentScore = GetPoints(sortedBoards[eventIndex].value);
+        swClubGroupDict[swimmer.SwName].TotalScore = previousScore + currentScore;
+        swClubGroupDict[swimmer.SwName].EventDetails = swClubGroupDict[swimmer.SwName].EventDetails + formatSwimmingEvent(eventNameID) + " : " + "  " + DQMsg[swimmer.SwimStatus] + " " + ConvertTime(swimmer.SwimTimings) + ";"
+
+
+        Rowdata.push({ "SlNO": eventIndex + 1, "Rank": sortedBoards[eventIndex].value, "SwimmerName": swimmer.SwName, "SwimmerClubSchool": swimmer.SwimerClub, "SwimStatus": DQMsg[swimmer.SwimStatus], "SwimTimings": ConvertTime(swimmer.SwimTimings !== 12.34 ? swimmer.SwimTimings : 0), "Points": currentScore });
+
+        // newRow.insertCell().innerHTML = eventIndex + 1;
+        // newRow.insertCell().innerHTML = sortedBoards[eventIndex].value;
+        // newRow.insertCell().innerHTML = swimmer.SwName;
+        // newRow.insertCell().innerHTML = swimmer.SwimerClub;
+        // newRow.insertCell().innerHTML = DQMsg[swimmer.SwimStatus];
+        // newRow.insertCell().innerHTML = `<b>${ConvertTime(swimmer.SwimTimings !== 12.34 ? swimmer.SwimTimings : 0)}</b>`;
+        // newRow.insertCell().innerHTML = `<b>${currentScore}</b>`;
+
+      }
+      const rows = Rowdata.map(d => [d.SlNO, d.Rank, d.SwimmerName, d.SwimmerClubSchool, d.SwimStatus, d.SwimTimings, d.Points]);
+      buildTable({ containerId: 'resultsContainer', columns: headers, rows,TableID, TableTitle: TableTitleToShow });
+
+      // const tfoot = tbl1.createTFoot();
+      // const fRow = tfoot.insertRow();
+      // const fCell = fRow.insertCell(0);
+      // fCell.colSpan = headers.length;
+      // fCell.style.textAlign =    fCell.style.textAlign = "center";
+      // fCell.style.fontSize = "9pt";
+      // fCell.style.padding = "8pt";
+      // fCell.textContent = "endText";
+    }
+  </script>
+</body>
+
+</html>

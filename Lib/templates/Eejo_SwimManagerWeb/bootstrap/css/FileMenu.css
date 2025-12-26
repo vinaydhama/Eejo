@@ -1,0 +1,72 @@
+ 
+    /* ====== Theme tokens ====== */
+    :root {
+      --bg: #ffffff;
+      --fg: #0e1116;
+      --border: #d0d7de;
+      --hover: #f6f8fa;
+      --shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+    }
+    header { padding: 16px 24px; border-bottom: 1px solid var(--border); }
+    .app-title { font-weight: 600; }
+
+    /* ====== Menubar ====== */
+    .menubar {
+      display: flex; gap: 16px; align-items: center;
+      padding: 12px 24px; border-bottom: 1px solid var(--border);
+    }
+    .menu-item { position: relative; }
+
+    .menu-btn {
+      appearance: none;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--fg);
+    }
+    .menu-btn:hover { background: var(--hover); }
+    .menu-btn:focus { outline: 3px solid rgba(10,132,255,.35); outline-offset: 2px; }
+
+    /* ====== Dropdown ====== */
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 220px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      display: none; /* toggled via JS */
+      list-style: none;
+      margin: 0;
+      padding: 8px;
+      z-index: 1000;
+    }
+    .dropdown.open { display: block; }
+    .dropdown li { margin: 0; }
+    .dropdown a, .dropdown button {
+      width: 100%;
+      text-align: left;
+      display: block;
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: var(--fg);
+      text-decoration: none;
+      background: transparent;
+      border: 0; cursor: pointer; font: inherit;
+    }
+    .dropdown a:hover, .dropdown button:hover { background: var(--hover); }
+
+    /* ====== Page demo ====== */
+    main { padding: 24px; }
+    .card { border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  

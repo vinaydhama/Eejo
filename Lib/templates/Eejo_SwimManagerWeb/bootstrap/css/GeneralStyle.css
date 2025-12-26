@@ -1,0 +1,218 @@
+
+    /* For Loader*/
+
+      /* Modal styles */
+  .modal {
+    display: none;
+    position: relative;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+  }
+
+  .close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  .ExtraBigRankFont {
+
+    font-size: 180PX;
+    font-stretch: expanded;
+    color: orange;
+
+    /* font-weight: bolder; */
+    font-family: ConsolaMono-Bold;
+  }
+
+  .ExtraBigFont {
+    font-size: 200PX;
+    margin-left: -3%;
+    font-stretch:ultra-expanded;
+    text-align: right;
+    color: yellow;
+    font-weight: bolder;
+    /* font-weight: bolder; */
+    font-family: ConsolaMono-Bold;
+  }
+
+  .center {
+    margin: auto;
+    width: 50%;
+    /* border: 3px solid green; */
+    padding: 20px;
+  }
+
+  .Headerbigfont {
+    text-align: left;
+    margin-right: 5%;
+
+    text-align: right;
+    font-size: 80PX;
+    color: gainsboro;
+
+    /* font-weight: bolder; */
+    font-family: ConsolaMono-Bold;
+  }
+
+  .bigfont {
+    text-align: right;
+    margin-left: 20%;
+    font-size: 50PX;
+    color: gainsboro;
+
+    /* font-weight: bolder; */
+    font-family: ConsolaMono-Bold;
+  }
+
+  .Mediumfont {
+    font-size: 50PX;
+    font-stretch: expanded;
+    color: gray;
+
+    /* font-weight: bolder; */
+    font-family: ConsolaMono-Bold;
+  }
+
+  .smallfont {
+    font-family: myFirstFont;
+    font-size: 20PX;
+    font-stretch: expanded;
+    color: yellow;
+
+    /* font-weight: bolder; */
+    font-family: ConsolaMono-Bold;
+  }
+
+  @font-face {
+    font-family: myFirstFont;
+    src: local("..\bootstrap\fonts\Haettenschweiler.ttf");
+  }
+
+  .pp {
+    /* width: 350px;
+    height: 150px; */
+    border: 3px solid rgb(43, 135, 174);
+
+    position: relative;
+    background-color: rgb(4, 4, 4);
+  }
+
+    .EejoLogo {
+             position: absolute;
+             top: 0%;
+             left: 0%;             
+             width: 200px;
+             height: 200px;
+             background: rgba(7, 22, 232, 0.53);
+             border-radius: 20px;
+             animation: animate 2s linear infinite;
+         }
+         
+         @keyframes animate {
+             0% {
+                 transform: translate(-50%, -50%) 
+                   perspective(200px) 
+                   rotateX(0deg) 
+                   rotateY(0deg);
+             }
+             50% {
+                 transform: translate(-50%, -50%)
+                   perspective(200px) 
+                   rotateX(-180deg) 
+                   rotateY(0deg);
+             }
+             100% {
+                 transform: translate(-50%, -50%)
+                   perspective(200px) 
+                   rotateX(-180deg)
+                   rotateY(-180deg);
+             }
+         }
+     
+ 
+    .loader {
+        border: 16px solid #797777;
+        border-radius: 50%;
+        border-top: 16px solid blue;
+        border-right: 16px solid green;
+        border-bottom: 16px solid red;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+
+      .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+  /* General table styling */
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    border: 1px solid #000;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Print-specific styling */
+  @media print {
+    body {
+      margin: 0;
+      font-size: 10pt;
+    }
+
+    table {
+      page-break-inside: avoid;
+    }
+
+    .hide-on-print {
+      display: none;
+    }
+  }

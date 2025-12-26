@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/LiveTimeDisplayHelper.js"></script>
+    <meta charset="UTF-8">
+    <title>Screen Screenshot Capture</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>📸 Capture Screenshot</h2>
+    <button id="startCapture">Start Screen Capture</button>
+    <button id="captureScreenshot" disabled>Capture Screenshot</button>
+
+    <script>
+        let cmdurlwithHost=""
+
+        const params = new URLSearchParams(window.location.search);
+        let TimerIP = params.get('TimerIP');
+        if (TimerIP) {
+            cmdurlwithHost = "http://" + TimerIP + ":5002";
+
+            let screenStream;
+            setInterval(async () => {
+
+                cmdurl = cmdurlwithHost + "/GetTimerState";
+                response = await fetch(cmdurl);
+                data = await response.json();
+                if (data.Message =="Updating Result To Cloud") {
+                    let HeatInfo = await FetchValuesFromTimer('HeatInfo');
+                    CaptureAndDownloadImage("Event")
+
+                    // CaptureAndDownloadImage("Event" + HeatInfo.EventID + formatSwimmingEvent(HeatInfo.HeatName))
+                }
+            }, 500);
+        }
+        else {
+            document.body.innerHTML = "<h3 style='color:red;text-align:center;'>Missing TimerIP parameter!</h3>";
+        }
+
+        // Start screen capture
+        document.getElementById('startCapture').addEventListener('click', async () => {
+            try {
+                screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                document.getElementById('captureScreenshot').disabled = false;
+                alert('Screen capture started. You can now take a screenshot.');
+            } catch (err) {
+                alert('Screen capture failed: ' + err);
+            }
+        });
+
+        async function CaptureAndDownloadImage(FilePrefix = "ScreenShot") {
+            try {
+                const track = screenStream.getVideoTracks()[0];
+                const imageCapture = new ImageCapture(track);
+                const bitmap = await imageCapture.grabFrame();
+
+                const canvas = document.createElement('canvas');
+                canvas.width = bitmap.width;
+                canvas.height = bitmap.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(bitmap, 0, 0);
+
+                const dataUrl = canvas.toDataURL('image/png');
+
+                // Auto-download
+                const a = document.createElement('a');
+                a.href = dataUrl;
+                a.download = FilePrefix + `_${Date.now()}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } catch (err) {
+                //alert('Screenshot failed: ' + err);
+            }
+
+        }
+        // Capture screenshot and auto-download
+        document.getElementById('captureScreenshot').addEventListener('click', async () => {
+            CaptureAndDownloadImage();
+        });
+    </script>
+</body>
+
+</html>

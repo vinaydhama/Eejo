@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Live Swim Leaderboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0a0a0c;
+      padding: 20px;
+      color: rgb(178, 248, 1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    #timer {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    #metadata {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .leaderboard {
+      collapse;
+    }
+
+    .leaderboard td,
+    .leaderboard th {
+      border: 1px solid #0d0e14;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .leaderboard tr:nth-child(even) {
+      background-color: #19191c;
+    }
+
+    .leaderboard tr:nth-child(odd) {
+      background-color: #070707;
+    }
+
+    .leaderboard tr:first-child {
+      background-color: #1d2446;
+    }
+  </style>
+  <style>
+    .slideshow {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      animation: fade 9s infinite;
+    }
+  
+    .slideshow img:nth-child(1) {
+      animation-delay: 0s;
+    }
+  
+    .slideshow img:nth-child(2) {
+      animation-delay: 3s;
+    }
+  
+    .slideshow img:nth-child(3) {
+      animation-delay: 6s;
+    }
+  
+    @keyframes fade {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      30%  { opacity: 1; }
+      40%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+<!-- To be tested -->
+  <table border="1" cellspacing="0" cellpadding="10">
+    <tr>
+      <td rowspan="2">
+        <!-- <span style="display: flex;">    <img src="../Img/SSM_Logo.png" style="width: 100px; height: 100px; padding-top: -40%; ">  -->
+      </td>
+      <td colspan="2"><h2 > Shivamogga Swim Meet 2025</h2></td>
+      <td> 
+        <!-- <div class="slideshow" style="margin-left: 20px;">
+      
+          <img style="margin: 10px; height: auto; width: 100px; " class="img" src="../Img/Tiny Techniques_Logo.png"
+            alt="WWW.TinyTechniques.com">
+          <img style="margin: 10px;height: auto; width: 100px; ;" class="img" src="../Img/Eejo_Manager.png"
+            alt="WWW.TinyTechniques.com">
+          <img style="margin: 10px;height: auto; width: 100px; ;" class="img" src="../Img/Eejo_mini.png"
+            alt="WWW.TinyTechniques.com">
+          <img style="margin: 10px; height: auto;width: 100px; " class="img" src="../Img/eejo_max.png"
+            alt="WWW.TinyTechniques.com">    
+        </div> -->
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">Shivamogga Sports Complex </td>
+    </tr>
+    <tr>
+      <td colspan="3"><h3 style="padding: -40px;" id="event-name"> (Not Provided)  </h3></td>
+      
+      <td><p  style="padding-left: 20%;" id="timer"></p></td>
+    </tr>
+  </table>
+  
+
+
+
+    <table style="width: 90%;" >
+        <tr>
+        <td>  <br>
+            
+        </td>
+        <td>  </td>
+        </tr>      
+    </td>
+
+        </tr>
+    </table>
+        
+        <!-- <span style="display: flex;"> 
+    <p  id="timer"></p> </span> 
+</span> -->
+</span>
+  <table style="padding-top: -100px;align-content: stretch; width: 100%;" class="leaderboard" id="leaderboard-table">
+    <thead>        
+      <td> Shivamogga Sports Complex </td>
+        
+    
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Club</th>
+        <th>Lane</th>
+        <th>Time</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dynamic rows will be inserted here by JavaScript -->
+    </tbody>
+  </table>
+  
+
+  <script>
+    // let DQMsg = ["", "AB", "DQ", "DNC", "ES"];
+    let seconds = 0;
+
+    // Timer
+    setInterval(() => {
+        const nw= new Date();
+        document.getElementById('timer').innerHTML =  `<p> ${nw.toDateString()}  <br> ${nw.toLocaleTimeString()}</p>`;
+    }, 1000);
+
+    function formatSwimTime(seconds) {
+      const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const secs = String(Math.floor(seconds % 60)).padStart(2, '0');
+      const millis = String((seconds % 1).toFixed(3)).slice(2);
+      return `${mins}:${secs}.${millis}`;
+    }
+
+    async function updateLeaderboard() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        let dataUrl = params.get('dataUrl');
+        //http://10.115.239.190:5002/SetLiveHeatCommands?CmdName=LiveBoard
+        if (dataUrl) {
+          document.body.innerHTML = "<h3 style='color:red;text-align:center;'>Missing dataUrl parameter!</h3>";
+        }          
+          else{
+          cmdurlwithHost = "http://" + GetEejoHostID() + ":5002" + "/SetLiveHeatCommands?CmdName=LiveBoard";
+          dataUrl=cmdurlwithHost;
+          }
+        
+        
+
+        const response = await fetch(dataUrl);
+        const jsonData = await response.json();
+
+        // Extract new structure
+        const boardData = jsonData.commandReturnData.BoardStatusAndTime;
+        const clubs = jsonData.commandReturnData.Club;
+        const names = jsonData.commandReturnData.SwNames;
+
+        // Combine data
+        const swimmers = boardData.map((item, index) => ({
+          BoardID: item.BoardID,
+          SwimTimings: item.Time,
+          SwimerName: names[index] || "Unknown",
+          ClubName: clubs[index] || "Unknown",
+          SwimStatus: item.Status,
+          LockStatus: item.LockStatus
+        }));
+
+      
+// Separate valid and zero-time swimmers
+const validSwimmers = swimmers.filter(s => s.SwimTimings > 0 && s.LockStatus !== 0)
+                               .sort((a, b) => a.SwimTimings - b.SwimTimings);
+const zeroTimeOrLockedSwimmers = swimmers.filter(s => s.SwimTimings === 0 || s.LockStatus === 0);
+
+// Assign ranks only to valid swimmers
+let currentRank = 1;
+let previousTime = null;
+validSwimmers.forEach((swimmer, index) => {
+  if (previousTime !== null && swimmer.SwimTimings !== previousTime) {
+    currentRank = index + 1;
+  }
+  swimmer.Rank = currentRank;
+  previousTime = swimmer.SwimTimings;
+});
+
+// Rank = 0 for zero-time or locked swimmers
+zeroTimeOrLockedSwimmers.forEach(swimmer => swimmer.Rank = 0);
+
+// Combine and sort by BoardID
+const rankedSwimmers = [...validSwimmers, ...zeroTimeOrLockedSwimmers].sort((a, b) => a.BoardID - b.BoardID);
+const eventname = document.getElementById('event-name');
+eventname.innerHTML=" " + jsonData.commandReturnData.EventID +"  " + formatSwimmingEvent(jsonData.commandReturnData.HeatName);
+
+        // Update table
+        const table = document.getElementById('leaderboard-table');
+        table.innerHTML = `
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Club</th>
+            <th>Lane</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        `;
+
+        rankedSwimmers.forEach(swimmer => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${swimmer.Rank}</td>
+            <td>${swimmer.SwimerName}</td>
+            <td>${swimmer.ClubName}</td>
+            <td>L:${String(swimmer.BoardID).padStart(2, '0')}</td>
+            <td><b> ${swimmer.SwimTimings === 0 ? '00:00.000' : formatSwimTime(swimmer.SwimTimings)}<b></td>
+            <td>${DQMsg[swimmer.SwimStatus] || ""}</td>
+          `;
+          table.appendChild(row);
+        });
+
+      } catch (error) {
+        console.error('Error fetching leaderboard data:', error);
+      }
+    }
+    updateLeaderboard();
+    setInterval(updateLeaderboard, 500);
+  </script>
+
+</body>
+</html>

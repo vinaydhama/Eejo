@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<link href="../../bootstrap/css/VideoMixerStyles.css" rel="stylesheet" type="text/css" />
+<script charset="utf-8" type="text/javascript" src="../../bootstrap/js/Utility.js"></script>
+<script charset="utf-8" type="text/javascript" src="../..//bootstrap/js/LiveTimeDisplayHelper.js"></script>
+
+<head>
+    <!-- Animation Style -->
+
+    <style>
+        .fade-In-element {
+            opacity: 0;
+            animation: fadeIn 5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                rotate: 100;
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+                rotate: 90;
+            }
+        }
+
+        .Slide-element {
+            opacity: 0;
+            animation: Slide 2s forwards;
+        }
+
+        @keyframes Slide {
+            from {
+                transform: translateX(-900px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+    </style>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Prevents both horizontal and vertical scrollbars */
+        }
+
+        .Resulttable {
+            border-style: none;
+            border-color: transparent(50%);
+            position: fixed;
+            width: 100px;
+            top: 10px;
+            left: 800px;
+        }
+
+
+
+        .Resulttd {
+            border: 1px solid #999;
+            padding: 10%;
+            vertical-align: middle;
+            text-align: left;
+            font-family: 'Arial', sans-serif;
+            /* Change font */
+            font-size: 100px;
+            font-weight: bolder;
+            background-color: hsla(242, 96%, 30%, 0.437);
+            color: #92f507;
+        }
+
+        .Resulttr {
+            text-align: justify;
+            background-color: rgba(44, 62, 80, 0.1);
+            transform: translateX(2500px);
+            animation: slideIn 1.5s ease forwards;
+        }
+
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: black;">
+    <div id="iframes" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+        <iframe src="http://10.24.224.228:8080/video" id="container1"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+
+        <table class="Introtable" id="dynamicTable2" style="display: none;">
+            </tr>
+
+        </table>
+
+        <table id="dynamicTable1" class="Resulttable"> </table>
+        <div id="AddDiv1"
+            style=" display: none;  position: fixed; top: 0; right: 0; width: 300px;height: 100vh; background-color: rgba(170, 179, 45, 1.5);">
+            <div class="fade-element">
+                <img style="align-items: end; padding-left:10px; width: 80%; height: 80%;" class="fade-In-element"
+                    src="../../img/eejo_max.png">
+                <img style="align-items: end; padding-left:10px; width: 80%; height: 80%;" class="fade-In-element"
+                    src="../../img/EejoPortal.png">
+            </div>
+        </div>
+
+        <div id="AddDiv2"
+            style="display: none; position: fixed; left: 0; bottom: 0; width: 100%; height: 150px; background-color: rgb(127, 209, 160);">
+            <img src="../../img/RoundLogo.png">
+
+            <img style="align-items: end; padding-left: 00px;" class="Slide-element" src="../../img/SwimRush.png">
+            <img class="fade-In-element" src="../../img/Rush.png">
+        </div>
+
+
+    </div>
+</body>
+<script>
+
+    class AnimationPlayer {
+        constructor() {
+          this.animationQueue = [];
+          this.isPlaying = false;
+        }
+    
+        // Add animation to the queue
+        addAnimation(name, durationInSeconds) {
+          this.animationQueue.push({ name, duration: durationInSeconds * 1000 });
+          this.playNext(); // Try to play if not already playing
+        }
+    
+        // Play animations one by one
+        async playNext() {
+          if (this.isPlaying || this.animationQueue.length === 0) return;
+    
+          this.isPlaying = true;
+    
+          while (this.animationQueue.length > 0) {
+            const { name, duration } = this.animationQueue.shift();
+            switch (name) {
+              case "An1":
+                document.getElementById(name).style.display = "block";
+                break;
+              case "An2":
+                document.getElementById(name).style.display = "block";
+                break;
+              case "An3":
+                document.getElementById(name).style.display = "block";
+                break;
+    
+              default:
+                break;
+            }
+            console.log(`Playing ${name} for ${duration / 1000} seconds`);
+            await this.sleep(duration);
+            document.getElementById(name).style.display = "none";
+          }
+    
+          this.isPlaying = false;
+    
+    
+        }
+    
+        // Utility to wait
+        sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    
+        // Clear the animation queue
+        clearAnimations() {
+          this.animationQueue = [];
+          console.log("Animation backlog cleared.");
+        }
+      }
+    
+    </script>
+<script>
+    cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";
+    cmdurlwithHost = "http://" + "10.24.224.241" + ":5002";
+    let WaitBeforeLoad = false;
+    let loadedToStart = false;
+    let InProgress = false;
+    let BoardDetailsTime = {};
+    let enrichedBoards;
+
+    let data = [
+        { name: "Vinay", line: "L1", rank: "00.00.000" },
+        { name: "Vinayqwqwqwqwqwqwqwqwqwqq", line: "L2", rank: "00.00.000" },
+        { name: "d", line: "L3", rank: "00.00.000" },
+        { name: "dd", line: "L4", rank: "00.00.000" }
+    ];
+
+    async function LoadData() {
+        try {
+            const dataarr = await FetchValuesFromTimer("GetSwNames");
+            data = dataarr.SwNames;
+            let GetBoardStatusAndTimeRes = await FetchValuesFromTimer('GetBoardStatusAndTime');
+            BoardDetailsTime = GetBoardStatusAndTimeRes.BoardStatusAndTime;
+            enrichedBoards = BoardDetailsTime.map((board, index) => ({
+                ...board,
+                name: data[index] || `Board-${board.BoardID}`
+            }));
+
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
+    // Call the function
+    LoadData();
+
+    async function GetBoardStatus() {
+        let TimerStatus = await FetchValuesFromTimer('TimerStatus');
+        console.log(TimerStatus.Message);
+        switch (TimerStatus.Message) {
+            case 'TimerStatus.loadedToStart':
+
+                if (!loadedToStart) {
+                    HideTabs([1, 2]);
+                    HideAd();
+                    const dataarr = await FetchValuesFromTimer("GetSwNames");
+                    data = dataarr.SwNames;
+
+                    await PlayIntro(data);
+                    loadedToStart = true;
+                    WaitBeforeLoad = false;
+
+                }
+                break;
+
+            case 'NewHeat':
+                break;
+            case 'TimerStatus.InProgress':
+                if (!InProgress) {
+                    HideTabs([1, 2]);
+                    await ShowAdd(["AddDiv" + 1, "AddDiv" + 2]);
+                    InProgress = true;
+                }
+
+                break;
+            //UpdateLocalTimer();
+            case 'TimerStatus.WaitBeforeLoad': case 'Updating Result To Cloud':
+                let GetBoardStatusAndTimeRes = await FetchValuesFromTimer('GetBoardStatusAndTime');
+                BoardDetailsTime = GetBoardStatusAndTimeRes.BoardStatusAndTime;
+                enrichedBoards = BoardDetailsTime.map((board, index) => ({
+                    ...board,
+                    name: data[index] || `Board-${board.BoardID}`
+                }));
+                if (!WaitBeforeLoad) {
+                    HideTabs([1, 2]);
+                    HideAd();
+                    await ShowTimeDisplay(enrichedBoards)
+                    loadedToStart = false;
+                    InProgress = false;
+                }
+                break;
+            default:
+                break;
+        }
+
+    }
+    setInterval(async () => { GetBoardStatus() }, 2000);
+</script>
+<script>
+    document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "h") {
+            openControlPanel();
+        }
+    });
+
+
+    async function ShowTimeDisplay(data) {
+        let table = document.getElementById("dynamicTable1");
+        table.innerHTML = "";
+        table.style.display = 'block';
+
+
+        await data.forEach((item, index) => {
+            const row = document.createElement("tr");
+            row.className = "Resulttr";
+            row.style.animationDelay = `${0.2 + index * 0.2}s`;
+
+            const nameCell = document.createElement("td");
+            nameCell.className = "Resulttd";
+            nameCell.textContent = item.BoardID;
+
+            const roleCell = document.createElement("td");
+            roleCell.className = "Resulttd";
+
+            roleCell.textContent = item.name;
+
+            const rankCell = document.createElement("td");
+            rankCell.className = "Resulttd";
+            rankCell.textContent = item.Time;
+            row.appendChild(nameCell);
+            row.appendChild(roleCell);
+            row.appendChild(rankCell);
+
+            table.appendChild(row);
+        });
+    }
+
+
+    function HideTabs(AddDivName = ['dynamicTable1', 'dynamicTable2']) {
+        for (let index = 0; index < AddDivName.length; index++) {
+            container = document.getElementById("dynamicTable" + AddDivName[index]);
+            if (container) {
+                container.style.display = 'none';
+            }
+        }
+    }
+
+    function HideAd(AddDivName = [1, 2]) {
+        for (let index = 1; index <= AddDivName.length; index++) {
+            container = document.getElementById("AddDiv" + index);
+            if (container) {
+                container.style.display = 'none';
+            }
+        }
+
+    }
+    async function ShowAdd(AddDivName, duration = 1) {
+        await AddDivName.forEach(element => {
+            container = document.getElementById(element);
+            if (container) {
+                container.style.display = 'block';
+            }
+            setTimeout(() => {
+                for (let index = 1; index <= 2; index++) {
+
+                    container = document.getElementById("AddDiv" + index);
+                    if (container) {
+                        container.style.display = 'none';
+                    }
+
+                }
+                return;
+            }, 10000);
+        });
+    }
+
+    function openControlPanel() {
+        window.open('ScreenCAP_Control.html', 'IframeControlPanel', 'width=400,height=600');
+    }
+
+    const channel = new BroadcastChannel('Eejo-Video-control');
+
+    async function PlayIntro(data) {
+        const table = document.getElementById("dynamicTable2");
+        table.innerHTML = "";
+        table.style.display = 'block';
+
+
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+            const row = document.createElement("tr");
+            row.className = "board" + (index + 1);
+            // row.style.animationDelay = `${0.2 + index * 0.2}s`;
+
+            const nameCell = document.createElement("td");
+            nameCell.style.width = "300px"
+            nameCell.textContent = data[index];
+
+            const PhotoCell = document.createElement("td");
+            PhotoCell.style.width = "300px"
+            PhotoCell.textContent = "Photo";
+            // row.appendChild(PhotoCell);
+            row.appendChild(nameCell);
+            table.appendChild(row);
+        }
+
+ 
+    }
+
+    channel.onmessage = (event) => {
+        const { action, iframeNum, value } = event.data;
+
+        if (action === 'resize') {
+            ReizeIframe(iframeNum, value.height, value.width);
+        } else if (action === 'move') {
+            MoveIframe(iframeNum, value.x, value.y);
+        } else if (action === 'toggle') {
+            toggleIframe(iframeNum);
+        }
+        else if (action === 'CAMSource') {
+            CAMSource(iframeNum, value);
+        }
+
+        else if (action === 'ScaleIFrame') {
+            ScaleIFrame(iframeNum, value.ScaleX, value.ScaleY);
+        }
+
+        else if (action === 'PlayAnimation') {
+            ShowAdd(["AddDiv" + iframeNum, "AddDiv" + 2]);
+        }
+
+        else if (action === 'PlayIntro') {
+            PlayIntro(value);
+        }
+        else if (action === 'HideAd') {
+            if (value) {
+                HideAd(value);
+            }
+            else {
+                HideAd();
+            }
+
+        }
+        else if (action === 'HideTabs') {
+            HideTabs(value);
+        }
+        else if (action === 'ShowTimeings') {
+            ShowTimeDisplay(value);
+        }
+    };
+
+    function toggleIframe(num) {
+        const container = document.getElementById('container' + num);
+        if (container.style.display === 'none') {
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    }
+
+    function ScaleIFrame(num, ScaleX, ScaleY) {
+        const iframeId = "container" + num;
+        const iframe = document.getElementById(iframeId);
+        if (iframe) {
+            iframe.style.transform = `scale(${ScaleX}, ${ScaleY})`;
+            iframe.style.transformOrigin = "top left"; // Optional: adjust anchor point
+        } else {
+            console.warn(`Iframe with ID '${iframeId}' not found.`);
+        }
+    }
+
+    function ReizeIframe(num, H, W,) {
+        const iframe = document.getElementById('container' + num);
+        iframe.style.width = W + 'px';
+        iframe.style.height = H + 'px';
+    }
+
+    function CAMSource(num, sourceindex) {
+        const iframe = document.getElementById('container' + num);
+        iframe.src = URLSource[sourceindex];
+    }
+
+    function MoveIframe(num, x, y) {
+        const container = document.getElementById('container' + num);
+        container.style.left = x + 'px';
+        container.style.top = y + 'px';
+    }
+
+</script>
+
+
+</body>
+
+</html>

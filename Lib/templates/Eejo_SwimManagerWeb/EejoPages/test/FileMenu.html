@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Caller Page → Open Points Dialog</title>
+</head>
+<body>
+  <button id="open">Open Points Dialog</button>
+  <pre id="log"></pre>
+
+  <script type="module">
+    import { openPointsPicker } from './pointsPicker.js';
+
+    const btn = document.getElementById('open');
+    const log = document.getElementById('log');
+
+    btn.addEventListener('click', async () => {
+      // Call the dialog and wait for the result
+      const pointsArray = await openPointsPicker({
+        initialSchemeId: 1,
+        schemes: [
+          { id: 1, label: 'Option 1 — 7,5,3 then 0s', array: [7,5,3,0,0,0,0,0,0,0] },
+          { id: 2, label: 'Option 2 — 10,6,4,2,1 then 0s', array: [10,6,4,2,1,0,0,0,0,0] },
+          { id: 3, label: 'Option 3 — 9..1 then zeros', array: [9,7,6,5,4,3,2,1,0,0] },
+        ]
+      });
+
+      if (pointsArray) {
+        log.textContent = `Received array:\n${JSON.stringify(pointsArray)}\nTotal = ${pointsArray.reduce((a,b)=>a+b,0)}`;
+        // Use pointsArray wherever you need (store, compute, send to backend, etc.)
+      } else {
+        log.textContent = 'User cancelled.';
+      }
+    });
+  </script>
+</body>
+</html>

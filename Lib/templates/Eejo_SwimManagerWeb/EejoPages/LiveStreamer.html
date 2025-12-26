@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html style=" background-color:rgb(6, 131, 248);">
+<!-- Bootstrap 3.3.2 -->
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+  type="text/css" />
+<!-- Ionicons -->
+<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<!-- Morris chart -->
+<link href="../plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+<!-- jvectormap -->
+<link href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+<!-- Daterange picker -->
+<link href="../plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<!-- Theme style -->
+<link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. Choose a skin from the css/skins 
+        folder instead of downloading all of them to reduce the load. -->
+<link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/VideoMixerStyles.css" rel="stylesheet" type="text/css" />
+
+
+<script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+<script charset="utf-8" type="text/javascript" src="../bootstrap/js/LiveTimeDisplayHelper.js"></script>
+
+<button onclick="MoveNext(proposedpos)">Next</button>
+<button onclick="GetBoardStatusAndTime()">Next2</button>
+
+
+<body>
+    <style>
+        #over { font-size:5em; width:100px; position:absolute; top:20px; left:20px; z-index:2 ;animation-timing-function: ease-in-out; }
+    </style>
+  <div class="popup" id="BusyIndicatorpop">
+    <div class="loader"></div>
+    <p id="BusyMsg"> </p>
+</div>
+<iframe src ="http://192.168.31.108:8080/browserfs.html" width="100%" height=800px></iframe>
+          <!-- <img  class="img" src="../Img/poolImage.jpg" alt="Girl in a jacket" > -->
+
+
+    <div  id="over" >
+        
+  <!-- <div class="col-md-3"> -->
+    
+    
+    <div class="board1" id="Board1">
+      <span class="info-box-icon" >
+        <div class="ExtraBigFont" id="Line1">
+            <b>01</b>
+            </div>
+      </span>
+      <div class="info-box-content">
+        <span class="Mediumfont" id="SwName1"><b>Sw name-1</b></span>
+        <span class="bigfont" id="SwTimer1">
+          <b>11:22.33</b>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="board2" id="Board2">
+      <span class="info-box-icon" >
+        <div class="ExtraBigFont" id="Line2">
+            <b>02</b>
+            </div>
+      </span>
+      <div class="info-box-content">
+        <span class="Mediumfont" id="SwName2"><b>Sw name-2</b></span>
+        <span class="bigfont" id="SwTimer2">
+          <b>11:22.33</b>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="board3" id="Board3">
+      <span class="info-box-icon" >
+        <div class="ExtraBigFont" id="Line3">
+            <b>03</b>
+            </div>
+      </span>
+      <div class="info-box-content">        
+        <span class="Mediumfont" id="SwName3"><b>Sw name-3</b></span>
+        <span class="bigfont" id="SwTimer3">
+          <b>11:22.33</b>
+        </span>
+        
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="board4" id="Board4">
+      <span class="info-box-icon" >
+        <div class="ExtraBigFont" id="Line4">
+            <b>04</b>
+            </div>
+      </span>
+      <div class="info-box-content">
+        <span class="Mediumfont" id="SwName4"><b>Sw name-4</b></span>
+        <span class="bigfont" id="SwTimer4">
+          <b>11:22.33</b>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="board5" id="Board5">
+      <span class="info-box-icon" >
+        <div class="ExtraBigFont" id="Line5">
+        <b>05</b>
+        </div>
+      </span>
+      <div class="info-box-content">        
+        <span class="Mediumfont" id="SwName5">Sw name-5</span>
+        <span class="bigfont" id="SwTimer5">
+          <b>11:22.33</b>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="pp" id="Board6">
+      <span class="info-box-icon" id="Line6">
+        <b>6</b>
+      </span>
+      <div class="info-box-content">        
+        <span class="Mediumfont" id="SwName6"><b>Sw name-6</b></span>
+        <span class="bigfont" id="SwTimer6">
+          <b>11:22.33</b>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="pp" id="Board7">
+      <span class="info-box-icon" id="Line7">
+        <b>7</b>
+      </span>
+      <div class="info-box-content">
+        <span class="Mediumfont" id="SwName7"><b>Sw name-7</b></span>
+        <span class="bigfont" id="SwTimer7">
+          <b>11:22.33</b>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+
+    <div class="pp" id="Board8">
+      <span class="info-box-icon" id="Line8">
+        <b>8</b>
+      </span>
+      <div class="info-box-content">        
+        <span class="Mediumfont" id="SwName8"><b>Sw name-8</b></span>
+        <span class="bigfont" id="SwTimer8">
+          <b>11:22.33</b>
+        </span>
+        
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="pp" id="Board9">
+      <span class="info-box-icon" id="Line9">
+        <b>9</b>
+      </span>
+      <div class="info-box-content">
+        <span class="Mediumfont" id="SwName9"><b>Sw name-9</b></span>
+        <span class="bigfont" id="SwTimer9">
+          <b>11:22.33</b>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+
+
+    <div class="pp" id="Board10">
+      <span class="info-box-icon" id="Line10">
+        <b>10</b>
+      </span>
+      <div class="info-box-content">
+        <span class="Mediumfont" id="SwName10"><b>Sw name-10</b></span>
+        <span class="bigfont" id="SwTimer10">
+          <b>11:22.33</b></h10>
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+  </div>
+  <div id="MeetNameDisp" > </div>
+    <div id="MeetDateDisp" > </div>
+    <div id="MeetAddressDisp" > </div>
+    <div id="HeatNameDisp" > </div>
+    <div id="TimerState" > </div>
+    <div id="Message" > </div>
+</body>
+<style> 
+.ExtraBigFont{
+  font-size:70PX;
+  font-stretch:normal;
+  color: aqua;
+  /* font-weight: bolder; */
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.bigfont{
+  font-size:60PX;
+  font-stretch: normal;
+  color: aqua;
+
+  /* font-weight: bolder; */
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.Mediumfont{
+  font-size:30PX;
+  font-stretch: normal;
+  color: aqua;
+
+  /* font-weight: bolder; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+  /* .pp {
+    width: 350px;
+    height: 150px;
+    position: absolute;
+    background-color: aqua;
+  } */
+</style>
+<script>
+  let pos = 0;
+  let i = 0;
+
+  let proposedpos = [2, 3, 4, 5, 1] /*, 6, 10, 8, 7, 9];*/
+  let proposedpos2 = [1, 2, 3,4, 5, 6, 10, 8, 7, 9];
+  cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";
+  //cmdurlwithHost = "http://LocalHost:5002";
+  // let Boards = 5;
+  let maxBoards = 10;
+  try {
+    MoveNext(proposedpos2)
+    GetMeetInfo();
+    GetHeatInfo();
+    GetSwNames("SwName");
+    GetBoardStatusAndTime();
+    setInterval(async () => {GetTimerStatus()}, 500);    
+    // GetTimerStatus()
+  } catch (error) {    
+  }
+  
+  
+</script>
+<html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Screen Recorder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    video {
+      width: 80vw;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    button, select {
+      margin: 5px;
+      padding: 8px 12px;
+    }
+    #timerDisplay {
+      font-family: monospace;
+      font-size: 1.2em;
+      margin: 10px 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎥 Advanced Screen Capture & Recorder</h2>
+
+  <video id="screenVideo" autoplay muted></video>
+  <div id="timerDisplay">00:00.000</div>
+
+  <br>
+  <select id="formatSelect">
+    <option value="video/webm">WebM</option>
+    <option value="video/ogg">Ogg</option>
+  </select>
+
+  <button id="startCapture" onclick="startCapturefn()">Start Screen Capture</button>
+  <button id="startRecord" disabled onclick="StartRecordFn()">Start Recording</button>
+  <button id="stopRecord" disabled onclick="stopRecordfn()">Stop Recording</button>
+  <button onclick="toggleTimer()">Show/Hide Timer</button>
+  <a id="downloadScreen" style="display:none;">Download Recording</a>
+
+  <script>
+    const screenVideo = document.getElementById('screenVideo');
+    const startCapture = document.getElementById('startCapture');
+    const startRecord = document.getElementById('startRecord');
+    const stopRecord = document.getElementById('stopRecord');
+    const downloadScreen = document.getElementById('downloadScreen');
+    const formatSelect = document.getElementById('formatSelect');
+    const timerDisplay = document.getElementById('timerDisplay');
+
+    let screenStream;
+    let mediaRecorder;
+    let chunks = [];
+    let timerInterval;
+    let startTime;
+
+
+    // startCapture.onclick = async () => {
+    //   startCapturefn();
+    // };
+
+
+    function formatTime(ms) {
+      const minutes = String(Math.floor(ms / 60000)).padStart(2, '0');
+      const seconds = String((ms % 60000 / 1000).toFixed(3)).padStart(6, '0');
+      return `${minutes}:${seconds}`;
+    }
+
+    function startTimer() {
+      startTime = Date.now();
+      timerInterval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        timerDisplay.textContent = formatTime(elapsed);
+      }, 100);
+      timerDisplay.style.display = 'block';
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerDisplay.style.display = 'none';
+    }
+
+    function toggleTimer() {
+      timerDisplay.style.display = timerDisplay.style.display === 'none' ? 'block' : 'none';
+    }
+async  function startCapturefn()
+{
+  try {
+        screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+        screenVideo.srcObject = screenStream;
+        startRecord.disabled = false;
+      } catch (err) {
+        alert('Screen capture failed: ' + err);
+      }
+}
+
+    
+
+    async function StartRecordFn()
+  {
+    chunks = [];
+      const selectedFormat = formatSelect.value;
+
+      if (!MediaRecorder.isTypeSupported(selectedFormat)) {
+        alert(`${selectedFormat} is not supported in this browser.`);
+        return;
+      }
+
+      mediaRecorder = new MediaRecorder(screenStream, { mimeType: selectedFormat });
+
+      mediaRecorder.ondataavailable = e => {
+        if (e.data.size > 0) {
+          chunks.push(e.data);
+
+          // Auto-save chunk
+          const blob = new Blob([e.data], { type: selectedFormat });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `recording_${Date.now()}.webm`;
+          a.click();
+        }
+  }
+    // startRecord.onclick = () => {
+    //   StartRecordFn();
+    //   };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: selectedFormat });
+        const url = URL.createObjectURL(blob);
+        downloadScreen.href = url;
+        downloadScreen.download = 'screen_recording.webm';
+        downloadScreen.style.display = 'inline';
+        downloadScreen.textContent = 'Download Recording';
+        mediaRecorder.requestData();
+
+      };
+
+      mediaRecorder.start();
+      startTimer();
+
+      // Auto-save every 10 seconds
+      setInterval(() => {
+        if (mediaRecorder && mediaRecorder.state === "recording") {
+          mediaRecorder.requestData();
+        }
+      }, 120000);
+
+      startRecord.disabled = true;
+      stopRecord.disabled = false;
+    };
+function stopRecordfn()
+{
+  mediaRecorder.stop();
+      stopTimer();
+      startRecord.disabled = false;
+      stopRecord.disabled = true;
+}
+
+    // stopRecord.onclick = () => {
+    //   stopRecordfn();
+    // };
+
+    function openControlPanel() {
+        window.open('ScreenCAP_Control.html', 'IframeControlPanel', 'width=400,height=600');
+    }
+
+    // Remote Commands
+
+const channel = new BroadcastChannel('Eejo-Video-control');
+
+channel.onmessage = (event) => {
+  const { action,value } = event.data;
+  // alert(action);
+
+  switch (action) {
+    case 'StartRecording':
+    StartRecordFn();      
+      break;  
+      case 'StopRecording':
+      stopRecordfn();      
+      break;
+    //   case 'toggleTimer':
+    // tim();      
+    //   break;
+
+    //   case 'SaveRecording':
+    // StartRecordFn();      
+    //   break;
+
+    default:
+      break;
+  }
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Event Details — Shivamogga Swim Meet 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --border:#d0d7de; --header:#f4f6f8; --zebra:#fbfbfb; --muted:#6b7280;
+    }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif; margin: 24px; }
+    h1 { margin: 0 0 8px 0; }
+    .small { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .box { border:1px solid var(--border); border-radius: 6px; margin: 18px 0; padding: 12px; }
+    .caption { font-weight: 600; margin: 0 0 8px 0; }
+    h3 { margin: 12px 0 8px 0; font-size: 16px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; }
+    th { background: var(--header); position: sticky; top: 0; z-index: 1; }
+    tbody tr:nth-child(even) { background: var(--zebra); }
+    .toolbar { display: flex; gap: 8px; margin-bottom: 10px; }
+    .toolbar input, .toolbar select { padding: 6px 8px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Event Details — Shivamogga Swim Meet 2025</h1>
+  <div class="small">Shows only <b>EventDetails</b>. Columns: Line, Name, School \ Club, SwimStatus, SwimTimings.</div>
+
+  <!-- Optional toolbar: filter by event and search by name/club -->
+  <div class="toolbar">
+    <label>
+      Event:
+      <select id="eventFilter">
+        <option value="">All events</option>
+      </select>
+    </label>
+    <input id="q" type="search" placeholder="Search name/club…" />
+  </div>
+
+  <div id="root"></div>
+
+  <!-- Option A: Embed JSON directly (paste your full JSON between the script tags) -->
+  <!--
+  <script type="application/json" id="meet-data">
+  { ... your full object from Shivamogga_Swim_Meet_2025 (2).json ... }
+  </script>
+  -->
+
+  <script>
+    /********************
+     * CONFIG & HELPERS *
+     ********************/
+    // Map event stroke codes to readable names
+    const STROKE = { FS: "Free Style", BK: "Backstroke", BRS: "Breaststroke", FLY: "Butterfly", KB: "Kickboard" };
+
+    // Turn event code like "50_FS_G02_B" into a readable title
+    function eventTitle(code) {
+      const p = String(code).split("_");
+      if (p.length >= 4) {
+        const dist = p[0], stroke = STROKE[p[1]] || p[1], group = p[2];
+        const gender = p[3] === "B" ? "Boys" : (p[3] === "G" ? "Girls" : p[3]);
+        return `${dist} ${stroke} ${group} ${gender}`;
+      }
+      return code;
+    }
+
+    // Normalize raw timing values to "00:00.000" if zero/empty
+    function formatTiming(val) {
+      if (val === 0 || val === "0" || val === 0.0 || val === "0.0" || val == null || val === "") {
+        return "00:00.000";
+      }
+      return String(val);
+    }
+
+    // Sort heat IDs (e.g., "..._1", "..._2") by the trailing number
+    function heatSortKey(heatId = "") {
+      const t = String(heatId).split("_");
+      const n = parseInt(t[t.length - 1], 10);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    // Build Name -> Club map from SwimmerDetails
+    function buildNameToClub(swimmerDetails) {
+      const map = new Map();
+      if (!swimmerDetails) return map;
+      for (const [key, val] of Object.entries(swimmerDetails)) {
+        if (val && typeof val === "object") {
+          const name = val.Name || key;
+          const club = val.Club || "";
+          map.set(name, club);
+        }
+      }
+      return map;
+    }
+
+    /**********************
+     * RENDERING PIPELINE *
+     **********************/
+    function renderEventDetails(data, { container, eventFilter = "", query = "" } = {}) {
+      const root = container || document.getElementById("root");
+      root.innerHTML = ""; // clear
+
+      const eventDetails = data?.EventDetails || {};
+      const nameToClub = buildNameToClub(data?.SwimmerDetails);
+
+      // Prepare event list (filtered)
+      const eventCodes = Object.keys(eventDetails).sort((a,b) => a.localeCompare(b, undefined, {numeric:true}));
+      const filteredEventCodes = eventFilter ? eventCodes.filter(c => c === eventFilter) : eventCodes;
+
+      for (const eventCode of filteredEventCodes) {
+        const eobj = eventDetails[eventCode];
+        if (!eobj || !eobj.HeatList) continue;
+
+        // Wrapper box per event
+        const box = document.createElement("div");
+        box.className = "box";
+        const h2 = document.createElement("div");
+        h2.className = "caption";
+        h2.textContent = `Event: ${eventTitle(eventCode)}`;
+        box.appendChild(h2);
+
+        // Heats (sorted)
+        const heats = Object.keys(eobj.HeatList).sort((a,b) => heatSortKey(a) - heatSortKey(b));
+        for (const hid of heats) {
+          const heat = eobj.HeatList[hid];
+          const heatNo = heatSortKey(hid);
+
+          const h3 = document.createElement("h3");
+          h3.textContent = `Heat-${heatNo}`;
+          box.appendChild(h3);
+
+          const table = document.createElement("table");
+          table.innerHTML =
+            `<thead><tr>
+              <th>Line</th><th>Name</th><th>School \\ Club</th><th>SwimStatus</th><th>SwimTimings</th>
+            </tr></thead><tbody></tbody>`;
+          const tbody = table.querySelector("tbody");
+
+          const board = Array.isArray(heat.BoardList) ? heat.BoardList : [];
+          let line = 0;
+
+          for (const entry of board) {
+            const name = entry.SwimerID || entry.SwimerName || "";
+            const club = nameToClub.get(name) || "";
+            const status = entry.SwimStatus ?? "";
+            const timing = formatTiming(entry.SwimTimings);
+
+            // Apply search query filter (name/club)
+            const rowText = `${name} ${club}`.toLowerCase();
+            if (query && !rowText.includes(query)) continue;
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${++line}</td>
+              <td>${escapeHtml(name)}</td>
+              <td>${escapeHtml(club)}</td>
+              <td>${escapeHtml(String(status))}</td>
+              <td>${escapeHtml(timing)}</td>`;
+            tbody.appendChild(tr);
+          }
+
+          // If heat is fully filtered out, hide its heading+table
+          if (!tbody.children.length) {
+            h3.classList.add("hidden");
+            table.classList.add("hidden");
+          }
+
+          box.appendChild(table);
+        }
+
+        root.appendChild(box);
+      }
+    }
+
+    // Simple HTML escaper
+    function escapeHtml(s) {
+      return s
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll("\"","&quot;")
+        .replaceAll("'","&#39;");
+    }
+
+    /*****************
+     * INITIAL LOAD  *
+     *****************/
+    (async function init() {
+      // OPTION 1: Read from an embedded <script type="application/json" id="meet-data">
+      const embedded = document.getElementById("meet-data");
+      let data = null;
+
+      if (embedded) {
+        data = JSON.parse(embedded.textContent);
+      } else {
+        // OPTION 2: Fetch from a JSON file next to this HTML
+        // Replace the filename if needed:
+        data = await fetch("Shivamogga_Swim_Meet_2025 (2).json").then(r => r.json());
+      }
+
+      // Populate event dropdown
+      const eventFilter = document.getElementById("eventFilter");
+      const qInput = document.getElementById("q");
+
+      // Fill dropdown with event codes (sorted)
+      const codes = Object.keys(data?.EventDetails || {}).sort((a,b) => a.localeCompare(b, undefined, {numeric:true}));
+      for (const c of codes) {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.textContent = `${c} — ${eventTitle(c)}`;
+        eventFilter.appendChild(opt);
+      }
+
+      // Initial render (all events, no search)
+      renderEventDetails(data);
+
+      // Interactions: event filter & search
+      eventFilter.addEventListener("change", () => {
+        renderEventDetails(data, { eventFilter: eventFilter.value, query: qInput.value.trim().toLowerCase() });
+      });
+      qInput.addEventListener("input", () => {
+        renderEventDetails(data, { eventFilter: eventFilter.value, query: qInput.value.trim().toLowerCase() });
+      });
+    })();
+  </script>
+</body>
+</html>

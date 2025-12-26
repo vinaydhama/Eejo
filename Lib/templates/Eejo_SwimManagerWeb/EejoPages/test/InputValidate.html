@@ -1,0 +1,212 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Table Column Navigation (Arrow Up/Down)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      --border: #d0d7de;
+      --focus: #1a73e8;
+      --bg: #fafbfc;
+    }
+    body { margin: 24px; background: var(--bg); }
+    h1 { font-size: 20px; margin-bottom: 8px; }
+    p.hint { color: #5f6368; margin: 0 0 16px; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      vertical-align: middle;
+    }
+    th { background: #f6f8fa; text-align: left; }
+    input, select, textarea, [contenteditable="true"] {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 14px;
+      padding: 6px 8px;
+      border: 2px solid #c8c8c8;
+      border-radius: 6px;
+      outline: none;
+      background: #fff;
+    }
+    input:focus, select:focus, textarea:focus, [contenteditable="true"]:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+    }
+
+    /* Optional: visualize disabled/hidden cells */
+    td.disabled { background: #f3f4f6; }
+  </style>
+</head>
+<body>
+
+  <h1>Arrow Up/Down: Move within the same column</h1>
+  <p class="hint">Use <strong>↑ / ↓</strong> to move focus to the input in the previous/next row of the same column. Skips disabled/hidden fields.</p>
+
+  <table id="swimTable">
+    <thead>
+      <tr>
+        <th>Swimmer</th>
+        <th>Heat</th>
+        <th>Lane</th>
+        <th>Time (mm:ss.mmm)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" placeholder="Swimmer A" /></td>
+        <td><input type="number" placeholder="1" /></td>
+        <td><select><option>1</option><option>2</option><option>3</option></select></td>
+        <td><input type="text" placeholder="mm:ss.mmm" /></td>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Swimmer B" /></td>
+        <td><input type="number" placeholder="2" /></td>
+        <td><select><option>1</option><option selected>2</option><option>3</option></select></td>
+        <td><input type="text" placeholder="mm:ss.mmm" /></td>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Swimmer C" /></td>
+        <td class="disabled"><input type="number" placeholder="3" disabled /></td>
+        <td><select><option>1</option><option>2</option><option selected>3</option></select></td>
+        <td><input type="text" placeholder="mm:ss.mmm" /></td>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Swimmer D" /></td>
+        <td><input type="number" placeholder="4" /></td>
+        <td><select><option>1</option><option selected>2</option><option>3</option></select></td>
+        <td>
+          <!-- Example with contenteditable -->
+          <div contenteditable="true" style="min-height:2.2em;" aria-label="Editable time cell">00:00.000</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    
+      const table = document.getElementById('swimTable');
+
+      // Configuration: set to true to wrap from last to first row (and vice versa)
+      const WRAP_AROUND = false;
+
+      // Focusable elements we support
+      const focusablesSelector = 'input:not([disabled]):not([type="hidden"]), textarea:not([disabled]), select:not([disabled]), [contenteditable="true"]';
+
+      // Utility: is element focusable and visible
+      function isFocusable(el) {
+        if (!el) return false;
+        const disabled = el.disabled || el.getAttribute('disabled') !== null;
+        // offsetParent === null covers display:none and visibility hidden ancestors
+        const hidden = el.hidden || el.offsetParent === null;
+        const tabOk = el.tabIndex !== -1;
+        return !disabled && !hidden && tabOk;
+      }
+
+      // Get the current cell and its column index
+      function getCellAndColIndex(el) {
+        const cell = el.closest('td, th');
+        if (!cell) return { cell: null, colIndex: -1 };
+        const row = cell.parentElement;
+        // Some rows may have non-cell children; filter by tagName
+        const cells = Array.from(row.children).filter(c => c.tagName === 'TD' || c.tagName === 'TH');
+        const colIndex = cells.indexOf(cell);
+        return { cell, colIndex };
+      }
+
+      // Find a focusable target within the given row and column index
+      function findFocusableInRow(row, colIndex) {
+        const cells = Array.from(row.children).filter(c => c.tagName === 'TD' || c.tagName === 'TH');
+        const targetCell = cells[colIndex];
+        if (!targetCell) return null;
+
+        // Prefer the first focusable element in that cell
+        const candidate = targetCell.querySelector(focusablesSelector);
+        return isFocusable(candidate) ? candidate : null;
+      }
+
+      // Find body rows (ignore thead/tfoot)
+      function getBodyRows() {
+        // Use all TBODY sections (supports multiple TBODYs)
+        const bodies = table.tBodies.length ? Array.from(table.tBodies) : [table.querySelector('tbody')].filter(Boolean);
+        return bodies.flatMap(tb => Array.from(tb.rows));
+      }
+
+      // Keydown handler: move focus in same column
+      table.addEventListener('keydown', function (e) {
+        const current = document.activeElement;
+        if (!current || !table.contains(current)) return;
+
+        const isDown = e.key === 'ArrowDown';
+        const isUp = e.key === 'ArrowUp';
+        const isHome = e.key === 'Home';
+        const isEnd = e.key === 'End';
+
+        // Only handle our keys
+        if (!isDown && !isUp && !isHome && !isEnd) return;
+
+        // Stop the page from scrolling on Arrow Up/Down
+        e.preventDefault();
+
+        const { colIndex } = getCellAndColIndex(current);
+        if (colIndex < 0) return;
+
+        const rowEl = current.closest('tr');
+        const bodyRows = getBodyRows();
+        const rowIndex = bodyRows.indexOf(rowEl);
+        if (rowIndex === -1) return;
+
+        let targetIndex = rowIndex;
+
+        if (isHome) {
+          targetIndex = 0;
+        } else if (isEnd) {
+          targetIndex = bodyRows.length - 1;
+        } else if (isDown) {
+          targetIndex = rowIndex + 1;
+        } else if (isUp) {
+          targetIndex = rowIndex - 1;
+        }
+
+        // Handle wrap-around if enabled
+        if (WRAP_AROUND) {
+          if (targetIndex < 0) targetIndex = bodyRows.length - 1;
+          if (targetIndex >= bodyRows.length) targetIndex = 0;
+        }
+
+        // Move stepwise until we find a focusable target in same column
+        while (targetIndex >= 0 && targetIndex < bodyRows.length) {
+          const target = findFocusableInRow(bodyRows[targetIndex], colIndex);
+          if (target) {
+            target.focus();
+            return;
+          }
+          // If the cell in that row is not focusable, keep going
+          if (isDown || isHome) targetIndex++;
+          else if (isUp || isEnd) targetIndex--;
+        }
+        // If we get here, no target found; do nothing.
+      }, { capture: true });
+
+      // Optional: make entire cell clickable to focus the first field inside
+      table.addEventListener('click', (e) => {
+        const cell = e.target.closest('td, th');
+        if (!cell || !table.contains(cell)) return;
+        const el = cell.querySelector(focusablesSelector);
+        if (isFocusable(el)) {
+          el.focus();
+        }
+      });
+  </script>
+
+</body>

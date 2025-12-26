@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>EEJO Manager | Meet Results Eejo Manager v2.0 &copy; 2025-26 &phone; +91 9620538528</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+</head>
+<style>
+  /* ===== CONFIG ===== */
+  :root {
+    --paper-size: A4;
+    --paper-orientation: portrait;
+    --page-margin-top: 8mm;
+    --page-margin-right: 5mm;
+    --page-margin-bottom: 8mm;
+    --page-margin-left: 5mm;
+    --header-height: 13mm;
+    --footer-height: 5mm;
+    --border-color: #000;
+    --thead-bg: #f2f2f2;
+    --font: Arial, sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --accent: #0b6cf0;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+    color: #000;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .page {
+    max-width: 210mm;
+    margin-top: 10px;
+    outline: 1px solid #e5e5e5;
+    background: #fff;
+  }
+
+  .header,
+  .footer {
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    padding: 0 12mm;
+    color: #000;
+    background: #fff;
+    z-index: 10;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8mm;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .header .logo {
+    height: calc(var(--header-height) - 3mm);
+    width: 50px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .header .title-wrap {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 14pt;
+    font-weight: 600;
+  }
+
+  .header .meta {
+    font-size: 10pt;
+    color: #333;
+  }
+
+  .footer {
+    position: sticky;
+    bottom: 0;
+    height: var(--footer-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid var(--border-color);
+    font-size: 10pt;
+  }
+
+  .footer .page-counter::after {
+    content: "Page 1 of 1";
+  }
+
+  .print-spacer-header {
+    height: calc(var(--header-height) + 10px);
+  }
+
+  .print-spacer-footer {
+    height: calc(var(--footer-height) + 10px);
+  }
+
+  .content {
+    padding: 15mm 12mm;
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8mm;
+  }
+
+  .actions button {
+    appearance: none;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 10pt;
+  }
+
+  .actions button.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+
+
+  /* --- Only apply to tables you opt-in with class="report-table" --- */
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    font-size: 10pt;
+  }
+
+  .report-table tbody td,
+  .report-table tfoot td {
+    border: 1.2pt solid var(--border-color);
+    padding: 3pt;
+    vertical-align: top;
+    overflow-wrap: break-word;
+  }
+
+  /* Use your CSS variable for header background */
+  .report-table thead th {
+    background: grey;
+    padding: 0px;
+    /* previously 'silver' */
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* Printing: keep header/footer rows together for these specific tables only */
+  @media print {
+    .report-table tbody tr {
+      page-break-inside: avoid;
+    }
+  }
+
+  @page {
+    size: var(--paper-size) var(--paper-orientation);
+    margin: var(--page-margin-top) var(--page-margin-right) var(--page-margin-bottom) var(--page-margin-left);
+  }
+
+  @media print {
+    .page {
+      margin: 5mm;
+      outline: none;
+    }
+
+    .header,
+    .footer {
+      position: fixed;
+    }
+
+    .header {
+      top: 0;
+      height: var(--header-height);
+      background: #fff;
+    }
+
+    .footer {
+      bottom: 0;
+      height: var(--footer-height);
+      background: #fff;
+    }
+
+    .footer .page-counter::after {
+      content: "Page " counter(page) " of " counter(pages);
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tfoot {
+      display: table-footer-group;
+    }
+
+    .print-spacer-header,
+    .print-spacer-footer {
+      display: block;
+      break-inside: avoid;
+    }
+
+    .content table {
+      margin-top: 5mm;
+    }
+
+    .content,
+    .page {
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+</style>
+
+<body width="100%" height="100%">
+  <div class="hide-on-print">
+    <header class="appbar" role="banner">
+      <div class="appbar-inner">
+        <div class="brand" aria-label="App">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Eejo Reports</span>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle menu"
+          type="button">
+          <span class="bars" aria-hidden="true"></span>
+        </button>
+
+        <!-- Main menu -->
+
+
+        <nav class="menubar" aria-label="Main menu">
+          <!-- FILE (top-level) -->
+          <div class="menu-item">
+            <button id="File-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="File-menu">
+              File ▾
+            </button>
+            <ul id="File-menu" class="dropdown" role="menu" aria-labelledby="File-btn">
+              <li role="none">
+                <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
+
+                <button id="localhost" role="menuitem" class="kbd" onclick=openFilePicker()> Local
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+              </li>
+
+              <li role="none" style="position: relative;">
+                <button role="menuitem" class="kbd" id="Onlineradiobtn"
+                  onclick='{ SelectedSource={Type:"Online"};LoadHeatNames("Online")}'> Online
+                </button>
+              </li>
+              <li role="none" style="position: relative;">
+
+                <button role="menuitem" class="kbd" id="Offlineradiobtn"
+                  onclick='{SelectedSource={Type:"Offline"};LoadHeatNames("Offline")}'>
+                  Offline
+                </button>
+              </li>
+              <li role="none" style="position: relative;">
+                <button role="menuitem" class="kbd" id="Offlineradiobtn" onclick=refreshMeet()>
+                  Refresh
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- REPORTS (separate top-level menu) -->
+          <div class="menu-item">
+            <button id="Report-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false"
+              aria-controls="Report-menu">
+              Reports ▾
+            </button>
+            <ul id="Report-menu" class="dropdown" role="menu" aria-labelledby="Report-btn">
+              <li role="none">
+                <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{  initResultSheet(); GenerateHeatDetailsTable(0)}'> Heat List
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{initResultSheet(); GenerateHeatDetailsTable(1)}'> Heat Results
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{initResultSheet();UpdateReportTitle(6) ;plotEventTblNew(); }'> Event Results
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();  PltClubWiseResult(3)}'>
+                  Club wise Entry
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet(); PltClubWiseResult(4)}'>
+                  Club wise Result
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{initResultSheet(); UpdateReportTitle(5) ; pltICGroup() }'> IC Groupwise
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();pltClubIC(2)}'> IC Club
+                  wise
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{}'> TBD Heat Execution Progress
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+
+
+      </div>
+    </header>
+  </div>
+  <div class="hide-on-print">
+    <!-- <fieldset>
+      <legend>
+        <Source>
+        </Source>
+      </legend> -->
+    <!-- <button onclick='{ SelectedSource={Type:"GetRunningHeatData"}; LoadHeatNames("GetRunningHeatData")} '>
+        <h2><i> <span class="glyphicon glyphicon-save"></span>
+            <h5>Live Report</h5>
+          </i> </h2>
+      </button> -->
+
+
+
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Rrports</legend>
+      <label> Select Heat </label>
+      <select id="dynamic1" name="dynamic1"></select>
+      <br>
+      <label> Select Report </label>
+      <button id="open">Open Points Dialog</button>
+
+      <select id="AvblTbls" name="AvblTbls"></select>
+    </fieldset>
+
+  </div>
+
+
+  <div class="page">
+    <div class="header">
+
+      <div class="title-wrap">
+
+        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+          style="border:0 !important; border-collapse:separate !important; margin:0 !important; padding:0 !important;">
+          <tr>
+            <td style="padding:0 !important; margin:0 !important; border:0 !important;">
+
+              <!-- Actual header table -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                style="height:12mm !important; border:0 !important; margin-top:0 !important; padding:0 !important;">
+                <tr style="height:12mm !important;">
+
+                  <td
+                    style="text-align:left !important; vertical-align:middle !important; padding:0 !important; margin:0 !important; border:0 !important; white-space:nowrap !important;">
+                    <img class="logo" src="../Img/eejo_logo.png" alt="EEJO Manager Logo" />
+
+                  </td>
+                  <td
+                    style="text-align:center !important; vertical-align:middle !important; padding:0 !important; margin:0 !important; border:0 !important;">
+                    <h5 id="MeetHeaderName"
+                      style="margin:0 !important; padding:0 !important; font-size:14px !important; line-height:1.2 !important; font-weight:700 !important;">
+                      Eejo Meet Report Generator
+                    </h5>
+                    <h6 id="ReportTitle"
+                      style="margin:0 !important; padding:0 !important; font-size:12px !important; line-height:1.2 !important; font-weight:600 !important; color:#555 !important;">
+                      Heat List
+                    </h6>
+                  </td>
+                  <td
+                    style="text-align:right !important; vertical-align:middle !important; padding:0 !important; margin-top:'-0px' !important; border:0 !important; white-space:nowrap !important;">
+                    <img class="logo" src="../Img/SSM_Logo.png" alt="EEJO Manager Logo" />
+
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+
+
+      </div>
+    </div>
+    <div class="content">
+      <div id="resultsContainer"></div>
+    </div>
+
+    <div>
+      <table id="tblHeatDetails" class="report-table">
+      </table>
+    </div>
+
+    <div class="footer">
+      <div>EEJO Manager</div>
+      <div class="meta"> v2.0 © 2025–26 · +91 9620538528</div>
+      <div class="page-counter"></div>
+    </div>
+
+
+  </div>
+
+  </div>
+  </div>
+
+
+  <br>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <title>Eejo Meet Report Generator</title>
+
+  <body>
+
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/MultiSelectScript.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseDataRetrive.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/LiveTimeDisplayHelper.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditorHelper.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FileMenu.js"></script>
+
+
+
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/MultiSelectStyle.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/GeneralStyle.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/FileMenu.css">
+
+
+    <div id="BusyIndicatorpop"></div>
+
+    <script type="module">
+      import { openPointsPicker } from '../bootstrap/js/pointsPicker.js';
+
+      const btn = document.getElementById('open');
+      const log = document.getElementById('log');
+
+      btn.addEventListener('click', async () => {
+        // Call the dialog and wait for the result
+        pointsArray = await openPointsPicker({
+          initialSchemeId: 1,
+          schemes: [
+            { id: 1, label: 'Option 1 — 7,5,3 then 0s', array: [7, 5, 3, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 2, label: 'Option 2 — 10,6,4,2,1 then 0s', array: [10, 6, 4, 2, 1, 0, 0, 0, 0, 0] },
+            { id: 3, label: 'Option 3 — 9..1 then zeros', array: [9, 7, 6, 5, 4, 3, 2, 1, 0, 0] },
+          ]
+        });
+
+        // if (pointsArray) {
+        //   log.textContent = `Received array:\n${JSON.stringify(pointsArray)}\nTotal = ${pointsArray.reduce((a,b)=>a+b,0)}`;
+        //   // Use pointsArray wherever you need (store, compute, send to backend, etc.)
+        // } else {
+        //   log.textContent = 'User cancelled.';
+        // }
+      });
+    </script>
+
+    <script>
+      MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets.json";
+      let pointsArray = [7, 5, 3, 0, 0, 0, 0, 0, 0, 0];
+      let AvblReports = [];
+      let SelectedReportList = [];
+      let SelectedMeetName = [];
+      let SelectedEventName = [];
+      let MeetNameArray = [];
+      let EventNameArray = [];
+      let swClubGroupDict = {};
+      let AvblClubNames = {};
+      let AvblGroup = {};
+      let SelectedSource = {};
+      let headers = [];
+      let Meetdteails = [];
+      let EventResultsDict = {};
+      let RowdataClubwise = [];
+
+
+
+      let Rowdata = [];
+      let rows = [];
+
+      let SwDictByGroup = {};
+      let SwDictByclub = {};
+      let Dictclubscore = {}
+
+      cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";
+      //cmdurlwithHost = "http://192.168.7.241:5002";
+      //cmdurlwithHost = "http://LocalHost:5002";
+
+      showhide("BusyIndicatorpop");
+
+  
+      function ClearTable(TableName) {
+        var tableHeaderRowCount = 0;
+        if (TableName == 'tblMeet') {
+          tableHeaderRowCount = 0;
+        }
+
+        var table = document.getElementById(TableName);
+        if (table) {
+          var rowCount = table.rows.length;
+          for (var i = tableHeaderRowCount; i < rowCount; i++) {
+            table.deleteRow(tableHeaderRowCount);
+          }
+        }
+      }
+
+      function openFilePicker() {
+        document.getElementById('LocalFileSelector').click();
+      }
+
+      document.getElementById('LocalFileSelector').addEventListener('change', function (event) {
+        const file = event.target.files[0]; // Get the first selected file
+
+
+        if (file) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            try {
+              const jsonData = JSON.parse(e.target.result);
+              MeetUpdatedData = jsonData;
+              UpdateSwClubAndGroup(MeetUpdatedData.SwimmerDetails)
+              SerachSwimRecords()
+
+            } catch (error) {
+              console.error("Error parsing JSON:", error);
+              alert("Invalid JSON file.");
+            }
+          };
+
+          reader.onerror = function (e) {
+            console.error("Error reading file:", e);
+            alert("Error reading the file.");
+          };
+
+          reader.readAsText(file); // Read the file content as text
+        }
+      });
+
+      async function LoadHeatNames(HeatFileSource) {
+
+        switch (HeatFileSource) {
+
+          case "GetRunningHeatData":
+            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=GetRunningHeatData";
+            try {
+              let response = await fetch(cmdurl);
+              let data = await response.json();
+              MeetDataFirebase = data.commandReturnData;
+              if (data.commandReturnData != "") {
+                SerachSwimRecords(MeetDataFirebase);
+
+                // Meetdteails = ExtractMeetInfo(MeetDataFirebase, "");
+                // GenerateHeatDetailsTable(Meetdteails.HeatList)
+              }
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+            break;
+          case "Online":
+            MeetDataFirebase = FetchEventNames();
+            break;
+
+          case "Offline":
+            cmdurl = cmdurlwithHost + "/getAvailableHeatNames";
+            try {
+              let response = await fetch(cmdurl);
+              let data = await response.json();
+              // console.log(data);
+              MeetNameArray = LoadHeatFileName(data);
+              NoofBoards = MeetNameArray.Boards;
+              initMeetNames(HeatFileSource);
+              // Meetdteails = ExtractMeetInfo(MeetNameArray, "");
+              // GenerateHeatDetailsTable(Meetdteails.HeatList)
+
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+
+            break;
+
+          case "Local":
+
+            try {
+
+              MeetNameArray = LoadHeatFileName(data);
+              NoofBoards = MeetNameArray.Boards;
+              initMeetNames(HeatFileSource);
+              // Meetdteails = ExtractMeetInfo(MeetNameArray, "");
+              // GenerateHeatDetailsTable(0,Meetdteails.HeatList)
+
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      function UpdateSwClubAndGroup(SwimmerDetails) {
+        SwKeys = Object.keys(SwimmerDetails).filter(key => key !== "length");
+
+        SwKeys.forEach(swname => {
+          swClubGroupDict[swname.trim()] = { SwClub: SwimmerDetails[swname].Club, SwGroup: SwimmerDetails[swname].Group + "_" + SwimmerDetails[swname].Gender, TotalScore: 0, EventDetails: "" }
+
+          if ((SwimmerDetails[swname].Club in AvblClubNames) == false) {
+            AvblClubNames[SwimmerDetails[swname].Club] = 0;
+          }
+          if ((swname.Group in AvblGroup) == false) {
+            AvblGroup[SwimmerDetails[swname].Group] = 0;
+          }
+        });
+      }
+
+
+      // --- small helpers ---
+      const isDict = (obj) => !!obj && typeof obj === 'object' && !Array.isArray(obj);
+      const toValues = (maybeDictOrArray) => isDict(maybeDictOrArray) ? Object.values(maybeDictOrArray) : (Array.isArray(maybeDictOrArray) ? maybeDictOrArray : []);
+
+
+      function SerachSwimRecords(MeetData = MeetUpdatedData) {
+        EventResultsDict = {};
+        let EventCounter = 0;
+
+        // --- EventDetails: now a dict keyed by eventID ---
+        toValues(MeetData.EventDetails).forEach(eventDetail => {
+          if (!eventDetail) return;
+          EventCounter++;
+
+          const EventResultArray = [];
+
+          // --- HeatList: now a dict keyed by HeatID ---
+          toValues(eventDetail.HeatList).forEach(heatObj => {
+            if (!heatObj) return;
+
+            // BoardList may be dict or array; normalize to values
+            toValues(heatObj.BoardList).forEach(Board => {
+              if (!Board) return;
+
+              // Default club/group
+              let SwClubAndGrp = { SwClub: "SwClub", SwGroup: "SwGroup" };
+              if (Board.SwimerName && swClubGroupDict && (Board.SwimerName in swClubGroupDict)) {
+                SwClubAndGrp = swClubGroupDict[Board.SwimerName];
+              }
+
+              // Filter/normalize swim timings if needed
+              // (Your original code excluded 12.34; keeping that logic if you still use it)
+              let SwimTimings = 0;
+              if (Board.SwimTimings !== 12.34) {
+                SwimTimings = Board.SwimTimings;
+              }
+
+              EventResultArray.push({
+                SwName: Board.SwimerName,
+                SwimerClub: SwClubAndGrp.SwClub,
+                Group: SwClubAndGrp.SwGroup,
+                SwimStatus: Board.SwimStatus,
+                SwimTimings: SwimTimings // or Board.SwimTimings if you prefer the raw value
+              });
+            });
+          });
+
+          // Determine display number: If EventList is still an array of IDs, use its index
+          const displayNumber = Array.isArray(MeetData.EventList)
+            ? (MeetData.EventList.indexOf(eventDetail.eventID) + 1)
+            : EventCounter; // fallback to running counter if EventList not an array
+
+          calculatePoints(EventResultArray, eventDetail.eventID)
+
+        });
+
+        PrepICTable();
+        CalculateClubwiseTotalScore();
+        InitTblSelection(AvblReports);
+
+      }
+      function InitTblSelection(AvblReports) {
+        new MultiSelect('#AvblTbls', {
+          data: AvblReports,
+          placeholder: 'Select Report',
+          search: true,
+          selectAll: true,
+          listAll: true,
+          onChange: function (_value, _text, _element) {
+            // optional: react to changes
+          },
+          onSelect: async function (value, _text, _element) {
+            SelectedReportList.push(value);
+            UpdateSelection();
+          },
+          onUnselect: async function (value, _text, _element) {
+            // remove the exact value (not just pop)
+            const i = SelectedReportList.indexOf(value);
+            if (i >= 0) SelectedReportList.splice(i, 1);
+            UpdateSelection();
+          }
+        });
+
+      }
+      function UpdateReportTitle(ReportType) {
+
+        ReportTitleel = getEl("ReportTitle");
+        if (ReportTitleel) {
+          ReportTitleel.innerText = ReporTitles[ReportType];
+        }
+      }
+
+      /* ===========================
+         GenerateHeatDetailsTable
+         - UPDATED: Heats is Dict
+         =========================== */
+      function GenerateHeatDetailsTable(ReportType = 1, Heats = []) {
+        try {
+          // ClearTable('tblHeatDetails');
+          AvblReports = [];
+          UpdateReportTitle(ReportType);
+
+          Meetdteails = ExtractMeetInfo(MeetUpdatedData, "");
+          Heats = Meetdteails.HeatList;
+          const entries = Object.entries(Heats ?? {}); // [[key, heat], ...]
+
+
+          for (let i = 0; i < entries.length; i++) {
+            const [, heat] = entries[i]; // keep original signature: AddHeatRow(i, heat)
+            AddHeatRow(i, heat, ReportType);
+          }
+
+          InitTblSelection(AvblReports);
+
+
+
+          log.info("GenerateHeatDetailsTable completed.", { count: entries.length });
+        } catch (err) {
+          log.error("GenerateHeatDetailsTable failed.", err);
+        }
+      }
+
+
+      /* ===========================
+         AddHeatRow
+         - UPDATED: EventList can be Dict
+         =========================== */
+      function AddHeatRow(index, Heat, ReportType) {
+        try {
+
+          const tblHeatDetails = getEl('tblHeatDetails', { required: true, desc: 'Heat details table' });
+          if (!tblHeatDetails) return;
+
+          const body = ensureTBody(tblHeatDetails);
+          if (!body) {
+            log.error("Cannot ensure TBODY for tblHeatDetails.");
+            return;
+          }
+          const tblHeatDetailsRow = body.insertRow();
+          tblHeatDetailsRow.id = "tblHeatDetailsRow" + index;
+
+          // -------- Robust EventID computation (Dict-aware) --------
+          let EventID = -1;
+          let heatId = "";
+          try {
+            heatId = Heat?.ID;
+
+            // Normalize EventList to "entries": supports array OR dict
+            const eventListRaw = Meetdteails?.EventDetails ?? {};
+            const eventEntries = Array.isArray(eventListRaw)
+              // Array -> [{ idx, key (string index), value }]
+              ? eventListRaw.map((ev, i) => ({ idx: i, key: String(i), value: ev }))
+              // Dict -> Object.entries -> [{ idx (iteration order), key, value }]
+              : Object.entries(eventListRaw).map(([k, v], i) => ({ idx: i, key: k, value: v }));
+
+            if (eventEntries.length === 0) {
+              log.warn("EventList missing or empty; cannot compute EventID.", { Meetdteails });
+            } else if (typeof heatId !== 'string' || !heatId.length) {
+              log.warn("Heat.ID not a valid string; cannot compute EventID.", { Heat });
+            } else {
+              const part = splitBeforeLastUnderscore(heatId);
+              if (!part.ok) {
+                log.warn("Heat.ID has no valid underscore partition; using full ID fallback.", { heatId, lastIndex: part.lastIndex });
+              } else {
+                const keyPrefix = normalizeStr(part.prefix);
+
+                // Match against primitive strings OR objects with ID/Id/id
+                const match = eventEntries.find(({ value }) => {
+                  if (value == null) return false;
+                  if (typeof value === 'string') return normalizeStr(value) === keyPrefix;
+                  const candidate = (value?.ID ?? value?.Id ?? value?.id);
+                  return typeof candidate === 'string' && normalizeStr(candidate) === keyPrefix;
+                });
+
+                if (!match) {
+                  log.info("No matching event found for Heat prefix.", { prefix: keyPrefix, heatId, totalEvents: eventEntries.length });
+                } else {
+                  EventID = match.idx; // keep ordinal semantics (0-based)
+                  log.debug("Matched EventID for Heat.", { EventID, prefix: keyPrefix, heatId, eventKey: match.key });
+                }
+              }
+            }
+          } catch (err) {
+            EventID = -1;
+            log.error("Failed to compute EventID.", err);
+          }
+          // Controls cell & swimmers table
+          const tblSwlist = document.createElement("TABLE");
+          if (ReportType == 0) {
+
+            tblSwlist.id = "tblSwlist_Entry" + index;
+          }
+          else if (ReportType == 1) {
+            tblSwlist.id = "tblSwlist_Result" + index;
+
+          }
+          AvblReports.push({ value: tblSwlist.id, text: "Heat" + heatId });
+
+          const header = tblSwlist.createTHead();
+          let row = header.insertRow();
+          let cell = row.insertCell();
+
+          // Header text logic with EventID safety
+          const isSameEvent = (lastEvent === EventID);
+          const heatNumberText = (typeof Heat?.ID === 'string' && Heat.ID.includes('_'))
+            ? Heat.ID.substring(Heat.ID.lastIndexOf('_') + 1)
+            : "?";
+          const eventOrdinal = (EventID >= 0) ? (EventID + 1) : "N/A";
+
+          let headerText;
+          let highlightNewEvent = false;
+
+          if (isSameEvent && EventID >= 0) {
+            headerText = `<h4> <b> Event: ${eventOrdinal} Heat : ${heatNumberText}</b><h4>`;
+          } else {
+            lastEvent = EventID;
+            const formatted = (typeof formatSwimmingEvent === 'function')
+              ? formatSwimmingEvent(Heat.ID)
+              : normalizeStr(Heat.ID);
+            headerText = `<h4> <b '>Event: ${eventOrdinal} ${formatted}</b> <h4>`;
+            highlightNewEvent = true;
+          }
+
+          cell.innerHTML = headerText;
+          if (highlightNewEvent) {
+            // cell.style.backgroundColor = "rgb(100, 100, 100)";
+          }
+
+          cell.colSpan = 5;
+          {
+
+
+            row = header.insertRow();
+
+            c = row.insertCell(); c.innerHTML = "<b>Line<b>";
+            // c = row.insertCell(); c.classList.add('hide-on-print'); c.innerHTML = "<b>SwimerID.<b>";
+            c = row.insertCell(); c.innerHTML = "<b>Name<b>";
+
+            if (ReportType == 0) {
+              c = row.insertCell(); c.innerHTML = "<b>Age<b>";
+            }
+            else {
+              c = row.insertCell(); c.innerHTML = "<b>Status<b>";
+            }
+
+
+            c = row.insertCell(); c.innerHTML = "<b>School \\ Club.<b>";
+
+            if (ReportType == 0) {
+              c = row.insertCell(); c.innerHTML = "<b>Seed Time<b>";
+
+            }
+            else {
+              c = row.insertCell(); c.innerHTML = "<b>SwimTimeings<b>";
+
+
+            }
+
+          }
+
+
+          tblHeatDetailsRow.appendChild(tblSwlist);
+
+
+          const boards = Array.isArray(Heat?.Boardinfo) ? Heat.Boardinfo : [];
+          for (let j = 0; j < boards.length; j++) {
+            try {
+              AddSwList(Heat, index, j, ReportType);
+            } catch (err) {
+              log.error("AddSwList failed for row", { index, j, Heat }, err);
+            }
+          }
+
+        }
+        catch (outerErr) {
+          log.error("AddHeatRow fatal error.", { index, Heat }, outerErr);
+        }
+      }
+
+
+      function AddSwList(Heat, index, j, ReportType) {
+        try {
+          // Table element
+          let tblSwlist;
+
+          if (ReportType == 0) {
+
+            tblSwlist = getEl("tblSwlist_Entry" + index, { required: true });;
+          }
+          else if (ReportType == 1) {
+            tblSwlist = getEl("tblSwlist_Result" + index, { required: true });
+          }
+          // const tblSwlist = getEl("tblSwlist_Result" + index, { required: true });
+          if (!tblSwlist) return;
+
+          // Source data for this row
+          const board = Heat?.Boardinfo?.[j] ?? {};
+          const SwimerID = board.SwimerID ?? '';
+          let BoardID = board.BoardID ?? 0;
+
+          const Swimerstatus = board.SwimStatus ?? 0;       // index-like code
+          const SwimerName = normalizeStr(board.SwimerName ?? '');
+          let Club = '';
+
+          let EventName = "";
+          let seedTime = "NT";
+          let Age = 0;
+
+          const heatId = Heat.ID;
+          const part = splitBeforeLastUnderscore(heatId);
+          if (!part.ok) {
+            log.warn("Heat.ID has no valid underscore partition; using full ID fallback.", { heatId, lastIndex: part.lastIndex });
+          } else {
+            EventName = normalizeStr(part.prefix);
+          }
+          const bestTiming = Meetdteails.SwimmerDetails[SwimerID].Events.find(item => item.EventName === EventName)?.BestTimeings;
+          Age = calculateAge(Meetdteails.SwimmerDetails[SwimerID].DOB);
+
+          if (bestTiming == "") {
+            seedTime = "NT";
+          }
+          else {
+            seedTime = bestTiming;
+          }
+
+
+          // Defensive Meet details lookup
+          try {
+            const clubObj = Meetdteails?.SwimmerDetails?.[SwimerName];
+            Club = normalizeStr(clubObj?.Club ?? '');
+          } catch (clubErr) {
+            log.warn("Club lookup failed.", { SwimerName }, clubErr);
+          }
+
+          // Ensure tbody exists and insert row
+          const body = ensureTBody(tblSwlist);
+          if (!body) return;
+          const tblSwlistRow = body.insertRow();
+
+          tblSwlistRowcell = tblSwlistRow.insertCell();
+
+          tblSwlistRowcell.innerHTML = BoardID;
+
+
+
+
+
+          tblSwlistRowcell = tblSwlistRow.insertCell();
+          tblSwlistRowcell.innerHTML = SwimerName;
+
+          tblSwlistRowcell = tblSwlistRow.insertCell();
+          if (ReportType == 0) {
+            tblSwlistRowcell.innerHTML = Age;
+          }
+          else {
+            tblSwlistRowcell.innerHTML = DQMsg[Swimerstatus];
+
+          }
+
+          // ---------------- Club (textarea) ----------------
+          tblSwlistRowcell = tblSwlistRow.insertCell();
+
+          tblSwlistRowcell.innerHTML = Club
+
+          tblSwlistRowcell = tblSwlistRow.insertCell();
+          // c = row.insertCell(); c.innerHTML = "<b>SwimTimeings<b>";
+          if (ReportType == 0) {
+            tblSwlistRowcell.innerHTML = seedTime;
+          }
+          else {
+
+            let val = '';
+            if (board.SwimTimings != '00:00.000') val = ConvertTime(board.SwimTimings); // treat zero time as empty
+            tblSwlistRowcell.innerHTML = val ?? '';
+          }
+
+
+          log.debug("AddSwList row added.", { index, j, SwimerName, Club });
+        } catch (err) {
+          log.error("AddSwList failed.", { index, j, Heat }, err);
+        }
+      }
+
+
+
+
+      function UpdateSelection() {
+        AvblReports.forEach(element => {
+          const reporttbl = document.getElementById(element.value)
+
+          if (reporttbl) {
+            if (SelectedReportList.indexOf(element.value) != -1) {
+              reporttbl.style.display = 'block'
+
+            }
+            else {
+              reporttbl.style.display = 'none'
+
+            }
+          }
+
+        });
+      }
+
+      async function FetchEventNames() {
+        //showhide("BusyIndicatorpop", "Loading Swimmer table");
+        // busyi.show();
+
+        var dataAPI = fetch(MeetDataFirebaseURL)
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+            MeetNameArray = LoadMeetNames(data)
+            initMeetNames("Online");
+            MeetDataFirebase = data;
+            showhide("BusyIndicatorpop");
+            return;
+          }, error => {
+            console.error('onRejected function called: ' + error.message);
+          })
+      }
+      function refreshMeet() {
+        switch (SelectedSource.Type) {
+          case "GetRunningHeatData":
+            LoadHeatNames(SelectedSource.Type)
+            break;
+
+          default:
+            initMeetNames(SelectedSource.Type);
+            break;
+        }
+
+
+      }
+      function initMeetNames(HeatFileSource) {
+        new MultiSelect('#dynamic1', {
+          data: MeetNameArray,
+          placeholder: 'Select Meet',
+          search: true,
+          selectAll: false,
+          listAll: true,
+          onChange: function (value, text, element) {
+          },
+          onSelect: async function (value, text, element) {
+            switch (HeatFileSource) {
+              case "Online":
+                SerachSwimRecords(MeetDataFirebase[text])
+                break;
+              case "Local":
+                SerachSwimRecords(MeetDataFirebase[text])
+                break;
+              case "Offline":
+                try {
+                  cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=ReadHeatFromLocalFile&HeatFileName=" + value;
+                  let response = await fetch(cmdurl);
+                  let data = await response.json();
+                  // console.log(data);
+                  MeetDataFirebase = data.commandReturnData;
+                  SerachSwimRecords(MeetDataFirebase);
+                } catch (error) {
+                  console.error('Error fetching data:', error);
+                }
+
+                break;
+
+              default:
+                break;
+            }
+
+            //console.log('Selected:', value, text, element);
+          },
+          onUnselect: function (value, text, element) {
+            SelectedMeetName.pop(text);
+            EventNameArray = LoadEventNames(MeetDataFirebase, SelectedMeetName);
+            initEventNames();
+            //console.log('Unselected:', value, text, element);
+          }
+        });
+      }
+
+// May not be used
+      function initEventNames() {
+        new MultiSelect('#dynamic1', {
+          data: EventNameArray,
+          placeholder: 'Select Events',
+          search: true,
+          selectAll: true,
+          listAll: true,
+          onChange: function (value, text, element) {
+            //console.log('Change:', value, text, element);
+          },
+          onSelect: function (value, text, element) {
+            SelectedEventName.push(text);
+          },
+          onUnselect: function (value, text, element) {
+            SelectedEventName.pop(text);
+          }
+        });
+      }
+
+      async function FetchEventData() {
+        showhide("BusyIndicatorpop", "Loading Swimmer table");
+        // busyi.show();
+
+        var dataAPI = fetch(MeetDataFirebaseURL)
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+            MeetNameArray = LoadSwNames(data)
+            // initSwNames();
+            MeetDataFirebase = data;
+            showhide("BusyIndicatorpop");
+            return;
+          }, error => {
+            console.error('onRejected function called: ' + error.message);
+          })
+      }
+
+      function Resort(data) {
+
+        const sortedData = data.sort((a, b) => {
+          if (a.value === 0 && b.value === 0) return 0; // both zero
+          if (a.value === 0) return 1; // a goes to bottom
+          if (b.value == 0) return -1; // b goes to bottom
+          return a.value - b.value; // normal ascending sort
+        });
+        return sortedData;
+
+      }
+
+      function initResultSheet() {
+        const container = document.getElementById("resultsContainer");
+        container.innerHTML = "";
+
+        ClearTable('tblHeatDetails');
+        AvblReports = [];
+
+
+      }
+
+      function CalculateClubwiseTotalScore() {
+
+        RowdataClubwise = [];
+        // UpdateReportTitle(ReportType);
+
+
+        // Individual Champion by Club
+        let clindex = 0;
+
+        Object.keys(SwDictByclub).forEach(Clbkey => {
+          const Swimmeringroup = SwDictByclub[Clbkey].split(":");
+          const ScoreArray = Swimmeringroup.map(Swname => swClubGroupDict[Swname].TotalScore);
+          const RankSorted = SortAndGetRankDescending(ScoreArray);
+
+          const sortedBoards = RankSorted.map((value, index) => ({ key: index + 1, value }))
+            .sort((a, b) => b.value - a.value);
+          let clbscore = 0
+          Rowdata = [];
+          sortedBoards.forEach((DictElement, index) => {
+            const Swname = Swimmeringroup[DictElement.key - 1];
+
+            Eventlist = swClubGroupDict[Swname].EventDetails.replace(/;/g, "<br>")
+
+            Rowdata.push({ SlNO: index + 1, Name: Swname, Group: swClubGroupDict[Swname].SwGroup, TotalPoints: swClubGroupDict[Swname].TotalScore, EventDetails: swClubGroupDict[Swname].EventDetails })
+            clbscore += swClubGroupDict[Swname].TotalScore;
+          });
+          Dictclubscore[Clbkey] = { 'clubscore': clbscore, 'Rowdata': Rowdata }
+
+
+        });
+
+
+      }
+
+      function PltClubWiseResult(ReportType) {
+        UpdateReportTitle(ReportType);
+        AvblReports = [];
+        Object.keys(SwDictByclub).forEach(Clbkey => {
+
+          TableID = "Club_Table" + Clbkey
+          AvblReports.push({ value: TableID, text: "IC " + Clbkey });
+          if (ReportType == 4) {
+            headers = ["SlNO", "Name", "Group", "Total Points", "EventDetails"]
+          }
+          else if (ReportType == 3) {
+            headers = ["SlNO", "Name", "Group", "No of Events", "EventDetails"]
+
+          }
+          if (ReportType == 4) {
+            TableTitleToShow = Clbkey + " Total: " + Dictclubscore[Clbkey].clubscore;
+
+            const rows = Dictclubscore[Clbkey].Rowdata.map(d => [d.SlNO, d.Name, d.Group, d.TotalPoints, d.EventDetails]);
+            buildTable({ containerId: 'resultsContainer', columns: headers, rows, TableID, TableTitle: TableTitleToShow });
+          }
+          else if (ReportType == 3) {
+            TableTitleToShow = Clbkey;
+
+            const rows = Dictclubscore[Clbkey].Rowdata.map(d => [d.SlNO, d.Name, d.Group, CountNoOfEvents(d.EventDetails), replaceWithArrayOrNT(d.EventDetails, [])]);
+            buildTable({ containerId: 'resultsContainer', columns: headers, rows, TableID, TableTitle: TableTitleToShow });
+
+          }
+
+        });
+
+
+        InitTblSelection(AvblReports);
+
+      }
+
+      function pltICGroup() {
+
+        AvblReports = [];
+        // Individual Champion by Group
+        Object.keys(SwDictByGroup).forEach(Grpkey => {
+          Rowdata = [];
+          if (Grpkey != undefined) {
+            const Swimmeringroup = SwDictByGroup[Grpkey].split(":");
+            const ScoreArray = Swimmeringroup.map(Swname => swClubGroupDict[Swname].TotalScore);
+            const RankSorted = SortAndGetRankDescending(ScoreArray);
+
+            const sortedBoards1 = RankSorted.map((value, index) => ({ key: index + 1, value }))
+              .sort((a, b) => b.value - a.value);
+
+            let sortedBoards = Resort(sortedBoards1);
+
+            let TableID = "table_IC" + Grpkey
+            AvblReports.push({ value: TableID, text: "IC " + Grpkey });
+
+            let TableTitleToShow = `IC ${formatSwimmingEvent("_" + Grpkey)}`;
+
+            headers = ["Sl.NO", "Rank", "Name", "Club/School", "Total"]
+
+            // Data rows
+            sortedBoards.forEach((DictElement, index) => {
+              const Swname = Swimmeringroup[DictElement.key - 1];
+              Rowdata.push({ "SlNO": index + 1, "Rank": DictElement.value, "Name": Swname, "ClubSchool": swClubGroupDict[Swname].SwClub, "Total": swClubGroupDict[Swname].TotalScore })
+            });
+            const rows = Rowdata.map(d => [d.SlNO, d.Rank, d.Name, d.ClubSchool, d.Total]);
+            buildTable({ containerId: 'resultsContainer', columns: headers, rows, TableID, TableTitle: TableTitleToShow });
+
+          }
+        });
+
+        InitTblSelection(AvblReports);
+
+      }
+
+      function PrepICTable() {
+        Rowdata = [];
+
+        const SwKeys = Object.keys(swClubGroupDict);
+        SwDictByGroup = {};
+        SwDictByclub = {};
+        // Dictclubscore = {}
+
+        // Group swimmers by group and club
+        SwKeys.forEach(key => {
+          const element = swClubGroupDict[key];
+          SwDictByGroup[element.SwGroup] = SwDictByGroup[element.SwGroup] ? SwDictByGroup[element.SwGroup] + ":" + key : key;
+          SwDictByclub[element.SwClub] = SwDictByclub[element.SwClub] ? SwDictByclub[element.SwClub] + ":" + key : key;
+        });
+      }
+
+      function pltClubIC(ReportType = 2) {
+        UpdateReportTitle(ReportType)
+        // let RowdataClubwise = [];
+        AvblReports = [];
+
+
+        const sortedArray = Object.entries(Dictclubscore)
+          .filter(([, value]) => value.clubscore !== 0) // ignore zeros
+          .sort(([, valueA], [, valueB]) => valueB.clubscore - valueA.clubscore); // descending order
+
+        // Convert back to object
+        const sortedObj = Object.fromEntries(sortedArray);
+        clindex = 0;
+        sortedArray.forEach(item => {
+          clindex++;
+          RowdataClubwise.push({ "SlNO": clindex, "ClubSchool": item[0], "Points": Dictclubscore[item[0]].clubscore })
+
+        });
+        const rows = RowdataClubwise.map(d => [d.SlNO, d.ClubSchool, d.Points]);
+        TableID = "Club_Wise_IC"
+        TableTitleToShow = "Club Wise Points"
+        AvblReports.push({ value: TableID, text: TableID });
+        headers = ["Sl.NO", "Club/School", "Points"];
+        buildTable({ containerId: 'resultsContainer', columns: headers, rows, TableID, TableTitle: TableTitleToShow });
+
+        InitTblSelection(AvblReports);
+      }
+
+      function plotEventTblNew() {
+
+        let headers = ["Sl.NO", "Rank", "Name", "Club/School", "Status", "Timings", "Points"];
+        AvblReports = [];
+
+        for (const [key, value] of Object.entries(EventResultsDict)) {
+
+          const displayNumber = Array.isArray(MeetUpdatedData.EventList)
+            ? (MeetUpdatedData.EventList.indexOf(key) + 1)
+            : EventCounter; // fallback to running counter if EventList not an array
+
+          let TableID = "tblMeetResult_" + key;
+          AvblReports.push({ value: TableID, text: "Event" + key + " " + displayNumber })
+          let TableTitleToShow = "Event " + key + " " + formatSwimmingEvent(key);
+
+          const rows = value.map(d => [d.SlNO, d.Rank, d.SwimmerName, d.SwimmerClubSchool, d.SwimStatus, d.SwimTimings, d.Points]);
+          buildTable({ containerId: 'resultsContainer', columns: headers, rows, TableID, TableTitle: TableTitleToShow });
+
+          // console.log(`Key: ${key}, Value:`, value);
+        }
+
+        InitTblSelection(AvblReports);
+
+      }
+
+      function calculatePoints(EventResultArray, eventNameID) {
+        Rowdata = [];
+        let x = EventResultArray.map(result => {
+          if (result.SwimStatus === 0) {
+            return result.SwimTimings !== 12.34 ? result.SwimTimings : 0;
+          }
+          return 0;
+        });
+        let RankSorted = SortAndGetRank(x);
+        let BoardRanks = RankSorted.map((value, index) => ({ key: index + 1, value }));
+
+        let sortedBoards = BoardRanks.sort((a, b) => {
+          if (a.value === 0 && b.value !== 0) return 1;
+          if (a.value !== 0 && b.value === 0) return -1;
+          return a.value - b.value;
+        });
+
+        // let sortedBoards = SortangGetRankForEvents(EventResultArray);
+
+        for (let eventIndex = 0; eventIndex < EventResultArray.length; eventIndex++) {
+          let swimmer = EventResultArray[sortedBoards[eventIndex].key - 1];
+          if (!(swimmer.SwName in swClubGroupDict)) {
+            swClubGroupDict[swimmer.SwName] = { SwClub: "ClubUnknown", SwGroup: "Group_Unknown", TotalScore: 0 };
+          }
+          let previousScore = swClubGroupDict[swimmer.SwName].TotalScore;
+          let currentScore = GetPoints(sortedBoards[eventIndex].value);
+          swClubGroupDict[swimmer.SwName].TotalScore = previousScore + currentScore;
+          swClubGroupDict[swimmer.SwName].EventDetails = swClubGroupDict[swimmer.SwName].EventDetails + formatSwimmingEvent(eventNameID) + " : " + "  " + DQMsg[swimmer.SwimStatus] + " " + ConvertTime(swimmer.SwimTimings) + ";"
+          Rowdata.push({
+            "SlNO": eventIndex + 1, "Rank": sortedBoards[eventIndex].value, "SwimmerName": swimmer.SwName, "SwimmerClubSchool": swimmer.SwimerClub, "SwimStatus":
+              DQMsg[swimmer.SwimStatus], "SwimTimings": ConvertTime(swimmer.SwimTimings !== 12.34 ? swimmer.SwimTimings : 0), "Points": currentScore
+          });
+        }
+        EventResultsDict[eventNameID] = Rowdata;
+      }
+
+      function GetPoints(Rank) {
+        let score = 0;
+        switch (Rank) {
+          case 0:
+            score = 0;
+            break;
+
+          default:
+            if (Rank >= 10) {
+              score = 0;
+            }
+            else {
+              score = pointsArray[Rank - 1];
+              break;
+            }
+
+
+        }
+        return score
+      }
+    </script>

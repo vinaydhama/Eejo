@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<style>
+  @font-face {
+    font-family: 'ConsolaMono-Bold';
+    src: url('../bootstrap/fonts/ConsolaMono-Bold.ttf') format('truetype')
+  }
+</style>
+<style>
+  .slideshow {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fade 9s infinite;
+  }
+
+  .slideshow img:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .slideshow img:nth-child(2) {
+    animation-delay: 3s;
+  }
+
+  .slideshow img:nth-child(3) {
+    animation-delay: 6s;
+  }
+
+  @keyframes fade {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    30%  { opacity: 1; }
+    40%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
+</style>
+
+<html style=" background-color:rgb(0, 0, 0);">
+<!-- Bootstrap 3.3.2 -->
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+  type="text/css" />
+<!-- Ionicons -->
+<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<!-- Morris chart -->
+<link href="../plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+<!-- jvectormap -->
+<link href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+<!-- Daterange picker -->
+<link href="../plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<!-- Theme style -->
+<link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/GeneralStyle.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. Choose a skin from the css/skins 
+        folder instead of downloading all of them to reduce the load. -->
+<link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+<script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+<script charset="utf-8" type="text/javascript" src="../bootstrap/js/LiveTimeDisplayHelper.js"></script>
+<script type="text/javascript" src="../bootstrap/js/html2canvas.js"></script>
+
+
+<div>
+  <!-- <button onclick="MoveNext(proposedpos)">Next</button>
+<button onclick="DisplayQRCode(cmdurlwithHost)">Next2</button> -->
+</div>
+
+<body id="LiveDispBody"
+  style="background-color: black; margin-bottom: 5%;margin-top: 10%;margin-left: 5%;margin-right: 5%;">
+
+  <div id="MainDisp" style=" background-color:rgb(47, 48, 48);text-align: right;">
+    <Table style="margin-left: 3%; margin-right:3% ; border: 0px;" >
+      <th>
+        <!-- <div id="qrcode"></div> -->
+        <span style="text-align: left;"> <b class="Headerbigfont"  id="HeatNameDisp"> Heat Name </b></span>
+
+      <td style="background-color: gainsboro; margin-left:0%;width: 400PX; ">
+        <span style="font-size: 50PX;" class="info-box-text" id="MeetNameDisp">MeetNameDisp </span>
+        <!-- <span class="info-box-text" id="MeetDateDisp"> MeetDateDisp</span> -->
+        <!-- <span class="info-box-text" id="MeetAddressDisp">MeetAddressDisp </span> -->
+    <span style="font-size:20px; flex-wrap: wrap; " class="info-box-text" id="CurrentTime"> CurrentTime</span>
+        <span class="info-box-text" id="TimerState"> TimerState</span>
+        
+        <span> <button id="openModal">Settings</button> </span>
+      </td>
+      <TD>
+
+      </TD>
+      </th>
+    </Table>
+  </div>
+
+  
+  <div id="MaintblDisplay">
+    <table id="MainBoardTbl" style="background-color: aqua;">
+    </table>
+
+  </div>
+  <div class="popup" id="InfoIndicatorpop">
+
+    <img class="EejoLogo" src="../Img/eejo_logo.png" alt="WWW.TinyTechniques.com">
+    <h1 class="Mediumfont"
+      style=" margin-left: -50%; background-color: black; margin-top: 40%; color: aqua; align-content: baseline;"
+      id="TimerState_Pop"><b> TimerState </b></h1>
+    </P>
+  </div>
+
+  <div class="popup" id="BusyIndicatorpop">
+    <img class="EejoLogo" src="../Img/eejo_logo.png" alt="WWW.TinyTechniques.com">
+    <p id="BusyMsg"> </p>
+  </div>
+
+  </div>
+
+  <Table style="margin-left: 3%; margin-right:3%  ;margin-top: 3%; border: 0px;" >
+    <th>
+      <!-- <div id="qrcode"></div> -->
+      <!-- <span style="text-align: left;"> <b class="Headerbigfont"  id="HeatNameDisp"> Heat Name </b></span> -->
+    <img style="margin: 1px;width: 150PX;" class="img" src="../Img/Tiny Techniques_Logo.png" alt="WWW.TinyTechniques.com">
+
+
+    <td style="color: chartreuse;  margin-left:0%;width: 1000PX; ">
+    <strong style="font-size: 20PX;"> Eejo Manager v1.0  &copy; 2025-2026   <BR></strong>  
+  <strong style="font-size: 50PX;"> <b> +91 9620538528</b> </strong>
+
+      
+      
+    </td>
+    <td>
+      <div class="slideshow" style="margin-left: 20px;">
+      
+        <img style="margin: 10px; width: 150px; " class="img" src="../Img/Tiny Techniques_Logo.png"
+          alt="WWW.TinyTechniques.com">
+        <img style="margin: 10px; width: 150px; ;" class="img" src="../Img/Eejo_Manager.png"
+          alt="WWW.TinyTechniques.com">
+        <img style="margin: 10px; width: 150px; ;" class="img" src="../Img/Eejo_mini.png"
+          alt="WWW.TinyTechniques.com">
+        <img style="margin: 10px; width: 150px; " class="img" src="../Img/eejo_max.png"
+          alt="WWW.TinyTechniques.com">    
+      </div>
+    </td>
+    <td>
+
+    <img style="margin-left: 100px;width: 150PX;" class="img" src="../Img/EejoPortalQR.png" alt="WWW.TinyTechniques.com">     
+
+    </td>
+    </th>
+  </Table>
+
+    <!-- <footer class="main-footer"> -->
+
+    <div>
+</div>
+
+  </div>
+
+    <!-- </footer> -->
+  </div>
+</body>
+ <!-- Modal -->
+ <div id="scaleModal" class="modal">
+  <div  class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h3>Settings</h3>
+    <label for="ScaleHorizontal">ScaleHorizontal </label>
+    <input type="range" min="0.1" max="3" step="0.01" value="1" id="ScaleHorizontal">
+    <label for="ScaleVertical">ScaleVertical </label>
+    <input type="range" min="0.1" max="3" step="0.01" value="1" id="ScaleVertical">
+    <label for="MoveHSlider">MoveHSlider </label>
+    <input type="range" min="-100" max="100" step="1" value="1" id="MoveHSlider">
+    <label for="MoveVSlider">MoveVSlider </label>
+    <input type="range" min="-100" max="100" step="1" value="1" id="MoveVSlider">
+    
+  </div>
+</div>
+
+<script>
+  let HighlightLastUpdatedBoard = false;
+  let SwNamesRes;
+
+  const MaintblDisplay = document.getElementById('LiveDispBody');
+  const ScaleHorizontal = document.getElementById('ScaleHorizontal');
+  const MoveHSlider = document.getElementById('MoveHSlider');
+  const MoveVSlider = document.getElementById('MoveVSlider');
+
+  const ScaleVertical = document.getElementById('ScaleVertical');
+  const modal = document.getElementById('scaleModal');
+  const openBtn = document.getElementById('openModal');
+  const closeBtn = document.getElementById('closeModal');
+
+  openBtn.onclick = () => modal.style.display = 'block';
+  closeBtn.onclick = () => modal.style.display = 'none';
+  window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+
+  ScaleHorizontal.addEventListener('input', () => {
+    let scaleX = ScaleHorizontal.value;
+    let scaleY = ScaleVertical.value;
+
+    MaintblDisplay.style.transform = `scaleX(${scaleX}) scaleY(${scaleY})`;
+    //MaintblDisplay.style.transform =  `scaleY(${scaleY})`;
+
+  });
+  ScaleVertical.addEventListener('input', () => {
+    let scaleX = ScaleHorizontal.value;
+    let scaleY = ScaleVertical.value;
+
+    MaintblDisplay.style.transform = `scaleX(${scaleX}) scaleY(${scaleY})`;
+    // MaintblDisplay.style.transform = `scaleY(${scaleY})`;
+  });
+
+  MoveHSlider.addEventListener('input', () => {
+    MaintblDisplay.style.marginLeft = `${MoveHSlider.value}%`;
+
+  });
+
+  MoveVSlider.addEventListener('input', () => {
+    MaintblDisplay.style.marginTop = `${MoveVSlider.value}%`;
+
+  });
+  let pos = 0;
+  let i = 0;
+
+  let proposedpos = [1, 2, 3, 4, 5, 6, 10, 8, 7, 9];
+  let proposedpos2 = [1, 2, 3, 4, 5, 6, 10, 8, 7, 9];
+  cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";
+  // cmdurlwithHost = "http://192.168.0.103:5002";
+  //cmdurlwithHost = "http://192.168.7.241:5002";
+
+  //cmdurlwithHost = "http://LocalHost:5002";
+
+  // let Boards = 5;
+  let maxBoards = 10;
+  showhideDiv(false, 'BusyIndicatorpop');
+
+
+  try {
+    //MoveNext(proposedpos2)
+    // DisplayQRCode( GetRestIP());
+    // for (let i = 1; i <= 10; i++) {
+    //   Board = document.getElementById("Board" + i);
+    //   Board.setAttribute("style", "transform: scale(1.0);");
+    // }
+
+    GetMeetInfo();
+    GetHeatInfo();
+    CreateTimerTable("MainBoardTbl")
+    FillSwNames("SwTimer");
+    // GetSwNames("SwTimer","MainBoardTbl");
+    //GetBoardStatusAndTime();
+    setInterval(async () => { GetTimerStatus() }, 500);
+    // GetTimerStatus()
+  } catch (error) {
+  }
+</script>
+<html>

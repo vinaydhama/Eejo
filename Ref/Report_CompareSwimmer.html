@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <div class="header">
+
+        <h1 class="header__content-text">
+            <b> Eejo Meet Report Generator.</b>
+            <br><br>
+            <select id="dynamic1" name="dynamic1"></select>
+            <select id="dynamic2" name="dynamic2"></select>
+            <button type="button" onclick="SerachSwimRecords()">Search</button>
+            <br>
+        </h1>
+    </div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>Eejo Meet Report Generator</title>
+
+<body>
+    <div class="popup" id="BusyIndicatorpop">
+        <div class="loader"></div>
+        <p id="BusyMsg"> </p>
+    </div>
+    <script charset="utf-8" type="text/javascript" src="Scripts/MultiSelectScript.js"></script>
+    <script charset="utf-8" type="text/javascript" src="Scripts/FireBaseDataRetrive.js"></script>
+    <script charset="utf-8" type="text/javascript" src="Scripts/Utility.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <div class="row">
+        <canvas id="myChart" style="width:90%;"></canvas>
+        <table class="fl-table" id="Tab1"></table>
+    </div>
+
+
+    <link rel="stylesheet" type="text/css" href="Styles/MultiSelectStyle.css">
+    <link rel="stylesheet" type="text/css" href="Styles/Tabledesign.css">
+    <link rel="stylesheet" type="text/css" href="Styles/GeneralStyle.css">
+
+    <script>
+
+        FireBaseSwimmerURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Swimmers.json";
+        let SelectedNames = [];
+        let SelectedStroke = [];
+        let NameArray = [];
+        let StrokeArray = [];
+
+        var SwimmerFirebaseData = fetchSwimmersData();
+
+
+        function SerachSwimRecords() {
+            let yValues = [];
+            let xValues = [];
+            var retval = GetSwTimeing(SwimmerFirebaseData, SelectedNames, SelectedStroke[0])
+            for (let i = 0; i < retval.length - 1; i++) {
+                for (let j = 1; j < retval.length - i - 1; j++) {
+                    if (retval[j].dateval > retval[j + 1].dateval) {
+                        let temp = retval[j];
+                        retval[j] = retval[j + 1];
+                        retval[j + 1] = temp;
+                    }
+                }
+            }
+
+            retval.forEach(retvaldateval => {
+
+                heattime = retvaldateval.dateval.toString();
+                heattimeformated = (heattime.substring(8, 6) + "-" + heattime.substring(6, 4) + "-" + heattime.substring(0, 4) + "  "
+                    + heattime.substring(10, 8) + ":" + heattime.substring(12, 10) + ":" + heattime.substring(14, 12));
+                xValues.push(heattimeformated)
+            });
+
+            for (let j = 0; j < SelectedNames.length; j++) {
+                {
+                    yval = [];
+
+                    for (let i = 0; i < retval.length; i++) {
+
+                        if (SelectedNames[j] == retval[i].Swname) {
+                            yval.push(retval[i].timeval);
+                        }
+                        else
+                            yval.push(0);
+
+                    }
+                    yValues.push(yval);
+                }
+            }
+            PlotGraph(yValues, xValues, SelectedNames)
+            PltTable(yValues, xValues, SelectedNames);
+        }
+
+        function PlotGraph(yValues, XValue, SelectedNames) {
+            var datasetsval = []
+            var color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow ", "Brown", "Gray", "black"];
+
+            for (let i = 0; i < (yValues.length); i++) {
+                datasetsval.push({ data: yValues[i], label: SelectedNames[i], borderColor: color[i], fill: false })
+            }
+
+
+
+            chart = document.getElementById('Tab1');
+            chart.innerHTML = "";
+            new Chart("myChart", {
+                type: "line",
+                data: {
+                    labels: XValue,
+                    datasets: datasetsval
+                },
+                options: {
+                    legend: { display: true }
+                }
+            });
+
+        }
+
+        async function fetchSwimmersData() {
+            showhide("BusyIndicatorpop", "Loading Swimmer table");
+            // busyi.show();
+
+            var dataAPI = fetch(FireBaseSwimmerURL)
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    NameArray = LoadSwNames(data)
+                    initSwNames();
+                    SwimmerFirebaseData = data;
+                    showhide("BusyIndicatorpop");
+                    return;
+                }, error => {
+                    console.error('onRejected function called: ' + error.message);
+                })
+        }
+        initStroke();
+
+        function initSwNames() {
+            new MultiSelect('#dynamic1', {
+                data: NameArray,
+                placeholder: 'Select Name',
+                search: true,
+                selectAll: true,
+                listAll: true,
+                onChange: function (value, text, element) {
+                    console.log('Change:', value, text, element);
+                },
+                onSelect: function (value, text, element) {
+                    SelectedNames.push(text);
+                    StrokeArray = UpdateStrokes(SelectedNames, SwimmerFirebaseData, StrokeArray);
+                    initStroke();
+                    console.log('Selected:', value, text, element);
+                },
+                onUnselect: function (value, text, element) {
+                    SelectedNames.pop(text);
+                    StrokeArray = UpdateStrokes(SelectedNames, SwimmerFirebaseData, StrokeArray);
+                    initStroke();
+                    console.log('Unselected:', value, text, element);
+                }
+            });
+        }
+        function initStroke() {
+
+            document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));
+            // Initialize the Multi Select dropdown
+
+            new MultiSelect('#dynamic2', {
+                data: StrokeArray,
+                placeholder: 'Select Stroke',
+                search: true,
+                selectAll: true,
+                listAll: true,
+                max: 10,
+                onChange: function (value, text, element) {
+                    console.log('Change:', value, text, element);
+                },
+                onSelect: function (value, text, element) {
+                    SelectedStroke.push(text);
+                    console.log('Selected:', SelectedNames);
+                },
+                onUnselect: function (value, text, element) {
+                    SelectedStroke.pop(text);
+                    console.log('Unselected:', value, text, element);
+                }
+            });
+        }
+        function PltTable(yValues, xValues, SelectedNames) {
+            const body = document.body;
+            tbl = document.getElementById('Tab1');
+            tbl.innerHTML = "";
+            var header = tbl.createTHead();
+            var row = header.insertRow();
+            var cell = row.insertCell();
+            cell.innerHTML = "<b>SlNo.<b>";
+            var cell = row.insertCell();
+            cell.innerHTML = "<b>Date Time<b>";
+
+            SelectedNames.forEach(swName => {
+                var cell = row.insertCell();
+                cell.innerHTML = "<b>" + swName + "<b>";
+
+            });
+
+            row.setAttribute('style', ' background:Green; color: Black;font-family:Arial narrow Bold ; font-size:50px; text-align: center;')
+
+
+            for (let j = 0; j < (xValues.length); j++) {
+                tr = tbl.insertRow();
+                td1 = tr.insertCell();
+                td1.appendChild(document.createTextNode(j + 1));
+                td1 = tr.insertCell();
+                td1.appendChild(document.createTextNode(xValues[j]));
+
+                for (nameindex = 0; nameindex < (SelectedNames.length); nameindex++) {
+                    td1 = tr.insertCell();
+                    td1.appendChild(document.createTextNode(ConvertTime(yValues[nameindex][j])));
+                }
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<html>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/LiveTimeDisplayHelper.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditorHelper.js" ></script>
+
+<style>
+    table {
+        width: "100%";
+        height: "100%";
+    }
+
+    th,
+    td {
+        border: 1px solid #8a8b805b;
+        padding: 0px;
+
+    }
+
+    #p3,
+    #f3 {
+        padding: 0px;
+        text-align: justify;
+        background-color: black;
+    }
+
+    #p3 {
+        padding: 0px;
+        width: 355px;
+        color: green;
+        font-style: bold;
+    }
+</style>
+
+<table id="tblBoards"  style="width:100%;height:100%;">
+    <col width="160px">
+  
+  <col width="120px">
+    <tr>
+        <th style="width:5%"> <input type="checkbox" id="tblgrpchkbox" onchange=SelectAllRows('tblgrpchkbox','tblBoards','GrpCheckcell')>
+        </th>
+        <th  style="width:10%"> Board </th>
+        <th> Swname </th>
+    </tr>
+</table>
+<script>
+
+
+let SwNamesRes;
+UpdateNames();
+async function GetTimerStatusforTK()
+{
+  let TimerStatus=  await FetchValuesFromTimer('TimerStatus'); 
+  switch (TimerStatus.Message) {  
+    case 'TimerStatus.loadedToStart':
+    UpdateNames();
+    break;
+  }
+}
+
+function GetEejoHostID() {
+    urlString= window.location.href;
+    // urlString= "http://192.168.0.101:8000/EejoPages/MeetEditor.html"
+    HostID = urlString.substring(urlString.indexOf("/")+2, urlString.lastIndexOf(':'));
+    return HostID;
+  }
+  let cmdurlwithHost = "http://" + GetEejoHostID() + ":5002";  
+    //cmdurlwithHost = "http://LocalHost:5002"
+    const MeetDetailsurl = cmdurlwithHost + '/GetMeetHeader';
+    const LiveTimersurl = cmdurlwithHost + '/LiveTimer';
+    let Boarddata;
+    for (var i = 1; i <= 10; i++) {
+                        // let obj = JSON.parse(data.Boards[i - 1]);
+                        //AddGroupRow.length=0;
+                        AddGroupRow(i, { 'BoardNum': "", 'BoardSwname': "", 'LockTime':"" })
+                    }
+
+    setInterval(async () => {GetTimerStatusforTK()}, 500);
+
+
+    function startDrag() {
+        row = event.target;
+    }
+    function dragover() {
+        var e = event;
+        e.preventDefault();
+
+        let children = Array.from(e.target.parentNode.parentNode.children);
+
+        if (children.indexOf(e.target.parentNode) > children.indexOf(row))
+            e.target.parentNode.after(row);
+        else
+            e.target.parentNode.before(row);
+    }
+
+    async function SendLiveCmd(CmdtoSend) {
+            try {
+                cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?";
+                urlToFetch = cmdurl + CmdtoSend;
+                await fetch(urlToFetch)
+                    .then(response => {
+                        // Check if the response is successful
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Display the data
+                        // displayTimeData(data);
+                        return data;
+                    })
+
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+        async function UpdateNames()
+        {
+             SwNamesRes=  await FetchValuesFromTimer('GetSwNames'); 
+            for (var i = 1; i <= 10; i++) {
+                Boardbtn = document.getElementById('BoardSwname' + i);
+                Boardbtn.innerText = "-";
+                BoardNum = document.getElementById('BoardNum' + i);                
+                BoardNum.innerText =   i ;
+                BoardNum.setAttribute('style', 'display: block; height:90%; width: 100%; background-color:#008CBA;  color: #e7f705;font-family:Arial narrow Bold ; font-size:250%; text-align: center;')                                        
+            }
+
+            for (var i = 1; i <= SwNamesRes.SwNames.length; i++) {
+            var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + i)
+                if (GrpCheckcellchkbox.checked == true) {
+                    document.getElementById('BoardNum' + i).innerText = i;
+                    Boardbtn = document.getElementById('BoardSwname' + i);
+                    Boardbtn.innerText = SwNamesRes.SwNames[i-1];
+                    Boardbtn = document.getElementById('BoardSwname' + i); 
+                    Boardbtn.disabled =false;
+                    Boardbtn.setAttribute('style', 'display: block; height:90%; width: 100%; background-color:#008CBA;  color: #e7f705;font-family:Arial narrow Bold ; font-size:250%; text-align: center;')                                        
+                }
+        }
+    }
+
+    function AddGroupRow(index, BordDetail) {
+        try {
+        // var index = 100;
+        tblBoards = document.getElementById('tblBoards');        
+        var tblgroupRow = tblBoards.insertRow()
+        tblgroupRow.draggable = true;
+        tblgroupRow.ondragstart = function () { startDrag() };
+        tblgroupRow.ondragover = function () { dragover() };
+
+        tblgroupRow.id = "tblgroupRow" + index;
+        GrpCheckcell = tblgroupRow.insertCell();
+        GrpCheckcell.innerHTML = "<input type='Checkbox' id ='GrpCheckcell" + index + "'>";
+        var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + index)
+        // GrpCheckcellchkbox.checked = true;
+        GrpCheckcellchkbox.addEventListener("change",
+            function () {               
+                var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + index)
+                if (GrpCheckcellchkbox.checked == true) {
+                    Boardbtn = document.getElementById('BoardSwname' + index); 
+                    Boardbtn.disabled =false;
+                    // let obj = JSON.parse(Boarddata.Boards[index - 1]);
+                    Boardbtn.innerHTML= SwNamesRes[index-1];                    
+                    Boardbtn.setAttribute('style', 'display: block; height:100%; width: 100%; background-color:#008CBA;  color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+                }
+                else {
+                    Boardbtn = document.getElementById('BoardSwname' + index);                
+                    Boardbtn.setAttribute('style', 'display: block; height:10%; width: 100%; background-color:#008CBA;  color: #e7f705;font-family:Arial narrow Bold ; font-size:10%; text-align: center;')
+                    
+                    
+                    Boardbtn.disabled =true;
+                }
+
+            });
+
+        // Grpslnocell = tblgroupRow.insertCell();
+        // Grpslnocell.innerHTML = (index + 1);
+
+        var GrpNamecell = tblgroupRow.insertCell();
+        // if (GrpCheckcellchkbox.checked == true)
+        GrpNamecell.innerHTML = "<label  id ='BoardNum" + index + "'>";
+            BoardNum= document.getElementById('BoardNum' + index);
+            BoardNum.innerText = BordDetail.BoardNum;
+            BoardNum.setAttribute('style', 'display: block; height:10%; width: 100%; background-color:#008CBA;  color: #e7f705;font-family:Arial narrow Bold ; font-size:100%; text-align: center;')
+        var GrpFromcell = tblgroupRow.insertCell();
+        GrpFromcell.innerHTML = "<button type='button' id ='BoardSwname" + index + "'>";
+        Boardbtn = document.getElementById('BoardSwname' + index);
+        Boardbtn.innerText = BordDetail.BoardSwname;
+        Boardbtn.disabled =true;
+
+        Boardbtn.addEventListener("click",
+            function () {            
+                var GrpCheckcellchkbox = document.getElementById('GrpCheckcell' + index)   
+                if (GrpCheckcellchkbox.checked == true) {
+                    Boardbtn = document.getElementById('BoardSwname' + index);
+                    //Boardbtn.setAttribute('style', 'display: block; width: 100%')
+                    Boardbtn.setAttribute('style', 'display: block; height:10%; width: 100%; background-color:#008CBA;  color: #e7f705;font-family:Arial narrow Bold ; font-size:10%; text-align: center;')                                        
+                    
+                    SwBoardID =index-1;
+                    BoardTimerCmdValue =1;
+                    CmdToSend = "CmdName=" + "BoardTimerCmd" + "&SwBoardID=" + SwBoardID + "&BoardTimerCmdValue=" + BoardTimerCmdValue;
+                    SendLiveCmd(CmdToSend);
+                    Boardbtn.disabled =true;
+                }                
+
+            });
+
+        }
+        catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+
+    }
+</script>
+
+</html>
