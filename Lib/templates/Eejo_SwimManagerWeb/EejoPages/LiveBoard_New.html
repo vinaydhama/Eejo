@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Live Swim Leaderboard – Enhanced (BG options)</title>
+  <script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+  <style>
+    :root{
+      --text-color: rgb(178,248,1);
+      --bg-odd: #070707;
+      --bg-even: #19191c;
+      --bg-head: #1d2446;
+      --accent:#26a69a;
+      --font-family: 'Arial Black', Impact, sans-serif;
+      --font-size: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family: var(--font-family);
+      font-weight: 900;
+      background-color:#0c0c0c; /* fallback */
+      color:var(--text-color);
+      margin:0; padding:16px;
+      font-size: var(--font-size);
+      position:relative;
+    }
+    /* Background layers */
+    .bg-root{position:fixed; inset:0; z-index:-2;}
+    .bg-image{position:absolute; inset:0; background:#0c0c0c center/cover no-repeat; filter:none; opacity:1; transition:filter .2s ease, opacity .2s ease}
+    .bg-overlay{position:absolute; inset:0; background:radial-gradient(ellipse at top, rgba(0,0,0,.55), rgba(0,0,0,.75)); z-index:1;}
+
+    .toolbar{position:fixed; right:16px; bottom:16px; z-index:9999}
+    .btn{background:#222; color:var(--text-color); border:1px solid #333; padding:8px 12px; border-radius:8px; cursor:pointer}
+    .btn:hover{background:#2a2a2a}
+    .modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:9998}
+    .modal{width:min(840px, 95vw); max-height:90vh; overflow:auto; background:#121212; border:1px solid #2e2e2e; border-radius:12px; padding:16px}
+    .modal header{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
+    .modal h3{margin:0}
+    .row{display:flex; gap:16px; flex-wrap:wrap}
+    .col{flex:1 1 260px; border:1px solid #2a2a2a; border-radius:8px; padding:12px}
+    label{display:block; margin:6px 0}
+    input[type="color"]{background:#222; border:1px solid #333; height:32px; width:48px; padding:0}
+    select, input[type="number"], input[type="range"], input[type="text"]{background:#222; color:var(--text-color); border:1px solid #333; padding:6px; border-radius:6px; width:100%}
+    .meta{display:flex; justify-content:space-between; gap:8px; align-items:flex-start; margin-bottom:8px}
+    #meet-title{margin:0; font-size:1.5rem}
+    #timer{font-size:.9rem; text-align:right}
+
+    .board-viewport{position:relative; overflow:hidden; padding:8px}
+    .rot-0{transform:rotate(0deg); transform-origin:center center}
+    .rot-90{transform:rotate(90deg); transform-origin:center center}
+    .rot-180{transform:rotate(180deg); transform-origin:center center}
+    .rot-270{transform:rotate(270deg); transform-origin:center center}
+
+    table.leaderboard{width:100%; border-collapse:collapse}
+    .leaderboard th, .leaderboard td{border:1px solid #0d0e14; padding:6px; text-align:left; backdrop-filter:none}
+    .leaderboard tr:nth-child(even){background-color:rgba(25,25,28,.85)}
+    .leaderboard tr:nth-child(odd){background-color:rgba(7,7,7,.85)}
+    .leaderboard thead tr:first-child{background-color:rgba(29,36,70,.9)}
+
+    .cell-time{position:relative}
+    .status-badge{position:absolute; right:6px; top:4px; background:#8B0000; color:#fff; font-weight:900; padding:2px 6px; border-radius:4px; font-size:.75em}
+
+    .hidden-col{display:none !important}
+
+    @media print{
+      .toolbar, .modal-backdrop{display:none !important}
+      .bg-root{display:none}
+      body{padding:0}
+    }
+  </style>
+</head>
+<body>
+  <!-- dynamic background layers -->
+  <div class="bg-root" aria-hidden="true">
+    <div class="bg-image" id="bg-image"></div>
+    <div class="bg-overlay" id="bg-overlay"></div>
+  </div>
+
+  <div class="meta">
+    <div>
+      <h1 id="meet-title">&nbsp;</h1>
+      <div id="event-line">&nbsp;</div>
+    </div>
+    <div id="timer"></div>
+  </div>
+
+  <div class="board-viewport">
+    <div id="board-rotate" class="rot-0">
+      <table id="leaderboard-table" class="leaderboard"></table>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" id="btn-settings">⚙️ Settings</button>
+    <button class="btn" id="btn-print">🖨️ Print now</button>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-backdrop" id="settings-backdrop" role="dialog" aria-modal="true" aria-label="Leaderboard settings">
+    <div class="modal">
+      <header>
+        <h3>Display & Controls</h3>
+        <button class="btn" id="btn-close">✖</button>
+      </header>
+
+      <div class="row">
+        <div class="col">
+          <h4>Rotate / Orientation</h4>
+          <label>Rotation
+            <select id="rotate-select">
+              <option value="0">0° (default)</option>
+              <option value="90">90°</option>
+              <option value="180">180°</option>
+              <option value="270">270°</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="auto-print-on-heat-complete"> Auto print when Heat Status = 4</label>
+          <label><input type="checkbox" id="auto-hide-club-portrait"> Auto-hide Club column in Portrait</label>
+        </div>
+
+        <div class="col">
+          <h4>Columns visibility</h4>
+          <label><input type="checkbox" data-col="lane" checked> Lane</label>
+          <label><input type="checkbox" data-col="rank" checked> Rank</label>
+          <label><input type="checkbox" data-col="team" checked> Club / School</label>
+          <label><input type="checkbox" data-col="name" checked> Name</label>
+          <label><input type="checkbox" data-col="time" checked> Time (Status overlays here)</label>
+        </div>
+
+        <div class="col">
+          <h4>Club name format</h4>
+          <label>
+            <select id="club-name-mode">
+              <option value="full">Full name</option>
+              <option value="short">Short name (acronym)</option>
+              <option value="firstword">Short name (first word)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="col">
+          <h4>Typography</h4>
+          <label>Font family
+            <select id="font-family">
+              <option value="'Arial Black', Impact, sans-serif">Arial Black / Impact</option>
+              <option value="Arial, Helvetica, sans-serif">Arial</option>
+              <option value="Verdana, Geneva, sans-serif">Verdana</option>
+              <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
+            </select>
+          </label>
+          <label>Base font size (px)
+            <input id="font-size" type="range" min="12" max="28" step="1" value="16"/>
+          </label>
+          <label>Text color
+            <input id="font-color" type="color" value="#B2F801"/>
+          </label>
+        </div>
+
+        <div class="col" style="flex:1 1 100%">
+          <h4>Background</h4>
+          <label>Background mode
+            <select id="bg-mode">
+              <option value="solid">Solid color</option>
+              <option value="gradient">Gradient</option>
+              <option value="image">Image (URL)</option>
+            </select>
+          </label>
+          <div class="row">
+            <div class="col">
+              <label>Solid / Gradient color A <input type="color" id="bg-color-a" value="#0c0c0c"></label>
+              <label>Gradient color B <input type="color" id="bg-color-b" value="#101024"></label>
+              <label>Gradient angle (deg) <input type="range" id="bg-angle" min="0" max="360" value="135"></label>
+            </div>
+            <div class="col">
+              <label>Image URL <input type="text" id="bg-image-url" placeholder="https://.../background.jpg"></label>
+              <label>Image fit
+                <select id="bg-image-fit">
+                  <option value="cover">Cover</option>
+                  <option value="contain">Contain</option>
+                  <option value="fill">Fill</option>
+                </select>
+              </label>
+              <label>Image repeat
+                <select id="bg-image-repeat">
+                  <option value="no-repeat">No repeat</option>
+                  <option value="repeat">Tile</option>
+                  <option value="repeat-x">Repeat X</option>
+                  <option value="repeat-y">Repeat Y</option>
+                </select>
+              </label>
+              <label>Blur (px) <input type="range" id="bg-blur" min="0" max="12" value="0"></label>
+              <label>Dim overlay (0–100%) <input type="range" id="bg-dim" min="0" max="100" value="35"></label>
+            </div>
+          </div>
+          <small>Tip: Use a subtle blur/dim so text remains readable.
+          Values persist per browser via localStorage.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---- Config & helpers ----
+    const DQMsg = ["", "AB", "DQ", "DNC", "ES"]; // Status labels
+    let timervaldate = '', timervalTime = '';
+    let lastPrintedHeatId = null; // guard to avoid re-printing
+
+    const qs = new URLSearchParams(window.location.search);
+    let dataUrl = qs.get('dataUrl');
+
+    function persist(key, value){
+      try{ localStorage.setItem(key, JSON.stringify(value)); }catch(e){}
+    }
+    function restore(key, fallback){
+      try{ const v = localStorage.getItem(key); return v? JSON.parse(v): fallback; }catch(e){return fallback}
+    }
+
+    function clockTick(){
+      const nw = new Date();
+      timervaldate = nw.toDateString();
+      timervalTime = nw.toLocaleTimeString();
+      const t = document.getElementById('timer');
+      if(t){ t.innerHTML = `<strong>${timervaldate}</strong><br>${timervalTime}`; }
+    }
+    setInterval(clockTick, 1000); clockTick();
+
+    function acronymify(name){
+      if(!name) return '';
+      const parts = String(name).split(/\s+/).filter(Boolean);
+      const acr = parts.map(p=>p[0]).join('').slice(0,6);
+      return acr || name;
+    }
+    function firstWord(name){
+      if(!name) return '';
+      return String(name).split(/\s+/)[0];
+    }
+
+    function getClubDisplayName(raw){
+      const mode = restore('clubNameMode','full');
+      if(mode==='short') return acronymify(raw);
+      if(mode==='firstword') return firstWord(raw);
+      return raw || '';
+    }
+
+    function applyTypography(){
+      const fam = restore('fontFamily', "'Arial Black', Impact, sans-serif");
+      const size = restore('fontSize', 16);
+      const col = restore('fontColor', '#B2F801');
+      document.documentElement.style.setProperty('--font-family', fam);
+      document.documentElement.style.setProperty('--font-size', size + 'px');
+      document.documentElement.style.setProperty('--text-color', col);
+    }
+
+    function applyRotation(){
+      const deg = restore('rotation', 0);
+      const rot = document.getElementById('board-rotate');
+      rot.classList.remove('rot-0','rot-90','rot-180','rot-270');
+      rot.classList.add('rot-' + (deg%360));
+
+      // Auto-hide Club in Portrait if enabled
+      const autoHide = restore('autoHideClubPortrait', false);
+      const isPortrait = (deg%180===0); // 0/180 ≈ portrait, 90/270 ≈ landscape
+      const clubHeader = document.querySelector('th.col-team');
+      const clubCells = document.querySelectorAll('td.col-team');
+      const visMap = restore('visibleCols', {lane:true, rank:true, team:true, name:true, time:true});
+      if(autoHide && isPortrait){
+        if(clubHeader) clubHeader.classList.add('hidden-col');
+        clubCells.forEach(td=>td.classList.add('hidden-col'));
+      } else {
+        if(visMap.team){
+          if(clubHeader) clubHeader.classList.remove('hidden-col');
+          clubCells.forEach(td=>td.classList.remove('hidden-col'));
+        }
+      }
+    }
+
+    function applyColumnVisibility(){
+      const vis = restore('visibleCols', {lane:true, rank:true, team:true, name:true, time:true});
+      const map = {
+        lane: '.col-lane', rank: '.col-rank', team: '.col-team', name: '.col-name', time: '.col-time'
+      };
+      Object.entries(map).forEach(([k, sel])=>{
+        document.querySelectorAll(sel).forEach(el=>{
+          el.classList.toggle('hidden-col', !vis[k]);
+        });
+      });
+      applyRotation(); // re-evaluate portrait auto-hide
+    }
+
+    function buildHeader(meetName, eventId, heatFullName){
+      document.getElementById('meet-title').textContent = meetName || '';
+      document.getElementById('event-line').textContent = `Event ${eventId ?? ''} : ${heatFullName ?? ''}`;
+    }
+
+    function formatSwimTime(seconds){
+      const mins = String(Math.floor(seconds/60)).padStart(2,'0');
+      const secs = String(Math.floor(seconds%60)).padStart(2,'0');
+      const millis = String((seconds%1).toFixed(3)).slice(2);
+      return `${mins}:${secs}.${millis}`;
+    }
+
+    async function updateLeaderboard(){
+      try{
+        let url = dataUrl;
+        if(!url){
+          const cmdurlwithHost = 'http://' + GetEejoHostID() + ':5002' + '/SetLiveHeatCommands?CmdName=LiveBoard';
+          url = cmdurlwithHost;
+        }
+        const response = await fetch(url);
+        const jsonData = await response.json();
+
+        const boardData = jsonData.commandReturnData?.BoardStatusAndTime || [];
+        const clubs = jsonData.commandReturnData?.Club || [];
+        const names = jsonData.commandReturnData?.SwNames || [];
+        const heatNameRaw = jsonData.commandReturnData?.HeatName;
+        const eventID = jsonData.commandReturnData?.EventID;
+        const heatStatus = jsonData.commandReturnData?.HeatStatus;
+
+        // Compose meet header
+        const Meetname = jsonData.commandReturnData?.MeetName || 'Millennium World School Hassan Dec 2025';
+        const heatFullName = (typeof formatSwimmingEvent === 'function')
+          ? (formatSwimmingEvent(heatNameRaw, []).fullname)
+          : (heatNameRaw || '');
+        buildHeader(Meetname, eventID, heatFullName);
+
+        // Swimmer rows
+        const swimmers = boardData.map((item, index)=>({
+          BoardID: item.BoardID,
+          SwimTimings: item.Time,
+          SwimerName: names[index] ?? 'Unknown',
+          ClubName: clubs[index] ?? 'Unknown',
+          SwimStatus: item.Status,
+          LockStatus: item.LockStatus
+        }));
+
+        const validSwimmers = swimmers.filter(s=> s.SwimTimings>0 && s.LockStatus!==0)
+          .sort((a,b)=> a.SwimTimings - b.SwimTimings);
+        const zeroTimeOrLockedSwimmers = swimmers.filter(s=> s.SwimTimings===0 || s.LockStatus===0);
+        let currentRank = 1; let previousTime = null;
+        validSwimmers.forEach((swimmer, index)=>{
+          if(previousTime!==null && swimmer.SwimTimings!==previousTime){ currentRank = index+1; }
+          swimmer.Rank = currentRank; previousTime = swimmer.SwimTimings;
+        });
+        zeroTimeOrLockedSwimmers.forEach(swimmer=>swimmer.Rank = 0);
+        const rankedSwimmers = [...validSwimmers, ...zeroTimeOrLockedSwimmers].sort((a,b)=> a.BoardID - b.BoardID);
+
+        // Build table
+        const table = document.getElementById('leaderboard-table');
+        table.innerHTML = '';
+        const thead = document.createElement('thead');
+        thead.innerHTML = `
+          <tr>
+            <th class="col-lane">Lane</th>
+            <th class="col-rank">Rank</th>
+            <th class="col-team">Team</th>
+            <th class="col-name">Name</th>
+            <th class="col-time">Time</th>
+          </tr>`;
+        table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+
+        rankedSwimmers.forEach(swimmer=>{
+          const tr = document.createElement('tr');
+          const lane = `<td class="col-lane"><span style="display:inline-block; text-align:center; font-weight:600">L:${String(swimmer.BoardID).padStart(2,'0')}</span></td>`;
+          const rank = `<td class="col-rank">${swimmer.Rank}</td>`;
+          const team = `<td class="col-team"><span style="display:inline-block; text-align:left; font-weight:600">${getClubDisplayName(swimmer.ClubName)}</span></td>`;
+          const name = `<td class="col-name"><span style="display:inline-block; text-align:left; font-weight:600">${swimmer.SwimerName}</span></td>`;
+          const timeVal = (swimmer.SwimTimings===0 ? '00:00.000' : formatSwimTime(swimmer.SwimTimings));
+          const statusLabel = DQMsg[swimmer.SwimStatus] || '';
+          const time = `<td class="col-time cell-time"><strong>${timeVal}</strong>${ statusLabel ? `<span class='status-badge'>${statusLabel}</span>`: ''}</td>`;
+          tr.innerHTML = lane + rank + team + name + time;
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+
+        applyColumnVisibility();
+        applyTypography();
+        applyBackground();
+
+        // Auto print when Heat Status === 4
+        const autoPrint = restore('autoPrintOnHeatComplete', false);
+        if(autoPrint && heatStatus === 4){
+          const heatId = jsonData.commandReturnData?.HeatID || `${eventID}-${heatFullName}`;
+          if(heatId && heatId !== lastPrintedHeatId){
+            lastPrintedHeatId = heatId;
+            setTimeout(()=>window.print(), 500);
+          }
+        }
+      }catch(err){
+        console.error('Error fetching leaderboard data:', err);
+      }
+    }
+
+    // ---- Background application ----
+    function applyBackground(){
+      const mode = restore('bgMode', 'solid');
+      const a = restore('bgColorA', '#0c0c0c');
+      const b = restore('bgColorB', '#101024');
+      const ang = restore('bgAngle', 135);
+      const url = restore('bgImageUrl', '');
+      const fit = restore('bgImageFit', 'cover');
+      const rep = restore('bgImageRepeat', 'no-repeat');
+      const blur = restore('bgBlur', 0);
+      const dim = restore('bgDim', 35);
+
+      const bgImg = document.getElementById('bg-image');
+      const overlay = document.getElementById('bg-overlay');
+
+      if(mode === 'solid'){
+        bgImg.style.background = a;
+      } else if(mode === 'gradient'){
+        bgImg.style.background = `linear-gradient(${ang}deg, ${a}, ${b})`;
+      } else if(mode === 'image'){
+        const safe = url ? `url("${url}")` : a; // fallback to color A if no URL
+        bgImg.style.backgroundImage = url ? safe : 'none';
+        if(url){
+          bgImg.style.backgroundColor = 'transparent';
+          bgImg.style.backgroundPosition = 'center';
+          bgImg.style.backgroundSize = fit;
+          bgImg.style.backgroundRepeat = rep;
+        } else {
+          bgImg.style.background = a;
+        }
+      }
+      bgImg.style.filter = `blur(${blur}px)`;
+      overlay.style.background = `linear-gradient(rgba(0,0,0,${dim/100}), rgba(0,0,0,${dim/100}))`;
+    }
+
+    // ---- Polling ----
+    updateLeaderboard();
+    setInterval(updateLeaderboard, 700);
+
+    // ---- Settings wiring ----
+    const backdrop = document.getElementById('settings-backdrop');
+    document.getElementById('btn-settings').addEventListener('click',()=>{ backdrop.style.display='flex'; syncSettingsUI(); });
+    document.getElementById('btn-close').addEventListener('click',()=>{ backdrop.style.display='none'; });
+    document.getElementById('btn-print').addEventListener('click',()=>window.print());
+
+    // Controls state sync
+    function syncSettingsUI(){
+      // Rotation
+      const rotateSel = document.getElementById('rotate-select');
+      rotateSel.value = String(restore('rotation', 0));
+      rotateSel.onchange = (e)=>{ persist('rotation', parseInt(e.target.value,10)); applyRotation(); };
+
+      // Auto print & auto-hide club
+      const autoPrint = document.getElementById('auto-print-on-heat-complete');
+      autoPrint.checked = !!restore('autoPrintOnHeatComplete', false);
+      autoPrint.onchange = (e)=>{ persist('autoPrintOnHeatComplete', e.target.checked); };
+
+      const autoHideClub = document.getElementById('auto-hide-club-portrait');
+      autoHideClub.checked = !!restore('autoHideClubPortrait', false);
+      autoHideClub.onchange = (e)=>{ persist('autoHideClubPortrait', e.target.checked); applyRotation(); };
+
+      // Columns
+      const vis = restore('visibleCols', {lane:true, rank:true, team:true, name:true, time:true});
+      document.querySelectorAll('[data-col]').forEach(chk=>{
+        const key = chk.getAttribute('data-col');
+        chk.checked = !!vis[key];
+        chk.onchange = (e)=>{
+          const cur = restore('visibleCols', {lane:true, rank:true, team:true, name:true, time:true});
+          cur[key] = e.target.checked; persist('visibleCols', cur); applyColumnVisibility();
+        };
+      });
+
+      // Club name mode
+      const clubMode = document.getElementById('club-name-mode');
+      clubMode.value = restore('clubNameMode','full');
+      clubMode.onchange = (e)=>{ persist('clubNameMode', e.target.value); updateLeaderboard(); };
+
+      // Typography
+      const fam = document.getElementById('font-family');
+      fam.value = restore('fontFamily', "'Arial Black', Impact, sans-serif");
+      fam.onchange = (e)=>{ persist('fontFamily', e.target.value); applyTypography(); };
+
+      const fs = document.getElementById('font-size');
+      fs.value = restore('fontSize', 16);
+      fs.oninput = (e)=>{ persist('fontSize', parseInt(e.target.value,10)); applyTypography(); };
+
+      const fc = document.getElementById('font-color');
+      fc.value = restore('fontColor', '#B2F801');
+      fc.oninput = (e)=>{ persist('fontColor', e.target.value); applyTypography(); };
+
+      // Background settings
+      const bgMode = document.getElementById('bg-mode');
+      const bgA = document.getElementById('bg-color-a');
+      const bgB = document.getElementById('bg-color-b');
+      const bgAng = document.getElementById('bg-angle');
+      const bgUrl = document.getElementById('bg-image-url');
+      const bgFit = document.getElementById('bg-image-fit');
+      const bgRep = document.getElementById('bg-image-repeat');
+      const bgBlur = document.getElementById('bg-blur');
+      const bgDim = document.getElementById('bg-dim');
+
+      bgMode.value = restore('bgMode','solid');
+      bgA.value = restore('bgColorA','#0c0c0c');
+      bgB.value = restore('bgColorB','#101024');
+      bgAng.value = restore('bgAngle',135);
+      bgUrl.value = restore('bgImageUrl','');
+      bgFit.value = restore('bgImageFit','cover');
+      bgRep.value = restore('bgImageRepeat','no-repeat');
+      bgBlur.value = restore('bgBlur',0);
+      bgDim.value = restore('bgDim',35);
+
+      const applyAndPersist = (key, getVal)=> (e)=>{ persist(key, getVal(e)); applyBackground(); };
+
+      bgMode.onchange = applyAndPersist('bgMode', e=>e.target.value);
+      bgA.oninput = applyAndPersist('bgColorA', e=>e.target.value);
+      bgB.oninput = applyAndPersist('bgColorB', e=>e.target.value);
+      bgAng.oninput = applyAndPersist('bgAngle', e=>parseInt(e.target.value,10));
+      bgUrl.onchange = applyAndPersist('bgImageUrl', e=>e.target.value.trim());
+      bgFit.onchange = applyAndPersist('bgImageFit', e=>e.target.value);
+      bgRep.onchange = applyAndPersist('bgImageRepeat', e=>e.target.value);
+      bgBlur.oninput = applyAndPersist('bgBlur', e=>parseInt(e.target.value,10));
+      bgDim.oninput = applyAndPersist('bgDim', e=>parseInt(e.target.value,10));
+
+      applyBackground();
+    }
+
+    // Keyboard shortcut to open settings: 's'
+    window.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='s'){ backdrop.style.display='flex'; syncSettingsUI(); }});
+  </script>
+</body>
+</html>

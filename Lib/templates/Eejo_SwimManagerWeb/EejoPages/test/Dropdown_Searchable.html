@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Input with Datalist using JS</title>
+</head>
+<body>
+  <h2>Dynamically Add Searchable Dropdown</h2>
+
+  <div id="container"></div> <!-- We'll add the control here -->
+
+  <script>
+    // Create input element
+    const input = document.createElement('input');
+    input.setAttribute('list', 'cities');
+    input.setAttribute('id', 'city');
+    input.setAttribute('name', 'city');
+    input.setAttribute('placeholder', 'Type to search...');
+
+    // Create datalist element
+    const datalist = document.createElement('datalist');
+    datalist.setAttribute('id', 'cities');
+
+    // Append input and datalist to container
+    const container = document.getElementById('container');
+    container.appendChild(input);
+    container.appendChild(datalist);
+
+    // Add options from an array
+    const cityArray = ['Bangalore', 'Mumbai', 'Delhi', 'Chennai', 'Hyderabad'];
+    cityArray.forEach(city => {
+      const option = document.createElement('option');
+      option.value = city;
+      datalist.appendChild(option);
+    });
+  </script>
+</body>
+</html>

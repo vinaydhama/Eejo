@@ -13,7 +13,6 @@
 
   <title>EEJO Manager | MeetEditor Eejo Manager v2.0 &copy; 2025-26 &phone; +91 9620538528</title>
 
-
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- Bootstrap 3.3.2 -->
   <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -28,13 +27,155 @@
          folder instead of downloading all of them to reduce the load. -->
   <link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 </head>
+
+<!-- Toast container -->
+<div id="app-toast" class="app-toast" aria-live="polite" aria-atomic="true"></div>
+
+<style>
+  .top-nav {
+    position: fixed;
+    /* stays at top while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0f172a;
+    /* dark background */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 14px 0;
+    z-index: 1000;
+  }
+
+  .top-nav a {
+    color: #f8fafc;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    transition: background 0.3s;
+  }
+
+  .top-nav a:hover {
+    background-color: #38bdf8;
+    /* accent color */
+    color: #0f172a;
+    border-radius: 6px;
+  }
+
+  /* Add space for content below fixed nav */
+  .content {
+    margin-top: 70px;
+    /* equal to nav height */
+    padding: 20px;
+  }
+
+  /* Responsive: stack vertically on small screens */
+  @media (max-width: 600px) {
+    .top-nav {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+    }
+
+    .top-nav a {
+      display: block;
+      width: 100%;
+      padding: 10px;
+    }
+  }
+</style>
+<style>
+  .app-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: none;
+    min-width: 280px;
+    max-width: 80vw;
+    background: rgba(33, 33, 33, 0.95);
+    color: #fff;
+    border-radius: 6px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    font: 500 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    pointer-events: none;
+  }
+
+  .app-toast.show {
+    display: block;
+  }
+
+  .app-toast.success {
+    background: rgba(25, 135, 84, 0.95);
+  }
+
+  /* green */
+  .app-toast.error {
+    background: rgba(220, 53, 69, 0.95);
+  }
+
+  /* red */
+  .app-toast.loading {
+    background: rgba(33, 33, 33, 0.95);
+  }
+
+  /* dark */
+  .app-toast .row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<!-- <script>
+  function showToast(message, { type = 'info', duration = 3200, persistent = false } = {}) {
+    const el = document.getElementById('app-toast');
+    if (!el) return;
+    el.classList.remove('success', 'error', 'loading', 'show');
+
+    // Render message (support spinner for loading)
+    if (type === 'loading') {
+      el.innerHTML = `<span class="row"><span class="spinner" aria-hidden="true"></span><span>${message}</span></span>`;
+      el.classList.add('loading');
+    } else {
+      el.textContent = message;
+      if (type === 'success') el.classList.add('success');
+      else if (type === 'error') el.classList.add('error');
+    }
+    el.classList.add('show');
+
+    // Auto-hide unless persistent
+    clearTimeout(el.__timer);
+    if (!persistent) {
+      el.__timer = setTimeout(() => el.classList.remove('show'), duration);
+    }
+  }
+
+  function hideToast() {
+    const el = document.getElementById('app-toast');
+    if (!el) return;
+    el.classList.remove('show', 'success', 'error', 'loading');
+    clearTimeout(el.__timer);
+  }
+</script> -->
 
 
 <style>
@@ -128,6 +269,154 @@
 } */
 </style>
 
+<nav class="top-nav">
+  <nav class="menubar" aria-label="Main menu">
+    <!-- FILE (top-level) -->
+    <div class="menu-item">
+      <button id="File-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="File-menu">
+        Load ▾
+      </button>
+      <ul id="File-menu" class="dropdown" role="menu" aria-labelledby="File-btn">
+
+        <li role="none" style="position: relative;">
+
+          <button role="menuitem" class="kbd" id="Offlineradiobtn" onclick="LoadHeatNames('GetRunningHeatData')">
+            Live
+          </button>
+        </li>
+
+        <li role="none">
+          <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
+
+          <button id="localhost" role="menuitem" class="kbd" onclick=openFilePicker()> Local
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+        </li>
+
+        <li role="none" style="position: relative;">
+          <button role="menuitem" class="kbd" id="Onlineradiobtn" onclick="LoadHeatNames('Online')"> Cloud
+          </button>
+        </li>
+        <li role="none" style="position: relative;">
+
+          <button role="menuitem" class="kbd" id="Offlineradiobtn" onclick="LoadHeatNames('Offline')">
+            Offline
+          </button>
+        </li>
+
+
+        <li role="none" style="position: relative;">
+          <button role="menuitem" class="kbd" id="Offlineradiobtn" onclick=refreshMeet()>
+            Refresh
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- REPORTS (separate top-level menu) -->
+    <div class="menu-item">
+      <button id="Report-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="Report-menu">
+        Upload ▾
+      </button>
+      <ul id="Report-menu" class="dropdown" role="menu" aria-labelledby="Report-btn">
+        <li role="none">
+          <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
+
+          <button id="localhost" role="menuitem" class="kbd" onclick="{ CaptureEdits('SetRunningHeatData')}"> Live
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd" onclick="{CaptureEdits('InitLocal')}">
+            Local
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd"
+            onclick='{initResultSheet();UpdateReportTitle(6) ;plotEventTblNew(); }'> Online
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <!-- <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();  PltClubWiseResult(3)}'>
+            Club wise Entry
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet(); PltClubWiseResult(4)}'>
+            Club wise Result
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd"
+            onclick='{initResultSheet(); UpdateReportTitle(5) ; pltICGroup() }'> IC Groupwise
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();pltClubIC(2)}'> IC Club
+            wise
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd" onclick='{}'> TBD Heat Execution Progress
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button> -->
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="menu-item">
+      <button id="Heat-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="heat-menu">
+        Heat ▾
+      </button>
+      <ul id="heat-menu" class="dropdown" role="menu" aria-labelledby="Heat-btn">
+        <li role="none" style="position: relative;">
+          <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
+
+          <button id="localhost" role="menuitem" class="kbd" onclick="AppendRow('tblHeatDetails','tblHeatDetailsRow')">
+            New
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd"
+            onclick="DeleteRows('tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')">
+            Remove
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd"
+            onclick="UpdateSelectedData('updateHeat','tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')"> Update
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+          <!-- 
+          <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();  PltClubWiseResult(3)}'>
+            Club wise Entry
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet(); PltClubWiseResult(4)}'>
+            Club wise Result
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd"
+            onclick='{initResultSheet(); UpdateReportTitle(5) ; pltICGroup() }'> IC Groupwise
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();pltClubIC(2)}'> IC Club
+            wise
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button>
+
+          <button id="localhost" role="menuitem" class="kbd" onclick='{}'> TBD Heat Execution Progress
+            <input type="file" id="LocalFileSelector" style="display:none" ;>
+          </button> -->
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</nav>
 
 
 <body class="skin-blue">
@@ -139,8 +428,12 @@
 
     <body>
       <div class="print-header">
-        <label style="font-size: 12px;" id="MeetHeaderName">dsdsdsdsdsdsdsd </b>
+        <label style="font-size: 12px;" id="MeetHeaderName">Meet Header </b>
       </div>
+      <header>
+
+
+      </header>
 
       <div class="print-footer">
         <img src="../Img/eejo_max.png" style="width: 20px;">
@@ -153,10 +446,14 @@
       <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditorHelper.js"></script>
       <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditCaptureHelper.js"></script>
       <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEdit_JSONUpdate_Helper.js"></script>
+      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FileMenu.js"></script>
+
 
 
       <link rel="stylesheet" type="text/css" href="../bootstrap/css/MultiSelectStyle.css">
       <link rel="stylesheet" type="text/css" href="../bootstrap/css/GeneralStyle.css">
+      <link rel="stylesheet" type="text/css" href="../bootstrap/css/FileMenu.css">
+
 
       <div class="box box-solid box-default">
         <div class="box-header">
@@ -174,7 +471,7 @@
               </i> </h2>
           </button>
 
-          <button id="Onlineradiobtn" onclick=LoadHeatNames('Online')>
+          <button id="Onlineradiobtn" onclick="LoadHeatNames('Online')">
             <h2><i> <span class="glyphicon glyphicon-cloud"></span>
                 <h5>Online</h5>
               </i> </h2>
@@ -527,6 +824,11 @@
         </div>
       </div>
       <div class="box box-solid box-default">
+        
+<datalist id="datalistSWid"></datalist>
+<datalist id="datalistSWname"></datalist>
+<datalist id="datalistSWclub"></datalist>
+
         <div class="box-header">
           <h3 class="box-title">Swimmer Details</h3>
           <div class="box-tools pull-right">
@@ -563,7 +865,7 @@
               <th>
                 Group
               </th>
-              
+
               <th>
                 Club\School
               </th>
@@ -603,7 +905,8 @@
           <button onclick="AppendRow('tblHeatDetails','tblHeatDetailsRow')"><i class="fa fa-fw fa-plus"></i></button>
           <button onclick="DeleteRows('tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')"><i
               class="fa fa-fw fa-minus"></i></button>
-          <button onclick="UpdateSelectedData('updateHeat','tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')"><i class="fa fa-fw fa-upload"></i></button>
+          <button onclick="UpdateSelectedData('updateHeat','tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')"><i
+              class="fa fa-fw fa-upload"></i></button>
 
           <b style="font-size: 20px ;"></b>
 
@@ -642,6 +945,7 @@
     <script src="../dist/js/demo.js" type="text/javascript"></script>
     <!-- page script -->
     <script>
+      let Meetdteails;
 
       document.getElementById('resetBtn').addEventListener('click', function () {
         const cmdUrl = `${cmdurlwithHost}/SetLiveHeatCommands?CmdName=ResetTimer`;
@@ -697,6 +1001,9 @@
       HeatDetailsSlectedRows = [];
       Availablegroups = [];
       AvailableEvents = [];
+      AvailableSwimmerID = [];
+      AvailableSwimmerNames = [];
+      AvailableSwimmerClubs = [];
       SwimmerDetailsArray = [];
       NoofBoards = 5;
       var MeetUpdatedData;
@@ -907,7 +1214,7 @@
       }
       UpdateIOStatus();
       async function LoadHeatNames(HeatFileSource) {
-        showhide("BusyIndicatorpop", "Loading Heat...");
+        // showhide("BusyIndicatorpop", "Loading Heat...");
 
         MeetNameArray = [];
         initMeetNames(HeatFileSource);
@@ -927,8 +1234,8 @@
               ReloadData('Groups');
               GenerateEventTable(Meetdteails.EventList);
               ReloadData('Events');
-              GenerateHeatDetailsTable(Meetdteails.HeatList)
               GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+              GenerateHeatDetailsTable(Meetdteails.HeatList)
               showhide("BusyIndicatorpop", "Loading Heat...");
 
 
@@ -941,8 +1248,13 @@
           case "GetRunningHeatData":
             cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=GetRunningHeatData";
             try {
-              let response = await fetch(cmdurl);
-              let data = await response.json();
+
+              // To be tested
+              let returndata = await ExecuteRestLocalCommands(cmdurl);
+              data = returndata.data;
+
+              // let response = await fetch(cmdurl);
+              // let data = await response.json();
               MeetDataFirebase = data.commandReturnData;
               Meetdteails = ExtractMeetInfo(MeetDataFirebase, "");
               MeetUpdatedData = Meetdteails.CurrentMeet;
@@ -951,8 +1263,8 @@
               ReloadData('Groups');
               GenerateEventTable(Meetdteails.EventList);
               ReloadData('Events');
-              GenerateHeatDetailsTable(Meetdteails.HeatList)
               GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+              GenerateHeatDetailsTable(Meetdteails.HeatList)
 
             } catch (error) {
               console.error('Error fetching data:', error);
@@ -1012,8 +1324,8 @@
               ReloadData('Groups');
               GenerateEventTable(Meetdteails.EventList);
               ReloadData('Events');
-              GenerateHeatDetailsTable(Meetdteails.HeatList)
               GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+              GenerateHeatDetailsTable(Meetdteails.HeatList)
             }
             else if (HeatFileSource == "Offline") {
               cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=ReadHeatFromLocalFile&HeatFileName=" + value;
@@ -1031,8 +1343,8 @@
                 ReloadData('Groups');
                 GenerateEventTable(Meetdteails.EventList);
                 ReloadData('Events');
-                GenerateHeatDetailsTable(Meetdteails.HeatList)
                 GenerateSwimmersTable(Meetdteails.SwimmerDetails);
+                GenerateHeatDetailsTable(Meetdteails.HeatList)
 
               } catch (error) {
                 console.error('Error fetching data:', error);
@@ -1062,33 +1374,64 @@
 
       }
       async function FetchMeetNames() {
-        showhide("BusyIndicatorpop", "Loading Swimmer table");
-        var dataAPI = fetch(MeetDataFirebaseURL)
-          .then(response => {
-            return response.json()
-          })
-          .then(data => {
-            MeetNameArray = LoadMeetNames(data)
-            initMeetNames("Online");
-            MeetDataFirebase = data;
-            NoofBoards = MeetDataFirebase.Boards;
-            showhide("BusyIndicatorpop");
-            return;
-          }, error => {
-            console.error('onRejected function called: ' + error.message);
-          })
+        // showhide("BusyIndicatorpop", "Loading Swimmer table");
+
+        let responsedata = await ExecuteRestLocalCommands(MeetDataFirebaseURL, busyKey = "Fetching Heats From FB");
+        MeetNameArray = LoadMeetNames(responsedata.data)
+        initMeetNames("Online");
+        MeetDataFirebase = responsedata.data;
+        NoofBoards = MeetDataFirebase.Boards;
+
+
+
+        // var dataAPI = fetch(MeetDataFirebaseURL)
+        //   .then(response => {
+        //     return response.json()
+        //   })
+        //   .then(data => {
+        //     MeetNameArray = LoadMeetNames(data)
+        //     initMeetNames("Online");
+        //     MeetDataFirebase = data;
+        //     NoofBoards = MeetDataFirebase.Boards;
+        //     showhide("BusyIndicatorpop");
+        //     return;
+        //   }, error => {
+        //     console.error('onRejected function called: ' + error.message);
+        //   })
       }
 
       async function SaveEventToFB(FirebaseURL, DataTopost) {
-        showhide("BusyIndicatorpop", "Writing To Cloud");
-        await fetch(FirebaseURL, {
-          method: "PUT",
-          body: JSON.stringify(DataTopost),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8"
+        // showhide("BusyIndicatorpop", "Writing To Cloud");
+
+
+
+        (async () => {
+          // const payload = { heatId: "100m_free_3", lane: 4, status: "ready" };
+
+          const result = await ExecuteRestLocalCommands(
+            FirebaseURL,
+            "",
+            { method: 'PUT', body: JSON.stringify(DataTopost), expectJson: true }
+            , busyKey = "Save to Fire base");
+
+          if (!result.ok) {
+            console.warn("PUT failed:", result.error);
+          } else {
+            console.log("PUT response:", result.data);
           }
-        });
-        showhide("BusyIndicatorpop");
+        })();
+
+
+
+
+        // await fetch(FirebaseURL, {
+        //   method: "PUT",
+        //   body: JSON.stringify(DataTopost),
+        //   headers: {
+        //     "Content-type": "application/json; charset=UTF-8"
+        //   }
+        // });
+        // showhide("BusyIndicatorpop");
       }
       // To detect connectd Eejo on network
 
@@ -1136,7 +1479,12 @@
           case 'Cloud':
             // cmdurl = cmdurlwithHost +"/SetLiveHeatCommands?CmdName=LoadHeatFromLocalFile&HeatFileName=TestMeet1.EejoHeat";
             // CmdToSend = "CmdName=" + "SaveHeatFileToLocalFile" + "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + "TestMeet1.EejoHeat";
-            SaveEventToFB(FirebaseURLToWrite + SelectedMeetFile + ".json", MeetUpdatedData);
+
+
+
+
+
+            SaveEventToFB(FirebaseURLToWrite + MeetUpdatedData.FireBaseName + ".json", MeetUpdatedData);
             break;
 
           case 'SaveAs':
@@ -1212,42 +1560,7 @@
       }
 
 
-
-      async function ExecuteRestLocalCommands(cmdurl, CmdtoSend) {
-        try {
-          showhide("BusyIndicatorpop", "ExecuteRestLocalCommands");
-          urlToSend = cmdurl + CmdtoSend;
-          console.log("cmdurl" + cmdurl);
-          console.log("CmdtoSend" + CmdtoSend);
-
-
-          await fetch(urlToSend)
-            .then(response => {
-              // Check if the response is successful
-              if (!response.ok) {
-                throw new Error('Network response was not ok: ' + response.statusText);
-              }
-              return response.json();
-            })
-            .then(data => {
-              // MeetNameArray = LoadHeatFileName(data);
-              // initMeetNames();
-              showhide("BusyIndicatorpop");
-
-
-              return data;
-            })
-
-            .catch(error => {
-              console.error('There was a problem with the fetch operation:', error);
-            });
-        }
-        catch (error) {
-          console.error('There was a problem with the fetch operation:', error);
-        }
-      }
     </script>
 </body>
-
 
 </html>

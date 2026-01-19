@@ -6,6 +6,115 @@
   <title>EEJO Manager | Meet Results Eejo Manager v2.0 &copy; 2025-26 &phone; +91 9620538528</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
+  <header  >
+      <div class="appbar-inner">
+        <div class="brand" aria-label="App">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Eejo Reports</span>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle menu"
+          type="button">
+          <span class="bars" aria-hidden="true"></span>
+        </button>
+
+        <!-- Main menu -->
+
+
+        <nav class="menubar" aria-label="Main menu">
+          <!-- FILE (top-level) -->
+          <div class="menu-item">
+            <button id="File-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="File-menu">
+              File ▾
+            </button>
+            <ul id="File-menu" class="dropdown" role="menu" aria-labelledby="File-btn">
+              <li role="none">
+                <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
+
+                <button id="localhost" role="menuitem" class="kbd" onclick=openFilePicker()> Local
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+              </li>
+
+              <li role="none" style="position: relative;">
+                <button role="menuitem" class="kbd" id="Onlineradiobtn"
+                  onclick='{ SelectedSource={Type:"Online"};LoadHeatNames("Online")}'> Online
+                </button>
+              </li>
+              <li role="none" style="position: relative;">
+
+                <button role="menuitem" class="kbd" id="Offlineradiobtn"
+                  onclick='{SelectedSource={Type:"Offline"};LoadHeatNames("Offline")}'>
+                  Offline
+                </button>
+              </li>
+              <li role="none" style="position: relative;">
+                <button role="menuitem" class="kbd" id="Offlineradiobtn" onclick=refreshMeet()>
+                  Refresh
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- REPORTS (separate top-level menu) -->
+          <div class="menu-item">
+            <button id="Report-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false"
+              aria-controls="Report-menu">
+              Reports ▾
+            </button>
+            <ul id="Report-menu" class="dropdown" role="menu" aria-labelledby="Report-btn">
+              <li role="none">
+                <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{  initResultSheet(); GenerateHeatDetailsTable(0)}'> Heat List
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{initResultSheet(); GenerateHeatDetailsTable(1)}'> Heat Results
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{initResultSheet();UpdateReportTitle(6) ;plotEventTblNew(); }'> Event Results
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();  PltClubWiseResult(3)}'>
+                  Club wise Entry
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet(); PltClubWiseResult(4)}'>
+                  Club wise Result
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd"
+                  onclick='{initResultSheet(); UpdateReportTitle(5) ; pltICGroup() }'> IC Groupwise
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();pltClubIC(2)}'> IC Club
+                  wise
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+
+                <button id="localhost" role="menuitem" class="kbd" onclick='{}'> TBD Heat Execution Progress
+                  <input type="file" id="LocalFileSelector" style="display:none" ;>
+                </button>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+
+
+      </div>
+    </header>
+
 </head>
 <style>
   /* ===== CONFIG ===== */
@@ -235,116 +344,11 @@
   }
 </style>
 
+
+
 <body width="100%" height="100%">
   <div class="hide-on-print">
-    <header class="appbar" role="banner">
-      <div class="appbar-inner">
-        <div class="brand" aria-label="App">
-          <span class="dot" aria-hidden="true"></span>
-          <span>Eejo Reports</span>
-        </div>
-
-        <!-- Mobile hamburger -->
-        <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle menu"
-          type="button">
-          <span class="bars" aria-hidden="true"></span>
-        </button>
-
-        <!-- Main menu -->
-
-
-        <nav class="menubar" aria-label="Main menu">
-          <!-- FILE (top-level) -->
-          <div class="menu-item">
-            <button id="File-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="File-menu">
-              File ▾
-            </button>
-            <ul id="File-menu" class="dropdown" role="menu" aria-labelledby="File-btn">
-              <li role="none">
-                <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
-
-                <button id="localhost" role="menuitem" class="kbd" onclick=openFilePicker()> Local
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-              </li>
-
-              <li role="none" style="position: relative;">
-                <button role="menuitem" class="kbd" id="Onlineradiobtn"
-                  onclick='{ SelectedSource={Type:"Online"};LoadHeatNames("Online")}'> Online
-                </button>
-              </li>
-              <li role="none" style="position: relative;">
-
-                <button role="menuitem" class="kbd" id="Offlineradiobtn"
-                  onclick='{SelectedSource={Type:"Offline"};LoadHeatNames("Offline")}'>
-                  Offline
-                </button>
-              </li>
-              <li role="none" style="position: relative;">
-                <button role="menuitem" class="kbd" id="Offlineradiobtn" onclick=refreshMeet()>
-                  Refresh
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <!-- REPORTS (separate top-level menu) -->
-          <div class="menu-item">
-            <button id="Report-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false"
-              aria-controls="Report-menu">
-              Reports ▾
-            </button>
-            <ul id="Report-menu" class="dropdown" role="menu" aria-labelledby="Report-btn">
-              <li role="none">
-                <!-- <button role="menuitem" data-action= " " class="kbd">Live</span> -->
-
-                <button id="localhost" role="menuitem" class="kbd"
-                  onclick='{  initResultSheet(); GenerateHeatDetailsTable(0)}'> Heat List
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-
-                <button id="localhost" role="menuitem" class="kbd"
-                  onclick='{initResultSheet(); GenerateHeatDetailsTable(1)}'> Heat Results
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-
-                <button id="localhost" role="menuitem" class="kbd"
-                  onclick='{initResultSheet();UpdateReportTitle(6) ;plotEventTblNew(); }'> Event Results
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-
-                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();  PltClubWiseResult(3)}'>
-                  Club wise Entry
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-
-                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet(); PltClubWiseResult(4)}'>
-                  Club wise Result
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-
-                <button id="localhost" role="menuitem" class="kbd"
-                  onclick='{initResultSheet(); UpdateReportTitle(5) ; pltICGroup() }'> IC Groupwise
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-
-                <button id="localhost" role="menuitem" class="kbd" onclick='{initResultSheet();pltClubIC(2)}'> IC Club
-                  wise
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-
-                <button id="localhost" role="menuitem" class="kbd" onclick='{}'> TBD Heat Execution Progress
-                  <input type="file" id="LocalFileSelector" style="display:none" ;>
-                </button>
-              </li>
-
-            </ul>
-          </div>
-        </nav>
-
-
-      </div>
-    </header>
+   
   </div>
   <div class="hide-on-print">
     <!-- <fieldset>
@@ -392,9 +396,14 @@
                 <tr style="height:12mm !important;">
 
                   <td
+                    style="text-align:left !important; vertical-align:middle !important; padding:0 !important; margin:0 !important; border:0 !important; white-space:nowrap !important;">                    
+                    <img class="logo" src="../Img/EejoPortalQR.png" alt="EEJO Manager Logo" />
+                  </td>
+
+                  <td
                     style="text-align:left !important; vertical-align:middle !important; padding:0 !important; margin:0 !important; border:0 !important; white-space:nowrap !important;">
                     <img class="logo" src="../Img/eejo_logo.png" alt="EEJO Manager Logo" />
-
+                    <!-- <img class="logo" src="../Img/EejoPortalQR.png" alt="EEJO Manager Logo" /> -->
                   </td>
                   <td
                     style="text-align:center !important; vertical-align:middle !important; padding:0 !important; margin:0 !important; border:0 !important;">
@@ -409,7 +418,7 @@
                   </td>
                   <td
                     style="text-align:right !important; vertical-align:middle !important; padding:0 !important; margin-top:'-0px' !important; border:0 !important; white-space:nowrap !important;">
-                    <img class="logo" src="../Img/SSM_Logo.png" alt="EEJO Manager Logo" />
+                    <img width="150px" src="../Img/Organisers_Logo.png" alt="EEJO Manager Logo" />
 
                   </td>
                 </tr>
@@ -449,7 +458,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
   <title>Eejo Meet Report Generator</title>
 
-  <body>
+  </body>
 
     <script charset="utf-8" type="text/javascript" src="../bootstrap/js/MultiSelectScript.js"></script>
     <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseDataRetrive.js"></script>
@@ -494,7 +503,7 @@
     </script>
 
     <script>
-      MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets.json";
+      MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets";
       let pointsArray = [7, 5, 3, 0, 0, 0, 0, 0, 0, 0];
       let AvblReports = [];
       let SelectedReportList = [];
@@ -661,12 +670,16 @@
       function SerachSwimRecords(MeetData = MeetUpdatedData) {
         EventResultsDict = {};
         let EventCounter = 0;
+          let MeetHeaderName= getEl("MeetHeaderName");
+          if (MeetHeaderName)
+          {
+            MeetHeaderName.innerHTML= MeetData.MeetName
+          }
 
         // --- EventDetails: now a dict keyed by eventID ---
         toValues(MeetData.EventDetails).forEach(eventDetail => {
           if (!eventDetail) return;
           EventCounter++;
-
           const EventResultArray = [];
 
           // --- HeatList: now a dict keyed by HeatID ---
@@ -689,11 +702,13 @@
               if (Board.SwimTimings !== 12.34) {
                 SwimTimings = Board.SwimTimings;
               }
+              const HeatDetails= formatSwimmingEvent(heatObj.HeatID,MeetUpdatedData.EventList)
 
               EventResultArray.push({
                 SwName: Board.SwimerName,
-                SwimerClub: SwClubAndGrp.SwClub,
-                Group: SwClubAndGrp.SwGroup,
+                //SwimerClub: SwClubAndGrp.SwClub,
+                SwimerClub: Board.ClubName,
+                Group: HeatDetails.Group,
                 SwimStatus: Board.SwimStatus,
                 SwimTimings: SwimTimings // or Board.SwimTimings if you prefer the raw value
               });
@@ -797,6 +812,7 @@
           // -------- Robust EventID computation (Dict-aware) --------
           let EventID = -1;
           let heatId = "";
+           let displayNumber=0;
           try {
             heatId = Heat?.ID;
 
@@ -818,11 +834,14 @@
                 log.warn("Heat.ID has no valid underscore partition; using full ID fallback.", { heatId, lastIndex: part.lastIndex });
               } else {
                 const keyPrefix = normalizeStr(part.prefix);
+                displayNumber = Array.isArray(MeetUpdatedData.EventList)
+            ? (MeetUpdatedData.EventList.indexOf(keyPrefix) + 1)
+            : 0; // fallback to running counter if EventList not an array
 
                 // Match against primitive strings OR objects with ID/Id/id
                 const match = eventEntries.find(({ value }) => {
                   if (value == null) return false;
-                  if (typeof value === 'string') return normalizeStr(value) === keyPrefix;
+                  if (typeof value === 'string') return normalizeStr(value.eventID) === keyPrefix;
                   const candidate = (value?.ID ?? value?.Id ?? value?.id);
                   return typeof candidate === 'string' && normalizeStr(candidate) === keyPrefix;
                 });
@@ -852,8 +871,9 @@
           AvblReports.push({ value: tblSwlist.id, text: "Heat" + heatId });
 
           const header = tblSwlist.createTHead();
-          let row = header.insertRow();
+          let row = header.insertRow();          
           let cell = row.insertCell();
+
 
           // Header text logic with EventID safety
           const isSameEvent = (lastEvent === EventID);
@@ -862,26 +882,32 @@
             : "?";
           const eventOrdinal = (EventID >= 0) ? (EventID + 1) : "N/A";
 
+        
+
           let headerText;
           let highlightNewEvent = false;
+          const  formatted = (typeof formatSwimmingEvent === 'function')
+              ? formatSwimmingEvent(Heat.ID,MeetUpdatedData.EventList)
+              : normalizeStr(Heat.ID);
+              
 
           if (isSameEvent && EventID >= 0) {
-            headerText = `<h4> <b> Event: ${eventOrdinal} Heat : ${heatNumberText}</b><h4>`;
+            headerText = `<br><h4> <b> Event ${formatted.EventDetailsDict.EventID} : Heat : ${formatted.EventDetailsDict.heatId}</b><h4>`;
           } else {
             lastEvent = EventID;
-            const formatted = (typeof formatSwimmingEvent === 'function')
-              ? formatSwimmingEvent(Heat.ID)
-              : normalizeStr(Heat.ID);
-            headerText = `<h4> <b '>Event: ${eventOrdinal} ${formatted}</b> <h4>`;
+           
+            headerText = `<br> <h4> <b '>Event ${formatted.EventDetailsDict.EventID} : ${formatted.fullname}</b> <h4>`;
             highlightNewEvent = true;
           }
 
           cell.innerHTML = headerText;
+          cell.style.border = "none"; // Removes the border
+          cell.colSpan = 5;
+
           if (highlightNewEvent) {
             // cell.style.backgroundColor = "rgb(100, 100, 100)";
           }
 
-          cell.colSpan = 5;
           {
 
 
@@ -952,14 +978,15 @@
           const board = Heat?.Boardinfo?.[j] ?? {};
           const SwimerID = board.SwimerID ?? '';
           let BoardID = board.BoardID ?? 0;
+          let Club = board.ClubName;
 
           const Swimerstatus = board.SwimStatus ?? 0;       // index-like code
           const SwimerName = normalizeStr(board.SwimerName ?? '');
-          let Club = '';
+          
 
           let EventName = "";
           let seedTime = "NT";
-          let Age = 0;
+          // let Age = 0;
 
           const heatId = Heat.ID;
           const part = splitBeforeLastUnderscore(heatId);
@@ -968,8 +995,26 @@
           } else {
             EventName = normalizeStr(part.prefix);
           }
-          const bestTiming = Meetdteails.SwimmerDetails[SwimerID].Events.find(item => item.EventName === EventName)?.BestTimeings;
-          Age = calculateAge(Meetdteails.SwimmerDetails[SwimerID].DOB);
+          
+          // const bestTiming = Meetdteails.SwimmerDetails[SwimerID].Events.find(item => item.EventName === EventName)?.BestTimeings;
+
+          
+    const bestTiming = Meetdteails?.SwimmerDetails?.[SwimerID]?.Events
+      ?.find(item => item?.EventName === EventName)
+      ?.BestTimeings ?? "NT"; // or use '-' as fallback
+
+          // To be checked
+          // Age = calculateAge(Meetdteails.SwimmerDetails[SwimerID].DOB);
+
+          
+// If calculateAge already exists and expects a Date or ISO string:
+const Age =
+  (() => {
+    const dob = Meetdteails?.SwimmerDetails?.[SwimerID]?.DOB;
+    return dob ? calculateAge(dob) : null; // or use '-' as a fallback
+  })();
+
+          // Age="";
 
           if (bestTiming == "") {
             seedTime = "NT";
@@ -980,12 +1025,12 @@
 
 
           // Defensive Meet details lookup
-          try {
-            const clubObj = Meetdteails?.SwimmerDetails?.[SwimerName];
-            Club = normalizeStr(clubObj?.Club ?? '');
-          } catch (clubErr) {
-            log.warn("Club lookup failed.", { SwimerName }, clubErr);
-          }
+          // try {
+          //   const clubObj = Meetdteails?.SwimmerDetails?.[SwimerName];
+          //   Club = normalizeStr(clubObj?.Club ?? '');
+          // } catch (clubErr) {
+          //   log.warn("Club lookup failed.", { SwimerName }, clubErr);
+          // }
 
           // Ensure tbody exists and insert row
           const body = ensureTBody(tblSwlist);
@@ -1061,7 +1106,7 @@
         //showhide("BusyIndicatorpop", "Loading Swimmer table");
         // busyi.show();
 
-        var dataAPI = fetch(MeetDataFirebaseURL)
+        var dataAPI = await fetch(MeetDataFirebaseURL + ".json")
           .then(response => {
             return response.json()
           })
@@ -1088,7 +1133,7 @@
 
 
       }
-      function initMeetNames(HeatFileSource) {
+      async function initMeetNames(HeatFileSource) {
         new MultiSelect('#dynamic1', {
           data: MeetNameArray,
           placeholder: 'Select Meet',
@@ -1100,7 +1145,25 @@
           onSelect: async function (value, text, element) {
             switch (HeatFileSource) {
               case "Online":
-                SerachSwimRecords(MeetDataFirebase[text])
+                // SerachSwimRecords(MeetDataFirebase[text])
+
+                
+        //showhide("BusyIndicatorpop", "Loading Swimmer table");
+        // busyi.show();
+
+        var dataAPI = await fetch(MeetDataFirebaseURL +"/"+ value+ ".json")
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+             MeetUpdatedData = data;
+                UpdateSwClubAndGroup(MeetUpdatedData.SwimmerDetails)
+                SerachSwimRecords()
+            return;
+          }, error => {
+            console.error('onRejected function called: ' + error.message);
+          })
+               
                 break;
               case "Local":
                 SerachSwimRecords(MeetDataFirebase[text])
@@ -1216,9 +1279,27 @@
           sortedBoards.forEach((DictElement, index) => {
             const Swname = Swimmeringroup[DictElement.key - 1];
 
-            Eventlist = swClubGroupDict[Swname].EventDetails.replace(/;/g, "<br>")
+            // Eventlist = swClubGroupDict[Swname].EventDetails.replace(/;/g, ";<br>")            
+            // const input = "Event: Meeting; Location: Bangalore; Time: 10:00;";
+            // Eventlist = swClubGroupDict[Swname].EventDetails.replace(/:([^;]*);/g, (m, p1) => `:<b>${p1.trim()}</b>;`);            
 
-            Rowdata.push({ SlNO: index + 1, Name: Swname, Group: swClubGroupDict[Swname].SwGroup, TotalPoints: swClubGroupDict[Swname].TotalScore, EventDetails: swClubGroupDict[Swname].EventDetails })
+            
+const Eventlist = swClubGroupDict[Swname].EventDetails
+  .replace(/:([^;]*);/g, (m, p1) => `:<b>${p1.trim()}</b>;`)
+  .replace(/;/g, ";<br>");
+
+
+            
+// const Eventlist = swClubGroupDict[Swname].EventDetails
+//   // Wrap text between ":" and ";" with escaped <b>…</b>
+//   .replace(/:([^;]*);/g, (m, p1) => `:&lt;b&gt;${p1.trim()}&lt;/b&gt;;`)
+//   // Replace ";" with ";&lt;br&gt;" (escaped <br>)
+//   .replace(/;/g, ";&lt;br&gt;");
+
+// "Event: <b>Meeting</b>; Location: <b>Bangalore</b>; Time: <b>10:00</b>;"
+
+
+            Rowdata.push({ SlNO: index + 1, Name: Swname, Group: swClubGroupDict[Swname].SwGroup, TotalPoints: swClubGroupDict[Swname].TotalScore, EventDetails: Eventlist })
             clbscore += swClubGroupDict[Swname].TotalScore;
           });
           Dictclubscore[Clbkey] = { 'clubscore': clbscore, 'Rowdata': Rowdata }
@@ -1235,7 +1316,7 @@
         Object.keys(SwDictByclub).forEach(Clbkey => {
 
           TableID = "Club_Table" + Clbkey
-          AvblReports.push({ value: TableID, text: "IC " + Clbkey });
+          AvblReports.push({ value: TableID, text: Clbkey });
           if (ReportType == 4) {
             headers = ["SlNO", "Name", "Group", "Total Points", "EventDetails"]
           }
@@ -1245,6 +1326,8 @@
           }
           if (ReportType == 4) {
             TableTitleToShow = Clbkey + " Total: " + Dictclubscore[Clbkey].clubscore;
+
+            
 
             const rows = Dictclubscore[Clbkey].Rowdata.map(d => [d.SlNO, d.Name, d.Group, d.TotalPoints, d.EventDetails]);
             buildTable({ containerId: 'resultsContainer', columns: headers, rows, TableID, TableTitle: TableTitleToShow });
@@ -1283,7 +1366,9 @@
             let TableID = "table_IC" + Grpkey
             AvblReports.push({ value: TableID, text: "IC " + Grpkey });
 
-            let TableTitleToShow = `IC ${formatSwimmingEvent("_" + Grpkey)}`;
+// to be checked
+
+            let TableTitleToShow = `IC ${formatSwimmingEvent("_" + Grpkey,MeetUpdatedData.EventList).fullname}`;
 
             headers = ["Sl.NO", "Rank", "Name", "Club/School", "Total"]
 
@@ -1353,13 +1438,14 @@
 
         for (const [key, value] of Object.entries(EventResultsDict)) {
 
-          const displayNumber = Array.isArray(MeetUpdatedData.EventList)
-            ? (MeetUpdatedData.EventList.indexOf(key) + 1)
-            : EventCounter; // fallback to running counter if EventList not an array
-
+          // const displayNumber = Array.isArray(MeetUpdatedData.EventList)
+          //   ? (MeetUpdatedData.EventList.indexOf(key) + 1)
+          //   : EventCounter; // fallback to running counter if EventList not an array
+        const Eventdisplay= formatSwimmingEvent(key,MeetUpdatedData.EventList);
+          
           let TableID = "tblMeetResult_" + key;
-          AvblReports.push({ value: TableID, text: "Event" + key + " " + displayNumber })
-          let TableTitleToShow = "Event " + key + " " + formatSwimmingEvent(key);
+          AvblReports.push({ value: TableID, text: "Event" + Eventdisplay.EventDetailsDict.EventID + " " + Eventdisplay.EventDetailsDict.EventID })
+          let TableTitleToShow = "Event " + Eventdisplay.EventDetailsDict.EventID + " : " + " " + Eventdisplay.fullname;
 
           const rows = value.map(d => [d.SlNO, d.Rank, d.SwimmerName, d.SwimmerClubSchool, d.SwimStatus, d.SwimTimings, d.Points]);
           buildTable({ containerId: 'resultsContainer', columns: headers, rows, TableID, TableTitle: TableTitleToShow });
@@ -1388,17 +1474,30 @@
           return a.value - b.value;
         });
 
+          const FormatedEvent= formatSwimmingEvent(eventNameID,MeetUpdatedData.EventList);
+
+
         // let sortedBoards = SortangGetRankForEvents(EventResultArray);
 
         for (let eventIndex = 0; eventIndex < EventResultArray.length; eventIndex++) {
           let swimmer = EventResultArray[sortedBoards[eventIndex].key - 1];
           if (!(swimmer.SwName in swClubGroupDict)) {
-            swClubGroupDict[swimmer.SwName] = { SwClub: "ClubUnknown", SwGroup: "Group_Unknown", TotalScore: 0 };
+
+            const clubNameFromHeat = EventResultArray.find(item => item.SwName === swimmer.SwName)?.SwimerClub ?? null;
+            
+            const GroupNameFromHeat = FormatedEvent.EventDetailsDict.Group;
+
+            swClubGroupDict[swimmer.SwName] = { SwClub: clubNameFromHeat, SwGroup:GroupNameFromHeat, TotalScore: 0 };
           }
           let previousScore = swClubGroupDict[swimmer.SwName].TotalScore;
           let currentScore = GetPoints(sortedBoards[eventIndex].value);
           swClubGroupDict[swimmer.SwName].TotalScore = previousScore + currentScore;
-          swClubGroupDict[swimmer.SwName].EventDetails = swClubGroupDict[swimmer.SwName].EventDetails + formatSwimmingEvent(eventNameID) + " : " + "  " + DQMsg[swimmer.SwimStatus] + " " + ConvertTime(swimmer.SwimTimings) + ";"
+         
+if (swClubGroupDict[swimmer.SwName].EventDetails === undefined) {
+    swClubGroupDict[swimmer.SwName].EventDetails = "";
+}
+
+          swClubGroupDict[swimmer.SwName].EventDetails = swClubGroupDict[swimmer.SwName].EventDetails +"Event " + FormatedEvent.EventDetailsDict.EventID +" "+ FormatedEvent.fullname + " : " + "  " + DQMsg[swimmer.SwimStatus] + " " + ConvertTime(swimmer.SwimTimings) + ";"
           Rowdata.push({
             "SlNO": eventIndex + 1, "Rank": sortedBoards[eventIndex].value, "SwimmerName": swimmer.SwName, "SwimmerClubSchool": swimmer.SwimerClub, "SwimStatus":
               DQMsg[swimmer.SwimStatus], "SwimTimings": ConvertTime(swimmer.SwimTimings !== 12.34 ? swimmer.SwimTimings : 0), "Points": currentScore

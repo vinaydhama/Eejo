@@ -902,7 +902,7 @@
         let previousScore = swClubGroupDict[swimmer.SwName].TotalScore;
         let currentScore = GetPoints(sortedBoards[eventIndex].value);
         swClubGroupDict[swimmer.SwName].TotalScore = previousScore + currentScore;
-        swClubGroupDict[swimmer.SwName].EventDetails = swClubGroupDict[swimmer.SwName].EventDetails + formatSwimmingEvent(eventNameID) + " : " + "  " + DQMsg[swimmer.SwimStatus] + " " + ConvertTime(swimmer.SwimTimings) + ";"
+        swClubGroupDict[swimmer.SwName].EventDetails = swClubGroupDict[swimmer.SwName].EventDetails + formatSwimmingEvent(eventNameID,MeetUpdatedData.EventList) + " : " + "  " + DQMsg[swimmer.SwimStatus] + " " + ConvertTime(swimmer.SwimTimings) + ";"
 
         newRow.insertCell().innerHTML = eventIndex + 1;
         newRow.insertCell().innerHTML = sortedBoards[eventIndex].value;

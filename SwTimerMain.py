@@ -1,4 +1,3 @@
-
 """
 Asyncio orchestration for Eejo timer system.
 Key features:
@@ -92,7 +91,7 @@ async def modbus_polling_loop(stop_event: asyncio.Event) -> None:
         try:
             # Run blocking Modbus call in a thread
             await asyncio.to_thread(ModbusLibcls.GetStopWatchStatus)
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.05)
             backoff = 0.5  # reset backoff on success
         except Exception as e:
             UtilityFunctions.logScreenMsg(f"Modbus read failed: {e}")
@@ -117,7 +116,7 @@ async def cloud_writer(stop_event: asyncio.Event) -> None:
                 eventIndex = task["eventIndex"]
 
                 # Local file appends (blocking)
-                await asyncio.to_thread(FireBaseHelper.append_json_line_async, FireBaseHelper.WriteHeatResultsPath, Heatdata)
+                await asyncio.to_thread(FireBaseHelper.AppendHeatResult, FireBaseHelper.WriteHeatResultsPath, Heatdata)
                 await asyncio.to_thread(FireBaseHelper.AppendSwimmerResults, FireBaseHelper.WriteSwimmerTablePath, Heatdata)
 
                 # Remote update (blocking / slower)
@@ -222,7 +221,7 @@ async def control_loop(stop_event: asyncio.Event) -> None:
                     await asyncio.sleep(0.2)
                     continue
 
-                if HeatID != "WaitingToStart":
+                if HeatStatus != "WaitingToStart":
                     Logger.app_log.info("control_loop: Loaded Heat %s", HeatID)
                     # Get HeatDataDisplay
                     try:
@@ -265,6 +264,7 @@ async def control_loop(stop_event: asyncio.Event) -> None:
                     UtilityFunctions.logScreenMsg("control_loop: No heats found")
 
             elif HeatStatus == TimerStatus.Completed:
+                StopTimerService.StartRestcommand = 0                
                 ch = current_heat.copy()
                 if not ch.get("HeatID") or not ch.get("display"):
                     Logger.app_log.exception("control_loop: Completed reached but current heat is undefined.")

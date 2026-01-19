@@ -3,7 +3,7 @@ import minimalmodbus
 import serial
 import platform
 from Lib.UtilityFunctions import UtilityFunctions
-
+from Lib.LogerService import Logger
 
 class ReconnectError(Exception):
     pass
@@ -50,7 +50,9 @@ class ModbusLibcls:
             ModbusLibcls.instrument = minimalmodbus.Instrument(port=port, slaveaddress=slave_id)
             ModbusLibcls.instrument.serial.baudrate = baudrate
             ModbusLibcls.instrument.serial.bytesize = bytesize
+            # parity=serial.PARITY_NONE
             ModbusLibcls.instrument.serial.parity = parity
+            # mode=minimalmodbus.MODE_RTU
             ModbusLibcls.instrument.mode = mode
             ModbusLibcls.instrument.serial.stopbits = stopbits
             ModbusLibcls.instrument.serial.timeout = 0.5
@@ -61,7 +63,8 @@ class ModbusLibcls:
             UtilityFunctions.logScreenMsg("Modbus instrument created")
         except Exception as e:
             UtilityFunctions.logScreenMsg("Could not connect to device via " + port)
-            raise
+            Logger.app_log.exception(f"initModbusdevice: {e}")
+
 
     def GetStopWatchStatus():
         """
@@ -81,12 +84,14 @@ class ModbusLibcls:
             ModbusLibcls.StopWatchSwStatus = bits
         except Exception as e:
             UtilityFunctions.logScreenMsg("Unable to Read Register")
-            raise ReconnectError("Failed to connect to server.") from e
+            Logger.app_log.exception(f"GetStopWatchStatus: {e}")
+            # raise ReconnectError("Failed to connect to server.") from e
 
     def WriteRegisters(Regaddress, valuetoWrite):
         try:
             ModbusLibcls.instrument.write_registers(Regaddress, valuetoWrite)
-        except Exception:
+        except Exception as e:
+            Logger.app_log.exception(f"WriteRegisters: {e}")
             UtilityFunctions.logScreenMsg("Unable to Write Register")
 
     def ReadModbusData(regaddress):
@@ -105,7 +110,11 @@ class ModbusLibcls:
             # ModbusLibcls.SwitchStatus4 = ModbusLibcls.regval[1]
         except minimalmodbus.NoResponseError as e:
             UtilityFunctions.logScreenMsg("Modbus: no response")
-            raise ReconnectError("Failed to connect to server.") from e
+            Logger.app_log.exception(f"ReadModbusData: {e}")
+
+            # raise ReconnectError("Failed to connect to server.") from e
         except Exception as e:
             # Any other I/O error
             UtilityFunctions.logScreenMsg(f"Modbus read error: {e}")
+            Logger.app_log.exception(f"ReadModbusData: {e}")
+

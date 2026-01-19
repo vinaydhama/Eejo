@@ -219,6 +219,7 @@ function ExtractMeetInfo(meet) {
           BoardID = boardKey,             // fallback to dict key if missing
           BoardStatus = 'Unknown',
           SwimStatus = 'Unknown',
+          ClubName= '',
           SwimTimings = null,
           SwimerID = null,
           SwimerName = '',
@@ -231,6 +232,7 @@ function ExtractMeetInfo(meet) {
           SwimTimings,
           SwimerID,
           SwimerName,
+          ClubName
         });
       }
 

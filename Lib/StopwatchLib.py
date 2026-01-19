@@ -103,7 +103,8 @@ class StopTimerService:
         self.start_pin_status = 0
         self.start_latch = 0
         self.start_latch_counter = 0
-        StopTimerService.HeatStatus = TimerStatus.Stoped  # keep class attr in sync
+        StopTimerService.SetHeatStatus(TimerStatus.Stoped)  # keep class attr in sync
+        
 
         for idx, board in enumerate(self.heat_display.SwimerBoardDetails):
             try:
@@ -140,7 +141,7 @@ class StopTimerService:
 
     @safe_call()
     def set_heat_status(self, status: TimerStatus) -> None:
-        StopTimerService.HeatStatus = status
+        StopTimerService.HeatStatus=status
 
     @safe_call()
     def set_command(self, value: int) -> None:
@@ -161,7 +162,7 @@ class StopTimerService:
             now = datetime.datetime.now()
             self.heat_display.HeatEndTime = int(now.strftime("%Y%m%d%H%M%S"))
 
-        self._play_tones(StopTimerService.HeatStatus)
+        # self._play_tones(StopTimerService.HeatStatus)
 
     # -------------------------------------------------------------------------
     # Internal helpers
@@ -204,23 +205,23 @@ class StopTimerService:
             self.start_latch = 0
             self.start_latch_counter += 1
             if self.start_latch_counter > 2:
-                StopTimerService.HeatStatus = TimerStatus.ResetbeforeStart
+                # StopTimerService.HeatStatus = TimerStatus.ResetbeforeStart 
+                StopTimerService.SetHeatStatus(TimerStatus.ResetbeforeStart)               
 
         elif StopTimerService.StartRestcommand == 1:
-            StopTimerService.HeatStatus = TimerStatus.ResetbeforeStart
+            StopTimerService.SetHeatStatus(TimerStatus.ResetbeforeStart)
             StopTimerService.StartRestcommand = 0
 
         elif StopTimerService.HeatStatus == TimerStatus.ResetbeforeStart:
             self.start_latch_counter = 0
             self.start_latch = 0
             StopTimerService.StartRestcommand = 0
-            StopTimerService.HeatStatus = TimerStatus.Completed
+            StopTimerService.SetHeatStatus(TimerStatus.Completed)
 
         elif StopTimerService.StartRestcommand == 4:
             now = datetime.datetime.now()
             self.heat_display.HeatEndTime = int(now.strftime("%Y%m%d%H%M%S"))
-            StopTimerService.HeatStatus = TimerStatus.Completed
-            StopTimerService.StartRestcommand = 0
+            StopTimerService.SetHeatStatus(TimerStatus.Completed)
 
         else:
             self.start_latch_counter = 0
@@ -236,7 +237,11 @@ class StopTimerService:
                 else:
                     board.StopWatchInputPinsStatus = 0
 
-                if board.swimerStatus != 0:
+                if (board.swimerStatus != 0 and self.start_latch==1):
+                    board.LockTime = 0
+
+
+                if (board.swimerStatus != 0 and self.start_latch==1):
                     board.LockTime = 1
                     board.timerValue = 0
                     continue
@@ -244,10 +249,10 @@ class StopTimerService:
                 if board.RestBoardTimerCmd == 0:
                     if board.StopWatchInputPinsStatus == 1:
                         if board.StopWatchInputPinsLatchCounter >= self.SHORT_LATCH_THRESHOLD:
-                            if board.StopWatchInputPinsLatchStatus == 0:
+                            if (board.StopWatchInputPinsLatchStatus == 0 and self.start_latch==1):
                                 print(f"{time.time()} Board {board_idx} Latched (bit {bit_index})")
-                            board.StopWatchInputPinsLatchStatus = 1
-                            board.LockTime = 1
+                                board.StopWatchInputPinsLatchStatus = 1
+                                board.LockTime = 1
                         else:
                             board.StopWatchInputPinsLatchCounter += 1
                     else:
@@ -282,7 +287,7 @@ class StopTimerService:
         if self.start_latch == 1 and self.start_time_epoch == 0.0:
             self.start_time_epoch = round(time.time(), 3)
             print("Timer Started")
-            StopTimerService.HeatStatus = TimerStatus.InProgress
+            StopTimerService.SetHeatStatus(TimerStatus.InProgress)
 
         if self.start_latch == 1 and self.start_time_epoch > 0.0:
             for idx, board in enumerate(self.heat_display.SwimerBoardDetails):
@@ -301,15 +306,19 @@ class StopTimerService:
                         if board.LockTime == 0:
                             board.timerValue = round(time.time() - self.start_time_epoch, 3)
                             board.LockTime = 1
+                            board.StopWatchInputPinsLatchStatus=1
 
                     elif board.RestBoardTimerCmd == self.CMD_CONTINUE:
                         if board.swimerStatus == 0:
                             board.LockTime = 0
+                            board.StopWatchInputPinsLatchStatus=0
                             board.timerValue = round(time.time() - self.start_time_epoch, 3)
+                            
 
                     elif board.RestBoardTimerCmd == self.CMD_DISABLE:
                         board.LockTime = 1
                         board.timerValue = 0
+                        board.StopWatchInputPinsLatchStatus=0
 
                     elif board.RestBoardTimerCmd == self.CMD_BYPASS:
                         if board.swimerStatus == 0:
@@ -321,15 +330,23 @@ class StopTimerService:
     @safe_call()
     def _derive_heat_status(self) -> None:
         # Default to WaitBeforeLoad if all active swimmers are locked; InProgress otherwise
-        for board in self.heat_display.SwimerBoardDetails:
-            if board.swimerStatus == 0:
-                if board.LockTime == 1:
-                    StopTimerService.HeatStatus = TimerStatus.WaitBeforeLoad
-                else:
-                    StopTimerService.HeatStatus = TimerStatus.InProgress
-                    break
-        else:
-            StopTimerService.HeatStatus = TimerStatus.WaitBeforeLoad
+         if (self.start_latch == 1):
+            if ( StopTimerService.StartRestcommand != 4):
+             
+                for board in self.heat_display.SwimerBoardDetails:
+                    if board.swimerStatus == 0:
+                        if board.LockTime != 0:
+                            StopTimerService.SetHeatStatus(TimerStatus.WaitBeforeLoad)
+                        else:
+                            StopTimerService.SetHeatStatus(TimerStatus.InProgress)
+                            break
+                    else:
+                        StopTimerService.SetHeatStatus(TimerStatus.WaitBeforeLoad)
+            else:
+                    StopTimerService.SetHeatStatus(TimerStatus.Completed)
+                    StopTimerService.StartRestcommand = 0
+
+
 
     @safe_call()
     def _play_tones(self, heat_state: TimerStatus) -> None:
@@ -395,6 +412,8 @@ class StopTimerService:
     @safe_call()
     def SetHeatStatus(cls, status: TimerStatus) -> None:
         cls.get_instance().set_heat_status(status)
+        cls.get_instance().heatDataDisplay.HeatStatus= status
+
 
     @classmethod
     @safe_call(default_return=0)

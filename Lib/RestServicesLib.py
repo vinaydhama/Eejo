@@ -22,6 +22,7 @@ from Lib.LogerService import Logger
 from Lib.UtilityFunctions import UtilityFunctions
 
 
+
 class RestServicecls:
     """
     FastAPI replacement of your Flask REST service while keeping
@@ -272,7 +273,8 @@ class RestServicecls:
             FireBaseHelper.FirebaseJsonData = FireBaseHelper.get_json_from_file(FireBaseHelper.FirebaseJSONFilePath)
             if FireBaseHelper.FirebaseJsonData is not None:
                 RestServicecls.init_ComServices(FireBaseHelper.FirebaseJsonData["BoardSettings"])
-                FireBaseHelper.EventBaseurl = FireBaseHelper.Eventurl + FireBaseHelper.FirebaseJsonData["MeetName"]
+                FireBaseHelper.MeetName = FireBaseHelper.FirebaseJsonData["FireBaseName"]
+                FireBaseHelper.EventBaseurl = FireBaseHelper.Eventurl +FireBaseHelper.MeetName
                 FireBaseHelper.SwimmerTable = FireBaseHelper.get_json_from_file(FireBaseHelper.FirebaseSwimmerTable)
                 PreviousLocalResultData = FireBaseHelper.FormatHeatresultFiletoProperJSONandRead(FireBaseHelper.WriteHeatResultsPath)
                 parent = os.path.dirname(Path(__file__).parent.absolute())
@@ -617,7 +619,9 @@ async def SetLiveHeatCommands(request: Request):
             if not heat_data:
                 return RestServicecls._err("No heat loaded", 404)
             sw_names = [b.swimmername for b in heat_data.SwimerBoardDetails]
-            clubs = RestServicecls._get_swimmer_clubs(sw_names, data)
+            clubs = [b['ClubName'] for b in data["EventDetails"][data["EventList"][event_id-1]]["HeatList"][text]["BoardList"]]
+
+            # clubs = RestServicecls._get_swimmer_clubs(sw_names, data)
             board_status = RestServicecls._build_board_status_and_time(heat_data)
             command_return_data = {
                 'SwNames': sw_names,
@@ -693,7 +697,7 @@ async def SetLiveHeatCommands(request: Request):
             HeatFileName = await RestServicecls._get_param(request, 'HeatFileName', '')
             command_return_data = RestServicecls.ReadHeatFromLocalFile(HeatFileName)
 
-        elif commandname == 'SetBitAlocaAutoFindHeattion':
+        elif commandname == 'AutoFindHeat':
             RestServicecls.AutoFindHeat = int(await RestServicecls._get_param(request, 'AutoCmd', '1'))
             StopTimerService.StartRestcommand = 3
             StopTimerService.set_heat_status(TimerStatus.WaitingToStart)
@@ -702,13 +706,19 @@ async def SetLiveHeatCommands(request: Request):
         elif commandname == 'SetNextHeat':
             RestServicecls.AutoFindHeat = 0
             HeatName = await RestServicecls._get_param(request, 'HeatName', '')
-            RestServicecls.NextSetHeatID = HeatName
-            StopTimerService.set_heat_status(TimerStatus.WaitingToStart)
+            RestServicecls.NextSetHeatID = HeatName                        
+            EventName = HeatName.rsplit("_", 1)[0]
+            heatDataDisplay = JsonHelper.GetHeatDataDisplay( HeatName,EventName, RestServicecls.Synced_JSONData)
             StopTimerService.ResetTimer()
+            StopTimerService.PrepareHeat(heatDataDisplay)
+            StopTimerService.SetHeatStatus(TimerStatus.loadedToStart)
+            # StopTimerService.ResetTimer()
+            # StopTimerService.set_heat_status(TimerStatus.WaitingToStart)
+            # StopTimerService.ResetTimer()
 
         elif commandname == 'HeatCommand':  # 1-Start, 2-Pause, 3-Stop, 4-Repeat
             HeatcmdValue = int(await RestServicecls._get_param(request, 'HeatCmdValue', '3'))
-            StopTimerService.ResetTimer()
+            # StopTimerService.ResetTimer()
             StopTimerService.StartRestcommand = HeatcmdValue
 
         elif commandname == 'SwimmerNameDispCmd':  # SwBoardID & SwNameValue

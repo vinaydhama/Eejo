@@ -13,8 +13,11 @@
   <title>Live Swim Leaderboard</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #0a0a0c;
+      
+    font-family: 'Arial Black', Impact, sans-serif;
+      font-weight: 900; /* Extra bold */
+
+      background-color: #0c0c0c;
       padding: 20px;
       color: rgb(178, 248, 1);
     }
@@ -99,13 +102,13 @@
 
 <body>
 <!-- To be tested -->
-  <table border="1" cellspacing="0" cellpadding="10">
-    <tr>
-      <td rowspan="2">
+  <!-- <table border="1" cellspacing="0" cellpadding="10"> -->
+    <!-- <tr> -->
+      <!-- <td rowspan="2"> -->
         <!-- <span style="display: flex;">    <img src="../Img/SSM_Logo.png" style="width: 100px; height: 100px; padding-top: -40%; ">  -->
-      </td>
-      <td colspan="2"><h2 > Shivamogga Swim Meet 2025</h2></td>
-      <td> 
+      <!-- </td> -->
+      <!-- <td colspan="2"><h2 > Shivamogga Swim Meet 2025</h2></td> -->
+      <!-- <td>  -->
         <!-- <div class="slideshow" style="margin-left: 20px;">
       
           <img style="margin: 10px; height: auto; width: 100px; " class="img" src="../Img/Tiny Techniques_Logo.png"
@@ -117,17 +120,17 @@
           <img style="margin: 10px; height: auto;width: 100px; " class="img" src="../Img/eejo_max.png"
             alt="WWW.TinyTechniques.com">    
         </div> -->
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">Shivamogga Sports Complex </td>
-    </tr>
-    <tr>
-      <td colspan="3"><h3 style="padding: -40px;" id="event-name"> (Not Provided)  </h3></td>
+      <!-- </td> -->
+    <!-- </tr> -->
+    <!-- <tr> -->
+      <!-- <td colspan="2">Shivamogga Sports Complex </td> -->
+    <!-- </tr> -->
+    <!-- <tr> -->
+      <!-- <td colspan="3"><h3 style="padding: -40px;" id="event-name"> (Not Provided)  </h3></td> -->
       
-      <td><p  style="padding-left: 20%;" id="timer"></p></td>
-    </tr>
-  </table>
+      <!-- <td><p  style="padding-left: 20%;" id="timer"></p></td> -->
+    <!-- </tr> -->
+  <!-- </table> -->
   
 
 
@@ -148,34 +151,24 @@
     <p  id="timer"></p> </span> 
 </span> -->
 </span>
-  <table style="padding-top: -100px;align-content: stretch; width: 100%;" class="leaderboard" id="leaderboard-table">
-    <thead>        
-      <td> Shivamogga Sports Complex </td>
-        
-    
-      <tr>
-        <th>Rank</th>
-        <th>Name</th>
-        <th>Club</th>
-        <th>Lane</th>
-        <th>Time</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Dynamic rows will be inserted here by JavaScript -->
-    </tbody>
+  <table border="1" style="border-collapse: collapse;" id="leaderboard-table">
   </table>
   
 
   <script>
     // let DQMsg = ["", "AB", "DQ", "DNC", "ES"];
     let seconds = 0;
+    let timervaldate=0;
+    let timervalTime=0;
+
 
     // Timer
     setInterval(() => {
         const nw= new Date();
-        document.getElementById('timer').innerHTML =  `<p> ${nw.toDateString()}  <br> ${nw.toLocaleTimeString()}</p>`;
+        timervaldate = nw.toDateString();
+        timervalTime = nw.toLocaleTimeString();
+        // timerval= " " +  + " " + ;
+        // document.getElementById('timer').innerHTML =  `<p> ${nw.toDateString()}  <br> ${nw.toLocaleTimeString()}</p>`;
     }, 1000);
 
     function formatSwimTime(seconds) {
@@ -187,6 +180,9 @@
 
     async function updateLeaderboard() {
       try {
+        const table = document.getElementById('leaderboard-table');
+        // table.innerHTML="";
+
         const params = new URLSearchParams(window.location.search);
         let dataUrl = params.get('dataUrl');
         //http://10.115.239.190:5002/SetLiveHeatCommands?CmdName=LiveBoard
@@ -240,31 +236,94 @@ zeroTimeOrLockedSwimmers.forEach(swimmer => swimmer.Rank = 0);
 
 // Combine and sort by BoardID
 const rankedSwimmers = [...validSwimmers, ...zeroTimeOrLockedSwimmers].sort((a, b) => a.BoardID - b.BoardID);
-const eventname = document.getElementById('event-name');
-eventname.innerHTML=" " + jsonData.commandReturnData.EventID +"  " + formatSwimmingEvent(jsonData.commandReturnData.HeatName);
+// const eventname = document.getElementById('event-name');
+// eventname.innerHTML=" " + jsonData.commandReturnData.EventID +"  " + formatSwimmingEvent(jsonData.commandReturnData.HeatName,[]).fullname;
 
         // Update table
-        const table = document.getElementById('leaderboard-table');
-        table.innerHTML = `
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Club</th>
-            <th>Lane</th>
-            <th>Time</th>
-            <th>Status</th>
-          </tr>
-        `;
+       
+const Meetname="Millennium World School Hassan Dec 2025";
+
+const eventID = jsonData.commandReturnData.EventID;
+const heatFullName = formatSwimmingEvent(jsonData.commandReturnData.HeatName, []).fullname;
+
+// table.innerHTML ="";
+table.innerHTML = `
+  <thead>
+    <tr>
+      <th colspan="6" style="
+        padding: 6px 8px;
+        text-align: center;
+      ">
+        <h1 style="margin: 0; font-size: 1.5rem;">${Meetname}</h1>
+      </th>
+    </tr>
+
+    <tr>
+      <th colspan="4" style="
+        padding: 6px 8px;
+        text-align: left;
+        font-weight: 600;
+      ">
+        Event ${eventID} : ${heatFullName} </th>
+        <th colspan="2">
+        <span style="
+          padding-left: 5%;
+          display: inline-block;
+          text-align: end;
+          font-size: 0.8rem;
+          font-weight: 200;
+        ">        
+          ${timervaldate} <br> ${timervalTime}
+        </span>
+      </th>
+    </tr>
+
+    <tr>
+      <th style="padding: 4px 6px; text-align: left;">Lane</th>
+      <th style="padding: 4px 6px; text-align: left;">Rank</th>
+      <th style="padding: 4px 6px; text-align: left;">Team</th>
+      <th style="padding: 4px 6px; text-align: left;">Name</th>
+      <th style="padding: 4px 6px; text-align: left;">Time</th>
+      <th style="padding: 4px 6px; text-align: left;">Status</th>
+    </tr>
+  </thead>
+`;
+
+
 
         rankedSwimmers.forEach(swimmer => {
           const row = document.createElement('tr');
           row.innerHTML = `
+            <td><span style="
+          padding-left: 5%;
+          display: inline-block;
+          text-align: center;
+          font-size: 0.8rem;
+          font-weight: 200;
+        "> L:${String(swimmer.BoardID).padStart(2, '0')}</span></td>
             <td>${swimmer.Rank}</td>
-            <td>${swimmer.SwimerName}</td>
-            <td>${swimmer.ClubName}</td>
-            <td>L:${String(swimmer.BoardID).padStart(2, '0')}</td>
+            <td ><span style="
+          padding-left: 5%;
+          display: inline-block;
+          text-align: left;
+          font-size: 0.8rem;
+          font-weight: 200;
+        ">   ${swimmer.ClubName} </span></td>
+            <td> <span style="
+          padding-left: 5%;
+          display: inline-block;
+          text-align: left;
+          font-size: 1rem;
+          font-weight: 200;
+        "> ${swimmer.SwimerName}</span></td>
             <td><b> ${swimmer.SwimTimings === 0 ? '00:00.000' : formatSwimTime(swimmer.SwimTimings)}<b></td>
-            <td>${DQMsg[swimmer.SwimStatus] || ""}</td>
+            <td><span style="
+          padding-left: 5%;
+          display: inline-block;
+          text-align: center;
+          font-size: 1rem;
+          font-weight: 200;
+        "> ${DQMsg[swimmer.SwimStatus] || ""} </span</td>
           `;
           table.appendChild(row);
         });

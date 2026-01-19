@@ -116,48 +116,6 @@ function CaptureSwDetailsTable(MeetUpdatedData) {
   }
 }
 
-// function CaptureGroupTable(MeetUpdatedData) {
-//   try {
-//     const tblGroups = getEl('tblGroups', { required: true, desc: "Groups table" });
-//     if (!tblGroups) {
-//       log.warn("CaptureGroupTable: tblGroups missing.");
-//       return MeetUpdatedData;
-//     }
-
-//     if (!Array.isArray(MeetUpdatedData.GroupDetails)) {
-//       MeetUpdatedData.GroupDetails = [];
-//     } else {
-//       MeetUpdatedData.GroupDetails.length = 0;
-//     }
-
-//     for (let i = 1; i < tblGroups.rows.length; i++) {
-//       const rowId = tblGroups.rows[i].id || "";
-//       const rowindex = rowId.replace("tblgroupRow", "");
-
-//       const GroupNameEl = getEl("GrpNamecell" + rowindex);
-//       const FromDateEl  = getEl("GrpFromcellvar" + rowindex);
-//       const ToDateEl    = getEl("GrpTocellvar" + rowindex);
-
-//       const GroupName = normalizeStr(GroupNameEl?.value);
-//       const FromDate  = normalizeStr(FromDateEl?.value);
-//       const ToDate    = normalizeStr(ToDateEl?.value);
-
-//       if (GroupName && FromDate && ToDate) {
-//         MeetUpdatedData.GroupDetails.push({ 'GroupName': GroupName, 'FromDate': FromDate, 'ToDate': ToDate });
-//       } else {
-//         log.debug("CaptureGroupTable: Incomplete group row; skipped.", { rowindex, GroupName, FromDate, ToDate });
-//       }
-//     }
-
-//     log.info("CaptureGroupTable: captured.", { groupsCount: MeetUpdatedData.GroupDetails.length });
-//     return MeetUpdatedData;
-//   } catch (err) {
-//     log.error("CaptureGroupTable: fatal error.", err);
-//     return MeetUpdatedData;
-//   }
-// }
-
-
 
 function CaptureGroupTable(MeetUpdatedData) {
   try {
@@ -239,6 +197,7 @@ function CaptureGroupTable(MeetUpdatedData) {
 
 function CaptureHeatDetailsTable(MeetUpdatedData) {
   try {
+    let TempMeetUpdatedData={}
     const tblHeatDetails = getEl('tblHeatDetails', { required: true, desc: "Heat details table" });
     if (!tblHeatDetails) {
       log.warn("CaptureHeatDetailsTable: tblHeatDetails missing.");
@@ -252,6 +211,7 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
 
     // EventDetails shall be a dictionary keyed by eventID
     MeetUpdatedData.EventDetails = {};
+    TempMeetUpdatedData.EventDetails = {};
 
     // Helpers
     const normalize = (v) => (typeof normalizeStr === 'function' ? normalizeStr(v) : (v ?? '').toString().trim());
@@ -291,13 +251,23 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
 
       // Derive eventID as prefix before the last underscore
       const eventID = getEventPrefix(HeatiD);
+      let eventstatuselvalue=0;
 
       // Ensure event dictionary object exists
+      
+
       if (!MeetUpdatedData.EventDetails[eventID]) {
+        const eventstatusel = document.getElementById(`${HeatiD}SelectEventStatus`);
+        if (eventstatusel)
+        {
+  eventstatuselvalue=parseInt(eventstatusel.value);
+        }
+
+
         MeetUpdatedData.EventDetails[eventID] = {
           "eventID": eventID,
           "eventName": "",     // keep field; fill if you have a source
-          "eventStatus": 0,    // keep field; fill if you have a source
+          "eventStatus": eventstatuselvalue,    // keep field; fill if you have a source
           "HeatList": {}       // HeatList shall be a dictionary keyed by HeatID
         };
       }
@@ -313,12 +283,15 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
           const BoardIDEl  = rowCells?.[1]?.firstChild; // lane number displayed (innerText)
           const idEl       = rowCells?.[2]?.firstChild; // swimmer id input
           const nameEl     = rowCells?.[3]?.firstChild; // swimmer name input
+          const ClubnameEl   = rowCells?.[4]?.firstChild; // status/Club name selector
+
           const statusEl   = rowCells?.[5]?.firstChild; // status/DQ selector
           const timeEl     = rowCells?.[6]?.firstChild; // time input
 
           const SwimerID   = normalize(idEl?.value);
           const SwimerName = normalize(nameEl?.value);
-          const BoardID    = safeInt(normalize(BoardIDEl?.innerText), 0);
+          const ClubName = normalize(ClubnameEl?.value);          
+          const BoardID    = safeInt(normalize(BoardIDEl?.value), 0);
           const SwimStatus = safeInt(normalize(statusEl?.value), 0);
 
           // Keep JSON shape the same: default SwimTimings as number 0
@@ -343,6 +316,7 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
             "BoardStatus": 0,
             "SwimStatus": SwimStatus,
             "SwimTimings": SwimTimings,
+            "ClubName": ClubName,
             "SwimerID": SwimerID,
             "SwimerName": SwimerName
           });
@@ -380,6 +354,7 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
 
     // Done
     const eventsCount = Object.keys(MeetUpdatedData.EventDetails).length;
+
     const totalHeats = Object.values(MeetUpdatedData.EventDetails)
       .reduce((sum, ev) => sum + Object.keys(ev.HeatList || {}).length, 0);
 
@@ -394,180 +369,3 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
     return MeetUpdatedData;
   }
 }
-
-
-// function CaptureHeatDetailsTable(MeetUpdatedData) {
-//   try {
-//     const tblHeatDetails = getEl('tblHeatDetails', { required: true, desc: "Heat details table" });
-//     if (!tblHeatDetails) {
-//       log.warn("CaptureHeatDetailsTable: tblHeatDetails missing.");
-//       return MeetUpdatedData;
-//     }
-
-//     if (!Array.isArray(MeetUpdatedData.EventDetails)) {
-//       MeetUpdatedData.EventDetails = [];
-//     } else {
-//       MeetUpdatedData.EventDetails.length = 0;
-//     }
-
-//     const EventsDetailsarray = [];
-//     let HeatDetails = [];
-//     let EventID = "";
-
-//     for (let index = 0; index < tblHeatDetails.rows.length - 1; index++) {
-//       const rowId = tblHeatDetails.rows[index].id || "";
-//       const rowindex = rowId.replace("tblHeatDetailsRow", "");
-
-//       const heatNameEl = getEl('HeatNamecell' + index);
-//       const HeatiD = normalizeStr(heatNameEl?.value);
-//       const tblSwlist = getEl("tblSwlist" + index);
-
-//       if (!HeatiD) {
-//         log.warn("CaptureHeatDetailsTable: Missing HeatID; skipping row.", { index });
-//         continue;
-//       }
-
-//       // Determine event prefix robustly
-//       const part = splitBeforeLastUnderscore(HeatiD);
-//       const currentEventPrefix = part.ok ? normalizeStr(part.prefix) : normalizeStr(HeatiD);
-
-//       if (EventID === "") {
-//         EventID = currentEventPrefix;
-//       } else if (currentEventPrefix !== EventID) {
-//         // Flush previous heat block
-//         try {
-//           const snapshot = JSON.parse(JSON.stringify(HeatDetails));
-//           EventsDetailsarray.push({
-//             "HeatList": snapshot,
-//             "eventID": EventID,
-//             "eventName": "",
-//             "eventStatus": 0
-//           });
-//         } catch (snapErr) {
-//           log.warn("CaptureHeatDetailsTable: Snapshot failed; pushing shallow copy.", snapErr);
-//           EventsDetailsarray.push({
-//             "HeatList": HeatDetails.slice(),
-//             "eventID": EventID,
-//             "eventName": "",
-//             "eventStatus": 0
-//           });
-//         }
-//         EventID = currentEventPrefix;
-//         HeatDetails.length = 0;
-//       }
-
-//       const BoardDetails = [];
-//       if (!tblSwlist) {
-//         log.warn("CaptureHeatDetailsTable: Missing swimmers sub-table; Heat recorded with empty BoardList.", { index, HeatiD });
-//       } else {
-//         // rows: header (2 rows) + data from rowIndex=2
-//         for (let RowIndex = 3; RowIndex < tblSwlist.rows.length; RowIndex++) {
-//           const rowCells = tblSwlist.rows[RowIndex].cells;
-//           const BoardIDCell   = rowCells?.[1]?.firstChild;
-//           const idCell   = rowCells?.[2]?.firstChild;
-//           const nameCell = rowCells?.[3]?.firstChild;
-//           const statusCell = rowCells?.[5]?.firstChild;
-//           const timeCell   = rowCells?.[6]?.firstChild;
-
-//           const SwimerID   = normalizeStr(idCell?.value);
-//           const SwimerName = normalizeStr(nameCell?.value);
-//           const BoardID =  parseInt(normalizeStr(BoardIDCell?.innerText));
-
-//           // SwimStatus: resolve index of DQ message value safely
-//           let SwimStatus = 0;
-//           const statusValue = parseInt(normalizeStr(statusCell?.value));
-//           // if (Array.isArray(DQMsg)) {
-//           //   const idx = DQMsg.indexOf(statusText);
-//           //   SwimStatus = idx >= 0 ? idx : 0;
-//           // }
-
-//           // SwimTimings: "00:00.000" if empty/zero, else parse via convertToSeconds
-//           let SwTimetxt = normalizeStr(timeCell?.value);
-//           let SwimTimings = "00:00.000";
-//           if (SwTimetxt !== "" && SwTimetxt !== "0") {
-//             try {
-//               const seconds = convertToSeconds(SwTimetxt);
-//               const num = parseFloat(seconds);
-//               SwimTimings = Number.isFinite(num) ? num : "00:00.000";
-//             } catch (tErr) {
-//               log.warn("CaptureHeatDetailsTable: convertToSeconds failed; using default.", { SwTimetxt }, tErr);
-//               SwimTimings = "00:00.000";
-//             }
-//           }
-
-//           BoardDetails.push({
-//             'BoardID': BoardID,
-//             "BoardStatus": 0,
-//             "SwimStatus": statusValue,
-//             "SwimTimings": SwimTimings,
-//             "SwimerID": SwimerID,
-//             "SwimerName": SwimerName
-//           });
-//         }
-//       }
-//       let HeatStartTime=0;
-//       let HeatEndTime=0;
-//       let HeatNotes="";
-//       let HeatStatus=0;
-
-//     let inputfeild = getEl(HeatiD+"StartTimeInput");
-//      if (inputfeild)
-//       {
-//         HeatStartTime = inputfeild.value;
-//       }
-
-//       inputfeild = getEl(HeatiD+"SelectHeatStatus");
-//       if (inputfeild)
-//         {
-//           HeatStatus = parseInt(inputfeild.value, 10);
-//         }
-
-//         inputfeild = getEl(HeatiD+"EndTimeInput");
-//         if (inputfeild)
-//           {
-//             HeatEndTime = inputfeild.value;
-//           }
-  
-
-//           inputfeild = getEl(HeatiD+"HeatNotes");
-//           if (inputfeild)
-//             {
-//               HeatNotes = inputfeild.value;
-//             }
-    
-
-
-//       HeatDetails.push({
-//         "BoardList": BoardDetails,
-//         "HeatEndTime": HeatEndTime,
-//         "HeatID": HeatiD,
-//         "HeatStartTime": HeatStartTime,
-//         "HeatStatus": HeatStatus,
-//         "HeatNotes": HeatNotes
-
-//       });
-//     }
-
-//     // Flush last block
-//     if (HeatDetails.length !== 0) {
-//       EventsDetailsarray.push({
-//         "HeatList": HeatDetails,
-//         "eventID": EventID,
-//         "eventName": "",
-//         "eventStatus": 0
-//       });
-//     }
-
-//     MeetUpdatedData.EventDetails = EventsDetailsarray;
-
-//     log.info("CaptureHeatDetailsTable: captured.", {
-//       eventsCount: EventsDetailsarray.length,
-//       totalHeats: EventsDetailsarray.reduce((acc, e) => acc + (e.HeatList?.length || 0), 0)
-//     });
-
-//        return MeetUpdatedData;
-//   } catch (err) {
-//     log.error("CaptureHeatDetailsTable: fatal error.", err);
-//     return MeetUpdatedData;
-//   }
-// }

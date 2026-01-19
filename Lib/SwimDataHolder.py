@@ -53,6 +53,7 @@ class HeatDataDisplay:
     eventName = "Boys G-5 50m FS"
     eventID = "Boys G-5 50m FS"
     HeatID = 0
+    HeatStatus = 0
     HeatStartTime=0
     HeatEndTime=0
     SwimerBoardDetails=[]

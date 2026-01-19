@@ -64,14 +64,29 @@ class JsonHelper:
         return 0,0
 
 
+    
     def GetAllHeatIDsFromFile(data):
-        HeatIds=[]
+        """Extract all keys from HeatList dictionaries inside EventDetails."""
+        keys = []
+        event_details = data.get("EventDetails", {})
+        if not isinstance(event_details, dict):
+            return keys
 
-        for eventID in range(0,len(data['EventDetails'])):
-            for heat in range(0,len (data['EventDetails'][eventID]["HeatList"])):
-                heatdata = data['EventDetails'][eventID]["HeatList"][heat]
-                HeatIds.append(heatdata["HeatID"])
-        return HeatIds
+        for event in event_details.values():
+            heat_list = event.get("HeatList", {})
+            if isinstance(heat_list, dict):
+                keys.extend(heat_list.keys())  # Collect all keys
+        return keys
+
+
+    # def GetAllHeatIDsFromFile(data):
+    #     HeatIds=[]
+
+    #     for eventID in range(0,len(data['EventDetails'])):
+    #         for heat in range(0,len (data['EventDetails'][eventID]["HeatList"])):
+    #             heatdata = data['EventDetails'][eventID]["HeatList"][heat]
+    #             HeatIds.append(heatdata["HeatID"])
+    #     return HeatIds
     
     def updateJsonFile(AppendJsonPath,dataToUpdate):
         jsonFile = open(AppendJsonPath, "r") # Open the JSON file for reading
@@ -89,28 +104,121 @@ class JsonHelper:
         jsonFile.close()
 
 
-    # Get Swimmer List From Heat List to Timer start
-    def GetHeatDataDisplay(heatIDToDisplay,EventIDToDisplay, data):
-        heatDataDisplay= HeatDataDisplay()
-        swimerBoardDetails=[]
-        for eventID in range(0,len(data['EventDetails'])):
-#             if (data[eventID]["eventID"]==EventIDToDisplay):
-                EventHolder = data['EventDetails'][eventID]
-                heatDataDisplay.eventID=EventHolder["eventID"]
-                heatDataDisplay.eventName=EventHolder["eventName"]
-                for heat in range(0,len (EventHolder["HeatList"])):			
-                   # print(EventHolder["HeatList"][heat]["HeatID"])
-                    if (EventHolder["HeatList"][heat]["HeatID"]==heatIDToDisplay):
-                        heatDataDisplay.HeatStartTime = EventHolder["HeatList"][heat]["HeatStartTime"]
-                        heatDataDisplay.HeatEndTime = EventHolder["HeatList"][heat]["HeatEndTime"]
-                        heatDataDisplay.HeatID=heatIDToDisplay
-                        for Board in range(0,len (EventHolder["HeatList"][heat]["BoardList"])):
-                            swimerBoardDetails.append(SwimerBoardDetail(EventHolder["HeatList"][heat]["BoardList"][Board]["BoardID"],EventHolder
-                            ["HeatList"][heat]["BoardList"][Board]["SwimerName"],EventHolder["HeatList"][heat]["BoardList"][Board]
-                            ["SwimerID"],0,EventHolder["HeatList"][heat]["BoardList"][Board]["SwimStatus"],0,0,0,0,0))                            
-                        heatDataDisplay.SwimerBoardDetails= swimerBoardDetails
-                        return heatDataDisplay
+    def GetHeatDataDisplay(heatIDToDisplay: Any, EventIDToDisplay: Optional[Any], data: Dict[str, Any]):
+        """
+        Build and return a HeatDataDisplay instance for the requested heat within an event.
+        Assumes:
+        - data['EventDetails']: dict (or list) of event objects
+        - EventHolder['HeatList']: dict (or list) of heat objects
+        - heat['BoardList']: list of board/swimmer dicts (per provided sample)
+
+        Returns:
+        HeatDataDisplay or None if not found.
+        """
+
+        # Basic validation
+        if not isinstance(data, dict):
+            raise TypeError("`data` must be a dict.")
+        if 'EventDetails' not in data:
+            raise ValueError("`data` must contain 'EventDetails'.")
+
+        heatDataDisplay = HeatDataDisplay()
+        swimerBoardDetails: List[SwimerBoardDetail] = []
+
+        # Iterate events (dict or list)
+        for event in _iter_dict_or_list(data.get('EventDetails')):
+            if not isinstance(event, dict):
+                continue
+
+            event_id = event.get("eventID")
+            event_name = event.get("eventName")
+
+            # Optional event filter
+            if EventIDToDisplay is not None and event_id != EventIDToDisplay:
+                continue
+
+            # Assign event-level fields
+            heatDataDisplay.eventID = event_id
+            heatDataDisplay.eventName = event_name
+
+            # Iterate heats (dict or list)
+            for heat in _iter_dict_or_list(event.get("HeatList")):
+                if not isinstance(heat, dict):
+                    continue
+
+                if heat.get("HeatID") == heatIDToDisplay:
+                    # Populate heat fields
+                    heatDataDisplay.HeatID = heatIDToDisplay
+                    heatDataDisplay.HeatStartTime = heat.get("HeatStartTime")
+                    heatDataDisplay.HeatEndTime = heat.get("HeatEndTime")
+
+                    # BoardList is a LIST (per your sample)
+                    for board in _iter_dict_or_list(heat.get("BoardList")):
+                        if not isinstance(board, dict):
+                            continue
+
+                        # Map known fields from your sample structure
+                        swimerBoardDetails.append(
+                            SwimerBoardDetail(
+                                board.get("BoardID"),
+                                board.get("SwimerName"),
+                                board.get("SwimerID"),
+                                board.get("BoardStatus", 0),   # using actual value if present
+                                board.get("SwimStatus", 0),
+                                board.get("SwimTimings", 0),   # fill with timing if your class expects it
+                                0, 0, 0, 0                      # placeholders for remaining fields
+                            )
+                        )
+
+                    heatDataDisplay.SwimerBoardDetails = swimerBoardDetails
+                    return heatDataDisplay
+
+        # Not found
+        return None
+
+
+#     # Get Swimmer List From Heat List to Timer start
+#     def GetHeatDataDisplay(heatIDToDisplay,EventIDToDisplay, data):
+#         heatDataDisplay= HeatDataDisplay()
+#         swimerBoardDetails=[]
+#         for eventID in range(0,len(data['EventDetails'])):
+# #             if (data[eventID]["eventID"]==EventIDToDisplay):
+#                 EventHolder = data['EventDetails'][eventID]
+#                 heatDataDisplay.eventID=EventHolder["eventID"]
+#                 heatDataDisplay.eventName=EventHolder["eventName"]
+#                 for heat in range(0,len (EventHolder["HeatList"])):			
+#                    # print(EventHolder["HeatList"][heat]["HeatID"])
+#                     if (EventHolder["HeatList"][heat]["HeatID"]==heatIDToDisplay):
+#                         heatDataDisplay.HeatStartTime = EventHolder["HeatList"][heat]["HeatStartTime"]
+#                         heatDataDisplay.HeatEndTime = EventHolder["HeatList"][heat]["HeatEndTime"]
+#                         heatDataDisplay.HeatID=heatIDToDisplay
+#                         for Board in range(0,len (EventHolder["HeatList"][heat]["BoardList"])):
+#                             swimerBoardDetails.append(SwimerBoardDetail(EventHolder["HeatList"][heat]["BoardList"][Board]["BoardID"],EventHolder
+#                             ["HeatList"][heat]["BoardList"][Board]["SwimerName"],EventHolder["HeatList"][heat]["BoardList"][Board]
+#                             ["SwimerID"],0,EventHolder["HeatList"][heat]["BoardList"][Board]["SwimStatus"],0,0,0,0,0))                            
+#                         heatDataDisplay.SwimerBoardDetails= swimerBoardDetails
+#                         return heatDataDisplay
                     
+    
+
+
+   
+from typing import Any, Dict, List, Optional, Iterable
+
+def _iter_dict_or_list(container: Any) -> Iterable:
+    """
+    Yield dict items from either a dict (values) or a list (elements).
+    Safely returns empty iterator if container is None or not iterable as expected.
+    """
+    if isinstance(container, dict):
+        return container.values()
+    if isinstance(container, list):
+        return container
+    return []  # Fallback for None or unexpected types
+
+
+
+
 
 
 

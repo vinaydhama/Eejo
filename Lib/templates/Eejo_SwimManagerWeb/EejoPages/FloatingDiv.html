@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Top Menu (Menubar + Dropdowns)</title>
+<style>
+  :root {
+    --bg: #0f172a;   /* slate-900 */
+    --fg: #e5e7eb;   /* gray-200 */
+    --accent: #38bdf8;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f8fafc;
+  }
+
+  /* Top menubar container */
+  .menubar {
+    position: fixed;                /* top stacked */
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--bg);
+    color: var(--fg);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .menu-item {
+    position: relative;
+  }
+
+  .menu-btn {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: var(--fg);
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .menu-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Dropdown menu */
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 220px;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgba(0,0,0,.25);
+    padding: 6px;
+    list-style: none;
+    margin: 0;
+    display: none; /* default hidden */
+  }
+  .dropdown[aria-hidden="false"] {
+    display: block;
+  }
+
+  .dropdown li {
+    margin: 4px 0;
+  }
+
+  .kbd {
+    width: 100%;
+    text-align: left;
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: var(--fg);
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .kbd:hover,
+  .kbd:focus-visible {
+    background: rgba(56, 189, 248, 0.25);
+    outline: none;
+  }
+
+  /* Content offset to avoid being hidden behind fixed menubar */
+  .page-content {
+    margin-top: 64px; /* should be >= menubar height */
+    padding: 16px;
+  }
+
+  /* Responsive: stack top-level buttons if narrow */
+  @media (max-width: 600px) {
+    .menubar {
+      flex-wrap: wrap;
+      padding: 8px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======== MENUBAR ======== -->
+<nav class="menubar" aria-label="Main menu" role="menubar">
+  <!-- LOAD -->
+  <div class="menu-item" role="none">
+    <button id="menu-load-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false"
+            aria-controls="menu-load" role="menuitem">Load ▾</button>
+    <ul id="menu-load" class="dropdown" role="menu" aria-labelledby="menu-load-btn" aria-hidden="true">
+      <li role="none">
+        <button role="menuitem" class="kbd" id="load-live"
+                onclick="LoadHeatNames('GetRunningHeatData')">Live</button>
+      </li>
+      <li role="none">
+        <!-- Use a hidden input, triggered by a button -->
+        <button role="menuitem" class="kbd" id="load-local" onclick="openFilePicker()">Local</button>
+        <input type="file" id="LocalFileSelector" hidden />
+      </li>
+      <li role="none">
+        <button role="menuitem" class="kbd" id="load-cloud"
+                onclick="LoadHeatNames('Online')">Cloud</button>
+      </li>
+      <li role="none">
+        <button role="menuitem" class="kbd" id="load-offline"
+                onclick="LoadHeatNames('Offline')">Offline</button>
+      </li>
+      <li role="none">
+        <button role="menuitem" class="kbd" id="load-refresh" onclick="refreshMeet()">Refresh</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- UPLOAD -->
+  <div class="menu-item" role="none">
+    <button id="menu-upload-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false"
+            aria-controls="menu-upload" role="menuitem">Upload ▾</button>
+    <ul id="menu-upload" class="dropdown" role="menu" aria-labelledby="menu-upload-btn" aria-hidden="true">
+      <li role="none">
+        <button role="menuitem" class="kbd" id="up-live"
+                onclick="CaptureEdits('SetRunningHeatData')">Live</button>
+      </li>
+      <li role="none">
+        <button role="menuitem" class="kbd" id="up-local"
+                onclick="CaptureEdits('InitLocal')">Local</button>
+      </li>
+      <li role="none">
+        <button role="menuitem" class="kbd" id="up-online"
+                onclick="initResultSheet(); UpdateReportTitle(6); plotEventTblNew();">Online</button>
+      </li>
+      <!-- Add back other report options here if needed -->
+    </ul>
+  </div>
+
+  <!-- HEAT -->
+  <div class="menu-item" role="none">
+    <button id="menu-heat-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false"
+            aria-controls="menu-heat" role="menuitem">Heat ▾</button>
+    <ul id="menu-heat" class="dropdown" role="menu" aria-labelledby="menu-heat-btn" aria-hidden="true">
+      <li role="none">
+        <button role="menuitem" class="kbd" id="heat-new"
+                onclick="AppendRow('tblHeatDetails','tblHeatDetailsRow')">New</button>
+      </li>
+      <li role="none">
+        <button role="menuitem" class="kbd" id="heat-remove"
+                onclick="DeleteRows('tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')">Remove</button>
+      </li>
+      <li role="none">
+        <button role="menuitem" class="kbd" id="heat-update"
+                onclick="UpdateSelectedData('updateHeat','tblHeatDetails','HeatCheckcell_','tblHeatDetailsRow')">Update</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ======== PAGE CONTENT ======== -->
+<div class="page-content">
+  <h1>Content area</h1>
+  <p>Scroll the page; the top menu remains fixed.</p>
+  <p style="height: 1200px;">(Tall content to demonstrate fixed menubar.)</p>
+</div>
+
+<script>
+  // ---------- Utility: toggle dropdowns ----------
+  const menuButtons = document.querySelectorAll('.menu-btn');
+
+  function closeAllMenus(exceptId = null) {
+    document.querySelectorAll('.dropdown').forEach(menu => {
+      const btn = document.getElementById(menu.getAttribute('aria-labelledby'));
+      const shouldClose = !exceptId || (menu.id !== exceptId);
+      if (shouldClose) {
+        menu.setAttribute('aria-hidden', 'true');
+        btn?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  function toggleMenu(btn, menuId) {
+    const menu = document.getElementById(menuId);
+    const isOpen = menu.getAttribute('aria-hidden') === 'false';
+    if (isOpen) {
+      menu.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      closeAllMenus(menuId);
+      menu.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      // Move focus to first item for accessibility
+      const firstItem = menu.querySelector('[role="menuitem"]');
+      firstItem?.focus({ preventScroll: true });
+    }
+  }
+
+  menuButtons.forEach(btn => {
+    const menuId = btn.getAttribute('aria-controls');
+
+    // Click to open/close
+    btn.addEventListener('click', () => toggleMenu(btn, menuId));
+
+    // Keyboard open with ArrowDown / Enter / Space
+    btn.addEventListener('keydown', (e) => {
+      if (['Enter', ' ', 'ArrowDown'].includes(e.key)) {
+        e.preventDefault();
+        toggleMenu(btn, menuId);
+      }
+      // Navigate between top-level buttons with ArrowLeft/Right
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        const list = Array.from(menuButtons);
+        const idx = list.indexOf(btn);
+        const nextIdx = e.key === 'ArrowRight' ? (idx + 1) % list.length : (idx - 1 + list.length) % list.length;
+        list[nextIdx].focus();
+      }
+    });
+  });
+
+  // ---------- Keyboard navigation inside dropdown ----------
+  document.querySelectorAll('.dropdown').forEach(menu => {
+    const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+
+    menu.addEventListener('keydown', (e) => {
+      const idx = items.indexOf(document.activeElement);
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        // close and return focus to button
+        const btnId = menu.getAttribute('aria-labelledby');
+        const btn = document.getElementById(btnId);
+        closeAllMenus();
+        btn?.focus();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        items[(idx + 1) % items.length]?.focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        items[(idx - 1 + items.length) % items.length]?.focus();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        items[0]?.focus();
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        items[items.length - 1]?.focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        // Move focus to another top-level button
+        const btnId = menu.getAttribute('aria-labelledby');
+        const btn = document.getElementById(btnId);
+        const list = Array.from(document.querySelectorAll('.menu-btn'));
+        const i = list.indexOf(btn);
+        const nextIdx = e.key === 'ArrowRight' ? (i + 1) % list.length : (i - 1 + list.length) % list.length;
+        closeAllMenus();
+        list[nextIdx].focus();
+      }
+    });
+
+    // Close menu when focus leaves the menu (optional but helpful)
+    menu.addEventListener('focusout', (e) => {
+      // If focus moved outside the menu and its button, close
+      setTimeout(() => {
+        const related = document.activeElement;
+        const btn = document.getElementById(menu.getAttribute('aria-labelledby'));
+        if (!menu.contains(related) && related !== btn) {
+          menu.setAttribute('aria-hidden', 'true');
+          btn?.setAttribute('aria-expanded', 'false');
+        }
+      }, 0);
+    });
+  });
+
+  // ---------- Click outside to close ----------
+  document.addEventListener('click', (e) => {
+    const isInside = e.target.closest('.menu-item');
+    if (!isInside) closeAllMenus();
+  });
+
+  // ---------- Your existing handlers ----------
+  function openFilePicker() {
+    // Trigger hidden file input safely
+    const input = document.getElementById('LocalFileSelector');
+    input?.click();
+  }
+
+  // Stubbed functions (replace with your real implementations)
+  function LoadHeatNames(mode) { console.log('LoadHeatNames', mode); }
+  function refreshMeet() { console.log('refreshMeet'); }
+  function CaptureEdits(mode) { console.log('CaptureEdits', mode); }
+  function initResultSheet() { console.log('initResultSheet'); }
+  function UpdateReportTitle(n) { console.log('UpdateReportTitle', n); }
+  function plotEventTblNew() { console.log('plotEventTblNew'); }
+  function AppendRow(tbl, rowTpl) { console.log('AppendRow', tbl, rowTpl); }
+  function DeleteRows(tbl, checkPrefix, rowTpl) { console.log('DeleteRows', tbl, checkPrefix, rowTpl); }
+  function UpdateSelectedData(action, tbl, checkPrefix, rowTpl) {
+    console.log('UpdateSelectedData', action, tbl, checkPrefix, rowTpl);
+  }
+</script>
+</body>
+</html>

@@ -9,8 +9,7 @@ from pathlib import Path
 import os
 import shutil
 import time
-from typing import Any, Dict, List, Optional
-
+from typing import Any, Dict, List, Optional,Tuple
 
 class FireBaseHelper:
     # ----------------------------------------------------------------------
@@ -281,26 +280,100 @@ class FireBaseHelper:
     # ----------------------------------------------------------------------
     # JSON I/O (NEW snake_case)
     # ----------------------------------------------------------------------
-    @staticmethod
-    def prepare_heat_results_to_local_json_db(HeatIDToUpdate, heatDataDisplay, data):
+    # @staticmethod
+    # def prepare_heat_results_to_local_json_db(HeatIDToUpdate, heatDataDisplay, data):
+    #     try:
+    #         events = data.get("EventDetails", []) if isinstance(data, dict) else []
+    #         for eventID in range(0, len(events)):
+    #             event = events[eventID]
+    #             for heat in range(0, len(event.get("HeatList", []))):
+    #                 heat_obj = event["HeatList"][heat]
+    #                 if HeatIDToUpdate == heat_obj.get("HeatID"):
+    #                     heat_obj["HeatStartTime"] = getattr(heatDataDisplay, "HeatStartTime", 0)
+    #                     heat_obj["HeatEndTime"] = getattr(heatDataDisplay, "HeatEndTime", 0)
+    #                     boards = heat_obj.get("BoardList", [])
+    #                     for idx in range(0, len(boards)):
+    #                         boards[idx]["SwimTimings"] = heatDataDisplay.SwimerBoardDetails[idx].timerValue
+    #                         boards[idx]["SwimStatus"] = heatDataDisplay.SwimerBoardDetails[idx].swimerStatus
+    #                     return data, heat_obj, heat, eventID
+    #         return data, -1, -1, -1
+    #     except Exception:
+    #         Logger.app_log.error("prepare_heat_results_to_local_json_db failed", exc_info=True)
+    #         return None
+
+
+
+    def prepare_heat_results_to_local_json_db(
+        HeatIDToUpdate: Any,
+        heatDataDisplay: Any,
+        data: Dict[str, Any],
+    ) -> Tuple[Optional[Dict[str, Any]], Any, Any, Any]:
+        """
+        Update the heat results in a JSON-like dict structure.
+
+        Assumes:
+        - data["EventDetails"] is a dict: {event_key: event_dict}
+        - event_dict["HeatList"] is a dict: {heat_key: heat_dict}
+        - heat_dict may contain "BoardList": list[dict]
+        - heatDataDisplay has attributes: HeatStartTime, HeatEndTime, SwimerBoardDetails
+            where each item in SwimerBoardDetails has timerValue, swimerStatus.
+
+        Returns:
+            (data, heat_obj, heat_key, event_key)
+            If HeatID not found: (data, -1, -1, -1)
+            On error: (None,)
+        """
         try:
-            events = data.get("EventDetails", []) if isinstance(data, dict) else []
-            for eventID in range(0, len(events)):
-                event = events[eventID]
-                for heat in range(0, len(event.get("HeatList", []))):
-                    heat_obj = event["HeatList"][heat]
+            event_details = data.get("EventDetails", {})
+            if not isinstance(event_details, dict):
+                # Schema mismatch; keep behavior consistent
+                return data, -1, -1, -1
+
+            for event_key, event in event_details.items():
+                if not isinstance(event, dict):
+                    continue
+
+                heat_list = event.get("HeatList", {})
+                if not isinstance(heat_list, dict):
+                    continue
+
+                for heat_key, heat_obj in heat_list.items():
+                    if not isinstance(heat_obj, dict):
+                        continue
+
+                    # Match by HeatID
                     if HeatIDToUpdate == heat_obj.get("HeatID"):
+                        # Update times
                         heat_obj["HeatStartTime"] = getattr(heatDataDisplay, "HeatStartTime", 0)
-                        heat_obj["HeatEndTime"] = getattr(heatDataDisplay, "HeatEndTime", 0)
+                        heat_obj["HeatEndTime"]   = getattr(heatDataDisplay, "HeatEndTime", 0)
+                        heat_obj["HeatStatus"]   = 1
+
+
+                        # Update board data (defensive against length mismatches)
                         boards = heat_obj.get("BoardList", [])
-                        for idx in range(0, len(boards)):
-                            boards[idx]["SwimTimings"] = heatDataDisplay.SwimerBoardDetails[idx].timerValue
-                            boards[idx]["SwimStatus"] = heatDataDisplay.SwimerBoardDetails[idx].swimerStatus
-                        return data, heat_obj, heat, eventID
+                        swbd   = getattr(heatDataDisplay, "SwimerBoardDetails", None)
+
+                        if isinstance(boards, list) and isinstance(swbd, (list, tuple)):
+                            n = min(len(boards), len(swbd))
+                            for idx in range(n):
+                                boards[idx]["SwimTimings"] = getattr(swbd[idx], "timerValue", None)
+                                boards[idx]["SwimStatus"]  = getattr(swbd[idx], "swimerStatus", None)
+                            # Optional: leave extra boards untouched; ignore extra SwimerBoardDetails
+
+                        return data, heat_obj, heat_key, event_key
+
+            # HeatID not found
             return data, -1, -1, -1
+
         except Exception:
-            Logger.app_log.error("prepare_heat_results_to_local_json_db failed", exc_info=True)
-            return None
+            # Keep your logger if available, otherwise fall back silently
+            try:
+                Logger.app_log.error("prepare_heat_results_to_local_json_db failed", exc_info=True)
+            except Exception:
+                pass
+            return None,
+
+
 
     @staticmethod
     def format_heat_result_file_to_proper_json_and_read(path: str):
@@ -318,6 +391,7 @@ class FireBaseHelper:
     @staticmethod
     def get_json_from_file(path: str) -> Optional[Any]:
         try:
+            FireBaseHelper.create_if_file_not_exists(path)            
             with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception:
@@ -356,10 +430,11 @@ class FireBaseHelper:
         try:
             FireBaseHelper._refresh_event_base_url()
             if FireBaseHelper.internet_on():
+                #https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/Millennium_World_School_HASSAN_2025/EventDetails/100_IM_G01_B/HeatList/100_IM_G01_B_1.json
                 url = f"{FireBaseHelper.EventBaseurl}/EventDetails/{eventIndex}/HeatList/{heatindex}.json"
                 FireBaseHelper._patch(url, updated_heat_data, desc="Single heat update")
-            else:
-                time.sleep(2)
+            # else:
+            #     time.sleep(2)
         except Exception:
             Logger.app_log.error("update_heat_result_to_firebase failed", exc_info=True)
 

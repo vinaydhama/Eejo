@@ -98,7 +98,6 @@
                         newOption.text = HeatName; // Set the text  
                         HeatSelectorComboBox.add(newOption)
                     }
-
                     return data;
                 }, error => {
                     console.error('onRejected function called: ' + error.message);
@@ -339,10 +338,10 @@
                             SwStatusCmd_select.addEventListener("change", function () {
 
                                 var SwStatusCmd_select = document.getElementById("SwStatusCmd_select" + (i / 2))
-                                if (SwStatusCmd_select.value != '0') {
+                                // if (SwStatusCmd_select.value != '0') {
                                     states_dictionary = { "SwBoardID": (i / 2), "SwStatusCmdValue": SwStatusCmd_select.value };
                                     ExecuteLiveCmd("SwimmerStatusCmd", states_dictionary);
-                                }
+                                // }
                             });
 
                             // SwBoardID=""&BoardTimerCmdValue="" //  1-Pause,2-Continue,3-Disable,4-Bypass
@@ -379,10 +378,10 @@
                             BoardCmd_select.id = "BoardCmd_select" + (i / 2);
                             BoardCmd_select.addEventListener("change", function () {
                                 var SelectedBoard_Cmd = document.getElementById("BoardCmd_select" + (i / 2))
-                                if (SelectedBoard_Cmd.value != '0') {
+                                // if (SelectedBoard_Cmd.value != '0') {
                                     states_dictionary = { "SwBoardID": (i / 2), "BoardTimerCmdValue": SelectedBoard_Cmd.value };
                                     ExecuteLiveCmd("BoardTimerCmd", states_dictionary);
-                                }
+                                // }
                             });
 
                         }

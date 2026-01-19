@@ -7,11 +7,16 @@
 // ---------- Common helpers & logging ----------
 
 const LOG_PREFIX = "[EventEditor]";
+let eventEntries;
+
+let AvailableSwimmerID  ;
+let AvailableSwimmerNames ;
+let AvailableSwimmerClubs ;
 
 const log = {
   debug: (...args) => console.debug(LOG_PREFIX, ...args),
-  info:  (...args) => console.info(LOG_PREFIX, ...args),
-  warn:  (...args) => console.warn(LOG_PREFIX, ...args),
+  info: (...args) => console.info(LOG_PREFIX, ...args),
+  warn: (...args) => console.warn(LOG_PREFIX, ...args),
   error: (...args) => console.error(LOG_PREFIX, ...args),
 };
 
@@ -54,19 +59,9 @@ function toInt(value, fallback = 0) {
 }
 
 // Defensive check for string with underscore partition
-function splitBeforeLastUnderscore(id) {
-  if (typeof id !== 'string') return { ok: false, prefix: null, lastIndex: -1 };
-  const lastIdx = id.lastIndexOf('_');
-  if (lastIdx <= 0) {
-    return { ok: false, prefix: null, lastIndex: lastIdx };
-  }
-  return { ok: true, prefix: id.slice(0, lastIdx), lastIndex: lastIdx };
-}
 
-// Normalize string: trim; if not string, return empty string
-function normalizeStr(s) {
-  return typeof s === 'string' ? s.trim() : '';
-}
+
+
 
 // ---------- Globals (kept from original file) ----------
 let NumberofEventsperSw = 3;
@@ -131,334 +126,9 @@ function ReloadData(datatoRefresh) {
         }
         break;
 
-        case "Heat":
-
-        
-// case "Heats":
-//   try {
-//     // ----------------- helpers -----------------
-//     const parseTime = (val) => {
-//       if (val == null) return null;
-//       const s = String(val).trim();
-//       if (!s) return null;
-
-//       // mm:ss.hh or m:ss
-//       const m = s.match(/^(\d+):(\d+(?:\.\d+)?)$/);
-//       if (m) {
-//         const mins = parseInt(m[1], 10);
-//         const secs = parseFloat(m[2]);
-//         const total = mins * 60 + secs;
-//         return Number.isFinite(total) ? total : null;
-//       }
-
-//       // plain seconds
-//       const n = parseFloat(s);
-//       return Number.isFinite(n) ? n : null;
-//     };
-
-//     const compareTimesAscNullLast = (a, b) => {
-//       const x = a?.SwimmersEventBestTime;
-//       const y = b?.SwimmersEventBestTime;
-//       const fx = Number.isFinite(x);
-//       const fy = Number.isFinite(y);
-//       if (fx && fy) return x - y;
-//       if (fx && !fy) return -1;  // valid < null
-//       if (!fx && fy) return 1;   // null > valid
-//       return 0; // both null
-//     };
-
-//     const heatDictToArray = (heatDict) => {
-//       // Flatten and order by (eventID, heat number parsed from key)
-//       // Assumes heatID = `${eventID}_${heatNumber}`
-//       return Object.values(heatDict)
-//         .sort((a, b) => {
-//           const [ea, ha] = String(a.ID).split("_");
-//           const [eb, hb] = String(b.ID).split("_");
-//           if (ea !== eb) return ea.localeCompare(eb);
-//           return (parseInt(ha, 10) || 0) - (parseInt(hb, 10) || 0);
-//         });
-//     };
-
-//     // -------------- collect swimmers --------------
-//     // Dictionaries requested:
-//     const EventDetailsDict = {}; // eventID -> { EventID, EventName?, Boards, HeatsCount, ... }
-//     const HeatListDict = {};     // heatID  -> { ID, EventID, Boardinfo, HeatStatus, LaneOffset }
-
-//     const tblSwimmers = getEl('tblSwDetails', { required: true });
-//     const SwimmerDetailsArray = [];
-
-//     if (!tblSwimmers) return;
-
-//     for (let i = 1; i < tblSwimmers.rows.length; i++) {
-//       const rowindex = (tblSwimmers.rows[i].id || "").replace("tblSwimmersRow", "");
-//       const tblSwSelectedEvents = getEl('tblSwSelectedEvents' + rowindex);
-//       if (!tblSwSelectedEvents) continue;
-
-//       for (let j = 0; j < tblSwSelectedEvents.rows.length - 1; j++) {
-//         const availId = "SwimmersAvailablecell" + rowindex + "_" + j;
-//         const nameId  = "SwimmersNamecell" + rowindex;
-//         const timeId  = "SwimmersEventBestTime" + rowindex + "_" + j;
-//         const eventSelId = "SwimmersEventSelector" + rowindex + "_" + j;
-
-//         const checked = !!getEl(availId)?.checked;
-//         if (!checked) continue;
-
-//         const nameRaw = getEl(nameId)?.value ?? "";
-//         const timeRaw = getEl(timeId)?.value;
-//         const EventSelector = getEl(eventSelId);
-
-//         // normalizeStr may be your utility; guard if absent
-//         const SwimmersNamecell = (typeof normalizeStr === 'function')
-//           ? normalizeStr(nameRaw)
-//           : String(nameRaw).trim();
-
-//         const parsedTime = parseTime(
-//           (typeof normalizeStr === 'function')
-//             ? normalizeStr(timeRaw)
-//             : timeRaw
-//         );
-
-//         if (EventSelector && SwimmersNamecell) {
-//           SwimmerDetailsArray.push({
-//             SwName: SwimmersNamecell,
-//             Swevents: EventSelector.value,          // treat value as eventID
-//             SwimmersEventBestTime: parsedTime // null allowed (sorted last)
-//           });
-//         }
-//       }
-//     }
-
-//     // -------------- setup lanes/heats --------------
-//     const boardsInputEl = getEl("tblMeet_txtBoards");
-//     const boardCount = toInt(boardsInputEl?.value, 1);
-//     const BoardsPerHeat = boardCount > 0 ? boardCount : 1;
-
-//     const startsAtZero = !!getEl("BoardStartsFromZero")?.checked; // guard
-
-//     // -------------- per-event processing --------------
-//     for (let EventCounter = 0; EventCounter < AvailableEvents.length; EventCounter++) {
-//       const eventID = AvailableEvents[EventCounter]; // using as eventID key
-//       const SwimmersList = SwimmerDetailsArray.filter(sd => sd.Swevents === eventID);
-
-//       // sort ascending (fastest first), nulls last
-//       SwimmersList.sort(compareTimesAscNullLast);
-
-//       const HeatsCount = Math.ceil(SwimmersList.length / BoardsPerHeat);
-
-//       // Record event details in dictionary
-//       EventDetailsDict[eventID] = {
-//         EventID: eventID,
-//         Boards: BoardsPerHeat,
-//         HeatsCount: HeatsCount,
-//         EntriesCount: SwimmersList.length
-//         // Add other fields if you have (e.g., stroke, distance, gender, age group)
-//       };
-
-//       // create heats for this event in dictionary
-//       for (let h = 0; h < HeatsCount; h++) {
-//         const heatID = `${eventID}_${h + 1}`;
-//         HeatListDict[heatID] = {
-//           ID: heatID,
-//           EventID: eventID,
-//           Boardinfo: [],
-//           HeatStatus: 0,
-//           LaneOffset: startsAtZero ? 0 : 1 // preserve lane base
-//         };
-//       }
-
-//       // distribute swimmers round-robin across heats (existing behavior)
-//       let j = 0; // which heat index within this event
-//       for (let i = 0; i < SwimmersList.length; i++) {
-//         if (j === HeatsCount) j = 0;
-//         const currentHeatID = `${eventID}_${j + 1}`;
-//         const boardinfo = HeatListDict[currentHeatID].Boardinfo;
-
-//         // lane number while inserting
-//         const laneIndex = boardinfo.length; // zero-based index in this heat
-//         const laneNumber = laneIndex + (startsAtZero ? 0 : 1);
-
-//         boardinfo.push({
-//           BoardID: laneNumber,    // respect 0/1-based at insert
-//           BoardStatus: 0,
-//           SwimStatus: 0,
-//           SwimTimings: 0,
-//           SwimerID: SwimmersList[i].SwName,  // TODO: real unique ID if available
-//           SwimerName: SwimmersList[i].SwName,
-//           SeedTime: SwimmersList[i].SwimmersEventBestTime // keep number seconds or null
-//         });
-//         j++;
-//       }
-//     }
-
-//     // ----------- lane reordering (preserve lane base) -----------
-//     Object.values(HeatListDict).forEach(heat => {
-//       const arr = Array.isArray(heat.Boardinfo) ? heat.Boardinfo : [];
-//       const k = arr.length;
-
-//       // Retain original pattern
-//       const firstPartIndices = [];
-//       for (let i = k - 2; i >= 0; i -= 2) firstPartIndices.push(i);
-
-//       const set = new Set(firstPartIndices);
-//       const secondPartIndices = [];
-//       for (let i = 0; i < k; i++) if (!set.has(i)) secondPartIndices.push(i);
-
-//       const sortedArray = [...firstPartIndices, ...secondPartIndices]
-//         .map(i => arr[i])
-//         .filter(Boolean);
-
-//       const base = heat.LaneOffset ?? 0; // 0 for zero-based, 1 for one-based
-//       for (let i = 0; i < sortedArray.length; i++) {
-//         sortedArray[i].BoardID = i + base; // preserve offset
-//       }
-
-//       heat.Boardinfo = sortedArray;
-//       log.debug("Heat lane arrangement computed.", heat);
-//     });
-
-//     // ---------- render (adapter for legacy UI expecting arrays) ----------
-//     const HeatListArray = heatDictToArray(HeatListDict);
-//     GenerateHeatDetailsTable(HeatListArray);
-
-//     // Optionally expose the dictionaries globally or return them
-//     // window.EventDetailsDict = EventDetailsDict;
-//     // window.HeatListDict = HeatListDict;
-
-//     log.info("ReloadData: Heats recalculated with dictionary structures.");
-//   } catch (err) {
-//     log.error("ReloadData Heats branch failed.", err);
-//   }
- 
-
-//           break;
-
-      case "Heats":
-        try {
-          // GenerateHeatList
-          let Heatcounter = 0;
-          const HeatList = [];
-          const tblSwimmers = getEl('tblSwDetails', { required: true });
-          const SwimmerDetailsArray = [];
-
-          if (!tblSwimmers) return;
-
-          for (let i = 1; i < tblSwimmers.rows.length; i++) {
-            const rowindex = (tblSwimmers.rows[i].id || "").replace("tblSwimmersRow", "");
-            const tblSwSelectedEvents = getEl('tblSwSelectedEvents' + rowindex);
-            if (!tblSwSelectedEvents) continue;
-
-            for (let j = 0; j < tblSwSelectedEvents.rows.length - 1; j++) {
-              const availId = "SwimmersAvailablecell" + rowindex + "_" + j;
-              const nameId  = "SwimmersNamecell" + rowindex;
-              const timeId  = "SwimmersEventBestTime" + rowindex + "_" + j;
-              const eventSelId = "SwimmersEventSelector" + rowindex + "_" + j;
-
-              const checked = !!getEl(availId)?.checked;
-              if (checked) {
-                const SwimmersNamecell = normalizeStr(getEl(nameId)?.value);
-                const SwimmersEventBestTime = normalizeStr(getEl(timeId)?.value);
-                const EventSelector = getEl(eventSelId);
-                const bestTimeNum = parseFloat(SwimmersEventBestTime);
-                const safeTime = Number.isFinite(bestTimeNum) ? bestTimeNum : Number.POSITIVE_INFINITY;
-
-                if (EventSelector && SwimmersNamecell) {
-                  SwimmerDetailsArray.push({
-                    'SwName': SwimmersNamecell,
-                    'Swevents': EventSelector.value,
-                    'SwimmersEventBestTime': safeTime
-                  });
-                }
-              }
-            }
-          }
-
-          for (let EventCounter = 0; EventCounter < AvailableEvents.length; EventCounter++) {
-            const eventname = AvailableEvents[EventCounter];
-            const SwimmersList = [];
-
-            SwimmerDetailsArray.forEach(SwimerDetail => {
-              if (SwimerDetail.Swevents === eventname) {
-                SwimmersList.push(SwimerDetail);
-              }
-            });
-
-            // Sort SwimmersList by best time (ascending)
-            for (let i = 0; i < SwimmersList.length - 1; i++) {
-              for (let j = 0; j < SwimmersList.length - i - 1; j++) {
-                if (SwimmersList[j].SwimmersEventBestTime > SwimmersList[j + 1].SwimmersEventBestTime) {
-                  const temp = SwimmersList[j];
-                  SwimmersList[j] = SwimmersList[j + 1];
-                  SwimmersList[j + 1] = temp;
-                }
-              }
-            }
-
-            const boardsInputEl = getEl("tblMeet_txtBoards");
-            const boardCount = toInt(boardsInputEl?.value, 1);
-            const BoardCount = boardCount > 0 ? boardCount : 1;
-            const BoardStartsFromZero = getEl("BoardStartsFromZero");
-            
+      case "Heat":
 
 
-            const NoofHeats = Math.ceil(SwimmersList.length / BoardCount);
-
-            for (let i = 0; i < NoofHeats; i++) {
-              const Boardinfo = [];
-              const HeatDetails = { 'ID': eventname + "_" + (i + 1), 'Boardinfo': Boardinfo, 'HeatStatus': 0  };
-              HeatList.push(HeatDetails);
-            }
-
-            let j = 0;
-            for (let i = 0; i < SwimmersList.length; i++) {
-              if (j === NoofHeats) j = 0;
-              const boardinfo = HeatList[Heatcounter + j].Boardinfo;
-              let  LineID=  boardinfo.length;
-
-              if (!BoardStartsFromZero.checked) LineID=LineID +1
-              
-              boardinfo.push({
-                'BoardID': LineID,
-                'BoardStatus': 0,
-                'SwimStatus': 0,
-                'SwimTimings': 0,
-                'SwimerID': SwimmersList[i].SwName,
-                'SwimerName': SwimmersList[i].SwName
-              });
-              j++;
-            }
-            Heatcounter = Heatcounter + NoofHeats;
-          }
-
-          // Reorder board lanes per original logic with safeguards
-          HeatList.forEach(heatlst => {
-            const arr = Array.isArray(heatlst.Boardinfo) ? heatlst.Boardinfo : [];
-            const k = arr.length;
-
-            const firstPartIndices = [];
-            for (let i = k - 2; i >= 0; i -= 2) {
-              firstPartIndices.push(i);
-            }
-
-            const secondPartIndices = [];
-            for (let i = 0; i < k; i++) {
-              if (!firstPartIndices.includes(i)) {
-                secondPartIndices.push(i);
-              }
-            }
-
-            const sortedArray = [...firstPartIndices, ...secondPartIndices].map(i => arr[i]).filter(Boolean);
-            for (let i = 0; i < sortedArray.length; i++) {
-              sortedArray[i].BoardID = i;
-            }
-            heatlst.Boardinfo = sortedArray;
-            log.debug("Heat lane arrangement computed.", heatlst);
-          });
-
-          GenerateHeatDetailsTable(HeatList);
-          log.info("ReloadData: Heats recalculated.");
-        } catch (err) {
-          log.error("ReloadData Heats branch failed.", err);
-        }
         break;
 
       case "Events":
@@ -469,11 +139,11 @@ function ReloadData(datatoRefresh) {
           AvailableEvents.length = 0;
           for (let i = 1; i < tblEvents.rows.length; i++) {
             const rowindex = (tblEvents.rows[i].id || "").replace("tblEventsRow", "");
-            const dist  = normalizeStr(getEl("EventDistencecell" + rowindex)?.value);
-            const stroke= normalizeStr(getEl("EventStrokecell"   + rowindex)?.value);
-            const group = normalizeStr(getEl("EventGroupcell"    + rowindex)?.value);
-            const gender= normalizeStr(getEl("EventGendercell"   + rowindex)?.value);
-            const name  = `${dist}_${stroke}_${group}_${gender}`;
+            const dist = normalizeStr(getEl("EventDistencecell" + rowindex)?.value);
+            const stroke = normalizeStr(getEl("EventStrokecell" + rowindex)?.value);
+            const group = normalizeStr(getEl("EventGroupcell" + rowindex)?.value);
+            const gender = normalizeStr(getEl("EventGendercell" + rowindex)?.value);
+            const name = `${dist}_${stroke}_${group}_${gender}`;
             AvailableEvents.push(name);
           }
 
@@ -529,7 +199,7 @@ function AddGroupRow(index, GroupDetail) {
     const tblgroupRow = tblGroupsBody.insertRow();
     tblgroupRow.draggable = true;
     tblgroupRow.ondragstart = function () { startDrag() };
-    tblgroupRow.ondragover  = function () { dragover() };
+    tblgroupRow.ondragover = function () { dragover() };
     tblgroupRow.id = "tblgroupRow" + index;
 
     let GrpCheckcell = tblgroupRow.insertCell();
@@ -590,7 +260,7 @@ function AddSwimmerRow(index, SwDetails) {
     const tblSwimmersRow = tblSwimmers.insertRow();
     tblSwimmersRow.setAttribute('draggable', 'true');
     tblSwimmersRow.ondragstart = function () { startDrag() };
-    tblSwimmersRow.ondragover  = function () { dragover() };
+    tblSwimmersRow.ondragover = function () { dragover() };
 
     let SwimmersCheckboxcell = tblSwimmersRow.insertCell();
     SwimmersCheckboxcell.innerHTML = "<input type='Checkbox' id ='SwimmersCheckboxcell" + index + "'>";
@@ -642,9 +312,10 @@ function AddSwimmerRow(index, SwDetails) {
     cell = row.insertCell(); cell.innerHTML = "<b> Best Timeings <b>";
     cell = row.insertCell(); cell.innerHTML = "<b> Available <b>";
     cell = row.insertCell();
+
     cell.innerHTML =
-      "<button onclick=AppendRow('" + tblSwSelectedEvents.id + "','tblSwimmersRow')><i class='fa fa-fw fa-plus'></i></button> " +
-      "<button onclick=DeleteRows('" + tblSwSelectedEvents.id + "','tblSwSelectedEvents','tblSwimmersRow')><i class='fa fa-fw fa-minus'></i></button>";
+      `<button onclick=AppendRow( '${tblSwSelectedEvents.id}','tblSwimmersRow',"+ ${index} )><i class='fa fa-fw fa-plus'></i></button> " +
+      "<button onclick=DeleteRows('${tblSwSelectedEvents.id} ,'tblSwSelectedEvents','tblSwimmersRow')><i class='fa fa-fw fa-minus'></i></button>`
 
     const SwimmersEventcell = tblSwimmersRow.insertCell();
     SwimmersEventcell.appendChild(tblSwSelectedEvents);
@@ -724,7 +395,7 @@ function AddSwEventRow(EventTableName) {
 
 function AppendRow(TableName, idprefix, tblindex = 0) {
   try {
-    const grptab = getEl(TableName, { required: true });
+    let grptab = getEl(TableName, { required: true });
     if (!grptab) return;
 
     let Rowindextoadd = 0;
@@ -735,13 +406,33 @@ function AppendRow(TableName, idprefix, tblindex = 0) {
       }
     }
 
-    switch (TableName) {
-      case "tblSwlist0":
-        {
-          let Heat = {};
-          AddSwList(Heat, tblindex, 0);
+    if (TableName.indexOf("tblSwlist") !== -1) {
+      let Heat = {};
+      tblindex = parseInt(TableName.replace("tblSwlist", ""));
+      grptab = getEl(TableName, { required: true });
+
+
+      for (let i = 0; i <= grptab.rows.length; i++) {
+        if (!grptab.rows[idprefix + tblindex + "_" + i]) {
+          Rowindextoadd = i;
+          break;
         }
-        break;
+      }
+
+
+      AddSwList(Heat, tblindex, Rowindextoadd);
+    }
+
+
+
+
+    switch (TableName) {
+      // case "tblSwlist0":
+      //   {
+      //     let Heat = {};
+      //     AddSwList(Heat, tblindex, 0);
+      //   }
+      //   break;
 
       case "tblSwDetails":
         {
@@ -789,288 +480,41 @@ function AppendRow(TableName, idprefix, tblindex = 0) {
 
 
 
-// Helper: normalize various inputs to "HH:MM"
-function normalizeTime(value) {
-  if (value == null) return '';
-  const s = String(value).trim();
+function ComputeEventList()
+{
+    let heatId = "";
 
-  // Accept "HH:MM"  // Accept "HH:MM" or "HH:MM:SS" ? keep HH:MM
-  const iso = /^(\d{2}):(\d{2})(?::\d{2})?$/.exec(s);
-  if (iso) return `${iso[1]}:${iso[2]}`;
+   log.warn("Heat ID Computation.", { heatId });
+      // Normalize EventList to "entries": supports array OR dict
+      const eventListRaw = Meetdteails?.EventDetails ?? {};
+       eventEntries = Array.isArray(eventListRaw)
+        // Array -> [{ idx, key (string index), value }]
+        ? eventListRaw.map((ev, i) => ({ idx: i, key: String(i), value: ev }))
+        // Dict -> Object.entries -> [{ idx (iteration order), key, value }]
+        : Object.entries(eventListRaw).map(([k, v], i) => ({ idx: i, key: k, value: v }));
 
-  // Optional: convert "h:mm AM/PM" ? 24h
-  const ampm = s.match(/^(\d{1,2}):(\d{2})\s*([APap][Mm])$/);
-  if (ampm) {
-    let h = parseInt(ampm[1], 10);
-    const mm = ampm[2];
-    const mer = ampm[3].toUpperCase();
-    if (mer === 'PM' && h !== 12) h += 12;
-    if (mer === 'AM' && h === 12) h = 0;
-    return `${String(h).padStart(2, '0')}:${mm}`;
+fillDatalist(document.getElementById('datalistSWid'),    AvailableSwimmerID);
+fillDatalist(document.getElementById('datalistSWname'),  AvailableSwimmerNames);
+fillDatalist(document.getElementById('datalistSWclub'),  AvailableSwimmerClubs);
+
+
+function fillDatalist(listEl, values) {
+  // Clear existing options efficiently
+  while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
+
+  // Append options via a DocumentFragment (minimize reflow)
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < values.length; i++) {
+    const opt = document.createElement('option');
+    opt.value = String(values[i]);
+    frag.appendChild(opt);
   }
-
-  return ''; // Unknown format ? leave blank
+  listEl.appendChild(frag);
 }
 
-// May not be required, to add Heat as it's calculated out of Sw name & Event List
-// function AddHeatRow(index, Heat) {
-//   try {
-//     const tblHeatDetails = getEl('tblHeatDetails', { required: true, desc: 'Heat details table' });
-//     if (!tblHeatDetails) return;
-
-//     const body = ensureTBody(tblHeatDetails);
-//     if (!body) {
-//       log.error("Cannot ensure TBODY for tblHeatDetails.");
-//       return;
-//     }
-
-//     const tblHeatDetailsRow = body.insertRow();
-//     tblHeatDetailsRow.id = "tblHeatDetailsRow" + index;
-
-//     const HeatCheckcell = tblHeatDetailsRow.insertCell();
-//     HeatCheckcell.classList.add('hide-on-print');
-//     HeatCheckcell.innerHTML = `<input type='Checkbox' id ='HeatCheckcell_${index}'>`;
-
-//     // -------- Robust EventID computation --------
-//     let EventID = -1;
-//     let heatId ="";
-//     try {
-//       const eventList = Array.isArray(Meetdteails?.EventList) ? Meetdteails.EventList : null;
-//       heatId = Heat?.ID;
-
-//       if (!eventList) {
-//         log.warn("EventList missing or not an array; cannot compute EventID.", { Meetdteails });
-//       } else if (typeof heatId !== 'string' || !heatId.length) {
-//         log.warn("Heat.ID not a valid string; cannot compute EventID.", { Heat });
-//       } else {
-//         const part = splitBeforeLastUnderscore(heatId);
-//         if (!part.ok) {
-//           log.warn("Heat.ID has no valid underscore partition; using full ID fallback.", { heatId, lastIndex: part.lastIndex });
-//         } else {
-//           const key = normalizeStr(part.prefix);
-//           EventID = eventList.findIndex(ev => normalizeStr(ev) === key);
-
-//           if (EventID === -1) {
-//             // Also support EventList being array of objects with ID-like property
-//             EventID = eventList.findIndex(ev => {
-//               const candidate = (ev?.ID ?? ev?.Id ?? ev?.id);
-//               return typeof candidate === 'string' && normalizeStr(candidate) === key;
-//             });
-//           }
-
-//           if (EventID === -1) {
-//             log.info("No matching event found for Heat prefix.", { prefix: key, heatId, totalEvents: eventList.length });
-//           } else {
-//             log.debug("Matched EventID for Heat.", { EventID, prefix: key, heatId });
-//           }
-//         }
-//       }
-//     } catch (err) {
-//       EventID = -1;
-//       log.error("Failed to compute EventID.", err);
-//     }
-
-//     // Heat name cell
-//     const HeatNamecell = tblHeatDetailsRow.insertCell();
-//     HeatNamecell.classList.add('hide-on-print');
-//     HeatNamecell.innerHTML = `<input class='form-control' id ='HeatNamecell${index}'>`;
-//     const HeatNamecelltxt = getEl('HeatNamecell' + index);
-//     if (HeatNamecelltxt) HeatNamecelltxt.value = normalizeStr(Heat?.ID);
-
-//     // Controls cell & swimmers table
-//     const tblSwlist = document.createElement("TABLE");
-//     tblSwlist.id = "tblSwlist" + index;
-
-//     const controlsCell = tblHeatDetailsRow.insertCell();
-//     controlsCell.id= "controlsCell"+ index;
-//     controlsCell.classList.add('hide-on-print');
-//     controlsCell.innerHTML =
-//       `<button onclick=AppendRow('${tblSwlist.id}','tblSwlistRow_')><i class='fa fa-fw fa-plus'></i></button>` +
-//       ` <button onclick=DeleteRows('${tblSwlist.id}','BoardCheckcell_','tblSwlistRow_')><i class='fa fa-fw fa-minus'></i></button>`+
-//        `<button onclick=UpdateSelectedData('Events')><i class="fa fa-fw fa-upload"></i></button>`      ;
-
-//     const header = tblSwlist.createTHead();
-//     let row = header.insertRow();
-//     let cell = row.insertCell();
-
-//     // Header text logic with EventID safety
-//     const isSameEvent = (lastEvent === EventID);
-//     const heatNumberText = (typeof Heat?.ID === 'string' && Heat.ID.includes('_'))
-//       ? Heat.ID.substring(Heat.ID.lastIndexOf('_') + 1)
-//       : "?";
-//     const eventOrdinal = (EventID >= 0) ? (EventID + 1) : "N/A";
-
-//     let headerText;
-//     let highlightNewEvent = false;
-
-//     if (isSameEvent && EventID >= 0) {
-//       headerText = `<b style='font-size: 12px'> Event: ${eventOrdinal} Heat : ${heatNumberText}</b>`;
-//     } else {
-//       lastEvent = EventID;
-//       const formatted = (typeof formatSwimmingEvent === 'function')
-//         ? formatSwimmingEvent(Heat.ID)
-//         : normalizeStr(Heat.ID);
-//       headerText = `<b style='font-size: 12px'>Event: ${eventOrdinal} ${formatted}</b>`;
-//       highlightNewEvent = true;
-//     }
-
-//     cell.innerHTML = headerText;
-
-//     if (highlightNewEvent) {
-//       cell.style.backgroundColor = "rgb(100, 100, 100)";
-//     }
-
-//       cell.colSpan = 7;
 
 
-
-
-// // Create header row (if needed)
-//  row = header.insertRow();
-
-// // (Optional) first two empty cells as in your original code
-// cell = row.insertCell();
-
-// // ------------------ Start Time ------------------
-// cell = row.insertCell();
-
-// {
-//   const inputId = `${heatId}StartTimeInput`;
-
-//   const label = document.createElement('label');
-//   label.htmlFor = inputId;
-//   label.textContent = 'Start';
-
-//   const br = document.createElement('br');
-
-//   const input = document.createElement('input');
-//   input.type = 'time';
-//   input.id = inputId;
-//   input.name = 'startTime';
-
-//   const val = normalizeTime(Heat?.HeatStartTime ?? '');
-//   if (val) input.value = val;
-
-//   cell.append(label, br, input);
-// }
-
-// // ------------------ End Time ------------------
-// cell = row.insertCell();
-
-// {
-//   const inputId = `${heatId}EndTimeInput`;
-
-//   const label = document.createElement('label');
-//   label.htmlFor = inputId;
-//   label.textContent = 'End';
-
-//   const br = document.createElement('br');
-
-//   const input = document.createElement('input');
-//   input.type = 'time';
-//   input.id = inputId;
-//   input.name = 'endTime';
-
-//   const val = normalizeTime(Heat?.HeatEndTime ?? '');
-//   if (val) input.value = val;
-
-//   cell.append(label, br, input);
-// }
-
-// // ------------------ Status (select) ------------------
-// cell = row.insertCell();
-
-// {
-//   const label = document.createElement('label');
-//   label.textContent = 'Status';
-
-//   const br = document.createElement('br');
-
-//   const select = document.createElement('select');
-//   select.id = `${heatId}SelectHeatStatus`;
-//   select.classList.add('dropdown-cell');
-
-//   const statuses = Array.isArray(HeatStatus) ? HeatStatus : [];
-
-//   statuses.forEach((statusText, i) => {
-//     const option = document.createElement('option');
-//     option.value = String(i);      // values are strings
-//     option.textContent = statusText;
-//     select.add(option);
-//   });
-
-//   // Set selected index from Heat.HeatStatus
-//   const idx = Number.parseInt(Heat?.HeatStatus, 10);
-//   const validIdx = Number.isInteger(idx) && idx >= 0 && idx < statuses.length;
-//   select.value = validIdx ? String(idx) : '0';
-
-//   cell.append(label, br, select);
-// }
-
-// // ------------------ Notes ------------------
-// cell = row.insertCell();
-// // If you want Notes to span two columns, set colSpan here
-// cell.colSpan = 3;
-
-// {
-//   const inputId = `${heatId}HeatNotes`;
-
-//   const label = document.createElement('label');
-//   label.htmlFor = inputId;
-//   label.textContent = 'Notes';
-
-//   const br = document.createElement('br');
-
-//   const textarea = document.createElement('textarea');
-//   textarea.id = inputId;
-//   textarea.name = 'notes';
-//   textarea.rows = 2;
-//   textarea.value = String(Heat?.HeatNotes ?? '');
-
-//   cell.append(label, br, textarea);
-
-
-//     row = header.insertRow();
-//     let c = row.insertCell(); c.classList.add('hide-on-print'); // blank
-//     c = row.insertCell(); c.innerHTML = "<b>Line<b>";
-//     c = row.insertCell(); c.classList.add('hide-on-print'); c.innerHTML = "<b>SwimerID.<b>";
-//     c = row.insertCell(); c.innerHTML = "<b>Name<b>";
-//     c = row.insertCell(); c.innerHTML = "<b>School \\ Club.<b>";
-//     c = row.insertCell(); c.innerHTML = "<b>SwimStatus<b>";
-//     c = row.insertCell(); c.innerHTML = "<b>SwimTimeings<b>";
-
-//     // Body cell with swimmer list
-//     const HeatSwimmerListcell = tblHeatDetailsRow.insertCell();
-//     HeatSwimmerListcell.id = 'SwimmersListcell' + index;
-//     HeatSwimmerListcell.appendChild(tblSwlist);
-
-//     const boards = Array.isArray(Heat?.Boardinfo) ? Heat.Boardinfo : [];
-//     for (let j = 0; j < boards.length; j++) {
-//       try {
-//         AddSwList(Heat, index, j);
-//       } catch (err) {
-//         log.error("AddSwList failed for row", { index, j, Heat }, err);
-//       }
-//     }
-
-//     const table = getEl(tblSwlist.id);
-//     if (table) {
-//       try { SetTableNavigation(table); }
-//       catch (navErr) { log.warn("SetTableNavigation failed.", { tableId: tblSwlist.id }, navErr); }
-//     }
-
-//     tblHeatDetailsRow.setAttribute('draggable', 'true');
-//     tblHeatDetailsRow.ondragstart = function () { startDrag() };
-//     tblHeatDetailsRow.ondragover  = function () { dragover() };
-
-//     log.debug("AddHeatRow completed.", { index, HeatID: Heat?.ID, EventID });
-//   }
-//   } catch (outerErr) {
-//     log.error("AddHeatRow fatal error.", { index, Heat }, outerErr);
-//   }
-// }
-
-
+}
 
 /* ===========================
    GenerateHeatDetailsTable
@@ -1080,15 +524,13 @@ function GenerateHeatDetailsTable(Heats) {
   try {
     ClearTable('tblHeatDetails');
 
-    // Treat Heats (HeatData) as Dict: { [heatKey]: heatObj }
+    showhide("BusyIndicatorpop", "GenerateHeatDetailsTable");
+    showToast("Generating Heat Details" + " in progress…", { type: 'loading', persistent: true });
+
+    ComputeEventList();
     const entries = Object.entries(Heats ?? {}); // [[key, heat], ...]
 
-    // (Optional) sort by numeric keys to ensure stable order
-    // entries.sort((a, b) => {
-    //   const na = Number(a[0]), nb = Number(b[0]);
-    //   if (!Number.isNaN(na) && !Number.isNaN(nb)) return na - nb;
-    //   return String(a[0]).localeCompare(String(b[0]));
-    // });
+    
 
     for (let i = 0; i < entries.length; i++) {
       const [, heat] = entries[i]; // keep original signature: AddHeatRow(i, heat)
@@ -1102,8 +544,12 @@ function GenerateHeatDetailsTable(Heats) {
     }
 
     log.info("GenerateHeatDetailsTable completed.", { count: entries.length });
+    hideToast();
+    showToast("Generating Heat Details" + " is Complete.", { type: 'success' });
   } catch (err) {
     log.error("GenerateHeatDetailsTable failed.", err);
+    hideToast();
+    showToast("GenerateHeatDetailsTable Request failed:" + err, { type: 'error' });
   }
 }
 
@@ -1132,42 +578,36 @@ function AddHeatRow(index, Heat) {
 
     // -------- Robust EventID computation (Dict-aware) --------
     let EventID = -1;
+    let EventName = -1;
+
     let heatId = "";
     try {
       heatId = Heat?.ID;
-
-      // Normalize EventList to "entries": supports array OR dict
-      const eventListRaw = Meetdteails?.EventDetails ?? {};
-      const eventEntries = Array.isArray(eventListRaw)
-        // Array -> [{ idx, key (string index), value }]
-        ? eventListRaw.map((ev, i) => ({ idx: i, key: String(i), value: ev }))
-        // Dict -> Object.entries -> [{ idx (iteration order), key, value }]
-        : Object.entries(eventListRaw).map(([k, v], i) => ({ idx: i, key: k, value: v }));
-
+       
       if (eventEntries.length === 0) {
         log.warn("EventList missing or empty; cannot compute EventID.", { Meetdteails });
       } else if (typeof heatId !== 'string' || !heatId.length) {
         log.warn("Heat.ID not a valid string; cannot compute EventID.", { Heat });
       } else {
-        const part = splitBeforeLastUnderscore(heatId);
-        if (!part.ok) {
+        const preHeatName = splitBeforeLastUnderscore(heatId);
+        if (!preHeatName.ok) {
           log.warn("Heat.ID has no valid underscore partition; using full ID fallback.", { heatId, lastIndex: part.lastIndex });
         } else {
-          const keyPrefix = normalizeStr(part.prefix);
-
+          const HeatName = normalizeStr(preHeatName.prefix);
+``
           // Match against primitive strings OR objects with ID/Id/id
           const match = eventEntries.find(({ value }) => {
             if (value == null) return false;
-            if (typeof value === 'string') return normalizeStr(value) === keyPrefix;
+            if (typeof value === 'string') return normalizeStr(value) === HeatName;
             const candidate = (value?.ID ?? value?.Id ?? value?.id);
-            return typeof candidate === 'string' && normalizeStr(candidate) === keyPrefix;
+            return typeof candidate === 'string' && normalizeStr(candidate) === HeatName;
           });
 
           if (!match) {
-            log.info("No matching event found for Heat prefix.", { prefix: keyPrefix, heatId, totalEvents: eventEntries.length });
+            log.info("No matching event found for Heat prefix.", { prefix: HeatName, heatId, totalEvents: eventEntries.length });
           } else {
             EventID = match.idx; // keep ordinal semantics (0-based)
-            log.debug("Matched EventID for Heat.", { EventID, prefix: keyPrefix, heatId, eventKey: match.key });
+            log.debug("Matched EventID for Heat.", { EventID, prefix: HeatName, heatId, eventKey: match.key });
           }
         }
       }
@@ -1188,20 +628,24 @@ function AddHeatRow(index, Heat) {
     const tblSwlist = document.createElement("TABLE");
     tblSwlist.id = "tblSwlist" + index;
 
-    const controlsCell = tblHeatDetailsRow.insertCell();
+    const header = tblSwlist.createTHead();
+
+    let row = header.insertRow();
+
+    const controlsCell = row.insertCell();
     controlsCell.id = "controlsCell" + index;
     controlsCell.classList.add('hide-on-print');
     controlsCell.innerHTML =
-      `<button onclick=AppendRow('${tblSwlist.id}','tblSwlistRow_')><i class='fa fa-fw fa-plus'></i></button>` +
+      `<button onclick=AppendRow('${tblSwlist.id}','tblSwlistRow_','${index}')><i class='fa fa-fw fa-plus'></i></button>` +
       ` <button onclick=DeleteRows('${tblSwlist.id}','BoardCheckcell_','tblSwlistRow_')><i class='fa fa-fw fa-minus'></i></button>` +
       `<button onclick=UpdateSelectedData('Events')><i class="fa fa-fw fa-upload"></i></button>`;
 
-    const header = tblSwlist.createTHead();
-    let row = header.insertRow();
     let cell = row.insertCell();
 
     // Header text logic with EventID safety
-    const isSameEvent = (lastEvent === EventID);
+      EventName = splitBeforeLastUnderscore(heatId).prefix;
+
+    const isSameEvent = (lastEvent === EventName);
     const heatNumberText = (typeof Heat?.ID === 'string' && Heat.ID.includes('_'))
       ? Heat.ID.substring(Heat.ID.lastIndexOf('_') + 1)
       : "?";
@@ -1209,23 +653,60 @@ function AddHeatRow(index, Heat) {
 
     let headerText;
     let highlightNewEvent = false;
+    const formatted = (typeof formatSwimmingEvent === 'function')
+      ? formatSwimmingEvent(Heat.ID, MeetUpdatedData.EventList)
+      : normalizeStr(Heat.ID);
 
-    if (isSameEvent && EventID >= 0) {
-      headerText = `<b style='font-size: 12px'> Event: ${eventOrdinal} Heat : ${heatNumberText}</b>`;
+      
+    if (isSameEvent && EventName != "") {
+      headerText = `<b style='font-size: 12px'> Event: ${formatted.EventDetailsDict.EventID} Heat : ${formatted.HeatID}</b>`;
     } else {
-      lastEvent = EventID;
-      const formatted = (typeof formatSwimmingEvent === 'function')
-        ? formatSwimmingEvent(Heat.ID)
-        : normalizeStr(Heat.ID);
-      headerText = `<b style='font-size: 12px'>Event: ${eventOrdinal} ${formatted}</b>`;
+      lastEvent = EventName;
+      headerText = `<b style='font-size: 12px'>Event: ${formatted.EventDetailsDict.EventID} ${formatted.fullname}</b>`;
       highlightNewEvent = true;
     }
 
     cell.innerHTML = headerText;
     if (highlightNewEvent) {
       cell.style.backgroundColor = "rgb(100, 100, 100)";
+     let cellHeatStatus = row.insertCell();
+
+    {
+      const label = document.createElement('label');
+      label.textContent = 'Status';
+      const br = document.createElement('br');
+      const select = document.createElement('select');
+      select.id = `${heatId}SelectEventStatus`;
+      select.classList.add('dropdown-cell');
+      const statuses = Array.isArray(HeatStatus) ? HeatStatus : [];
+      statuses.forEach((statusText, i) => {
+        const option = document.createElement('option');
+        option.value = String(i); // values are strings
+        option.textContent = statusText;
+        select.add(option);
+      });
+
+
+
+      // Set selected index from Heat.HeatStatus
+      const idx = Number.parseInt(MeetUpdatedData["EventDetails"][EventName].eventStatus, 10);
+      const validIdx = Number.isInteger(idx) && idx >= 0 && idx < statuses.length;
+      select.value = validIdx ? String(idx) : '0';
+
+  
+
+
+      cellHeatStatus.append(label, br, select);
     }
-    cell.colSpan = 7;
+
+
+    // const input = document.createElement('input');
+    //   input.type = 'text';
+    //   const inputId = `${heatId}HeatStatus`;
+    //   input.id = inputId;
+    //  cellHeatStatus.appendChild(input);
+    }
+    cell.colSpan = 5;
 
     // Create header row (if needed)
     row = header.insertRow();
@@ -1366,11 +847,9 @@ function AddSwList(Heat, index, j) {
     // Source data for this row
     const board = Heat?.Boardinfo?.[j] ?? {};
     const SwimerID = board.SwimerID ?? '';
-    let BoardID = board.BoardID ?? 0;   
-    const BoardStartsFromZero = getEl("BoardStartsFromZero");
-            if (!BoardStartsFromZero.checked) BoardID= BoardID +1
-        // index-like code
-         // prefer empty string over 0 for text areas
+
+    let BoardID = board.BoardID ?? 0;
+   
     const Swimerstatus = board.SwimStatus ?? 0;       // index-like code
     const SwimerName = normalizeStr(board.SwimerName ?? '');
     let Club = '';
@@ -1379,6 +858,10 @@ function AddSwList(Heat, index, j) {
     try {
       const clubObj = Meetdteails?.SwimmerDetails?.[SwimerName];
       Club = normalizeStr(clubObj?.Club ?? '');
+      if (Club == "") {
+        Club = Heat.Boardinfo.find(s => s.SwimerName === SwimerName)?.ClubName || "Not found";
+      }
+
     } catch (clubErr) {
       log.warn("Club lookup failed.", { SwimerName }, clubErr);
     }
@@ -1387,7 +870,7 @@ function AddSwList(Heat, index, j) {
     const body = ensureTBody(tblSwlist);
     if (!body) return;
     const tblSwlistRow = body.insertRow();
-    tblSwlistRow.id=`tblSwlistRow_${index}_${j}`;
+    tblSwlistRow.id = `tblSwlistRow_${index}_${j}`;
     tblSwlistRow.setAttribute('draggable', 'true');
     tblSwlistRow.addEventListener('dragstart', () => startDrag());
     tblSwlistRow.addEventListener('dragover', () => dragover());
@@ -1401,7 +884,9 @@ function AddSwList(Heat, index, j) {
     tblSwlistRowcell.appendChild(checkbox);
 
 
-
+//     datalist id="datalistSWid"></datalist>
+// <datalist id="datalistSWname"></datalist>
+// <datalist id="datalistSWclub"></datalist>
     // ---------------- Board (textarea) ----------------
     tblSwlistRowcell = tblSwlistRow.insertCell();
     const BoardIDInput = document.createElement('input');
@@ -1409,39 +894,85 @@ function AddSwList(Heat, index, j) {
     BoardIDInput.setAttribute("maxlength", "3")
     BoardIDInput.inputMode = 'numeric';
     // BoardIDInput.classList.add('form-control');
-    tblSwlistRowcell.id = `tblSwlist_BoardID_${index}_${j}`;  
-    BoardIDInput.value= BoardID;
+    tblSwlistRowcell.id = `tblSwlist_BoardID_${index}_${j}`;
+    BoardIDInput.value = BoardID;
     tblSwlistRowcell.appendChild(BoardIDInput);
 
-    // tblSwlistRowcell.innerHTML = '<b> '+ BoardID+'</b>';
-    
     // ---------------- Swimmer ID (textarea) ----------------
     tblSwlistRowcell = tblSwlistRow.insertCell();
     tblSwlistRowcell.id = `tblSwlist_SwimerID_${index}_${j}`;
-    const taId = document.createElement('textarea');
-    taId.id = `txtarea_SwimerID_${index}_${j}`;
-    taId.style.cssText = 'border:none; outline:none; background:transparent; width:100%; height:60px;';
-    taId.value = String(SwimerID);
+
+    const inID = document.createElement('input');
+    inID.setAttribute('list', 'datalistSWid');
+
+    inID.setAttribute('placeholder', 'Type to search...');
+
+    tblSwlistRowcell.appendChild(inID);
+    // Create sWid element
+    // const sWid = document.createElement('datalist');
+    // sWid.setAttribute('id', 'sWid');
+    // tblSwlistRowcell.appendChild(sWid);
+
+    // AvailableSwimmerID.forEach(SwID => {
+    //   const option = document.createElement('option');
+    //   option.value = SwID;
+    //   sWid.appendChild(option);
+    // });
+    inID.value = String(SwimerID);
     tblSwlistRowcell.classList.add('hide-on-print');
-    tblSwlistRowcell.appendChild(taId);
 
 
     // ---------------- Swimmer Name (textarea) ----------------
     tblSwlistRowcell = tblSwlistRow.insertCell();
     tblSwlistRowcell.id = `tblSwlist_SwimerName_${index}_${j}`;
-    const taName = document.createElement('textarea');
-    taName.id = `txtarea_SwimerName_${index}_${j}`;
-    taName.style.cssText = 'border:none; outline:none; background:transparent; width:100%; height:60px;';
-    taName.value = SwimerName;
-    tblSwlistRowcell.appendChild(taName);
+
+    const inName = document.createElement('input');
+    inName.setAttribute('list', 'datalistSWname');
+    inName.setAttribute('placeholder', 'Type to search...');
+
+    tblSwlistRowcell.appendChild(inName);
+    // Create datalist element
+    // const datalistSWname = document.createElement('datalist');
+    // datalistSWname.setAttribute('id', 'datalistSWname');
+    // tblSwlistRowcell.appendChild(datalistSWname);
+
+    // AvailableSwimmerNames.forEach(SwName => {
+    //   const option = document.createElement('option');
+    //   option.value = SwName;
+    //   datalistSWname.appendChild(option);
+    // });
+    inName.value = String(SwimerName);
+    tblSwlistRowcell.classList.add('hide-on-print');
 
     // ---------------- Club (textarea) ----------------
     tblSwlistRowcell = tblSwlistRow.insertCell();
     tblSwlistRowcell.id = `tblSwlist_Club_${index}_${j}`;
-    const taClub = document.createElement('textarea');
-    taClub.style.cssText = 'width:100%; height:60px;';
-    taClub.value = Club;
-    tblSwlistRowcell.appendChild(taClub);
+
+
+    // const taClub = document.createElement('textarea');
+    // taClub.style.cssText = 'width:100%; height:60px;';
+    // taClub.value = Club;
+
+
+
+    const inClub = document.createElement('input');
+    inClub.setAttribute('list', 'datalistSWclub');
+    inClub.setAttribute('placeholder', 'Type to search...');
+
+    tblSwlistRowcell.appendChild(inClub);
+    // Create datalist element
+    // const datalistSWclub = document.createElement('datalist');
+    // datalistSWclub.setAttribute('id', 'datalistSWclub');
+    // tblSwlistRowcell.appendChild(datalistSWclub);
+
+    // AvailableSwimmerClubs.forEach(SwClub => {
+    //   const option = document.createElement('option');
+    //   option.value = SwClub;
+    //   datalistSWclub.appendChild(option);
+    // });
+    inClub.value = String(Club);
+
+    // tblSwlistRowcell.appendChild(inClub);
 
     // ---------------- Swim Status (select) ----------------
     tblSwlistRowcell = tblSwlistRow.insertCell();
@@ -1483,8 +1014,12 @@ function AddSwList(Heat, index, j) {
 
     let val = '';
     if (board.SwimTimings != '00:00.000') val = ConvertTime(board.SwimTimings); // treat zero time as empty
-
-    timingInput.value = val ?? '';
+    if (val != "00:00.000" && val != "NaN:000NaN") {
+      timingInput.value = val ?? '';
+    }
+    else {
+      timingInput.value = "";
+    }
 
     tblSwlistRowcell.appendChild(timingInput);
 
@@ -1510,9 +1045,9 @@ function AddEventRow(index, Event) {
 
     const eventID = (Event || "").split("_");
     const StrokeTyp = eventID[1] || "";
-    const Distence  = eventID[0] || "";
-    const Group     = eventID[2] || "";
-    const Gender    = eventID[3] || "";
+    const Distence = eventID[0] || "";
+    const Group = eventID[2] || "";
+    const Gender = eventID[3] || "";
 
     let tblEventsBody = tblEvents.tBodies[0];
     if (!tblEventsBody) {
@@ -1524,7 +1059,7 @@ function AddEventRow(index, Event) {
     tblEventsRow.id = "tblEventsRow" + index;
     tblEventsRow.setAttribute('draggable', 'true');
     tblEventsRow.ondragstart = function () { startDrag() };
-    tblEventsRow.ondragover  = function () { dragover() };
+    tblEventsRow.ondragover = function () { dragover() };
 
     let EventCheckcell = tblEventsRow.insertCell();
     EventCheckcell.innerHTML = "<input type='Checkbox' id ='EventCheckcell" + index + "'>";
@@ -1703,7 +1238,7 @@ function GenerateGroupTable(GroupDetails) {
     }
 
     log.info("GenerateGroupTable completed.", { count: entries.length });
-  }   catch (err) {
+  } catch (err) {
     log.error("GenerateGroupTable failed.", err);
   }
 }
@@ -1746,6 +1281,9 @@ function SelectAllRows(SelectAllCheckID, TblName, ChkBoxID) {
 function GenerateSwimmersTable(SwimmerDetails) {
   try {
     ClearTable('tblSwDetails');
+    AvailableSwimmerID = [];
+    AvailableSwimmerClubs = [];
+    AvailableSwimmerNames = [];
 
     const tblSwimmers = getEl('tblSwDetails', { required: true });
     if (!tblSwimmers) return;
@@ -1755,7 +1293,7 @@ function GenerateSwimmersTable(SwimmerDetails) {
       const tblSwimmersRow = tblSwimmers.insertRow();
       tblSwimmersRow.setAttribute('draggable', 'true');
       tblSwimmersRow.ondragstart = function () { startDrag() };
-      tblSwimmersRow.ondragover  = function () { dragover() };
+      tblSwimmersRow.ondragover = function () { dragover() };
 
       let SwimmersCheckboxcell = tblSwimmersRow.insertCell();
       SwimmersCheckboxcell.innerHTML = "<input type='Checkbox' id ='SwimmersCheckboxcell" + i + "'>";
@@ -1787,15 +1325,25 @@ function GenerateSwimmersTable(SwimmerDetails) {
       let SwimmersNamecell = tblSwimmersRow.insertCell();
       SwimmersNamecell.innerHTML = "<input class='form-control' id ='SwimmersNamecell" + i + "'>";
       const nameEl = getEl("SwimmersNamecell" + i);
-      if (nameEl) nameEl.value = SwKeys[i];
-      
+      if (nameEl) {
+        nameEl.value = SwKeys[i];
+        if (!AvailableSwimmerID.includes(SwKeys[i])) {
+          AvailableSwimmerID.push(SwKeys[i]);
+        }
 
+        // To be changed for name.
 
-      let SwimmersDOBcell = tblSwimmersRow.insertCell();      
+        if (!AvailableSwimmerNames.includes(SwKeys[i])) {
+          AvailableSwimmerNames.push(SwKeys[i]);
+        }
+
+      }
+
+      let SwimmersDOBcell = tblSwimmersRow.insertCell();
       SwimmersDOBcell.innerHTML = "<input class='form-control'  type='date' id ='SwimmersDOBcell" + i + "'>";
       const dobEl = getEl("SwimmersDOBcell" + i);
       if (dobEl) dobEl.value = SwKeys[i];
-      
+
 
       let SwimmerGroupCell = tblSwimmersRow.insertCell();
       SwimmerGroupCell.innerHTML = "<input class='form-control' type='text' id ='SwimmerGroupCell" + i + "'>";
@@ -1805,7 +1353,12 @@ function GenerateSwimmersTable(SwimmerDetails) {
       let SwimmerClubCell = tblSwimmersRow.insertCell();
       SwimmerClubCell.innerHTML = "<input class='form-control' type='text' id ='SwimmerClubCell" + i + "'>";
       const clubEl = getEl("SwimmerClubCell" + i);
-      if (clubEl) clubEl.value = SwimmerDetails[SwKeys[i]]?.Club ?? "";
+      if (clubEl) {
+        clubEl.value = SwimmerDetails[SwKeys[i]]?.Club ?? "";
+        if (!AvailableSwimmerClubs.includes(clubEl.value)) {
+          AvailableSwimmerClubs.push(clubEl.value);
+        }
+      }
 
       let SwimmerClubShortCell = tblSwimmersRow.insertCell();
       SwimmerClubShortCell.innerHTML = "<input class='form-control' type='text' id ='SwimmerClubShortCell" + i + "'>";
@@ -1826,11 +1379,12 @@ function GenerateSwimmersTable(SwimmerDetails) {
       let row = header.insertRow();
       let cell = row.insertCell(); cell.innerHTML = "<b> Event Name. <b>";
       cell = row.insertCell(); cell.innerHTML = "<b> Best Timeings <b>";
-      cell = row.insertCell(); cell.innerHTML = "<b> Available <b>";      
+      cell = row.insertCell(); cell.innerHTML = "<b> Available <b>";
       cell = row.insertCell();
-      cell.innerHTML = "<button onclick=AppendRow('" + tblSwSelectedEvents.id + "','tblSwimmersRow')><i class='fa fa-fw fa-plus'></i></button>";
+
+      cell.innerHTML = `<button onclick=AppendRow('${tblSwSelectedEvents.id} ','tblSwimmersRow',' ${i} )><i class='fa fa-fw fa-plus'></i></button>`;
       cell = row.insertCell();
-      cell.innerHTML = "<button onclick=DeleteRows('" + tblSwSelectedEvents.id + "','tblSwSelectedEvents','tblSwimmersRow')><i class='fa fa-fw fa-minus'></i></button>";
+      cell.innerHTML = `<button onclick=DeleteRows(${tblSwSelectedEvents.id} ','tblSwSelectedEvents','tblSwimmersRow')><i class='fa fa-fw fa-minus'></i></button>`;
 
       const SwimmersEventcell = tblSwimmersRow.insertCell();
       SwimmersEventcell.appendChild(tblSwSelectedEvents);
@@ -1883,6 +1437,7 @@ function GenerateSwimmersTable(SwimmerDetails) {
         try { SetTableNavigation(table); }
         catch (navErr) { log.warn("SetTableNavigation failed for tblSwSelectedEvents.", navErr); }
       }
+
     }
 
     const table = getEl("tblSwDetails");
@@ -1896,52 +1451,3 @@ function GenerateSwimmersTable(SwimmerDetails) {
     log.error("GenerateSwimmersTable failed.", err);
   }
 }
-
-// function GenerateHeatDetailsTable(Heats) {
-//   try {
-//     ClearTable('tblHeatDetails');
-//     for (let i = 0; i < (Heats?.length ?? 0); i++) {
-//       AddHeatRow(i, Heats[i]);
-//     }
-//     const table = getEl('tblHeatDetails');
-//     if (table) {
-//       try { SetTableNavigation(table); }
-//       catch (navErr) { log.warn("SetTableNavigation failed for tblHeatDetails.", navErr); }
-//     }
-//     log.info("GenerateHeatDetailsTable completed.", { count: Heats?.length ?? 0 });
-//   } catch (err) {
-//        log.error("GenerateHeatDetailsTable failed.", err);
-//   }
-// }
-
-
-// function GenerateHeatDetailsTable(Heats) {
-//   try {
-//     ClearTable('tblHeatDetails');
-
-//     // Heats is now a dict: { [heatKey]: heatObj }
-//     const entries = Object.entries(Heats ?? {}); // [[key, heat], ...]
-
-//     // (Optional) If you want a stable numeric order by key, uncomment:
-//     // entries.sort((a, b) => {
-//     //   const na = Number(a[0]), nb = Number(b[0]);
-//     //   if (!Number.isNaN(na) && !Number.isNaN(nb)) return na - nb;
-//     //   return String(a[0]).localeCompare(String(b[0]));
-//     // });
-
-//     for (let i = 0; i < entries.length; i++) {
-//       const [, heat] = entries[i]; // entries[i][1] is the heat object
-//       AddHeatRow(i, heat);
-//     }
-
-//     const table = getEl('tblHeatDetails');
-//     if (table) {
-//       try { SetTableNavigation(table); }
-//       catch (navErr) { log.warn("SetTableNavigation failed for tblHeatDetails.", navErr); }
-//     }
-
-//     log.info("GenerateHeatDetailsTable completed.", { count: entries.length });
-//   } catch (err) {
-//     log.error("GenerateHeatDetailsTable failed.", err);
-//   }
-// }
