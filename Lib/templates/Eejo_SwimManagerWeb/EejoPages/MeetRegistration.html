@@ -251,8 +251,8 @@
       //cmdurlwithHost = "http://192.168.0.103:5002";
 
 
-    MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets.json";
-    FirebaseURLToWrite = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/"
+    MeetDataFirebaseURL = "https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events.json";
+    FirebaseURLToWrite = "https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events/"
     showhide("BusyIndicatorpop");
 
     const searchInput = document.getElementById('searchInput');
@@ -485,7 +485,7 @@
         case 'InitFireBase':
           // Sample for InitTimerFromFirebase 
           // Dont Add .Json
-          FBURLToSync = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/-OMMqFJyr21yr3qhscY_";
+          FBURLToSync = "https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events/-OMMqFJyr21yr3qhscY_";
           cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitTimerFromFirebase";
           CmdParams = "&URLToSync=" + FBURLToSync + "&OverWriteOption=1";
           ExecuteRestLocalCommands(cmdurl, CmdParams);

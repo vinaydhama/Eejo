@@ -416,6 +416,8 @@
       </ul>
     </div>
   </nav>
+  
+          <select id="MeetSelect" name="MeetSelect"></select>
 </nav>
 
 
@@ -445,7 +447,8 @@
       <script charset="utf-8" type="text/javascript" src="../bootstrap/js/TableUtils.js"></script>
       <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditorHelper.js"></script>
       <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEditCaptureHelper.js"></script>
-      <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FireBaseEventEdit_JSONUpdate_Helper.js"></script>
+      <script charset="utf-8" type="text/javascript"
+        src="../bootstrap/js/FireBaseEventEdit_JSONUpdate_Helper.js"></script>
       <script charset="utf-8" type="text/javascript" src="../bootstrap/js/FileMenu.js"></script>
 
 
@@ -455,47 +458,7 @@
       <link rel="stylesheet" type="text/css" href="../bootstrap/css/FileMenu.css">
 
 
-      <div class="box box-solid box-default">
-        <div class="box-header">
-          <h3 class="box-title">Source</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body">
 
-          <button onclick=LoadHeatNames('GetRunningHeatData')>
-            <h2><i> <span class="glyphicon glyphicon-save"></span>
-                <h5>Live Download</h5>
-              </i> </h2>
-          </button>
-
-          <button id="Onlineradiobtn" onclick="LoadHeatNames('Online')">
-            <h2><i> <span class="glyphicon glyphicon-cloud"></span>
-                <h5>Online</h5>
-              </i> </h2>
-          </button>
-
-          <button id="Offlineradiobtn" onclick=LoadHeatNames('Offline')>
-            <h2><i> <span class="glyphicon glyphicon-folder-open"></span>
-                <h5>Offline</h5>
-              </i> </h2>
-          </button>
-
-          <button id="localhost" onclick="openFilePicker()">
-            <input type="file" id="LocalFileSelector" style="display:none" ;>
-
-            <h2><i> <span class="glyphicon glyphicon-inbox"></span>
-                <h5>Local</h5>
-              </i> </h2>
-          </button>
-          <br>
-          <select id="MeetSelect" name="MeetSelect"></select>
-
-
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
 
 
       <div class="box box-solid box-default">
@@ -578,166 +541,10 @@
         </div>
       </div>
 
-      <div class="box box-solid box-default">
-        <div class="box-header">
-          <h3 class="box-title">Meet</h3>
-          <div class="box-tools pull-right">
-            <!-- <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button> -->
-            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblMeetBody')}"><i
-                class="fa fa-plus"></i></button>
-            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body" id="tblMeetBody" style="display: block;">
-          <table class="table table-bordered table-hover" id="tblMeet"> </table>
-        </div>
-      </div>
-
-      <div class="box box-solid box-default">
-        <div class="box-header">
-          <h3 class="box-title">Settings</h3>
-
-          <div class="box-tools pull-right">
-            <button onclick=ReloadCurrentSwbits()><i class="fa fa-fw fa-refresh"></i></button>
-            <button onclick=SaveAndUpdateBitAlocation()><i class="glyphicon glyphicon-floppy-disk"></i></button>
-
-            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblMeetIOSettingBody')}"><i
-                class="fa fa-plus"></i></button>
-            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body" id="tblMeetIOSettingBody" style="display: block;">
-          [19,23,18,20,22,21,7,6,4,2,0,0]
-          <b>A S1:21, S2:22, S3:20, S4:18, S5:19, S6:23 <br>
-            B S1 S2 S3 S4 S5 S6 </b>
-
-          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
-            <th><input type="checkbox" id="Updatebits"> </th>
-            <th id="bit0"> 0 </th>
-            <th id="bit1"> 1 </th>
-            <th id="bit2"> 2 </th>
-            <th id="bit3"> 3 </th>
-            <th id="bit4"> 4 </th>
-            <th id="bit5"> 5 </th>
-            <th id="bit6"> 6 </th>
-            <th id="bit7"> 7 </th>
-            <th id="bit8"> 8 </th>
-            <th id="bit9"> 9 </th>
-            <th id="bit10"> 10 </th>
-            <th id="bit11"> 11 </th>
-            <th id="bit12"> 12 </th>
-            <th id="bit13"> 13 </th>
-            <th id="bit14"> 14 </th>
-            <th id="bit15"> 15 </th>
-            <th id="bit16"> 16 </th>
-            <th id="bit17"> 17 </th>
-            <th id="bit18"> 18 </th>
-            <th id="bit19"> 19 </th>
-            <th id="bit20"> 20 </th>
-            <th id="bit21"> 21 </th>
-            <th id="bit22"> 22 </th>
-            <th id="bit23"> 23 </th>
-            <th id="bit24"> 24 </th>
-            <th id="bit25"> 25 </th>
-            <th id="bit26"> 26 </th>
-            <th id="bit27"> 27 </th>
-            <th id="bit28"> 28 </th>
-            <th id="bit29"> 29 </th>
-            <th id="bit30"> 30 </th>
-            <th id="bit31"> 31 </th>
-            <th id="bit32"> 32 </th>
-            <th id="bit33"> 33 </th>
-            <th id="bit34"> 34 </th>
-            <th id="bit35"> 35 </th>
-            <th id="bit36"> 36 </th>
-            <th id="bit37"> 37 </th>
-            <th id="bit38"> 38 </th>
-            <th id="bit39"> 39 </th>
-            <th id="bit40"> 40 </th>
-            <th id="bit41"> 41 </th>
-            <th id="bit42"> 42 </th>
-            <th id="bit43"> 43 </th>
-            <th id="bit44"> 44 </th>
-            <th id="bit45"> 45 </th>
-            <th id="bit46"> 46 </th>
-            <th id="bit47"> 47 </th>
-            <th id="bit48"> 48 </th>
-            <th id="bit49"> 49 </th>
-            <th id="bit50"> 50 </th>
-            <th id="bit51"> 51 </th>
-            <th id="bit52"> 52 </th>
-            <th id="bit53"> 53 </th>
-            <th id="bit54"> 54 </th>
-            <th id="bit55"> 55 </th>
-            <th id="bit56"> 56 </th>
-            <th id="bit57"> 57 </th>
-            <th id="bit58"> 58 </th>
-            <th id="bit59"> 59 </th>
-            <th id="bit60"> 60 </th>
-            <th id="bit61"> 61 </th>
-            <th id="bit62"> 62 </th>
-            <th id="bit63"> 63 </th>
-            <th id="bit64"> 64 </th>
+      
 
 
-          </table>
-
-          </table>
-          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
-            <tr>
-              <th> </th>
-              <th>Primery</th>
-              <th>Start</th>
-              <th>B1</th>
-              <th>B2</th>
-              <th>B3</th>
-              <th>B4</th>
-              <th>B5</th>
-              <th>B6</th>
-              <th>B7</th>
-              <th>B8</th>
-              <th>B9</th>
-              <th>B10</th>
-            </tr>
-
-            <tr>
-              <td><b>SIDE-A</b></td>
-              <td> <input type="radio" id="PrimeryA" name="Primeryside"> </td>
-              <td><input id="SideA-StartPin" type="number" min="1" max="100"> </td>
-              <td><input id="SideA-B1Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B2Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B3Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B4Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B5Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B6Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B7Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B8Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B9Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideA-B10Pin" type="number" min="1" max="100"></td>
-            </tr>
-
-            <tr>
-              <td><b>SIDE-B</b></td>
-              <td> <input type="radio" id="PrimeryB" name="Primeryside"> </td>
-
-              <td><input id="SideB-StartPin" size="1" type="number" min="-1" max="100"></td>
-              <td><input id="SideB-B1Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B2Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B3Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B4Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B5Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B6Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B7Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B8Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B9Pin" type="number" min="1" max="100"></td>
-              <td><input id="SideB-B10Pin" type="number" min="1" max="100"></td>
-            </tr>
-
-          </table>
-        </div>
-      </div>
-
-      <div class="box box-solid box-default">
+      <!-- <div class="box box-solid box-default">
         <div class="box-header">
           <h3 class="box-title">Groups</h3>
           <div class="box-tools pull-right">
@@ -778,56 +585,13 @@
             </table>
           </form>
         </div>
-      </div>
+      </div> -->
+     
       <div class="box box-solid box-default">
-        <div class="box-header">
-          <h3 class="box-title">Event Details</h3>
-          <div class="box-tools pull-right">
-            <button onclick=ReloadData('Events')><i class="fa fa-fw fa-refresh"></i></button>
 
-            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblEventsBody')}"><i
-                class="fa fa-plus"></i></button>
-            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-
-          </div>
-        </div>
-
-        <div class="box-body" id="tblEventsBody" style="display: block;">
-          <button onclick=AppendRow('tblEvents','tblEventsRow')><i class="fa fa-fw fa-plus"></i></button>
-          <button onclick=DeleteRows('tblEvents','EventCheckcell','tblEventsRow')><i
-              class="fa fa-fw fa-minus"></i></button>
-          <!-- <button onclick=CaptureEdits("tblEvents")>Save</button> -->
-
-
-          <table class="table table-bordered table-hover" id="tblEvents">
-
-            <tr>
-              <th> <input type="checkbox" id="tblEventschkbox"
-                  onchange="SelectAllRows('tblEventschkbox','tblEvents','EventCheckcell')"> </th>
-              <th>
-                SlNo.
-              </th>
-              <th>
-                Group
-              </th>
-              <th>
-                Gender
-              </th>
-              <th>
-                Stroke
-              </th>
-              <th>
-                Distence
-              </th>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="box box-solid box-default">
-        
-<datalist id="datalistSWid"></datalist>
-<datalist id="datalistSWname"></datalist>
-<datalist id="datalistSWclub"></datalist>
+        <datalist id="datalistSWid"></datalist>
+        <datalist id="datalistSWname"></datalist>
+        <datalist id="datalistSWclub"></datalist>
 
         <div class="box-header">
           <h3 class="box-title">Swimmer Details</h3>
@@ -842,6 +606,7 @@
         </div>
 
         <div class="box-body" id="tblSwDetailsBody" style="display: block;">
+          <div class="box-body scrollable" id="tblSwDetailsBody" style="display: block;"></div>
 
           <button onclick=AppendRow('tblSwDetails','tblSwimmersRow')><i class="fa fa-fw fa-plus"></i></button>
           <button onclick=DeleteRows('tblSwDetails','SwimmersCheckboxcell','tblSwimmersRow')><i
@@ -856,15 +621,20 @@
               <th>
                 SlNo.
               </th>
+              
+              <th>
+                ID
+              </th>
+              <th>
+                Photo
+              </th>
               <th>
                 Name
               </th>
               <th>
                 DOB
               </th>
-              <th>
-                Group
-              </th>
+               <th class="tbl-col-small">Group</th>
 
               <th>
                 Club\School
@@ -873,15 +643,18 @@
               <th>
                 Club\School (Short)
               </th>
+              
               <th>
-                Gender
+                Reg Time
               </th>
+              <th class="tbl-col-xsmall">Gender</th>
               <th>
                 Events
               </th>
             </tr>
 
           </table>
+          </div>
         </div>
       </div>
 
@@ -890,6 +663,8 @@
           <h3 class="box-title">Heat Details</h3>
           <div class="box-tools pull-right">
             <button onclick=ReloadData('Heats')><i class="fa fa-fw fa-refresh"></i></button>
+            <button onclick=ReloadData('UpdateHeats')>Update<i class="fa fa-fw fa-refresh"></i></button>
+
             <button onclick=UpdateSelectedData('Events','Events','Events')><i class="fa fa-fw fa-upload"></i></button>
 
 
@@ -1016,8 +791,8 @@
       //cmdurlwithHost = "http://LocalHost:5002";
 
 
-      MeetDataFirebaseURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets.json";
-      FirebaseURLToWrite = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/"
+      MeetDataFirebaseURL = "https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events.json";
+      FirebaseURLToWrite = "https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events/"
       showhide("BusyIndicatorpop");
       function openFilePicker() {
         document.getElementById('LocalFileSelector').click();
@@ -1381,9 +1156,7 @@
         initMeetNames("Online");
         MeetDataFirebase = responsedata.data;
         NoofBoards = MeetDataFirebase.Boards;
-
-
-
+        
         // var dataAPI = fetch(MeetDataFirebaseURL)
         //   .then(response => {
         //     return response.json()
@@ -1410,9 +1183,10 @@
 
           const result = await ExecuteRestLocalCommands(
             FirebaseURL,
-            "",
-            { method: 'PUT', body: JSON.stringify(DataTopost), expectJson: true }
-            , busyKey = "Save to Fire base");
+  "Save to Fire base",        // busyKey
+  "",                         // pathOrCmd (or a relative path)
+  { method: 'PUT', body: JSON.stringify(DataTopost), expectJson: true }
+);
 
           if (!result.ok) {
             console.warn("PUT failed:", result.error);
@@ -1456,111 +1230,780 @@
         URL.revokeObjectURL(a.href);
       }
 
+      // --- New helpers for selective seeding when swimmers change ---
+      function _getSwimmerIds(meet) {
+        if (!meet) return [];
+        let arr = meet.SwimmerDetails;
+        if (!arr) return [];
+        // If not an array, try to normalize common cases:
+        if (!Array.isArray(arr)) {
+          // case: object with numeric keys -> convert to values
+          if (typeof arr === 'object' && arr !== null) {
+            arr = Object.values(arr);
+          } else if (typeof arr === 'string') {
+            // case: JSON string
+            try {
+              const parsed = JSON.parse(arr);
+              arr = Array.isArray(parsed) ? parsed : [parsed];
+            } catch (e) {
+              return [];
+            }
+          } else {
+            return [];
+          }
+        }
+        return arr
+          .map(s => {
+            if (!s) return null;
+            // handle nested swimmer object shapes
+            return (s.Id || s.id || s.SWid || s.SwimmerID || s.SW_ID || s.swimmerId || s.SWId);
+          })
+          .filter(Boolean)
+          .map(String);
+      }
+
+      function _computeSwimmerDiff(prevIds, currIds) {
+        const p = new Set(prevIds || []);
+        const c = new Set(currIds || []);
+        const added = [...c].filter(x => !p.has(x));
+        const removed = [...p].filter(x => !c.has(x));
+        return { added, removed, changed: (added.length + removed.length) > 0 };
+      }
+
+      // Find heat indices that reference any of the changed swimmer ids.
+      // Uses a robust check (inspect common fields or fallback to JSON text search).
+      function _findAffectedHeatIndices(meetData, changedIds) {
+        if (!meetData || !Array.isArray(meetData.HeatList) || !changedIds || changedIds.length === 0) return [];
+        const indices = [];
+        const idSet = new Set(changedIds.map(String));
+        meetData.HeatList.forEach((heat, idx) => {
+          try {
+            // Normalize entries/lane arrays if they are objects
+            const entries = Array.isArray(heat.Entries) ? heat.Entries :
+              (heat.Entries && typeof heat.Entries === 'object') ? Object.values(heat.Entries) : [];
+            const lanes = Array.isArray(heat.Lanes) ? heat.Lanes :
+              (heat.Lanes && typeof heat.Lanes === 'object') ? Object.values(heat.Lanes) : [];
+
+            let matched = false;
+            for (const e of entries) {
+              const sid = (e && (e.Id || e.id || e.SWid || e.swimmerId || e.SwimmerID));
+              if (sid && idSet.has(String(sid))) { indices.push(idx); matched = true; break; }
+            }
+            if (matched) return;
+            for (const l of lanes) {
+              const sid = (l && (l.SWid || l.Id || l.id || l.swimmerId || l.SwimmerID));
+              if (sid && idSet.has(String(sid))) { indices.push(idx); matched = true; break; }
+            }
+            if (matched) return;
+            // Fallback: string search (cheap)
+            const s = JSON.stringify(heat || {});
+            for (const id of idSet) {
+              if (s.includes(String(id))) { indices.push(idx); break; }
+            }
+          } catch (e) {
+            // ignore and continue
+          }
+        });
+        return indices;
+      }
+
+      // Try to reseed only affected heats. If page provides a single-heat generator
+      // (GenerateHeatDetailsTableForSingle or UpdateHeatUI) we use it. Otherwise fall back
+      // to full regenerate but we log this so the behaviour is visible.
+      function _reseedHeatsSelective(indices, meetData) {
+        if (!indices || indices.length === 0) return;
+        try {
+          if (typeof GenerateHeatDetailsTableForSingle === 'function') {
+            indices.forEach((i) => {
+              try { GenerateHeatDetailsTableForSingle(meetData.HeatList[i], i); } catch (e) { console.warn('single heat generate failed', e); }
+            });
+            console.info('Reseeded affected heats (single):', indices);
+            return;
+          }
+          if (typeof UpdateHeatUI === 'function') {
+            indices.forEach((i) => {
+              try { UpdateHeatUI(meetData.HeatList[i], i); } catch (e) { console.warn('UpdateHeatUI failed', e); }
+            });
+            console.info('Updated affected heats (UpdateHeatUI):', indices);
+            return;
+          }
+        } catch (e) {
+          console.warn('Selective reseed helpers threw:', e);
+        }
+        // Fallback: full regenerate but inform in console
+        console.warn('Selective reseed not supported by page — falling back to full heat regenerate. Affected indices:', indices);
+        if (typeof GenerateHeatDetailsTable === 'function') {
+          try { GenerateHeatDetailsTable(meetData.HeatList); } catch (e) { console.error('Full heat regenerate failed', e); }
+        }
+      }
+
+      // --- Replace CaptureEdits to do selective reseeding for swimmer changes ---
       async function CaptureEdits(FileOptions) {
-        showhide("BusyIndicatorpop", "Capturing Edits....");
-
-        MeetUpdatedData = CaptureMeetTable(MeetUpdatedData);
-        MeetUpdatedData = CaptureGroupTable(MeetUpdatedData);
-        ReloadData("Events")
-        MeetUpdatedData.EventList = AvailableEvents;
-        MeetUpdatedData = CaptureHeatDetailsTable(MeetUpdatedData);
-        MeetUpdatedData = CaptureSwDetailsTable(MeetUpdatedData);
-
-        SelectedMeetFile = document.getElementById("tblMeet_MeetName").value;
-
-        switch (FileOptions) {
+        try {
+          showhide("BusyIndicatorpop", "Capturing Edits....");
+          showToast("Capturing Edits...." + " in progress…", { type: 'loading', persistent: true });
 
 
-          case 'Update':
-            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=SaveHeatFileToLocalFile";
-            CmdParams = "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + SelectedMeetFile + ".EejoHeat";
-            ExecuteRestLocalCommands(cmdurl, CmdParams);
-            break;
-          case 'Cloud':
-            // cmdurl = cmdurlwithHost +"/SetLiveHeatCommands?CmdName=LoadHeatFromLocalFile&HeatFileName=TestMeet1.EejoHeat";
-            // CmdToSend = "CmdName=" + "SaveHeatFileToLocalFile" + "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + "TestMeet1.EejoHeat";
+          // Snapshot previous swimmers to compute delta
+          const prevSwimmerIds = _getSwimmerIds(MeetUpdatedData);
 
+          // Capture all edit sections
+          MeetUpdatedData = CaptureMeetTable(MeetUpdatedData);
+          MeetUpdatedData = CaptureGroupTable(MeetUpdatedData);
+          ReloadData("Events");
+          MeetUpdatedData.EventList = AvailableEvents;
+          MeetUpdatedData = CaptureHeatDetailsTable(MeetUpdatedData);
 
+          // Capture swimmers and compute diff
+          MeetUpdatedData = CaptureSwDetailsTable(MeetUpdatedData);
+          const newSwimmerIds = _getSwimmerIds(MeetUpdatedData);
+          const diff = _computeSwimmerDiff(prevSwimmerIds, newSwimmerIds);
 
+          // If swimmers changed, reseed only affected heats
+          if (diff.changed) {
+            try {
+              const affected = _findAffectedHeatIndices(MeetUpdatedData, [...diff.added, ...diff.removed]);
+              if (affected.length > 0) {
+                _reseedHeatsSelective(affected, MeetUpdatedData);
+              } else {
+                // no direct heat references found -> no change needed, but log
+                console.info('Swimmers changed but no heats referenced the changed IDs; no heats reseeded.', diff);
+              }
+            } catch (e) {
+              console.error('Error while reseeding affected heats:', e);
+              // fallback to full update so UI remains consistent
+              if (typeof GenerateHeatDetailsTable === 'function') GenerateHeatDetailsTable(MeetUpdatedData.HeatList);
+            }
+          }
 
+          SelectedMeetFile = document.getElementById("tblMeet_MeetName") ? document.getElementById("tblMeet_MeetName").value : null;
 
-            SaveEventToFB(FirebaseURLToWrite + MeetUpdatedData.FireBaseName + ".json", MeetUpdatedData);
-            break;
+          switch (FileOptions) {
+            case 'Update':
+              cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=SaveHeatFileToLocalFile";
+              CmdParams = "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + SelectedMeetFile + ".EejoHeat";
+              ExecuteRestLocalCommands(cmdurl, CmdParams);
+              break;
+            case 'Cloud':
+              SaveEventToFB(FirebaseURLToWrite + MeetUpdatedData.FireBaseName + ".json", MeetUpdatedData);
+              break;
+            case 'InitLocal':
+              cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitTimerFromLocalFile";
+              CmdParams = "&HeatFileName=" + SelectedMeetFile + ".EejoHeat" + "&OverWriteOption=1";
+              ExecuteRestLocalCommands(cmdurl, CmdParams);
+              break;
+            case 'InitHeatFromLocalDisk':
+              cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitHeatFromLocalDisk";
+              saveJSONToFile(MeetUpdatedData, SelectedMeetFile);
+              CmdParams = "&HeatFileName=" + SelectedMeetFile + ".EejoHeat" + "&OverWriteOption=1HeatFileDiskpath=" + HeatFileDiskpath;
+              ExecuteRestLocalCommands(cmdurl, CmdParams);
+              break;
+            // other cases unchanged
+            default:
+              break;
 
-          case 'SaveAs':
-
-            break;
-          case 'Delete':
-
-            break;
-          case 'InitLocal':
-            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitTimerFromLocalFile";
-            CmdParams = "&HeatFileName=" + SelectedMeetFile + ".EejoHeat" + "&OverWriteOption=1";
-            ExecuteRestLocalCommands(cmdurl, CmdParams);
-            break;
-
-          case 'InitHeatFromLocalDisk':
-            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitHeatFromLocalDisk";
-            saveJSONToFile(MeetUpdatedData, SelectedMeetFile)
-            CmdParams = "&HeatFileName=" + SelectedMeetFile + ".EejoHeat" + "&OverWriteOption=1HeatFileDiskpath=" + HeatFileDiskpath;
-            ExecuteRestLocalCommands(cmdurl, CmdParams);
-            break;
-          case 'SetRunningHeatData':
+     case 'SetRunningHeatData':
             cmdurl = cmdurlwithHost + "/SetLiveHeatDataCommands?CmdName=SetRunningHeatData";
             CmdParams = "&HeatData=" + JSON.stringify(MeetUpdatedData);
             fetch(cmdurl, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(MeetUpdatedData)
-            });
+            });             
 
+              
+          }
+        } catch (e) { }
+        finally {
 
-
-            // await fetch(cmdurl,
-            //   {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({
-            //       MeetName: "Winter Invite 2025",
-            //       EventList: ["50m Freestyle_Heat1", "50m Freestyle_Heat2"]
-            //       // ... include your full running-heat JSON here ...
-            //     })
-            //   }
-            // );
-
-
-
-            // ExecuteRestLocalCommands(cmdurl, CmdParams);
-            break;
-
-          case 'InitFireBase':
-            // Sample for InitTimerFromFirebase 
-            // Dont Add .Json
-            FBURLToSync = FirebaseURLToWrite + SelectedMeetFile;
-            cmdurl = cmdurlwithHost + "/SetLiveHeatCommands?CmdName=InitTimerFromFirebase";
-            CmdParams = "&URLToSync=" + FBURLToSync + "&OverWriteOption=1";
-            ExecuteRestLocalCommands(cmdurl, CmdParams);
-            break;
-
-          case 'Load':
-            //Command to LoadHeatFile
-            // cmdurl = cmdurlwithHost +"/SetLiveHeatCommands?CmdName=LoadHeatFromLocalFile";
-            // CmdParams = "&HeatFileName=" +SelectedMeetFile;
-            // ExecuteRestLocalCommands(cmdurl, CmdParams);     
-            // cmdurl = cmdurlwithHost +"/SetLiveHeatCommands?CmdName=   &HeatFileName=TestMeet1.EejoHeat";
-            // CmdToSend = "CmdName=" + "SaveHeatFileToLocalFile" + "&HeatData=" + JSON.stringify(MeetUpdatedData) + "&FileNametoSave=" + SelectedMeetFile;
-            break;
-
-          default:
-            break;
+          showhide("BusyIndicatorpop", "");
         }
-        showhide("BusyIndicatorpop", "");
-
-
       }
 
+      // --- small helper: allow toggle to show/hide demarcations in UI (optional integration) ---
+      // If the video overlay page uses a global flag SHOW_DEMOS, pages can toggle this via REST.
+      function toggleDemarcations(show) {
+        try {
+          // If there is a client-side function to apply overlay toggles use it
+          if (typeof ApplyOverlayDemarcationToggle === 'function') {
+            ApplyOverlayDemarcationToggle(!!show);
+            console.info('Applied overlay demarcation toggle (client):', show);
+            return;
+          }
+          // Otherwise call backend to persist setting (optional)
+          fetch(cmdurlwithHost + '/SetOverlay?showDemarcations=' + (show ? '1' : '0'))
+            .then(r => r.json()).then(j => console.info('Overlay toggle response', j)).catch(e => console.warn('Overlay toggle failed', e));
+        } catch (e) {
+          console.warn('toggleDemarcations error', e);
+        }
+      }
 
+      // ...rest of existing script...
     </script>
-</body>
+    <style>
 
-</html>
+       .scrollable {
+    overflow: auto;
+    max-height: calc(100vh - 220px); /* adjust 220px as needed (top nav + other chrome) */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* optional: always show vertical scrollbar space to avoid layout shift */
+  .scrollable::-webkit-scrollbar { width: 10px; }
+  .scrollable::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 6px; }
+
+      /* Side drawer (keeps page IDs unchanged) */
+      .side-drawer {
+        position: fixed;
+        right: -600px;
+        top: 34px;
+        width: 600px;
+        bottom: 0;
+        background: #fff;
+        box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12);
+        transition: right 220ms ease;
+        z-index: 1200;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+      }
+
+      .side-drawer.open {
+        right: 0;
+      }
+
+      .drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .drawer-tabs {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
+      .drawer-tab {
+        padding: 6px 8px;
+        cursor: pointer;
+        border-radius: 4px;
+        background: #f1f5f9;
+        font-size: 13px;
+      }
+
+      .drawer-tab.active {
+        background: #e2e8f0;
+        font-weight: 600;
+      }
+
+      .drawer-content {
+        flex: 1;
+        overflow: auto;
+        border-top: 1px solid #eef2f7;
+        padding-top: 8px;
+      }
+
+      #drawerToggleBtn {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1250;
+        background: #0b2a4a;
+        color: #fff;
+        border: 0;
+        padding: 8px 10px;
+        border-radius: 6px 0 0 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      @media (max-width:900px) {
+        .side-drawer {
+          width: 100%;
+          right: -100%;
+          top: 34px;
+        }
+
+        .side-drawer.open {
+          right: 0;
+        }
+
+        #drawerToggleBtn {
+          right: 8px;
+        }
+      }
+    </style>
+    <!-- Drawer toggle (insert) -->
+    <button id="drawerToggleBtn" aria-controls="sideDrawer" aria-expanded="false" title="Open drawer">☰</button>
+
+    <!-- Side drawer (insert) -->
+    <aside id="sideDrawer" class="side-drawer" role="complementary" aria-hidden="true">
+      <div class="drawer-header">
+        <strong>Menu</strong>
+        <button id="drawerCloseBtn" aria-label="Close drawer" title="Close"
+          style="background:transparent;border:0;cursor:pointer">✕</button>
+      </div>
+
+      <div class="drawer-tabs" role="tablist" aria-label="Drawer Tabs">
+        <div class="drawer-tab active" data-tab="quick" role="tab" tabindex="0">Meet</div>
+        <div class="drawer-tab active" data-tab="Group" role="tab" tabindex="0">Group</div>
+        <div class="drawer-tab active" data-tab="Event" role="tab" tabindex="0">Event</div>
+
+
+        <div class="drawer-tab" data-tab="Settings" role="tab" tabindex="0">Settings</div>
+        <div class="drawer-tab" data-tab="help" role="tab" tabindex="0">Help</div>
+      </div>
+
+      <div class="drawer-content" id="drawerContent">
+        <section data-pane="quick" class="drawer-pane">       
+        <div class="box-body" id="tblMeetBody" style="display: block;">
+          <table class="table table-bordered table-hover" id="tblMeet"> </table>
+        </div>
+        </section>
+
+
+        <section data-pane="Group" class="drawer-pane" style="display:none">
+
+           <!-- <div class="box box-solid box-default"> -->
+        <!-- <div class="box-header">
+          <h3 class="box-title">Groups</h3>
+          <div class="box-tools pull-right"> -->
+            <button onclick=ReloadData('Groups')><i class="fa fa-fw fa-refresh"></i></button>
+            <!-- <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblGroupsBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
+
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="box-body" id="tblGroupsBody" style="display: block;"> -->
+          <button onclick=AppendRow('tblGroups','tblgroupRow')><i class="fa fa-fw fa-plus"></i></button>
+          <button onclick=DeleteRows('tblGroups','GrpCheckcell','tblgroupRow')>      <i              class="fa fa-fw fa-minus"></i></button>
+          <form>
+            <table class="table table-bordered table-hover" id="tblGroups">
+              <tr>
+                <th> <input type="checkbox" id="tblgrpchkbox"
+                    onchange=SelectAllRows('tblgrpchkbox','tblGroups','GrpCheckcell')>
+                </th>
+                <th>
+                  SlNo.
+                </th>
+                <th>
+                  Group ID
+                </th>
+                <th>
+                  Group Name
+                </th>
+                <th>
+                  From
+                </th>
+                <th>
+                  To
+                </th>
+              </tr>
+
+            </table>
+          </form>
+        </section>
+        <section data-pane="Settings" class="drawer-pane" style="display:none">
+
+        
+            <button onclick=ReloadCurrentSwbits()><i class="fa fa-fw fa-refresh"></i></button>
+            <button onclick=SaveAndUpdateBitAlocation()><i class="glyphicon glyphicon-floppy-disk"></i></button>
+
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblMeetIOSettingBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+          <!-- </div>
+        </div> -->
+        <div  id="tblMeetIOSettingBody" style="display: block;">
+          [19,23,18,20,22,21,7,6,4,2,0,0]
+          <b>A S1:21, S2:22, S3:20, S4:18, S5:19, S6:23 <br>
+            B S1 S2 S3 S4 S5 S6 </b>
+
+            // ...existing code...
+          <!-- changed: present bit columns as rows (keeps bit ids unchanged) -->
+          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
+            <tr>
+              <th>Update</th>
+              <td><input type="checkbox" id="Updatebits"></td>
+            </tr>
+            <!-- bits presented as rows for easier vertical layout -->
+            <tr><th>Bit 0</th><td id="bit0">0</td></tr>
+            <tr><th>Bit 1</th><td id="bit1">1</td></tr>
+            <tr><th>Bit 2</th><td id="bit2">2</td></tr>
+            <tr><th>Bit 3</th><td id="bit3">3</td></tr>
+            <tr><th>Bit 4</th><td id="bit4">4</td></tr>
+            <tr><th>Bit 5</th><td id="bit5">5</td></tr>
+            <tr><th>Bit 6</th><td id="bit6">6</td></tr>
+            <tr><th>Bit 7</th><td id="bit7">7</td></tr>
+            <tr><th>Bit 8</th><td id="bit8">8</td></tr>
+            <tr><th>Bit 9</th><td id="bit9">9</td></tr>
+            <tr><th>Bit 10</th><td id="bit10">10</td></tr>
+            <tr><th>Bit 11</th><td id="bit11">11</td></tr>
+            <tr><th>Bit 12</th><td id="bit12">12</td></tr>
+            <tr><th>Bit 13</th><td id="bit13">13</td></tr>
+            <tr><th>Bit 14</th><td id="bit14">14</td></tr>
+            <tr><th>Bit 15</th><td id="bit15">15</td></tr>
+            <tr><th>Bit 16</th><td id="bit16">16</td></tr>
+            <tr><th>Bit 17</th><td id="bit17">17</td></tr>
+            <tr><th>Bit 18</th><td id="bit18">18</td></tr>
+            <tr><th>Bit 19</th><td id="bit19">19</td></tr>
+            <tr><th>Bit 20</th><td id="bit20">20</td></tr>
+            <tr><th>Bit 21</th><td id="bit21">21</td></tr>
+            <tr><th>Bit 22</th><td id="bit22">22</td></tr>
+            <tr><th>Bit 23</th><td id="bit23">23</td></tr>
+            <tr><th>Bit 24</th><td id="bit24">24</td></tr>
+            <tr><th>Bit 25</th><td id="bit25">25</td></tr>
+            <tr><th>Bit 26</th><td id="bit26">26</td></tr>
+            <tr><th>Bit 27</th><td id="bit27">27</td></tr>
+            <tr><th>Bit 28</th><td id="bit28">28</td></tr>
+            <tr><th>Bit 29</th><td id="bit29">29</td></tr>
+            <tr><th>Bit 30</th><td id="bit30">30</td></tr>
+            <tr><th>Bit 31</th><td id="bit31">31</td></tr>
+            <tr><th>Bit 32</th><td id="bit32">32</td></tr>
+            <tr><th>Bit 33</th><td id="bit33">33</td></tr>
+            <tr><th>Bit 34</th><td id="bit34">34</td></tr>
+            <tr><th>Bit 35</th><td id="bit35">35</td></tr>
+            <tr><th>Bit 36</th><td id="bit36">36</td></tr>
+            <tr><th>Bit 37</th><td id="bit37">37</td></tr>
+            <tr><th>Bit 38</th><td id="bit38">38</td></tr>
+            <tr><th>Bit 39</th><td id="bit39">39</td></tr>
+            <tr><th>Bit 40</th><td id="bit40">40</td></tr>
+            <tr><th>Bit 41</th><td id="bit41">41</td></tr>
+            <tr><th>Bit 42</th><td id="bit42">42</td></tr>
+            <tr><th>Bit 43</th><td id="bit43">43</td></tr>
+            <tr><th>Bit 44</th><td id="bit44">44</td></tr>
+            <tr><th>Bit 45</th><td id="bit45">45</td></tr>
+            <tr><th>Bit 46</th><td id="bit46">46</td></tr>
+            <tr><th>Bit 47</th><td id="bit47">47</td></tr>
+            <tr><th>Bit 48</th><td id="bit48">48</td></tr>
+            <tr><th>Bit 49</th><td id="bit49">49</td></tr>
+            <tr><th>Bit 50</th><td id="bit50">50</td></tr>
+            <tr><th>Bit 51</th><td id="bit51">51</td></tr>
+            <tr><th>Bit 52</th><td id="bit52">52</td></tr>
+            <tr><th>Bit 53</th><td id="bit53">53</td></tr>
+            <tr><th>Bit 54</th><td id="bit54">54</td></tr>
+            <tr><th>Bit 55</th><td id="bit55">55</td></tr>
+            <tr><th>Bit 56</th><td id="bit56">56</td></tr>
+            <tr><th>Bit 57</th><td id="bit57">57</td></tr>
+            <tr><th>Bit 58</th><td id="bit58">58</td></tr>
+            <tr><th>Bit 59</th><td id="bit59">59</td></tr>
+            <tr><th>Bit 60</th><td id="bit60">60</td></tr>
+            <tr><th>Bit 61</th><td id="bit61">61</td></tr>
+            <tr><th>Bit 62</th><td id="bit62">62</td></tr>
+            <tr><th>Bit 63</th><td id="bit63">63</td></tr>
+            <tr><th>Bit 64</th><td id="bit64">64</td></tr>
+          </table>
+
+          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
+            <tr>
+              <th></th>
+              <th>Side A</th>
+              <th>Side B</th>
+            </tr>
+
+            <tr>
+              <th>Primary</th>
+              <td><input type="radio" id="PrimeryA" name="Primeryside"></td>
+              <td><input type="radio" id="PrimeryB" name="Primeryside"></td>
+            </tr>
+
+            <tr>
+              <th>Start</th>
+              <td><input id="SideA-StartPin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-StartPin" size="1" type="number" min="-1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B1</th>
+              <td><input id="SideA-B1Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B1Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B2</th>
+              <td><input id="SideA-B2Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B2Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B3</th>
+              <td><input id="SideA-B3Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B3Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B4</th>
+              <td><input id="SideA-B4Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B4Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B5</th>
+              <td><input id="SideA-B5Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B5Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B6</th>
+              <td><input id="SideA-B6Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B6Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B7</th>
+              <td><input id="SideA-B7Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B7Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B8</th>
+              <td><input id="SideA-B8Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B8Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B9</th>
+              <td><input id="SideA-B9Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B9Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <th>B10</th>
+              <td><input id="SideA-B10Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B10Pin" type="number" min="1" max="100"></td>
+            </tr>
+          </table>
+          
+<!-- 
+          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
+            <th><input type="checkbox" id="Updatebits"> </th>
+            <th id="bit0"> 0 </th>
+            <th id="bit1"> 1 </th>
+            <th id="bit2"> 2 </th>
+            <th id="bit3"> 3 </th>
+            <th id="bit4"> 4 </th>
+            <th id="bit5"> 5 </th>
+            <th id="bit6"> 6 </th>
+            <th id="bit7"> 7 </th>
+            <th id="bit8"> 8 </th>
+            <th id="bit9"> 9 </th>
+            <th id="bit10"> 10 </th>
+            <th id="bit11"> 11 </th>
+            <th id="bit12"> 12 </th>
+            <th id="bit13"> 13 </th>
+            <th id="bit14"> 14 </th>
+            <th id="bit15"> 15 </th>
+            <th id="bit16"> 16 </th>
+            <th id="bit17"> 17 </th>
+            <th id="bit18"> 18 </th>
+            <th id="bit19"> 19 </th>
+            <th id="bit20"> 20 </th>
+            <th id="bit21"> 21 </th>
+            <th id="bit22"> 22 </th>
+            <th id="bit23"> 23 </th>
+            <th id="bit24"> 24 </th>
+            <th id="bit25"> 25 </th>
+            <th id="bit26"> 26 </th>
+            <th id="bit27"> 27 </th>
+            <th id="bit28"> 28 </th>
+            <th id="bit29"> 29 </th>
+            <th id="bit30"> 30 </th>
+            <th id="bit31"> 31 </th>
+            <th id="bit32"> 32 </th>
+            <th id="bit33"> 33 </th>
+            <th id="bit34"> 34 </th>
+            <th id="bit35"> 35 </th>
+            <th id="bit36"> 36 </th>
+            <th id="bit37"> 37 </th>
+            <th id="bit38"> 38 </th>
+            <th id="bit39"> 39 </th>
+            <th id="bit40"> 40 </th>
+            <th id="bit41"> 41 </th>
+            <th id="bit42"> 42 </th>
+            <th id="bit43"> 43 </th>
+            <th id="bit44"> 44 </th>
+            <th id="bit45"> 45 </th>
+            <th id="bit46"> 46 </th>
+            <th id="bit47"> 47 </th>
+            <th id="bit48"> 48 </th>
+            <th id="bit49"> 49 </th>
+            <th id="bit50"> 50 </th>
+            <th id="bit51"> 51 </th>
+            <th id="bit52"> 52 </th>
+            <th id="bit53"> 53 </th>
+            <th id="bit54"> 54 </th>
+            <th id="bit55"> 55 </th>
+            <th id="bit56"> 56 </th>
+            <th id="bit57"> 57 </th>
+            <th id="bit58"> 58 </th>
+            <th id="bit59"> 59 </th>
+            <th id="bit60"> 60 </th>
+            <th id="bit61"> 61 </th>
+            <th id="bit62"> 62 </th>
+            <th id="bit63"> 63 </th>
+            <th id="bit64"> 64 </th>
+          </table>
+          <table class="table table-bordered table-hover" id="tblMeetIOSetting">
+            <tr>
+              <th> </th>
+              <th>Primery</th>
+              <th>Start</th>
+              <th>B1</th>
+              <th>B2</th>
+              <th>B3</th>
+              <th>B4</th>
+              <th>B5</th>
+              <th>B6</th>
+              <th>B7</th>
+              <th>B8</th>
+              <th>B9</th>
+              <th>B10</th>
+            </tr>
+
+            <tr>
+              <td><b>SIDE-A</b></td>
+              <td> <input type="radio" id="PrimeryA" name="Primeryside"> </td>
+              <td><input id="SideA-StartPin" type="number" min="1" max="100"> </td>
+              <td><input id="SideA-B1Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B2Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B3Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B4Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B5Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B6Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B7Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B8Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B9Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideA-B10Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+              <td><b>SIDE-B</b></td>
+              <td> <input type="radio" id="PrimeryB" name="Primeryside"> </td>
+
+              <td><input id="SideB-StartPin" size="1" type="number" min="-1" max="100"></td>
+              <td><input id="SideB-B1Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B2Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B3Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B4Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B5Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B6Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B7Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B8Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B9Pin" type="number" min="1" max="100"></td>
+              <td><input id="SideB-B10Pin" type="number" min="1" max="100"></td>
+            </tr>
+
+          </table>         -->
+      </div>      
+           </section>
+        <section data-pane="Event" class="drawer-pane" style="display:none">
+           
+            <button onclick=ReloadData('Events')><i class="fa fa-fw fa-refresh"></i></button>
+
+            <button class="btn btn-default btn-sm" onclick="{ToggleDiv('tblEventsBody')}"><i
+                class="fa fa-plus"></i></button>
+            <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+
+          
+
+        <div  id="tblEventsBody" style="display: block;">
+          <button onclick=AppendRow('tblEvents','tblEventsRow')><i class="fa fa-fw fa-plus"></i></button>
+          <button onclick=DeleteRows('tblEvents','EventCheckcell','tblEventsRow')><i
+              class="fa fa-fw fa-minus"></i></button>
+          <!-- <button onclick=CaptureEdits("tblEvents")>Save</button> -->
+
+
+          <table class="table table-bordered table-hover" id="tblEvents">
+
+            <tr>
+              <th> <input type="checkbox" id="tblEventschkbox"
+                  onchange="SelectAllRows('tblEventschkbox','tblEvents','EventCheckcell')"> </th>
+              <th>
+                SlNo.
+              </th>
+              <th>
+                Group
+              </th>
+              <th>
+                Gender
+              </th>
+              <th>
+                Stroke
+              </th>
+              <th>
+                Distence
+              </th>
+            </tr>
+          </table>
+        </div>
+        
+
+        </section>
+      </div>
+    </aside>
+
+    <!-- ...existing content continues ... -->
+  </div>
+
+  <!-- script for drawer (insert near other page scripts) -->
+  <script>
+    (function () {
+      const btn = document.getElementById('drawerToggleBtn');
+      const drawer = document.getElementById('sideDrawer');
+      const closeBtn = document.getElementById('drawerCloseBtn');
+      const tabs = Array.from(document.querySelectorAll('.drawer-tab'));
+      const panes = Array.from(document.querySelectorAll('.drawer-pane'));
+
+      function setOpen(open) {
+        if (!drawer || !btn) return;
+        drawer.classList.toggle('open', !!open);
+        drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+        btn.setAttribute('aria-expanded', !!open);
+      }
+
+      if (btn) btn.addEventListener('click', () => setOpen(!drawer.classList.contains('open')));
+      if (closeBtn) closeBtn.addEventListener('click', () => setOpen(false));
+
+      tabs.forEach(t => {
+        t.addEventListener('click', onTab);
+        t.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') onTab.call(t, e); });
+      });
+      function onTab(e) {
+        const id = this.getAttribute('data-tab');
+        tabs.forEach(x => x.classList.toggle('active', x === this));
+        panes.forEach(p => {
+          p.style.display = (p.getAttribute('data-pane') === id) ? '' : 'none';
+        });
+      }
+
+      // populate drawer selects if global lists exist
+      function populateDrawerLists() {
+        try {
+          const grpSel = document.getElementById('drawerGroupFilter');
+          if (grpSel && Array.isArray(Availablegroups)) {
+            grpSel.innerHTML = '<option value="">(all)</option>' + Availablegroups.map(g => `<option>${g}</option>`).join('');
+          }
+        } catch (e) { }
+      }
+      window.addEventListener('load', populateDrawerLists);
+      const _origReloadData = window.ReloadData;
+      if (typeof _origReloadData === 'function') {
+        window.ReloadData = function () { const r = _origReloadData.apply(this, arguments); setTimeout(populateDrawerLists, 200); return r; };
+      }
+
+      window.applyDrawerFilters = function () {
+        const g = document.getElementById('drawerGroupFilter')?.value?.toLowerCase();
+        document.querySelectorAll('#tblEvents tr').forEach(r => {
+          try {
+            const txt = (r.textContent || '').toLowerCase();
+            r.style.display = (!g || txt.includes(g)) ? '' : 'none';
+          } catch (e) { }
+        });
+      };
+    })();
+  </script>

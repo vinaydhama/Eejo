@@ -60,7 +60,20 @@ function CaptureSwDetailsTable(MeetUpdatedData) {
       const clubShort  = normalizeStr(clubElShort?.value);
       const SwaName  = normalizeStr(nameEl?.value);
       const dob = normalizeStr(dobEl?.value);
+      const RegTimeEl = getEl("SwimmerRegTimeCell" + i);
+      const RegTimeElstr = normalizeStr(RegTimeEl?.value);
+      const preview_local = getEl("SwimmerPhotoPreview_local" + i);
+      let PhotoPath_Local = "";
+      
+      if (preview_local) {
+        PhotoPath_Local = preview_local.src;
+      }
 
+      const preview_fb = getEl("SwimmerPhotoPreviewFB" + i);
+      let PhotoPath_FB = "";
+      if (preview_fb) {
+        PhotoPath_FB = preview_fb.src;
+      }
       const SwGroup  = normalizeStr(groupEl?.value);
       const SwClub   = normalizeStr(clubEl?.value);
       const Gender   = normalizeStr(genderEl?.value);
@@ -98,13 +111,17 @@ function CaptureSwDetailsTable(MeetUpdatedData) {
 
       MeetUpdatedData.SwimmerDetails[SwaName] = {
         'Name': SwaName,
-        'DOB': SwaName,
+        'DOB': dob,
         'Group': SwGroup,
         'Gender': Gender,
         'Events': EventList,
         'Club': SwClub,
         'ClubShort':clubShort,
-        'DOB': dob
+       'PhotoPath_FB': PhotoPath_FB,
+        'RegTime': RegTimeElstr,
+       'PhotoPath_Local': PhotoPath_Local,
+
+        // Placeholder; fill if you have a source
       };
     }
 
@@ -194,26 +211,11 @@ function CaptureGroupTable(MeetUpdatedData) {
   }
 }
 
+function captureSingleHeat(index)
+{
+  
 
-function CaptureHeatDetailsTable(MeetUpdatedData) {
-  try {
-    let TempMeetUpdatedData={}
-    const tblHeatDetails = getEl('tblHeatDetails', { required: true, desc: "Heat details table" });
-    if (!tblHeatDetails) {
-      log.warn("CaptureHeatDetailsTable: tblHeatDetails missing.");
-      return MeetUpdatedData;
-    }
-
-    // Ensure container object
-    if (typeof MeetUpdatedData !== 'object' || MeetUpdatedData === null) {
-      MeetUpdatedData = {};
-    }
-
-    // EventDetails shall be a dictionary keyed by eventID
-    MeetUpdatedData.EventDetails = {};
-    TempMeetUpdatedData.EventDetails = {};
-
-    // Helpers
+  // Helpers
     const normalize = (v) => (typeof normalizeStr === 'function' ? normalizeStr(v) : (v ?? '').toString().trim());
     const safeInt = (v, def = 0) => {
       const n = parseInt(v, 10);
@@ -237,17 +239,17 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
         return normalize(heatId);
       }
     };
-
-    // Iterate each heat row in the table
-    for (let index = 0; index < tblHeatDetails.rows.length - 1; index++) {
+    
       const heatNameEl = getEl('HeatNamecell' + index);
       const HeatiD = normalize(heatNameEl?.value); // e.g., "100_FS_G02_B_1"
       const tblSwlist = getEl("tblSwlist" + index);
 
       if (!HeatiD) {
         log.warn("CaptureHeatDetailsTable: Missing HeatID; skipping row.", { index });
-        continue;
+        
       }
+      else
+      {
 
       // Derive eventID as prefix before the last underscore
       const eventID = getEventPrefix(HeatiD);
@@ -287,6 +289,10 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
 
           const statusEl   = rowCells?.[5]?.firstChild; // status/DQ selector
           const timeEl     = rowCells?.[6]?.firstChild; // time input
+          const timeEl_Bak     = rowCells?.[7]?.firstChild; // time input
+          const timeEl_Manual     = rowCells?.[8]?.firstChild; // time input
+          const timeEl_FCCAM     = rowCells?.[9]?.firstChild; // time input
+
 
           const SwimerID   = normalize(idEl?.value);
           const SwimerName = normalize(nameEl?.value);
@@ -308,6 +314,53 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
             }
           }
 
+
+             // Keep JSON shape the same: default SwimTimings as number 0
+          let SwimTimings_Bak = 0;
+          const SwTimetxt_Bak = normalize(timeEl_Bak?.value);
+          if (SwTimetxt_Bak !== "" && SwTimetxt_Bak !== "0") {
+            try {
+              const seconds = convertToSeconds(SwTimetxt_Bak); // your helper
+              const num = parseFloat(seconds);
+              if (Number.isFinite(num)) SwimTimings_Bak = num; // numeric seconds
+            } catch (tErr) {
+              log.warn("CaptureHeatDetailsTable: convertToSeconds failed; using 0.", { SwTimetxt_Bak }, tErr);
+              SwimTimings_Bak = 0;
+            }
+
+          }
+
+
+               // Keep JSON shape the same: default SwimTimings as number 0
+          let SwimTimings_Manual = 0;
+          const SwTimetxt_Manual = normalize(timeEl_Manual?.value);
+          if (SwTimetxt_Manual !== "" && SwTimetxt_Manual !== "0") {
+            try {
+              const seconds = convertToSeconds(SwTimetxt_Manual); // your helper
+              const num = parseFloat(seconds);
+              if (Number.isFinite(num)) SwimTimings_Manual = num; // numeric seconds
+            } catch (tErr) {
+              log.warn("CaptureHeatDetailsTable: convertToSeconds failed; using 0.", { SwTimetxt_Manual }, tErr);
+              SwimTimings_Manual = 0;
+            }
+
+          }
+
+               // Keep JSON shape the same: default SwimTimings as number 0
+          let SwimTimings_FCCAM = 0;
+          const SwTimetxt_FCCAM = normalize(timeEl_FCCAM?.value);
+          if (SwTimetxt_FCCAM !== "" && SwTimetxt_FCCAM !== "0") {
+            try {
+              const seconds = convertToSeconds(SwTimetxt_FCCAM); // your helper
+              const num = parseFloat(seconds);
+              if (Number.isFinite(num)) SwimTimings_FCCAM = num; // numeric seconds
+            } catch (tErr) {
+              log.warn("CaptureHeatDetailsTable: convertToSeconds failed; using 0.", { SwTimetxt_FCCAM }, tErr);
+              SwimTimings_FCCAM = 0;
+            }
+
+          }
+
           // Skip empty lane rows
           if (!SwimerName && !Number.isFinite(BoardID)) continue;
 
@@ -316,11 +369,14 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
             "BoardStatus": 0,
             "SwimStatus": SwimStatus,
             "SwimTimings": SwimTimings,
+            "SwimTimings_Bak": SwimTimings_Bak,
+            "SwimTimings_Manual": SwimTimings_Manual,
+            "SwimTimings_FCCAM": SwimTimings_FCCAM,            
             "ClubName": ClubName,
             "SwimerID": SwimerID,
             "SwimerName": SwimerName
           });
-        }
+        }      
       }
 
       // Heat-level fields from inputs named with HeatID prefix
@@ -362,9 +418,39 @@ function CaptureHeatDetailsTable(MeetUpdatedData) {
       eventsCount,
       totalHeats
     });
+  
 
+}
+
+
+function CaptureHeatDetailsTable(MeetUpdatedData) {
+  try {
+    let TempMeetUpdatedData={}
+    const tblHeatDetails = getEl('tblHeatDetails', { required: true, desc: "Heat details table" });
+    if (!tblHeatDetails) {
+      log.warn("CaptureHeatDetailsTable: tblHeatDetails missing.");
+      return MeetUpdatedData;
+    }
+
+    // Ensure container object
+    if (typeof MeetUpdatedData !== 'object' || MeetUpdatedData === null) {
+      MeetUpdatedData = {};
+    }
+
+    // EventDetails shall be a dictionary keyed by eventID
+    MeetUpdatedData.EventDetails = {};
+    TempMeetUpdatedData.EventDetails = {};
+
+    
+
+    // Iterate each heat row in the table
+    for (let index = 0; index < tblHeatDetails.rows.length - 1; index++) {
+
+      captureSingleHeat(index);
+    }
     return MeetUpdatedData;
-  } catch (err) {
+  
+}catch (err) {
     log.error("CaptureHeatDetailsTable: fatal error.", err);
     return MeetUpdatedData;
   }

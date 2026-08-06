@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>HLS Player</title>
+  <style>body{background:#000;margin:0;display:flex;flex-direction:column;height:100vh}#controls{padding:10px;background:#111;color:#fff}#player{flex:1;display:flex;align-items:center;justify-content:center}video{width:90vw;max-width:1600px;}</style>
+</head>
+<body>
+  <div id="controls">
+    <label>Resolution: <select id="resolution"><option value="">Source</option><option value="1280x720">1280x720</option><option value="1920x1080">1920x1080</option><option value="3840x2160">3840x2160</option></select></label>
+    <label>Preset: <select id="preset"><option>veryfast</option><option>fast</option><option>medium</option><option>slow</option></select></label>
+    <label>Segment (s): <input id="segtime" type="number" value="2" min="1" style="width:60px"/></label>
+    <button id="apply">Apply</button>
+    <span id="status" style="margin-left:12px;color:#0f0"></span>
+  </div>
+  <div id="player"><video id="video" controls autoplay muted></video></div>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+  <script>
+    async function fetchConfig(){
+      try{
+        const r = await fetch('/config');
+        if(!r.ok) throw new Error('no config');
+        return await r.json();
+      }catch(e){return null}
+    }
+    async function applyConfig(cfg){
+      const r = await fetch('/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(cfg)});
+      return r.ok?await r.json():null;
+    }
+    (async ()=>{
+      const cfg = await fetchConfig();
+      if(cfg){
+        document.getElementById('segtime').value = cfg.segment_time || 2;
+        document.getElementById('preset').value = cfg.preset || 'veryfast';
+        if(cfg.scale){document.getElementById('resolution').value = cfg.scale[0]+'x'+cfg.scale[1];}
+      }
+      document.getElementById('apply').onclick = async ()=>{
+        const resEl = document.getElementById('status');
+        resEl.textContent = 'Applying...';
+        const res = await applyConfig({
+          preset: document.getElementById('preset').value,
+          segment_time: parseInt(document.getElementById('segtime').value,10) || 2,
+          scale: (document.getElementById('resolution').value || null)
+        });
+        if(res && res.ok){ resEl.style.color='#0f0'; resEl.textContent='Applied'; setTimeout(()=>resEl.textContent='',2000);}else{ resEl.style.color='#f00'; resEl.textContent='Failed'; }
+      };
+
+      // HLS player setup
+      const video = document.getElementById('video');
+      const src = 'index.m3u8';
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED,function() { video.play(); });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src; video.addEventListener('loadedmetadata',function() { video.play(); });
+      } else {
+        document.body.innerHTML = '<p style="color:white">HLS not supported in this browser.</p>';
+      }
+    })();
+  </script>
+</body>
+</html>

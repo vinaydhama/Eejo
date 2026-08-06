@@ -4,7 +4,7 @@ import requests
 import json
 import warnings
 from Lib.LogerService import Logger
-from Lib.SwimDataHolder import Changeinfo
+from Lib.SwimDataHolder import Changeinfo, TimerStatus
 from pathlib import Path
 import os
 import shutil
@@ -29,7 +29,7 @@ class FireBaseHelper:
 
     # Firebase endpoints (unchanged names)
     strjson = ".json"
-    Eventurl = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/"
+    Eventurl = "https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events/"
     EventBaseurl = Eventurl + str(MeetName)  # refreshed before use
     SwimmerURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Swimmers"
 
@@ -346,7 +346,8 @@ class FireBaseHelper:
                         # Update times
                         heat_obj["HeatStartTime"] = getattr(heatDataDisplay, "HeatStartTime", 0)
                         heat_obj["HeatEndTime"]   = getattr(heatDataDisplay, "HeatEndTime", 0)
-                        heat_obj["HeatStatus"]   = 1
+                        if not heat_obj.get("HeatStatus"):
+                            heat_obj["HeatStatus"] = 3
 
 
                         # Update board data (defensive against length mismatches)
@@ -430,7 +431,7 @@ class FireBaseHelper:
         try:
             FireBaseHelper._refresh_event_base_url()
             if FireBaseHelper.internet_on():
-                #https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/Millennium_World_School_HASSAN_2025/EventDetails/100_IM_G01_B/HeatList/100_IM_G01_B_1.json
+                #"https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events/Millennium_World_School_HASSAN_2025/EventDetails/100_IM_G01_B/HeatList/100_IM_G01_B_1.json
                 url = f"{FireBaseHelper.EventBaseurl}/EventDetails/{eventIndex}/HeatList/{heatindex}.json"
                 FireBaseHelper._patch(url, updated_heat_data, desc="Single heat update")
             # else:
@@ -506,26 +507,54 @@ class FireBaseHelper:
         except Exception:
             Logger.app_log.error("sync_firebase_full_sw_data_with_latest_results failed", exc_info=True)
             return False
-
+    
     @staticmethod
-    def sync_file_with_previous_results(JsonDataFromFirebase: Dict[str, Any], PreviousResultData: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def sync_file_with_previous_results(JsonDataFromFirebase: Dict[str, Any],
+                                        PreviousResultData: List[Dict[str, Any]]) -> Dict[str, Any]:
         try:
             if PreviousResultData is None or JsonDataFromFirebase is None:
                 return JsonDataFromFirebase
-            events = JsonDataFromFirebase.get("EventDetails", [])
-            for prev in PreviousResultData:
-                for event_index in range(0, len(events)):
-                    heats = events[event_index].get("HeatList", [])
-                    for heat_index in range(0, len(heats)):
-                        fh = heats[heat_index]
-                        if prev.get("HeatID") == fh.get("HeatID"):
-                            if prev != fh:
-                                events[event_index]["HeatList"][heat_index] = prev
-                                Logger.app_log.info("Merged previous heat: %s", prev.get("HeatID"))
+            
+            events = JsonDataFromFirebase.get("EventDetails", {})
+
+            # Iterate through each event (dict)
+            for event_id, event_data in events.items():
+                heats = event_data.get("HeatList", {})
+
+                # For each previous result, update matching heat
+                for prev in PreviousResultData:
+                    heat_id = prev.get("HeatID")
+
+                    if heat_id in heats:
+                        if heats[heat_id] != prev:
+                            heats[heat_id] = prev
+                            Logger.app_log.info("Merged previous heat: %s", heat_id)
+
             return JsonDataFromFirebase
+        
         except Exception:
             Logger.app_log.error("sync_file_with_previous_results failed", exc_info=True)
             return JsonDataFromFirebase
+
+    # @staticmethod
+    # def sync_file_with_previous_results(JsonDataFromFirebase: Dict[str, Any], PreviousResultData: List[Dict[str, Any]]) -> Dict[str, Any]:
+    #     try:
+    #         if PreviousResultData is None or JsonDataFromFirebase is None:
+    #             return JsonDataFromFirebase
+    #         events = JsonDataFromFirebase.get("EventDetails", [])
+    #         for prev in PreviousResultData:
+    #             for event_index in range(0, len(events)):
+    #                 heats = events[event_index].get("HeatList", [])
+    #                 for heat_index in range(0, len(heats)):
+    #                     fh = heats[heat_index]
+    #                     if prev.get("HeatID") == fh.get("HeatID"):
+    #                         if prev != fh:
+    #                             events[event_index]["HeatList"][heat_index] = prev
+    #                             Logger.app_log.info("Merged previous heat: %s", prev.get("HeatID"))
+    #         return JsonDataFromFirebase
+    #     except Exception:
+    #         Logger.app_log.error("sync_file_with_previous_results failed", exc_info=True)
+    #         return JsonDataFromFirebase
 
     # ----------------------------------------------------------------------
     # Backward-compatible wrappers (OLD names) with deprecation warnings

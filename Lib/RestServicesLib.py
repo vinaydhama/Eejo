@@ -264,6 +264,43 @@ class RestServicecls:
         RestServicecls.Synced_JSONData = Synced_JSONData
         RestServicecls.InitStatus = 0
         return Synced_JSONData
+    
+    @staticmethod
+    def SyncCatchDataTOLocalJSONFile() -> Dict[str, Any]:
+        PreviousLocalResultData = FireBaseHelper.FormatHeatresultFiletoProperJSONandRead(FireBaseHelper.WriteHeatResultsPath)
+        Synced_JSONData = FireBaseHelper.sync_file_with_previous_results(FireBaseHelper.FirebaseJsonData, PreviousLocalResultData)
+        RestServicecls.CreatteFileBackupBeforeWrite()
+        FireBaseHelper.create_if_file_not_exists(FireBaseHelper.WriteHeatResultsPath)
+        FireBaseHelper.create_if_file_not_exists(FireBaseHelper.FirebaseJSONFilePath)
+        FireBaseHelper.set_json_to_file(Synced_JSONData, FireBaseHelper.FirebaseJSONFilePath)
+        return
+    
+    def WriteLiveDataTOLocalJSON() -> Dict[str, Any]:
+        FireBaseHelper.set_json_to_file(RestServicecls.Synced_JSONData, FireBaseHelper.FirebaseJSONFilePath)
+        return
+    
+    def CreatteFileBackupBeforeWrite(DeleteFileAfterBackup=True):
+        parent = os.path.dirname(Path(__file__).parent.absolute())
+        s = time.gmtime()
+        FirebaseJSONFilePath_bak = os.path.join(parent, "Backup",
+            FireBaseHelper.FirebaseJsonData["MeetName"] + "_" + time.strftime("%Y_%m_%d_%H_%M_%S", s) + ".json")
+        FirebaseSwimmerTable_bak = os.path.join(parent, "Backup",
+            FireBaseHelper.FirebaseJsonData["MeetName"] + "_SwTable_" + time.strftime("%Y_%m_%d_%H_%M_%S", s) + ".json")
+        WriteHeatResultsPath_bak = os.path.join(parent, "Backup",
+            FireBaseHelper.FirebaseJsonData["MeetName"] + "_HeatEx_" + time.strftime("%Y_%m_%d_%H_%M_%S", s) + ".json")
+        # Backups
+        FireBaseHelper.copy_heat_file(FireBaseHelper.FirebaseJSONFilePath, FirebaseJSONFilePath_bak)
+        FireBaseHelper.copy_heat_file(FireBaseHelper.FirebaseSwimmerTable, FirebaseSwimmerTable_bak)
+        FireBaseHelper.copy_heat_file(FireBaseHelper.WriteHeatResultsPath, WriteHeatResultsPath_bak)
+       
+        # Clear and recreate current files
+        if (DeleteFileAfterBackup):
+            FireBaseHelper.delete_heat_file(FireBaseHelper.FirebaseJSONFilePath)
+            FireBaseHelper.delete_heat_file(FireBaseHelper.FirebaseSwimmerTable)
+            FireBaseHelper.delete_heat_file(FireBaseHelper.WriteHeatResultsPath)
+            FireBaseHelper.create_if_file_not_exists(FireBaseHelper.FirebaseJSONFilePath)
+        return
+        
 
     @staticmethod
     def InitTimerStart() -> Dict[str, Any]:
@@ -304,7 +341,7 @@ class RestServicecls:
             Logger.app_log.exception("InitTimerStart failed")
         return Synced_JSONData
 
-    @staticmethod
+    @staticmethod # Used
     def GetNextHeatID(data: Dict[str, Any]) -> Tuple[str, str]:
         if RestServicecls.AutoFindHeat == 1:
             HeatID, EventID = JsonHelper.get_next_heat_id_from_file(data)
@@ -503,11 +540,6 @@ async def UpdateParam(
 
 
 
-
-
-
-
-
 @app.post("/SetLiveHeatDataCommands")
 async def SetLiveHeatDataCommands(request: Request):
     try:
@@ -517,14 +549,32 @@ async def SetLiveHeatDataCommands(request: Request):
             return RestServicecls._err("CmdName required", 400)
 
         if commandname == 'SetRunningHeatData':
-            RestServicecls.InitStatus = 1
             RestServicecls.Synced_JSONData = data
-            RestServicecls.InitStatus = 0
-            StopTimerService.StartRestcommand = 3
-            StopTimerService.set_heat_status(TimerStatus.WaitingToStart)
+
+            WriteToLocal = await RestServicecls._get_param(request, 'WriteToLocal', '')
+            ClearLocalCatch = await RestServicecls._get_param(request, 'ClearLocalCatch', '')
+            
+            # if (ClearLocalCatch=='1'):
+            parent = os.path.dirname(Path(__file__).parent.absolute())
+            s = time.gmtime()
+            FirebaseJSONFilePath_bak = os.path.join(parent, "Backup",
+                FireBaseHelper.FirebaseJsonData["MeetName"] + "_" + time.strftime("%Y_%m_%d_%H_%M_%S", s) + ".json")            
+            WriteHeatResultsPath_bak = os.path.join(parent, "Backup",
+                FireBaseHelper.FirebaseJsonData["MeetName"] + "_HeatEx_" + time.strftime("%Y_%m_%d_%H_%M_%S", s) + ".json")
+            FireBaseHelper.copy_heat_file(FireBaseHelper.FirebaseJSONFilePath, FirebaseJSONFilePath_bak)
+            FireBaseHelper.copy_heat_file(FireBaseHelper.WriteHeatResultsPath, WriteHeatResultsPath_bak)
+
+            FireBaseHelper.delete_heat_file(FireBaseHelper.WriteHeatResultsPath)
+            FireBaseHelper.create_if_file_not_exists(FireBaseHelper.WriteHeatResultsPath)
+            # if (WriteToLocal=='1'):
+            RestServicecls.WriteLiveDataTOLocalJSON()            
+            #RestServicecls.InitStatus = 1
+            #RestServicecls.InitStatus = 0
+           # StopTimerService.StartRestcommand = 3
+            #StopTimerService.set_heat_status(TimerStatus.WaitingToStart)
             FireBaseHelper.create_if_file_not_exists(FireBaseHelper.FirebaseJSONFilePath)
             FireBaseHelper.set_json_to_file(RestServicecls.Synced_JSONData, FireBaseHelper.FirebaseJSONFilePath)
-            StopTimerService.ResetTimer()
+            # StopTimerService.ResetTimer()
             return RestServicecls._ok({"status": "success", "data": {}}, 200)
         
         elif commandname == 'SetSelectedData':
@@ -576,7 +626,7 @@ async def SetLiveHeatCommands(request: Request):
                 'SIDE_B_SwBits': getattr(StopTimerService, "SIDE_B_SwBits", []),
             }
 
-        elif commandname == 'SetBitAlocation':
+        elif commandname == 'SetBitAlocation/':
             req_side_a = await RestServicecls._get_param(request, 'SIDE_A_SwBits', '')
             req_side_b = await RestServicecls._get_param(request, 'SIDE_B_SwBits', '')
             primery_side = await RestServicecls._get_param(request, 'PrimerySide', 'PrimeryA')
@@ -651,7 +701,7 @@ async def SetLiveHeatCommands(request: Request):
         elif commandname == 'GetRestIP':
             command_return_data = RestServicecls.GetRestIP()
 
-        elif commandname == 'GetRunningHeatData':
+        elif commandname == 'GetRunningHeatData'or commandname == 'GetRunningHeatData/':
             command_return_data = RestServicecls.Synced_JSONData
 
         elif commandname == 'SetFBPathtoSync':
@@ -706,7 +756,7 @@ async def SetLiveHeatCommands(request: Request):
         elif commandname == 'SetNextHeat':
             RestServicecls.AutoFindHeat = 0
             HeatName = await RestServicecls._get_param(request, 'HeatName', '')
-            RestServicecls.NextSetHeatID = HeatName                        
+            RestServicecls.NextSetHeatID = HeatName
             EventName = HeatName.rsplit("_", 1)[0]
             heatDataDisplay = JsonHelper.GetHeatDataDisplay( HeatName,EventName, RestServicecls.Synced_JSONData)
             StopTimerService.ResetTimer()

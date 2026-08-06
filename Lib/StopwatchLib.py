@@ -1,10 +1,11 @@
-
 # StopwatchLib.py (backward-compatible facade + instance impl + error handling)
 from __future__ import annotations
 
 import time
 import datetime
 from typing import List, Optional, ClassVar, Callable, Any, Tuple
+
+from attrs import inspect
 
 from Lib.SwimDataHolder import TimerStatus, SwimerBoardDetail, HeatDataDisplay
 from Lib.LogerService import Logger
@@ -159,8 +160,10 @@ class StopTimerService:
         self._derive_heat_status()
 
         if StopTimerService.HeatStatus == TimerStatus.WaitBeforeLoad:
-            now = datetime.datetime.now()
-            self.heat_display.HeatEndTime = int(now.strftime("%Y%m%d%H%M%S"))
+            now = datetime.datetime.now(datetime.timezone.utc)
+            # store time-only (HH:MM[:SS]) for input[type=time]
+            self.heat_display.HeatEndTime = self._format_time(now)
+            self.heat_display.HeatStatus = 3
 
         # self._play_tones(StopTimerService.HeatStatus)
 
@@ -188,15 +191,16 @@ class StopTimerService:
         if self.start_pin_status == 1 or StopTimerService.StartRestcommand == 1:
             if StopTimerService.StartRestcommand == 1 and StopTimerService.HeatStatus == TimerStatus.loadedToStart:
                 self.start_latch = 1
-                now = datetime.datetime.now()
-                self.heat_display.HeatStartTime = int(now.strftime("%Y%m%d%H%M%S"))
+                now = datetime.datetime.now(datetime.timezone.utc)
+                self.heat_display.HeatStartTime = self._format_time(now)
+
                 StopTimerService.StartRestcommand = 0
 
             if StopTimerService.HeatStatus == TimerStatus.loadedToStart and self.start_latch == 0:
                 if self.start_latch_counter >= self.SHORT_LATCH_THRESHOLD:
                     self.start_latch = 1
-                    now = datetime.datetime.now()
-                    self.heat_display.HeatStartTime = int(now.strftime("%Y%m%d%H%M%S"))
+                    now = datetime.datetime.now(datetime.timezone.utc)
+                    self.heat_display.HeatStartTime = self._format_time(now)
                     Logger.app_log.info("Start Timer Latched")
                 else:
                     self.start_latch_counter += 1
@@ -219,8 +223,9 @@ class StopTimerService:
             StopTimerService.SetHeatStatus(TimerStatus.Completed)
 
         elif StopTimerService.StartRestcommand == 4:
-            now = datetime.datetime.now()
-            self.heat_display.HeatEndTime = int(now.strftime("%Y%m%d%H%M%S"))
+            now = datetime.datetime.now(datetime.timezone.utc)
+            self.heat_display.HeatEndTime = self._format_time(now)
+            self.heat_display.HeatStatus = 3
             StopTimerService.SetHeatStatus(TimerStatus.Completed)
 
         else:
@@ -411,6 +416,9 @@ class StopTimerService:
     @classmethod
     @safe_call()
     def SetHeatStatus(cls, status: TimerStatus) -> None:
+        # import inspect
+        # caller = inspect.stack()[1]
+        # Logger.app_log.info(f"SetHeatStatus called: {status} by {caller.function} at {caller.filename}:{caller.lineno}")
         cls.get_instance().set_heat_status(status)
         cls.get_instance().heatDataDisplay.HeatStatus= status
 
@@ -423,6 +431,26 @@ class StopTimerService:
         Returns HeatStartTime as an integer timestamp (YYYYMMDDHHMMSS).
         """
         return cls.get_instance().heat_display.HeatStartTime
+
+    # helper: format datetime to time-only string for JSON / HTML inputs
+    @staticmethod
+    def _format_time(dt: datetime.datetime, seconds: bool = True, use_utc: bool = False) -> str:
+        try:
+            if dt is None:
+                return ''
+            if use_utc:
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=datetime.timezone.utc)
+                dt = dt.astimezone(datetime.timezone.utc)
+            else:
+                dt = dt.astimezone()
+            return dt.strftime('%H:%M:%S' if seconds else '%H:%M')
+        except Exception:
+            try:
+                Logger.app_log.exception('format_time failed', exc_info=True)
+            except Exception:
+                pass
+            return ''
 
     @classmethod
     @safe_call(default_return=TimerStatus.Stoped)

@@ -9,6 +9,7 @@
   <meta http-equiv="Expires" content="0" />
   <title>Live Swim Leaderboard – Enhanced (BG options)</title>
   <script charset="utf-8" type="text/javascript" src="../bootstrap/js/Utility.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     :root{
       --text-color: rgb(178,248,1);
@@ -35,7 +36,8 @@
     .bg-image{position:absolute; inset:0; background:#0c0c0c center/cover no-repeat; filter:none; opacity:1; transition:filter .2s ease, opacity .2s ease}
     .bg-overlay{position:absolute; inset:0; background:radial-gradient(ellipse at top, rgba(0,0,0,.55), rgba(0,0,0,.75)); z-index:1;}
 
-    .toolbar{position:fixed; right:16px; bottom:16px; z-index:9999}
+    .toolbar{position:fixed; right:16px; bottom:16px; z-index:9999; opacity:0; transition:opacity 0.3s ease; pointer-events:none}
+    .toolbar.visible{opacity:1; pointer-events:auto}
     .btn{background:#222; color:var(--text-color); border:1px solid #333; padding:8px 12px; border-radius:8px; cursor:pointer}
     .btn:hover{background:#2a2a2a}
     .modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:9998}
@@ -122,7 +124,15 @@
           </label>
           <label><input type="checkbox" id="auto-print-on-heat-complete"> Auto print when Heat Status = 4</label>
           <label><input type="checkbox" id="auto-hide-club-portrait"> Auto-hide Club column in Portrait</label>
+          <label><input type="checkbox" id="freeze-on-heat-change"> Freeze table on heat change</label>
+          <label>Freeze duration (ms)
+            <input type="number" id="freeze-duration-ms" min="100" max="10000" step="100" value="2000"/>
+          </label>
+          <label><input type="checkbox" id="auto-snapshot-on-freeze"> Auto-capture snapshot on freeze</label>
         </div>
+        <button onclick="captureSnapshot()" style="margin-top: 10px; padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Download Snapshot Now
+        </button>
 
         <div class="col">
           <h4>Columns visibility</h4>
@@ -207,9 +217,11 @@
 
   <script>
     // ---- Config & helpers ----
-    const DQMsg = ["", "AB", "DQ", "DNC", "ES"]; // Status labels
+    // const DQMsg = ["", "AB", "DQ", "DNC", "ES"]; // Status labels
     let timervaldate = '', timervalTime = '';
     let lastPrintedHeatId = null; // guard to avoid re-printing
+    let previousHeatNameRaw = null; // track heat name for freeze detection
+    let freezeUntilMs = 0; // freeze table updates until this timestamp
 
     const qs = new URLSearchParams(window.location.search);
     let dataUrl = qs.get('dataUrl');
@@ -322,8 +334,37 @@
         const eventID = jsonData.commandReturnData?.EventID;
         const heatStatus = jsonData.commandReturnData?.HeatStatus;
 
+        // Check if heat has changed and freeze table updates if enabled
+        const freezeOnHeatChange = restore('freezeOnHeatChange', true);
+        const freezeMs = restore('freezeFreezeMs', 2000); // default 2 seconds
+        const autoSnapshotEnabled = restore('autoSnapshotOnFreeze', false);
+        const now = Date.now();
+
+        if(freezeOnHeatChange && previousHeatNameRaw !== null && heatNameRaw !== previousHeatNameRaw){
+          // Heat changed — freeze table updates for freezeMs milliseconds
+          freezeUntilMs = now + freezeMs;
+          previousHeatNameRaw = heatNameRaw;
+          console.log(`Heat changed from "${previousHeatNameRaw}" to "${heatNameRaw}". Freezing updates for ${freezeMs}ms.`);
+          
+          // Auto-capture snapshot if enabled
+          if(autoSnapshotEnabled){
+            setTimeout(captureSnapshot, 100); // slight delay to ensure UI is ready
+            console.log('[LiveBoard] Auto-snapshot triggered on heat change');
+          }
+          return; // skip table update this cycle
+        }
+
+        // Check if currently frozen
+        if(freezeOnHeatChange && now < freezeUntilMs){
+          console.debug(`Table updates frozen (${Math.round(freezeUntilMs - now)}ms remaining).`);
+          return; // skip table update
+        }
+
+        // Update previous heat name for next cycle
+        previousHeatNameRaw = heatNameRaw;
+
         // Compose meet header
-        const Meetname = jsonData.commandReturnData?.MeetName || 'Millennium World School Hassan Dec 2025';
+        const Meetname = jsonData.commandReturnData?.MeetName || 'Millennium World School Hassan';
         const heatFullName = (typeof formatSwimmingEvent === 'function')
           ? (formatSwimmingEvent(heatNameRaw, []).fullname)
           : (heatNameRaw || '');
@@ -438,9 +479,74 @@
 
     // ---- Settings wiring ----
     const backdrop = document.getElementById('settings-backdrop');
+    const toolbar = document.querySelector('.toolbar');
+    let toolbarHideTimeout;
+
+    // Show toolbar and set hide timeout
+    function showToolbar() {
+      toolbar.classList.add('visible');
+      clearTimeout(toolbarHideTimeout);
+      toolbarHideTimeout = setTimeout(() => {
+        toolbar.classList.remove('visible');
+      }, 5000); // Hide after 5 seconds of inactivity
+    }
+
+    // Show toolbar on mouse movement
+    document.addEventListener('mousemove', showToolbar);
+    
+    // Show toolbar on any key press
+    document.addEventListener('keydown', showToolbar);
+    
+    // Show toolbar on touch
+    document.addEventListener('touchstart', showToolbar);
+
+    // Keep toolbar visible when hovering over it
+    toolbar.addEventListener('mouseenter', () => {
+      clearTimeout(toolbarHideTimeout);
+    });
+    
+    toolbar.addEventListener('mouseleave', showToolbar);
+
     document.getElementById('btn-settings').addEventListener('click',()=>{ backdrop.style.display='flex'; syncSettingsUI(); });
     document.getElementById('btn-close').addEventListener('click',()=>{ backdrop.style.display='none'; });
     document.getElementById('btn-print').addEventListener('click',()=>window.print());
+
+    function captureSnapshot() {
+      // Capture full board viewport including header and all content
+      const captureContainer = document.querySelector('.board-viewport, body');
+      
+      // Get event number and heat name from the header
+      const eventLineText = document.getElementById('event-line')?.textContent || 'Unknown';
+      const eventMatch = eventLineText.match(/Event\s+(\d+)/);
+      const eventNum = eventMatch ? eventMatch[1] : 'Unknown';
+      
+      const heatNameMatch = eventLineText.match(/:\s*(.+)$/);
+      const heatName = heatNameMatch ? heatNameMatch[1].trim().replace(/[\/\\:*?"<>|]/g, '_') : 'Unknown';
+      
+      // Format current datetime as YYYY-MM-DD_HH-MM-SS
+      const now = new Date();
+      const dateTime = now.getFullYear() + '-' +
+                       String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                       String(now.getDate()).padStart(2, '0') + '_' +
+                       String(now.getHours()).padStart(2, '0') + '-' +
+                       String(now.getMinutes()).padStart(2, '0') + '-' +
+                       String(now.getSeconds()).padStart(2, '0');
+      
+      const filename = `LiveBoard_E${eventNum}_${heatName}_${dateTime}.png`;
+      
+      html2canvas(captureContainer, {
+        allowTaint: true,
+        useCORS: true,
+        scale: 2, // Higher quality
+        backgroundColor: '#0c0c0c'
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = filename;
+        link.click();
+        console.log(`[LiveBoard] Snapshot captured and downloaded: ${filename}`);
+      }).catch(err => console.error('[LiveBoard] Snapshot capture error:', err));
+    }
 
     // Controls state sync
     function syncSettingsUI(){
@@ -457,6 +563,19 @@
       const autoHideClub = document.getElementById('auto-hide-club-portrait');
       autoHideClub.checked = !!restore('autoHideClubPortrait', false);
       autoHideClub.onchange = (e)=>{ persist('autoHideClubPortrait', e.target.checked); applyRotation(); };
+
+      // Freeze on heat change
+      const freezeOnChange = document.getElementById('freeze-on-heat-change');
+      freezeOnChange.checked = !!restore('freezeOnHeatChange', true);
+      freezeOnChange.onchange = (e)=>{ persist('freezeOnHeatChange', e.target.checked); };
+
+      const freezeDurationMs = document.getElementById('freeze-duration-ms');
+      freezeDurationMs.value = restore('freezeFreezeMs', 2000);
+      freezeDurationMs.oninput = (e)=>{ persist('freezeFreezeMs', parseInt(e.target.value, 10)); };
+
+      const autoSnapshot = document.getElementById('auto-snapshot-on-freeze');
+      autoSnapshot.checked = !!restore('autoSnapshotOnFreeze', false);
+      autoSnapshot.onchange = (e)=>{ persist('autoSnapshotOnFreeze', e.target.checked); };
 
       // Columns
       const vis = restore('visibleCols', {lane:true, rank:true, team:true, name:true, time:true});

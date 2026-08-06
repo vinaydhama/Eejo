@@ -1,28 +1,2978 @@
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 7.539, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.801, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 10.137, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 17.406, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 21.481, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260104205658, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260104205636, "HeatStatus": 0, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.42, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.483, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.787, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 18.456, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 20.673, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260104211802, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260104211741, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 35.79, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "SUDHANVA SHETTY", "SwimerName": "SUDHANVA SHETTY"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.339, "ClubName": "Marlin Aquatic Center Mysuru,", "SwimerID": "S LOCHAN SATHYA SAI DEEP", "SwimerName": "S LOCHAN SATHYA SAI DEEP"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 17.217, "ClubName": "ALVAS SPORTS COMPLEX", "SwimerID": "DURGESH", "SwimerName": "DURGESH"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 59.049, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "THANAY ABHIJITH", "SwimerName": "THANAY ABHIJITH"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 61.842, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AMAN K DEVADIGA", "SwimerName": "AMAN K DEVADIGA"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 3, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "Newwww", "SwimerName": "wew"}], "HeatEndTime": 20260104211939, "HeatID": "100_IM_G01_B_2", "HeatStartTime": 20260104211836, "HeatStatus": 1, "HeatNotes": "L1 Clarify"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 30.71, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "MANVI D", "SwimerName": "MANVI D"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.177, "ClubName": "HASSAN SWIMMERS CLUB", "SwimerID": "CHARVIKA GOWDA", "SwimerName": "CHARVIKA GOWDA"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 23.009, "ClubName": "DKV BANGLORE", "SwimerID": "SANVI SREEMAN", "SwimerName": "SANVI SREEMAN"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "MOHAK P GOWDA", "SwimerName": "MOHAK P GOWDA"}, {"BoardID": 7, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 68.025, "ClubName": "New_Club", "SwimerID": "New_ADD", "SwimerName": "New_ADD"}], "HeatEndTime": 20260104212118, "HeatID": "100_IM_G01_G_1", "HeatStartTime": 20260104212009, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 24.039, "ClubName": "MASP MYSORE", "SwimerID": "NIDHI S", "SwimerName": "NIDHI S"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 5.14, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "KANYASHREE", "SwimerName": "KANYASHREE"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 11.646, "ClubName": "DKV AQUATIC CENTRE BANGLORE", "SwimerID": "SONIYA MATHEW THOCCCTTATHIL", "SwimerName": "SONIYA MATHEW THOTTATHIL"}], "HeatEndTime": 20260104212150, "HeatID": "100_IM_G01_G_2", "HeatStartTime": 20260104212126, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.186, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 64.939, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 66.921, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260105132337, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260105132229, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 21.72, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 32.12, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 19.787, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 66.97, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 68.739, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260105133655, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260105133546, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260105224251, "HeatID": "100_IM_G01_B_1", "HeatStartTime": "", "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "SUDHANVA SHETTY", "SwimerName": "SUDHANVA SHETTY"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "Marlin Aquatic Center Mysuru,", "SwimerID": "S LOCHAN SATHYA SAI DEEP", "SwimerName": "S LOCHAN SATHYA SAI DEEP"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "ALVAS SPORTS COMPLEX", "SwimerID": "DURGESH", "SwimerName": "DURGESH"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "THANAY ABHIJITH", "SwimerName": "THANAY ABHIJITH"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AMAN K DEVADIGA", "SwimerName": "AMAN K DEVADIGA"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 3, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "Newwww", "SwimerName": "wew"}], "HeatEndTime": 20260105224610, "HeatID": "100_IM_G01_B_2", "HeatStartTime": "", "HeatStatus": 1, "HeatNotes": "L1 Clarify"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.02, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 14.91, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 16.488, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 18.183, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260105225514, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260105225453, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260113150222, "HeatID": "100_IM_G01_B_1", "HeatStartTime": "", "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.901, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.901, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.901, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.901, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.901, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260113150425, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260113150418, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 87.473, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "SUDHANVA SHETTY", "SwimerName": "SUDHANVA SHETTY"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 87.473, "ClubName": "Marlin Aquatic Center Mysuru,", "SwimerID": "S LOCHAN SATHYA SAI DEEP", "SwimerName": "S LOCHAN SATHYA SAI DEEP"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 87.473, "ClubName": "ALVAS SPORTS COMPLEX", "SwimerID": "DURGESH", "SwimerName": "DURGESH"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 87.473, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "THANAY ABHIJITH", "SwimerName": "THANAY ABHIJITH"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 87.473, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AMAN K DEVADIGA", "SwimerName": "AMAN K DEVADIGA"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 3, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "Newwww", "SwimerName": "wew"}], "HeatEndTime": 20260113150634, "HeatID": "100_IM_G01_B_2", "HeatStartTime": 20260113150507, "HeatStatus": 1, "HeatNotes": "L1 Clarify"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.932, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "MANVI D", "SwimerName": "MANVI D"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.932, "ClubName": "HASSAN SWIMMERS CLUB", "SwimerID": "CHARVIKA GOWDA", "SwimerName": "CHARVIKA GOWDA"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.932, "ClubName": "DKV BANGLORE", "SwimerID": "SANVI SREEMAN", "SwimerName": "SANVI SREEMAN"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "MOHAK P GOWDA", "SwimerName": "MOHAK P GOWDA"}, {"BoardID": 7, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.932, "ClubName": "New_Club", "SwimerID": "New_ADD", "SwimerName": "New_ADD"}], "HeatEndTime": 20260113153201, "HeatID": "100_IM_G01_G_1", "HeatStartTime": 20260113153158, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.725, "ClubName": "MASP MYSORE", "SwimerID": "NIDHI S", "SwimerName": "NIDHI S"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.725, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "KANYASHREE", "SwimerName": "KANYASHREE"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.725, "ClubName": "DKV AQUATIC CENTRE BANGLORE", "SwimerID": "SONIYA MATHEW THOCCCTTATHIL", "SwimerName": "SONIYA MATHEW THOTTATHIL"}], "HeatEndTime": 20260113153301, "HeatID": "100_IM_G01_G_2", "HeatStartTime": 20260113153257, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.03, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "KOUSTHUB RAI", "SwimerName": "KOUSTHUB RAI"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.03, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "Adithya Siddhartha Boudh", "SwimerName": "Adithya Siddhartha Boudh"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.03, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "DEEPANSH SHETTY", "SwimerName": "DEEPANSH SHETTY"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "MNC SWIMMING ACADEMY BANGALORE", "SwimerID": "RISHIK", "SwimerName": "RISHIK"}], "HeatEndTime": 20260113153658, "HeatID": "100_IM_G02_B_1", "HeatStartTime": 20260113153656, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.928, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.928, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.928, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.928, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.928, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260114090153, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260114090148, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.041, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.042, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.042, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.042, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.042, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260114091851, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260114091845, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.57, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "SUDHANVA SHETTY", "SwimerName": "SUDHANVA SHETTY"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.57, "ClubName": "Marlin Aquatic Center Mysuru,", "SwimerID": "S LOCHAN SATHYA SAI DEEP", "SwimerName": "S LOCHAN SATHYA SAI DEEP"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.57, "ClubName": "ALVAS SPORTS COMPLEX", "SwimerID": "DURGESH", "SwimerName": "DURGESH"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.57, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "THANAY ABHIJITH", "SwimerName": "THANAY ABHIJITH"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.57, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AMAN K DEVADIGA", "SwimerName": "AMAN K DEVADIGA"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 3, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "Newwww", "SwimerName": "wew"}], "HeatEndTime": 20260114091928, "HeatID": "100_IM_G01_B_2", "HeatStartTime": 20260114091921, "HeatStatus": 1, "HeatNotes": "L1 Clarify"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.621, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.621, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.621, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.621, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.621, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260114092410, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260114092401, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.642, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.642, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.642, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.642, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.642, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260114093659, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260114093655, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.596, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "NEEL M G", "SwimerName": "NEEL M G"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.596, "ClubName": "SOUNDARYA AQUATIC CENTRE", "SwimerID": "NAMRUTH YOGISH POOJARY", "SwimerName": "NAMRUTH YOGISH POOJARY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.596, "ClubName": "BASAVANAGUDI AQUATIC CENTER", "SwimerID": "ARNAV KUMAR GOWDA", "SwimerName": "ARNAV KUMAR GOWDA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.596, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "SIDDHARTH S KURUNDWAD", "SwimerName": "SIDDHARTH S KURUNDWAD"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.596, "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE", "SwimerID": "PRANAV. S", "SwimerName": "PRANAV. S"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "wew", "SwimerName": "wewe"}], "HeatEndTime": 20260114093807, "HeatID": "100_IM_G01_B_1", "HeatStartTime": 20260114093804, "HeatStatus": 1, "HeatNotes": "Chiranth Added Extra"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.215, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "SUDHANVA SHETTY", "SwimerName": "SUDHANVA SHETTY"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.215, "ClubName": "Marlin Aquatic Center Mysuru,", "SwimerID": "S LOCHAN SATHYA SAI DEEP", "SwimerName": "S LOCHAN SATHYA SAI DEEP"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.215, "ClubName": "ALVAS SPORTS COMPLEX", "SwimerID": "DURGESH", "SwimerName": "DURGESH"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.215, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "THANAY ABHIJITH", "SwimerName": "THANAY ABHIJITH"}, {"BoardID": 5, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.215, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AMAN K DEVADIGA", "SwimerName": "AMAN K DEVADIGA"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 3, "SwimTimings": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "Newwww", "SwimerName": "wew"}], "HeatEndTime": 20260114093837, "HeatID": "100_IM_G01_B_2", "HeatStartTime": 20260114093833, "HeatStatus": 1, "HeatNotes": "L1 Clarify"}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 27.384, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "MANVI D", "SwimerName": "MANVI D"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 27.384, "ClubName": "HASSAN SWIMMERS CLUB", "SwimerID": "CHARVIKA GOWDA", "SwimerName": "CHARVIKA GOWDA"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 27.384, "ClubName": "DKV BANGLORE", "SwimerID": "SANVI SREEMAN", "SwimerName": "SANVI SREEMAN"}, {"BoardID": 6, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "MOHAK P GOWDA", "SwimerName": "MOHAK P GOWDA"}, {"BoardID": 7, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 27.384, "ClubName": "New_Club", "SwimerID": "New_ADD", "SwimerName": "New_ADD"}], "HeatEndTime": 20260114093913, "HeatID": "100_IM_G01_G_1", "HeatStartTime": 20260114093845, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.155, "ClubName": "MASP MYSORE", "SwimerID": "NIDHI S", "SwimerName": "NIDHI S"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.155, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "KANYASHREE", "SwimerName": "KANYASHREE"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.155, "ClubName": "DKV AQUATIC CENTRE BANGLORE", "SwimerID": "SONIYA MATHEW THOCCCTTATHIL", "SwimerName": "SONIYA MATHEW THOTTATHIL"}], "HeatEndTime": 20260114093925, "HeatID": "100_IM_G01_G_2", "HeatStartTime": 20260114093918, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.294, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "KOUSTHUB RAI", "SwimerName": "KOUSTHUB RAI"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.294, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "Adithya Siddhartha Boudh", "SwimerName": "Adithya Siddhartha Boudh"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.294, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "DEEPANSH SHETTY", "SwimerName": "DEEPANSH SHETTY"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "MNC SWIMMING ACADEMY BANGALORE", "SwimerID": "RISHIK", "SwimerName": "RISHIK"}], "HeatEndTime": 20260114093934, "HeatID": "100_IM_G02_B_1", "HeatStartTime": 20260114093931, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.218, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "PARAS KATAMBLE", "SwimerName": "PARAS KATAMBLE"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 1, "SwimTimings": 0, "ClubName": "MNC SWIMMING ACADEMY BANGALORE", "SwimerID": "AKSHAY B M", "SwimerName": "AKSHAY B M"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.218, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "GOWTHAM ARYA", "SwimerName": "GOWTHAM ARYA"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.218, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "SANNIGDH ULLAL", "SwimerName": "SANNIGDH ULLAL"}], "HeatEndTime": 20260114093941, "HeatID": "100_IM_G02_B_2", "HeatStartTime": 20260114093938, "HeatStatus": 1, "HeatNotes": ""}
-{"BoardList": [{"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.561, "ClubName": "MNC SWIMMING ACADEMY BANGALORE", "SwimerID": "AADVIKA", "SwimerName": "AADVIKA"}], "HeatEndTime": 20260114093948, "HeatID": "100_IM_G02_G_1", "HeatStartTime": 20260114093944, "HeatStatus": 1, "HeatNotes": ""}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 7.539,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.801,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 10.137,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 17.406,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 21.481,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260104205658,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260104205636,
+    "HeatStatus": 0,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.42,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.483,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.787,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 18.456,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 20.673,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260104211802,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260104211741,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 35.79,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.339,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 17.217,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 59.049,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 61.842,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 3,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "Newwww",
+            "SwimerName": "wew"
+        }
+    ],
+    "HeatEndTime": 20260104211939,
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": 20260104211836,
+    "HeatStatus": 1,
+    "HeatNotes": "L1 Clarify"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 30.71,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "MANVI D",
+            "SwimerName": "MANVI D"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.177,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "CHARVIKA GOWDA",
+            "SwimerName": "CHARVIKA GOWDA"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 23.009,
+            "ClubName": "DKV BANGLORE",
+            "SwimerID": "SANVI SREEMAN",
+            "SwimerName": "SANVI SREEMAN"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "MOHAK P GOWDA",
+            "SwimerName": "MOHAK P GOWDA"
+        },
+        {
+            "BoardID": 7,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 68.025,
+            "ClubName": "New_Club",
+            "SwimerID": "New_ADD",
+            "SwimerName": "New_ADD"
+        }
+    ],
+    "HeatEndTime": 20260104212118,
+    "HeatID": "100_IM_G01_G_1",
+    "HeatStartTime": 20260104212009,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 24.039,
+            "ClubName": "MASP MYSORE",
+            "SwimerID": "NIDHI S",
+            "SwimerName": "NIDHI S"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 5.14,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "KANYASHREE",
+            "SwimerName": "KANYASHREE"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 11.646,
+            "ClubName": "DKV AQUATIC CENTRE BANGLORE",
+            "SwimerID": "SONIYA MATHEW THOCCCTTATHIL",
+            "SwimerName": "SONIYA MATHEW THOTTATHIL"
+        }
+    ],
+    "HeatEndTime": 20260104212150,
+    "HeatID": "100_IM_G01_G_2",
+    "HeatStartTime": 20260104212126,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.186,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 64.939,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 66.921,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260105132337,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260105132229,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 21.72,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 32.12,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 19.787,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 66.97,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 68.739,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260105133655,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260105133546,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260105224251,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": "",
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 3,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "Newwww",
+            "SwimerName": "wew"
+        }
+    ],
+    "HeatEndTime": 20260105224610,
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": "",
+    "HeatStatus": 1,
+    "HeatNotes": "L1 Clarify"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.02,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 14.91,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 16.488,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 18.183,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260105225514,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260105225453,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260113150222,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": "",
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.901,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.901,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.901,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.901,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.901,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260113150425,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260113150418,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 87.473,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 87.473,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 87.473,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 87.473,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 87.473,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 3,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "Newwww",
+            "SwimerName": "wew"
+        }
+    ],
+    "HeatEndTime": 20260113150634,
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": 20260113150507,
+    "HeatStatus": 1,
+    "HeatNotes": "L1 Clarify"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.932,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "MANVI D",
+            "SwimerName": "MANVI D"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.932,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "CHARVIKA GOWDA",
+            "SwimerName": "CHARVIKA GOWDA"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.932,
+            "ClubName": "DKV BANGLORE",
+            "SwimerID": "SANVI SREEMAN",
+            "SwimerName": "SANVI SREEMAN"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "MOHAK P GOWDA",
+            "SwimerName": "MOHAK P GOWDA"
+        },
+        {
+            "BoardID": 7,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.932,
+            "ClubName": "New_Club",
+            "SwimerID": "New_ADD",
+            "SwimerName": "New_ADD"
+        }
+    ],
+    "HeatEndTime": 20260113153201,
+    "HeatID": "100_IM_G01_G_1",
+    "HeatStartTime": 20260113153158,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.725,
+            "ClubName": "MASP MYSORE",
+            "SwimerID": "NIDHI S",
+            "SwimerName": "NIDHI S"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.725,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "KANYASHREE",
+            "SwimerName": "KANYASHREE"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.725,
+            "ClubName": "DKV AQUATIC CENTRE BANGLORE",
+            "SwimerID": "SONIYA MATHEW THOCCCTTATHIL",
+            "SwimerName": "SONIYA MATHEW THOTTATHIL"
+        }
+    ],
+    "HeatEndTime": 20260113153301,
+    "HeatID": "100_IM_G01_G_2",
+    "HeatStartTime": 20260113153257,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.03,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "KOUSTHUB RAI",
+            "SwimerName": "KOUSTHUB RAI"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.03,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "Adithya Siddhartha Boudh",
+            "SwimerName": "Adithya Siddhartha Boudh"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.03,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "DEEPANSH SHETTY",
+            "SwimerName": "DEEPANSH SHETTY"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "RISHIK",
+            "SwimerName": "RISHIK"
+        }
+    ],
+    "HeatEndTime": 20260113153658,
+    "HeatID": "100_IM_G02_B_1",
+    "HeatStartTime": 20260113153656,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.928,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.928,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.928,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.928,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.928,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260114090153,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260114090148,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.041,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.042,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.042,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.042,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.042,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260114091851,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260114091845,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.57,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.57,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.57,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.57,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.57,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 3,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "Newwww",
+            "SwimerName": "wew"
+        }
+    ],
+    "HeatEndTime": 20260114091928,
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": 20260114091921,
+    "HeatStatus": 1,
+    "HeatNotes": "L1 Clarify"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.621,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.621,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.621,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.621,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.621,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260114092410,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260114092401,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.642,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.642,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.642,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.642,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.642,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260114093659,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260114093655,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.596,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.596,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.596,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.596,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.596,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260114093807,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260114093804,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.215,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.215,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.215,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.215,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.215,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 3,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "Newwww",
+            "SwimerName": "wew"
+        }
+    ],
+    "HeatEndTime": 20260114093837,
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": 20260114093833,
+    "HeatStatus": 1,
+    "HeatNotes": "L1 Clarify"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 27.384,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "MANVI D",
+            "SwimerName": "MANVI D"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 27.384,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "CHARVIKA GOWDA",
+            "SwimerName": "CHARVIKA GOWDA"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 27.384,
+            "ClubName": "DKV BANGLORE",
+            "SwimerID": "SANVI SREEMAN",
+            "SwimerName": "SANVI SREEMAN"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "MOHAK P GOWDA",
+            "SwimerName": "MOHAK P GOWDA"
+        },
+        {
+            "BoardID": 7,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 27.384,
+            "ClubName": "New_Club",
+            "SwimerID": "New_ADD",
+            "SwimerName": "New_ADD"
+        }
+    ],
+    "HeatEndTime": 20260114093913,
+    "HeatID": "100_IM_G01_G_1",
+    "HeatStartTime": 20260114093845,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.155,
+            "ClubName": "MASP MYSORE",
+            "SwimerID": "NIDHI S",
+            "SwimerName": "NIDHI S"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.155,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "KANYASHREE",
+            "SwimerName": "KANYASHREE"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.155,
+            "ClubName": "DKV AQUATIC CENTRE BANGLORE",
+            "SwimerID": "SONIYA MATHEW THOCCCTTATHIL",
+            "SwimerName": "SONIYA MATHEW THOTTATHIL"
+        }
+    ],
+    "HeatEndTime": 20260114093925,
+    "HeatID": "100_IM_G01_G_2",
+    "HeatStartTime": 20260114093918,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.294,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "KOUSTHUB RAI",
+            "SwimerName": "KOUSTHUB RAI"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.294,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "Adithya Siddhartha Boudh",
+            "SwimerName": "Adithya Siddhartha Boudh"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.294,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "DEEPANSH SHETTY",
+            "SwimerName": "DEEPANSH SHETTY"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "RISHIK",
+            "SwimerName": "RISHIK"
+        }
+    ],
+    "HeatEndTime": 20260114093934,
+    "HeatID": "100_IM_G02_B_1",
+    "HeatStartTime": 20260114093931,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.218,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "PARAS KATAMBLE",
+            "SwimerName": "PARAS KATAMBLE"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "AKSHAY B M",
+            "SwimerName": "AKSHAY B M"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.218,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "GOWTHAM ARYA",
+            "SwimerName": "GOWTHAM ARYA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.218,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SANNIGDH ULLAL",
+            "SwimerName": "SANNIGDH ULLAL"
+        }
+    ],
+    "HeatEndTime": 20260114093941,
+    "HeatID": "100_IM_G02_B_2",
+    "HeatStartTime": 20260114093938,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.561,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "AADVIKA",
+            "SwimerName": "AADVIKA"
+        }
+    ],
+    "HeatEndTime": 20260114093948,
+    "HeatID": "100_IM_G02_G_1",
+    "HeatStartTime": 20260114093944,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 66.054,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 486.927,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 70.935,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 535.273,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 545.773,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "wew",
+            "SwimerName": "wewe"
+        }
+    ],
+    "HeatEndTime": 20260628165308,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260628164402,
+    "HeatStatus": 1,
+    "HeatNotes": "Chiranth Added Extra"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 5,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        },
+        {
+            "BoardID": 6,
+            "BoardStatus": 0,
+            "SwimStatus": 3,
+            "SwimTimings": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "Newwww",
+            "SwimerName": "wew"
+        }
+    ],
+    "HeatEndTime": 20260628165431,
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": "",
+    "HeatStatus": 1,
+    "HeatNotes": "L1 Clarify"
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 5.594,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "NEEL M G",
+            "SwimerName": "NEEL M G"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 5.594,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 5.594,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 5.594,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 5.594,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV. S",
+            "SwimerName": "PRANAV. S"
+        }
+    ],
+    "HeatEndTime": 20260628182535,
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": 20260628182530,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.281,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 7.917,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.717,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 11.382,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 12.999,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        }
+    ],
+    "HeatEndTime": 20260628182802,
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": 20260628182748,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 7.534,
+            "ClubName": "DKV AQUATIC CENTRE BANGLORE",
+            "SwimerID": "SONIYA MATHEW THOTTATHIL",
+            "SwimerName": "SONIYA MATHEW THOTTATHIL"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 8.779,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "KANYASHREE",
+            "SwimerName": "KANYASHREE"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 11.331,
+            "ClubName": "DKV BANGLORE",
+            "SwimerID": "SANVI SREEMAN",
+            "SwimerName": "SANVI SREEMAN"
+        }
+    ],
+    "HeatEndTime": 20260628183710,
+    "HeatID": "100_IM_G01_G_1",
+    "HeatStartTime": 20260628183658,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "MANVI D",
+            "SwimerName": "MANVI D"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "MASP MYSORE",
+            "SwimerID": "NIDHI S",
+            "SwimerName": "NIDHI S"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 0,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "CHARVIKA GOWDA",
+            "SwimerName": "CHARVIKA GOWDA"
+        }
+    ],
+    "HeatEndTime": 20260628183740,
+    "HeatID": "100_IM_G01_G_2",
+    "HeatStartTime": "",
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 17.509,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "KOUSTHUB RAI",
+            "SwimerName": "KOUSTHUB RAI"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 17.509,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "GOWTHAM ARYA",
+            "SwimerName": "GOWTHAM ARYA"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 17.509,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "RISHIK",
+            "SwimerName": "RISHIK"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 17.509,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "Adithya Siddhartha Boudh",
+            "SwimerName": "Adithya Siddhartha Boudh"
+        }
+    ],
+    "HeatEndTime": 20260628193113,
+    "HeatID": "100_IM_G02_B_1",
+    "HeatStartTime": 20260628193100,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 32.77,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "DEEPANSH SHETTY",
+            "SwimerName": "DEEPANSH SHETTY"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 32.77,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "AKSHAY B M",
+            "SwimerName": "AKSHAY B M"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 32.77,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "PARAS KATAMBLE",
+            "SwimerName": "PARAS KATAMBLE"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 32.77,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SANNIGDH ULLAL",
+            "SwimerName": "SANNIGDH ULLAL"
+        }
+    ],
+    "HeatEndTime": 20260628193247,
+    "HeatID": "100_IM_G02_B_2",
+    "HeatStartTime": 20260628193227,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 18.669,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "AADVIKA",
+            "SwimerName": "AADVIKA"
+        }
+    ],
+    "HeatEndTime": 20260628195541,
+    "HeatID": "100_IM_G02_G_1",
+    "HeatStartTime": 20260628195522,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.392,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AADVIK BAGCHI",
+            "SwimerName": "AADVIK BAGCHI"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.392,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "SHRIHAN GOWDA K J",
+            "SwimerName": "SHRIHAN GOWDA K J"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.392,
+            "ClubName": "P.E.T MANDYA",
+            "SwimerID": "MOHITH P SHETTY",
+            "SwimerName": "MOHITH P SHETTY"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.392,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "Nishan S",
+            "SwimerName": "Nishan S"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.392,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "HARJITH M KARKERA",
+            "SwimerName": "HARJITH M KARKERA"
+        }
+    ],
+    "HeatEndTime": 20260628201657,
+    "HeatID": "100_IM_G03_B_1",
+    "HeatStartTime": 20260628201647,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 10.929,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AARIC JAKE DSOUZA",
+            "SwimerName": "AARIC JAKE DSOUZA"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 10.929,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "MOHITH P",
+            "SwimerName": "MOHITH P"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 10.929,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "OM patukale",
+            "SwimerName": "OM patukale"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 10.929,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "RENZIL ALLEN LOBO",
+            "SwimerName": "RENZIL ALLEN LOBO"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 10.929,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AARAV K BANGERA",
+            "SwimerName": "AARAV K BANGERA"
+        }
+    ],
+    "HeatEndTime": 20260628202200,
+    "HeatID": "100_IM_G03_B_2",
+    "HeatStartTime": 20260628202149,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 8.466,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "AASTHA A",
+            "SwimerName": "AASTHA A"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 8.466,
+            "ClubName": "P.E.T MANDYA",
+            "SwimerID": "AISIRI A N",
+            "SwimerName": "AISIRI A N"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 8.466,
+            "ClubName": "DKV AQUATIC CENTRE BANGLORE",
+            "SwimerID": "RIDDHI A",
+            "SwimerName": "RIDDHI A"
+        }
+    ],
+    "HeatEndTime": 20260628202231,
+    "HeatID": "100_IM_G03_G_1",
+    "HeatStartTime": 20260628202222,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 246.104,
+            "ClubName": "DKV BANGLORE",
+            "SwimerID": "SAKSHI SREEMAN",
+            "SwimerName": "SAKSHI SREEMAN"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 246.104,
+            "ClubName": "B S A BANGLORE",
+            "SwimerID": "AVANTI SANDESH",
+            "SwimerName": "AVANTI SANDESH"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 246.104,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "ADITI B C GOWDA",
+            "SwimerName": "ADITI B C GOWDA"
+        }
+    ],
+    "HeatEndTime": 20260628213732,
+    "HeatID": "100_IM_G03_G_2",
+    "HeatStartTime": 20260628213418,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.328,
+            "ClubName": "MDSA MYSORE",
+            "SwimerID": "GRITHIK M",
+            "SwimerName": "GRITHIK M"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.328,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "VEDASWARUP B R",
+            "SwimerName": "VEDASWARUP B R"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.328,
+            "ClubName": "MASP MYSORE",
+            "SwimerID": "PAVAK A",
+            "SwimerName": "PAVAK A"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.328,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "PRADYUMNA V",
+            "SwimerName": "PRADYUMNA V"
+        }
+    ],
+    "HeatEndTime": 20260628214539,
+    "HeatID": "100_IM_G04_B_1",
+    "HeatStartTime": 20260628214522,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 54.134,
+            "ClubName": "SWIM LIFE MYSORE",
+            "SwimerID": "CHIRAYU DIXIT",
+            "SwimerName": "CHIRAYU DIXIT"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 54.134,
+            "ClubName": "P.E.T MANDYA",
+            "SwimerID": "VIHAAN TEJ RAJU R",
+            "SwimerName": "VIHAAN TEJ RAJU R"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 54.134,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AYUSH PRASHANT",
+            "SwimerName": "AYUSH PRASHANT"
+        }
+    ],
+    "HeatEndTime": 20260628220140,
+    "HeatID": "100_IM_G04_B_2",
+    "HeatStartTime": 20260628220050,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 203.332,
+            "ClubName": "SWIM LIFE MYSORE",
+            "SwimerID": "HAVIVA SOMANNA N",
+            "SwimerName": "HAVIVA SOMANNA N"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 203.332,
+            "ClubName": "P.E.T MANDYA",
+            "SwimerID": "AISIRI A",
+            "SwimerName": "AISIRI A"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 203.332,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S THANYA KRUPA SAMRUDDHI",
+            "SwimerName": "S THANYA KRUPA SAMRUDDHI"
+        }
+    ],
+    "HeatEndTime": 20260628221825,
+    "HeatID": "100_IM_G04_G_1",
+    "HeatStartTime": 20260628221607,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 40.529,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "PUNARNI PRAMOD JAVALI",
+            "SwimerName": "PUNARNI PRAMOD JAVALI"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 40.529,
+            "ClubName": "P.E.T MANDYA",
+            "SwimerID": "GAMYA K GOWDA",
+            "SwimerName": "GAMYA K GOWDA"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 40.529,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "POORVIKA S H",
+            "SwimerName": "POORVIKA S H"
+        }
+    ],
+    "HeatEndTime": 20260628222024,
+    "HeatID": "100_IM_G04_G_2",
+    "HeatStartTime": 20260628221943,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 517.901,
+            "ClubName": "MWS HASSAN",
+            "SwimerID": "YONITH T GOWDA",
+            "SwimerName": "YONITH T GOWDA"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 517.901,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "MOHAK P GOWDA",
+            "SwimerName": "MOHAK P GOWDA"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 517.901,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "THRISHAN S",
+            "SwimerName": "THRISHAN S"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 517.901,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "AMOGH K",
+            "SwimerName": "AMOGH K"
+        }
+    ],
+    "HeatEndTime": 20260628222906,
+    "HeatID": "25_KB_G05_B_1",
+    "HeatStartTime": 20260628222029,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.825,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "VIRAY RAHUL HEGDE",
+            "SwimerName": "VIRAY RAHUL HEGDE"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.825,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "CHARVIK ARYA",
+            "SwimerName": "CHARVIK ARYA"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.825,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "SHREYAS KRISHAN",
+            "SwimerName": "SHREYAS KRISHAN"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 31.825,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "Tashvik MS",
+            "SwimerName": "Tashvik MS"
+        }
+    ],
+    "HeatEndTime": 20260628223112,
+    "HeatID": "25_KB_G05_B_2",
+    "HeatStartTime": 20260628223057,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 22.763,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "NANDISH R",
+            "SwimerName": "NANDISH R"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 22.763,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "HARSHIT",
+            "SwimerName": "HARSHIT"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 22.763,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "AYUSH B K",
+            "SwimerName": "AYUSH B K"
+        }
+    ],
+    "HeatEndTime": 20260628223143,
+    "HeatID": "25_KB_G05_B_3",
+    "HeatStartTime": 20260628223134,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 49.063,
+            "ClubName": "MWS HASSAN",
+            "SwimerID": "AARYA N",
+            "SwimerName": "AARYA N"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 49.063,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "NIYATHI AARADYA SANJAY",
+            "SwimerName": "NIYATHI AARADYA SANJAY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 49.063,
+            "ClubName": "Jai Hind Swimming Club Mangalore",
+            "SwimerID": "Ahaana Abhishek",
+            "SwimerName": "Ahaana Abhishek"
+        }
+    ],
+    "HeatEndTime": 20260628223251,
+    "HeatID": "25_KB_G05_G_1",
+    "HeatStartTime": 20260628223203,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.693,
+            "ClubName": "MWS HASSAN",
+            "SwimerID": "SAHITHI R GOWDA",
+            "SwimerName": "SAHITHI R GOWDA"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.693,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "SMAHI",
+            "SwimerName": "SMAHI"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 9.693,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SARA ELISHA PINTO",
+            "SwimerName": "SARA ELISHA PINTO"
+        }
+    ],
+    "HeatEndTime": 20260628223644,
+    "HeatID": "25_KB_G05_G_2",
+    "HeatStartTime": 20260628223636,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.161,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "TEJAS",
+            "SwimerName": "TEJAS"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.161,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "RAGHAV",
+            "SwimerName": "RAGHAV"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 4.161,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "LEENISH GOWDA H D",
+            "SwimerName": "LEENISH GOWDA H D"
+        }
+    ],
+    "HeatEndTime": 20260628224849,
+    "HeatID": "25_KB_G06_B_1",
+    "HeatStartTime": 20260628224845,
+    "HeatStatus": 1,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.713,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "YASHVIK K",
+            "SwimerName": "YASHVIK K"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.713,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "DASHWANT",
+            "SwimerName": "DASHWANT"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.713,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "VARSHA V GOWDA",
+            "SwimerName": "VARSHA V GOWDA"
+        }
+    ],
+    "HeatEndTime": 20260628231152,
+    "HeatID": "25_KB_G06_B_2",
+    "HeatStartTime": 20260628231149,
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 1.977,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "LEKHANA P GOWDA",
+            "SwimerName": "LEKHANA P GOWDA"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 1.977,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "NEHITHA C",
+            "SwimerName": "NEHITHA C"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 1.977,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "PRATHIKSHA S",
+            "SwimerName": "PRATHIKSHA S"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 1.977,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "GRANTHA D GOWDA",
+            "SwimerName": "GRANTHA D GOWDA"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 1.977,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "Libni B C Gowda",
+            "SwimerName": "Libni B C Gowda"
+        }
+    ],
+    "HeatEndTime": 20260628231254,
+    "HeatID": "25_KB_G06_G_1",
+    "HeatStartTime": 20260628231252,
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.982,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "AVISH CHOUGLE",
+            "SwimerName": "AVISH CHOUGLE"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.982,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "YUVAN",
+            "SwimerName": "YUVAN"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.982,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "CHATHVIK",
+            "SwimerName": "CHATHVIK"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 6.982,
+            "ClubName": "M D S A",
+            "SwimerID": "CHARVIK A GOWDA",
+            "SwimerName": "CHARVIK A GOWDA"
+        }
+    ],
+    "HeatEndTime": 20260629200430,
+    "HeatID": "25_KB_G07_B_1",
+    "HeatStartTime": 20260629200423,
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.918,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "AAKARSH M H",
+            "SwimerName": "AAKARSH M H"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.918,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "DUVITH",
+            "SwimerName": "DUVITH"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.918,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "ATHARVA CHANDAN",
+            "SwimerName": "ATHARVA CHANDAN"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 2.918,
+            "ClubName": "DKV AQUATIC CENTRE BANGLORE",
+            "SwimerID": "UTKARSH A",
+            "SwimerName": "UTKARSH A"
+        }
+    ],
+    "HeatEndTime": "2026-06-29T15:13:57.142369+00:00",
+    "HeatID": "25_KB_G07_B_2",
+    "HeatStartTime": "2026-06-29T15:13:54.260890+00:00",
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.463,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "RISHANT S KALKHAMBKAR",
+            "SwimerName": "RISHANT S KALKHAMBKAR"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.463,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "CHIRAG C A",
+            "SwimerName": "CHIRAG C A"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.463,
+            "ClubName": "MNC SWIMMING ACADEMY BANGALORE",
+            "SwimerID": "RUDRESH R",
+            "SwimerName": "RUDRESH R"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.463,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "AVYUKTH HEMMIGE",
+            "SwimerName": "AVYUKTH HEMMIGE"
+        }
+    ],
+    "HeatEndTime": "2026-06-29T16:06:36.487618+00:00",
+    "HeatID": "25_KB_G07_B_3",
+    "HeatStartTime": "2026-06-29T16:06:33.058571+00:00",
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.009,
+            "ClubName": "GSA MYSORE",
+            "SwimerID": "JASHMITHA N",
+            "SwimerName": "JASHMITHA N"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.009,
+            "ClubName": "SK SWIMMING CENTER HASSAN",
+            "SwimerID": "ADVIKA GOWDA",
+            "SwimerName": "ADVIKA GOWDA"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 3.009,
+            "ClubName": "N A C",
+            "SwimerID": "KASHVI CHETAN",
+            "SwimerName": "KASHVI CHETAN"
+        }
+    ],
+    "HeatEndTime": "21:59:27",
+    "HeatID": "25_KB_G07_G_1",
+    "HeatStartTime": "21:59:24",
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 28.666,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "SUDHANVA SHETTY",
+            "SwimerName": "SUDHANVA SHETTY"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 2,
+            "SwimTimings": 0,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "SOUNDARYA AQUATIC CENTRE",
+            "SwimerID": "NAMRUTH YOGISH POOJARY",
+            "SwimerName": "NAMRUTH YOGISH POOJARY"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 1,
+            "SwimTimings": 0,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "BASAVANAGUDI AQUATIC CENTER",
+            "SwimerID": "ARNAV KUMAR GOWDA",
+            "SwimerName": "ARNAV KUMAR GOWDA"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 3,
+            "SwimTimings": 0,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "Passionate sport's academy Belagavi",
+            "SwimerID": "SIDDHARTH S KURUNDWAD",
+            "SwimerName": "SIDDHARTH S KURUNDWAD"
+        },
+        {
+            "BoardID": 4,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 52.253,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "AMAN K DEVADIGA",
+            "SwimerName": "AMAN K DEVADIGA"
+        }
+    ],
+    "HeatEndTime": "19:06:13",
+    "HeatID": "100_IM_G01_B_1",
+    "HeatStartTime": "19:04:57",
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 119.371,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "WE ONE AQUA CENTRE, MANGALORE",
+            "SwimerID": "THANAY ABHIJITH",
+            "SwimerName": "THANAY ABHIJITH"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 119.371,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "ALVAS SPORTS COMPLEX",
+            "SwimerID": "DURGESH",
+            "SwimerName": "DURGESH"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 119.371,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "Marlin Aquatic Center Mysuru,",
+            "SwimerID": "S LOCHAN SATHYA SAI DEEP",
+            "SwimerName": "S LOCHAN SATHYA SAI DEEP"
+        },
+        {
+            "BoardID": 3,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 119.371,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "VIJAYANAGAR AQUATIC CENTER, BANGALORE",
+            "SwimerID": "PRANAV  S",
+            "SwimerName": "PRANAV  S"
+        }
+    ],
+    "HeatEndTime": "20:28:01",
+    "HeatID": "100_IM_G01_B_2",
+    "HeatStartTime": "20:26:01",
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}
+{
+    "BoardList": [
+        {
+            "BoardID": 0,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 445.946,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "PUTTUR AQUATIC CENTRE",
+            "SwimerID": "MANVI D",
+            "SwimerName": "MANVI D"
+        },
+        {
+            "BoardID": 1,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 445.946,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "HASSAN SWIMMERS CLUB",
+            "SwimerID": "CHARVIKA GOWDA",
+            "SwimerName": "CHARVIKA GOWDA"
+        },
+        {
+            "BoardID": 2,
+            "BoardStatus": 0,
+            "SwimStatus": 0,
+            "SwimTimings": 445.946,
+            "SwimTimings_Bak": 0,
+            "SwimTimings_Manual": 0,
+            "SwimTimings_FCCAM": 0,
+            "ClubName": "DKV BANGLORE",
+            "SwimerID": "SANVI SREEMAN",
+            "SwimerName": "SANVI SREEMAN"
+        }
+    ],
+    "HeatEndTime": "14:54:13",
+    "HeatID": "100_IM_G01_G_1",
+    "HeatStartTime": "14:46:47",
+    "HeatStatus": 3,
+    "HeatNotes": ""
+}{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.046, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "MANVI D", "SwimerName": "MANVI D"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.046, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "HASSAN SWIMMERS CLUB", "SwimerID": "CHARVIKA GOWDA", "SwimerName": "CHARVIKA GOWDA"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.046, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "DKV BANGLORE", "SwimerID": "SANVI SREEMAN", "SwimerName": "SANVI SREEMAN"}], "HeatEndTime": "15:02:45", "HeatID": "100_IM_G01_G_1", "HeatStartTime": "15:02:39", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 5.014, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "MASP MYSORE", "SwimerID": "NIDHI S", "SwimerName": "NIDHI S"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 5.014, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "KANYASHREE", "SwimerName": "KANYASHREE"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 5.014, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "DKV AQUATIC CENTRE BANGLORE", "SwimerID": "SONIYA MATHEW THOTTATHIL", "SwimerName": "SONIYA MATHEW THOTTATHIL"}], "HeatEndTime": "15:05:20", "HeatID": "100_IM_G01_G_2", "HeatStartTime": "15:05:15", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 29.988, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "KOUSTHUB RAI", "SwimerName": "KOUSTHUB RAI"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 39.507, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "MNC SWIMMING ACADEMY BANGALORE", "SwimerID": "AKSHAY B M", "SwimerName": "AKSHAY B M"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 42.149, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "DEEPANSH SHETTY", "SwimerName": "DEEPANSH SHETTY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 45.472, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "MNC SWIMMING ACADEMY BANGALORE", "SwimerID": "RISHIK", "SwimerName": "RISHIK"}], "HeatEndTime": "15:51:30", "HeatID": "100_IM_G02_B_1", "HeatStartTime": "15:50:44", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.483, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "PARAS KATAMBLE", "SwimerName": "PARAS KATAMBLE"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 47.539, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "Adithya Siddhartha Boudh", "SwimerName": "Adithya Siddhartha Boudh"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 42.022, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "SK SWIMMING CENTER HASSAN", "SwimerID": "GOWTHAM ARYA", "SwimerName": "GOWTHAM ARYA"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 37.092, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "SANNIGDH ULLAL", "SwimerName": "SANNIGDH ULLAL"}], "HeatEndTime": "23:34:16", "HeatID": "100_IM_G02_B_2", "HeatStartTime": "23:33:28", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 7.863, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "MNC SWIMMING ACADEMY BANGALORE", "SwimerID": "AADVIKA", "SwimerName": "AADVIKA"}], "HeatEndTime": "23:34:33", "HeatID": "100_IM_G02_G_1", "HeatStartTime": "23:34:25", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 2.881, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AADVIK BAGCHI", "SwimerName": "AADVIK BAGCHI"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 13.082, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "Nishan S", "SwimerName": "Nishan S"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 15.287, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "HASSAN SWIMMERS CLUB", "SwimerID": "MOHITH P", "SwimerName": "MOHITH P"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 7.892, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "SHRIHAN GOWDA K J", "SwimerName": "SHRIHAN GOWDA K J"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.645, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "HARJITH M KARKERA", "SwimerName": "HARJITH M KARKERA"}], "HeatEndTime": "23:34:54", "HeatID": "100_IM_G03_B_1", "HeatStartTime": "23:34:38", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 3.874, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AARIC JAKE DSOUZA", "SwimerName": "AARIC JAKE DSOUZA"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 14.101, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "Passionate sport's academy Belagavi", "SwimerID": "OM patukale", "SwimerName": "OM patukale"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 17.308, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "P.E.T MANDYA", "SwimerID": "MOHITH P SHETTY", "SwimerName": "MOHITH P SHETTY"}, {"BoardID": 3, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 9.375, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "RENZIL ALLEN LOBO", "SwimerName": "RENZIL ALLEN LOBO"}, {"BoardID": 4, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 6.48, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "WE ONE AQUA CENTRE, MANGALORE", "SwimerID": "AARAV K BANGERA", "SwimerName": "AARAV K BANGERA"}], "HeatEndTime": "23:35:24", "HeatID": "100_IM_G03_B_2", "HeatStartTime": "23:35:06", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 4.944, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "P.E.T MANDYA", "SwimerID": "AISIRI A N", "SwimerName": "AISIRI A N"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 16.161, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "PUTTUR AQUATIC CENTRE", "SwimerID": "AASTHA A", "SwimerName": "AASTHA A"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 18.332, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "DKV AQUATIC CENTRE BANGLORE", "SwimerID": "RIDDHI A", "SwimerName": "RIDDHI A"}], "HeatEndTime": "17:55:32", "HeatID": "100_IM_G03_G_1", "HeatStartTime": "17:55:14", "HeatStatus": 3, "HeatNotes": ""}
+{"BoardList": [{"BoardID": 0, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "B S A BANGLORE", "SwimerID": "AVANTI SANDESH", "SwimerName": "AVANTI SANDESH"}, {"BoardID": 1, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "Marlin Aquatic Center Mysuru,", "SwimerID": "ADITI B C GOWDA", "SwimerName": "ADITI B C GOWDA"}, {"BoardID": 2, "BoardStatus": 0, "SwimStatus": 0, "SwimTimings": 0, "SwimTimings_Bak": 0, "SwimTimings_Manual": 0, "SwimTimings_FCCAM": 0, "ClubName": "DKV BANGLORE", "SwimerID": "SAKSHI SREEMAN", "SwimerName": "SAKSHI SREEMAN"}], "HeatEndTime": "", "HeatID": "100_IM_G03_G_2", "HeatStartTime": "", "HeatStatus": 3, "HeatNotes": ""}

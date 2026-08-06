@@ -13,7 +13,7 @@ class FireBaseHelper {
     static FirebaseSwimmerTable = `${FireBaseHelper.parentPath}/Data/FirebaseSwimmerTable.json`;
     static WriteHeatResultsPath = `${FireBaseHelper.parentPath}/Data/HeatExecutionResult.json`;
     static strJson = ".json";
-    static EventBaseUrl = `https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/${FireBaseHelper.MeetNumber}/EventDetails`;
+    static EventBaseUrl = `"https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events/${FireBaseHelper.MeetNumber}/EventDetails`;
     static SwimmerURL = "https://eejo-managerdb-default-rtdb.firebaseio.com/Swimmers";
     
     static ChangenidentifiedforFirebase = [];

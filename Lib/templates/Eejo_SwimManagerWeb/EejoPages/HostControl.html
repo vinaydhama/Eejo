@@ -73,7 +73,7 @@
         baseURL = "http://" + GetEejoHostID() + ":5002";
         // baseURL = "http://192.168.0.101:5002";
         MeetingID = 1;
-        // FirebaseurlHeats = "https://eejo-managerdb-default-rtdb.firebaseio.com/Meets/"+MeetingID+"/EventDetails.json";
+        // FirebaseurlHeats = "https://riviera-certificates-test-default-rtdb.firebaseio.com/Eejo/Events/"+MeetingID+"/EventDetails.json";
         TableCreated = false;
         tableCreate(10)
         HeatSetURL = baseURL + "/SetNextHeat";
@@ -90,7 +90,13 @@
                     jsonData = data;
 
                     var HeatSelectorComboBox = document.getElementById("HeatSelector"); // Get the ComboBox
-                    var items = []; // Array to hold the items
+                    // var items = []; // Array to hold the items
+                        var newOption = document.createElement("option"); // Create a new option
+                        
+                        newOption.value = "Auto"; // Set the value
+                        newOption.text = "Auto"; // Set the text  
+                        HeatSelectorComboBox.add(newOption)
+
                     for (let i = 0; i < (data.commandReturnData.length); i++) {
                         var newOption = document.createElement("option"); // Create a new option
                         HeatName = data.commandReturnData[i];
@@ -238,7 +244,7 @@
             td.appendChild(HeatList_select);
             //td.id = "btnPause";
             HeatList_select.addEventListener("change", function () {
-                if (HeatList_select.value != "") {
+                if (HeatList_select.value != "" && HeatList_select.value != "Auto") {
                     ExecuteLiveCmd("SetNextHeat", HeatList_select.value);
                 }
                 else {

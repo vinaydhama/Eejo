@@ -243,12 +243,19 @@ function formatSwimmingEvent(HeatID, EventList) {
       result.push(part + ": (" + GroupInfoDict[part] + ")");
     }
 
+    // New: format group tokens like G01, G1 -> Group-01
+    else if (/^G(\d+)$/i.test(part)) {
+      const m = part.match(/^G(\d+)$/i);
+      const num = String(Number(m[1])).padStart(2, '0');
+      result.push(`Group-${num}`);
+    }
+
     else if (strokeMap[part]) {
       result.push(strokeMap[part]);
     } else if (genderMap[part]) {
       result.push(genderMap[part]);
     } else if (i === parts.length - 1 && /^\d+$/.test(part)) {
-      result.push(`<b> Heat-${part} </b>`);
+      result.push(`Heat-${part} `);
     } else {
       result.push(part);
     }
@@ -784,14 +791,20 @@ function SetTableNavigation(table) {
     clearTimeout(el.__timer);
   }
 
-
-
 // Helper: normalize various inputs to "HH:MM"
 function normalizeTime(value) {
   if (value == null) return '';
   const s = String(value).trim();
 
-  // Accept "HH:MM"  // Accept "HH:MM" or "HH:MM:SS" ? keep HH:MM
+  // Accept numeric timestamp YYYYMMDDHHMMSS (14 digits) -> HH:MM
+  const tsMatch = /^\d{14}$/.exec(s);
+  if (tsMatch) {
+    const hh = s.substr(8, 2);
+    const mm = s.substr(10, 2);
+    return `${hh}:${mm}`;
+  }
+
+  // Accept "HH:MM" or "HH:MM:SS" -> keep HH:MM
   const iso = /^(\d{2}):(\d{2})(?::\d{2})?$/.exec(s);
   if (iso) return `${iso[1]}:${iso[2]}`;
 

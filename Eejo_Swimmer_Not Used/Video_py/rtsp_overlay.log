@@ -1,0 +1,758 @@
+2026-07-05 20:54:32,173 [DEBUG] showEvent fired; video_container winId=2950548
+2026-07-05 20:54:32,174 [DEBUG] Assigning VLC video output to window id 2950548
+2026-07-05 20:54:32,175 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 20:54:32,182 [DEBUG] Overlay window shown
+2026-07-05 20:54:32,185 [DEBUG] Set overlay owner on Windows: owner=1639564 child=3999716
+2026-07-05 20:54:32,186 [DEBUG] Main window restored; showing overlay
+2026-07-05 20:54:32,186 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 20:54:40,922 [DEBUG] MainWindow.__init__
+2026-07-05 20:54:41,039 [DEBUG] python-vlc initialized
+2026-07-05 20:54:41,040 [DEBUG] VLC event handlers attached
+2026-07-05 20:54:42,599 [INFO] Fetching overlay URL via urllib to detect HTTP status: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 20:54:42,658 [ERROR] HTTPError fetching overlay URL: HTTP Error 404: File not found
+Traceback (most recent call last):
+  File "C:\Users\vchikkay\OneDrive - Alstom\Data\projects\Vinnovation\TinyTechniques\EEjo\Working\Eejo_V3.0\Eejo\Eejo_Swimmer_Not Used\Video_py\rtsp_html_overlay_recorder.py", line 251, in __init__
+    with urllib.request.urlopen(req, timeout=6) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 495, in open
+    response = meth(req, response)
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: File not found
+2026-07-05 20:54:42,687 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 20:54:42,827 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 20:54:42,833 [DEBUG] showEvent fired; video_container winId=7014336
+2026-07-05 20:54:42,835 [DEBUG] Assigning VLC video output to window id 7014336
+2026-07-05 20:54:42,836 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 20:54:42,881 [DEBUG] Overlay window shown
+2026-07-05 20:54:42,882 [DEBUG] Set overlay owner on Windows: owner=3016084 child=4065252
+2026-07-05 20:54:42,883 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 20:54:42,883 [DEBUG] player.play() called from showEvent
+2026-07-05 20:54:43,262 [INFO] Web overlay loadFinished: True
+2026-07-05 20:54:49,094 [DEBUG] toggle_play called; player present=True
+2026-07-05 20:54:49,094 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 20:54:49,096 [DEBUG] Setting player video output to winId 7014336
+2026-07-05 20:54:49,097 [DEBUG] player.play() returned: 0
+2026-07-05 20:54:49,265 [INFO] MediaParsedChanged
+2026-07-05 20:54:49,265 [INFO] VLC playing
+2026-07-05 20:54:49,598 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 20:54:51,100 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 20:55:00,400 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 20:55:54,057 [DEBUG] MainWindow.__init__
+2026-07-05 20:55:54,209 [DEBUG] python-vlc initialized
+2026-07-05 20:55:54,210 [DEBUG] VLC event handlers attached
+2026-07-05 20:55:56,081 [INFO] Fetching overlay URL via urllib to detect HTTP status: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 20:55:56,193 [ERROR] HTTPError fetching overlay URL: HTTP Error 404: File not found
+Traceback (most recent call last):
+  File "C:\Users\vchikkay\OneDrive - Alstom\Data\projects\Vinnovation\TinyTechniques\EEjo\Working\Eejo_V3.0\Eejo\Eejo_Swimmer_Not Used\Video_py\rtsp_html_overlay_recorder.py", line 251, in __init__
+    with urllib.request.urlopen(req, timeout=6) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 495, in open
+    response = meth(req, response)
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Users\vchikkay\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: File not found
+2026-07-05 20:55:56,255 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 20:55:56,427 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 20:55:56,432 [DEBUG] showEvent fired; video_container winId=3017164
+2026-07-05 20:55:56,432 [DEBUG] Assigning VLC video output to window id 3017164
+2026-07-05 20:55:56,433 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 20:55:56,488 [DEBUG] Overlay window shown
+2026-07-05 20:55:56,489 [DEBUG] Set overlay owner on Windows: owner=2689454 child=133130
+2026-07-05 20:55:56,490 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 20:55:56,491 [DEBUG] player.play() called from showEvent
+2026-07-05 20:55:56,804 [INFO] Web overlay loadFinished: True
+2026-07-05 20:55:58,252 [DEBUG] toggle_play called; player present=True
+2026-07-05 20:55:58,252 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 20:55:58,255 [DEBUG] Setting player video output to winId 3017164
+2026-07-05 20:55:58,256 [DEBUG] player.play() returned: 0
+2026-07-05 20:55:58,410 [INFO] MediaParsedChanged
+2026-07-05 20:55:58,410 [INFO] VLC playing
+2026-07-05 20:55:58,757 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 20:56:00,275 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 20:56:04,245 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 20:59:09,776 [DEBUG] MainWindow.__init__
+2026-07-05 20:59:09,883 [DEBUG] python-vlc initialized
+2026-07-05 20:59:09,884 [DEBUG] VLC event handlers attached
+2026-07-05 20:59:11,441 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 20:59:11,458 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 20:59:11,568 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 20:59:11,571 [DEBUG] showEvent fired; video_container winId=264178
+2026-07-05 20:59:11,571 [DEBUG] Assigning VLC video output to window id 264178
+2026-07-05 20:59:11,572 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 20:59:11,615 [DEBUG] Overlay window shown
+2026-07-05 20:59:11,615 [DEBUG] Set overlay owner on Windows: owner=264176 child=198644
+2026-07-05 20:59:11,616 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 20:59:11,616 [DEBUG] player.play() called from showEvent
+2026-07-05 20:59:12,337 [INFO] Web overlay loadFinished: True
+2026-07-05 20:59:13,856 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 20:59:13,864 [DEBUG] Main window restored; showing overlay
+2026-07-05 20:59:13,864 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 20:59:15,496 [DEBUG] toggle_play called; player present=True
+2026-07-05 20:59:15,496 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 20:59:15,499 [DEBUG] Setting player video output to winId 264178
+2026-07-05 20:59:15,501 [DEBUG] player.play() returned: 0
+2026-07-05 20:59:15,669 [INFO] MediaParsedChanged
+2026-07-05 20:59:15,670 [INFO] VLC playing
+2026-07-05 20:59:16,004 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 20:59:17,501 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 20:59:29,907 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:02:44,885 [DEBUG] MainWindow.__init__
+2026-07-05 21:02:45,002 [DEBUG] python-vlc initialized
+2026-07-05 21:02:45,003 [DEBUG] VLC event handlers attached
+2026-07-05 21:02:46,544 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 21:02:46,563 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 21:02:46,681 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 21:02:46,685 [DEBUG] showEvent fired; video_container winId=3148236
+2026-07-05 21:02:46,686 [DEBUG] Assigning VLC video output to window id 3148236
+2026-07-05 21:02:46,686 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 21:02:46,731 [DEBUG] Overlay window shown
+2026-07-05 21:02:46,732 [DEBUG] Set overlay owner on Windows: owner=329720 child=1574280
+2026-07-05 21:02:46,732 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 21:02:46,733 [DEBUG] player.play() called from showEvent
+2026-07-05 21:02:47,417 [INFO] Web overlay loadFinished: True
+2026-07-05 21:03:01,241 [DEBUG] toggle_play called; player present=True
+2026-07-05 21:03:01,241 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 21:03:01,243 [DEBUG] Setting player video output to winId 3148236
+2026-07-05 21:03:01,244 [DEBUG] player.play() returned: 0
+2026-07-05 21:03:01,396 [INFO] MediaParsedChanged
+2026-07-05 21:03:01,396 [INFO] VLC playing
+2026-07-05 21:03:01,746 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 21:03:03,257 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 21:03:04,474 [DEBUG] toggle_play called; player present=True
+2026-07-05 21:03:04,474 [DEBUG] Stopping playback
+2026-07-05 21:03:04,509 [INFO] VLC stopped
+2026-07-05 21:03:16,628 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:08:25,836 [INFO] Using overlay URL: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 21:08:26,863 [DEBUG] MainWindow.__init__
+2026-07-05 21:08:27,004 [DEBUG] python-vlc initialized
+2026-07-05 21:08:27,005 [DEBUG] VLC event handlers attached
+2026-07-05 21:08:29,049 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 21:08:29,071 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 21:08:29,206 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 21:08:29,212 [DEBUG] showEvent fired; video_container winId=3213772
+2026-07-05 21:08:29,212 [DEBUG] Assigning VLC video output to window id 3213772
+2026-07-05 21:08:29,213 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 21:08:29,271 [DEBUG] Overlay window shown
+2026-07-05 21:08:29,273 [DEBUG] Set overlay owner on Windows: owner=329738 child=460812
+2026-07-05 21:08:29,274 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 21:08:29,275 [DEBUG] player.play() called from showEvent
+2026-07-05 21:08:30,101 [INFO] Web overlay loadFinished: True
+2026-07-05 21:08:30,832 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:08:30,841 [DEBUG] Main window restored; showing overlay
+2026-07-05 21:08:30,842 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:08:32,126 [DEBUG] toggle_play called; player present=True
+2026-07-05 21:08:32,127 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 21:08:32,129 [DEBUG] Setting player video output to winId 3213772
+2026-07-05 21:08:32,131 [DEBUG] player.play() returned: 0
+2026-07-05 21:08:32,305 [INFO] MediaParsedChanged
+2026-07-05 21:08:32,306 [INFO] VLC playing
+2026-07-05 21:08:32,634 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 21:08:34,143 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 21:08:38,729 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:09:13,526 [INFO] Using overlay URL: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 21:09:14,346 [DEBUG] MainWindow.__init__
+2026-07-05 21:09:14,488 [DEBUG] python-vlc initialized
+2026-07-05 21:09:14,490 [DEBUG] VLC event handlers attached
+2026-07-05 21:09:16,162 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/SetLiveHeatCommands?CmdName=LiveBoard
+2026-07-05 21:09:16,184 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 21:09:16,315 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 21:09:16,317 [DEBUG] showEvent fired; video_container winId=2098572
+2026-07-05 21:09:16,318 [DEBUG] Assigning VLC video output to window id 2098572
+2026-07-05 21:09:16,318 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 21:09:16,368 [DEBUG] Overlay window shown
+2026-07-05 21:09:16,369 [DEBUG] Set overlay owner on Windows: owner=2884946 child=460784
+2026-07-05 21:09:16,370 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 21:09:16,370 [DEBUG] player.play() called from showEvent
+2026-07-05 21:09:17,132 [INFO] Web overlay loadFinished: True
+2026-07-05 21:09:30,312 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:10:10,205 [INFO] Using overlay URL: https://www.google.com/
+2026-07-05 21:10:11,060 [DEBUG] MainWindow.__init__
+2026-07-05 21:10:11,183 [DEBUG] python-vlc initialized
+2026-07-05 21:10:11,184 [DEBUG] VLC event handlers attached
+2026-07-05 21:10:13,020 [INFO] Attempting to load overlay URL in QWebEngineView: https://www.google.com/
+2026-07-05 21:10:13,040 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 21:10:13,178 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 21:10:13,181 [DEBUG] showEvent fired; video_container winId=1968312
+2026-07-05 21:10:13,181 [DEBUG] Assigning VLC video output to window id 1968312
+2026-07-05 21:10:13,182 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 21:10:13,230 [DEBUG] Overlay window shown
+2026-07-05 21:10:13,231 [DEBUG] Set overlay owner on Windows: owner=1378292 child=1640906
+2026-07-05 21:10:13,231 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 21:10:13,232 [DEBUG] player.play() called from showEvent
+2026-07-05 21:10:15,580 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:10:15,588 [DEBUG] Main window restored; showing overlay
+2026-07-05 21:10:15,589 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:10:15,852 [INFO] Web overlay loadFinished: True
+2026-07-05 21:10:18,327 [DEBUG] toggle_play called; player present=True
+2026-07-05 21:10:18,327 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 21:10:18,330 [DEBUG] Setting player video output to winId 1968312
+2026-07-05 21:10:18,331 [DEBUG] player.play() returned: 0
+2026-07-05 21:10:18,489 [INFO] MediaParsedChanged
+2026-07-05 21:10:18,489 [INFO] VLC playing
+2026-07-05 21:10:18,832 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 21:10:20,331 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 21:10:29,169 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:10:30,298 [DEBUG] showEvent fired; video_container winId=1968312
+2026-07-05 21:10:30,298 [DEBUG] Assigning VLC video output to window id 1968312
+2026-07-05 21:10:30,299 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:10:30,305 [DEBUG] Overlay window shown
+2026-07-05 21:10:30,311 [DEBUG] Set overlay owner on Windows: owner=1378292 child=1640906
+2026-07-05 21:10:30,312 [DEBUG] Main window restored; showing overlay
+2026-07-05 21:10:30,313 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:10:31,783 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:10:51,090 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/LiveBoard_New.html
+2026-07-05 21:10:51,908 [DEBUG] MainWindow.__init__
+2026-07-05 21:10:52,013 [DEBUG] python-vlc initialized
+2026-07-05 21:10:52,015 [DEBUG] VLC event handlers attached
+2026-07-05 21:10:53,842 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/LiveBoard_New.html
+2026-07-05 21:10:53,860 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 21:10:54,037 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 21:10:54,047 [DEBUG] showEvent fired; video_container winId=2098210
+2026-07-05 21:10:54,048 [DEBUG] Assigning VLC video output to window id 2098210
+2026-07-05 21:10:54,048 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 21:10:54,121 [DEBUG] Overlay window shown
+2026-07-05 21:10:54,122 [DEBUG] Set overlay owner on Windows: owner=3473660 child=2753664
+2026-07-05 21:10:54,123 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 21:10:54,123 [DEBUG] player.play() called from showEvent
+2026-07-05 21:10:54,939 [INFO] Web overlay loadFinished: True
+2026-07-05 21:10:59,283 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:10:59,289 [DEBUG] Main window restored; showing overlay
+2026-07-05 21:10:59,290 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:11:07,773 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:16:46,306 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-05 21:16:47,200 [DEBUG] MainWindow.__init__
+2026-07-05 21:16:47,316 [DEBUG] python-vlc initialized
+2026-07-05 21:16:47,317 [DEBUG] VLC event handlers attached
+2026-07-05 21:16:48,972 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-05 21:16:48,994 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 21:16:49,110 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 21:16:49,114 [DEBUG] showEvent fired; video_container winId=4589842
+2026-07-05 21:16:49,114 [DEBUG] Assigning VLC video output to window id 4589842
+2026-07-05 21:16:49,115 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 21:16:49,166 [DEBUG] Overlay window shown
+2026-07-05 21:16:49,167 [DEBUG] Set overlay owner on Windows: owner=854002 child=3738030
+2026-07-05 21:16:49,168 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 21:16:49,169 [DEBUG] player.play() called from showEvent
+2026-07-05 21:16:59,491 [DEBUG] toggle_play called; player present=True
+2026-07-05 21:16:59,492 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 21:16:59,494 [DEBUG] Setting player video output to winId 4589842
+2026-07-05 21:16:59,495 [DEBUG] player.play() returned: 0
+2026-07-05 21:16:59,674 [INFO] MediaParsedChanged
+2026-07-05 21:16:59,675 [INFO] VLC playing
+2026-07-05 21:16:59,997 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 21:17:01,511 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 21:17:02,321 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:17:02,329 [DEBUG] Main window restored; showing overlay
+2026-07-05 21:17:02,330 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:17:06,988 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 21:17:15,692 [DEBUG] showEvent fired; video_container winId=4589842
+2026-07-05 21:17:15,693 [DEBUG] Assigning VLC video output to window id 4589842
+2026-07-05 21:17:15,696 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:17:15,724 [DEBUG] Overlay window shown
+2026-07-05 21:17:15,738 [DEBUG] Set overlay owner on Windows: owner=854002 child=3738030
+2026-07-05 21:17:15,741 [DEBUG] Main window restored; showing overlay
+2026-07-05 21:17:15,745 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 21:17:22,080 [INFO] Web overlay loadFinished: True
+2026-07-05 22:12:49,073 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-05 22:12:49,995 [DEBUG] MainWindow.__init__
+2026-07-05 22:12:50,105 [DEBUG] python-vlc initialized
+2026-07-05 22:12:50,106 [DEBUG] VLC event handlers attached
+2026-07-05 22:12:51,664 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-05 22:12:51,739 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 22:12:51,836 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 22:12:51,838 [DEBUG] showEvent fired; video_container winId=1638742
+2026-07-05 22:12:51,839 [DEBUG] Assigning VLC video output to window id 1638742
+2026-07-05 22:12:51,839 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 22:12:51,881 [DEBUG] Overlay window shown
+2026-07-05 22:12:51,882 [DEBUG] Set overlay owner on Windows: owner=3475424 child=3017186
+2026-07-05 22:12:51,882 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 22:12:51,882 [DEBUG] player.play() called from showEvent
+2026-07-05 22:12:52,586 [INFO] Web overlay loadFinished: True
+2026-07-05 22:12:54,736 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:12:54,747 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:12:54,747 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:12:56,607 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:12:56,608 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 22:12:56,611 [DEBUG] Setting player video output to winId 1638742
+2026-07-05 22:12:56,612 [DEBUG] player.play() returned: 0
+2026-07-05 22:12:56,846 [INFO] MediaParsedChanged
+2026-07-05 22:12:56,847 [INFO] VLC playing
+2026-07-05 22:12:57,113 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 22:12:58,613 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:13:22,525 [DEBUG] Recorder.start() called
+2026-07-05 22:13:23,553 [INFO] Starting ffmpeg with command: ffmpeg -y -f gdigrab -framerate 30 -i title=RTSP + HTML Overlay -c:v libx264 -preset veryfast -crf 18 -r 30 C:/Users/vchikkay/OneDrive - Alstom/Data/projects/Vinnovation/TinyTechniques/EEjo/Working/Eejo_V3.0/Eejo/Eejo_Swimmer_Not Used/Video_py/recordings/record_20260705_221313.mp4
+2026-07-05 22:13:24,033 [DEBUG] ffmpeg PID: 4912, logging to: C:\Users\vchikkay\OneDrive - Alstom\Data\projects\Vinnovation\TinyTechniques\EEjo\Working\Eejo_V3.0\Eejo\Eejo_Swimmer_Not Used\Video_py\ffmpeg_record.log
+2026-07-05 22:13:35,629 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 22:14:14,682 [DEBUG] showEvent fired; video_container winId=1638742
+2026-07-05 22:14:14,683 [DEBUG] Assigning VLC video output to window id 1638742
+2026-07-05 22:14:14,684 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:14:14,696 [DEBUG] Overlay window shown
+2026-07-05 22:14:14,696 [DEBUG] Set overlay owner on Windows: owner=3475424 child=3017186
+2026-07-05 22:14:14,697 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:14:14,698 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:14:39,495 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:14:39,496 [DEBUG] Stopping playback
+2026-07-05 22:14:39,559 [INFO] VLC stopped
+2026-07-05 22:14:42,279 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:14:42,281 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 22:14:42,283 [DEBUG] Setting player video output to winId 1638742
+2026-07-05 22:14:42,284 [DEBUG] player.play() returned: 0
+2026-07-05 22:14:42,452 [INFO] MediaParsedChanged
+2026-07-05 22:14:42,452 [INFO] VLC playing
+2026-07-05 22:14:42,785 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 22:14:44,285 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:14:45,135 [DEBUG] Recorder.stop() called
+2026-07-05 22:14:45,136 [DEBUG] Sent q to ffmpeg stdin
+2026-07-05 22:14:45,516 [DEBUG] ffmpeg exited cleanly
+2026-07-05 22:14:57,154 [DEBUG] Recorder.start() called
+2026-07-05 22:14:58,115 [INFO] Starting ffmpeg with command: ffmpeg -y -f gdigrab -framerate 30 -i title=RTSP + HTML Overlay -c:v libx264 -preset veryfast -crf 18 -r 30 C:/Users/vchikkay/OneDrive - Alstom/Data/projects/Vinnovation/TinyTechniques/EEjo/Working/Eejo_V3.0/Eejo/Eejo_Swimmer_Not Used/Video_py/recordings/record_20260705_221449.mp4
+2026-07-05 22:14:58,475 [DEBUG] ffmpeg PID: 13160, logging to: C:\Users\vchikkay\OneDrive - Alstom\Data\projects\Vinnovation\TinyTechniques\EEjo\Working\Eejo_V3.0\Eejo\Eejo_Swimmer_Not Used\Video_py\ffmpeg_record.log
+2026-07-05 22:15:12,744 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 22:15:30,849 [DEBUG] showEvent fired; video_container winId=1638742
+2026-07-05 22:15:30,850 [DEBUG] Assigning VLC video output to window id 1638742
+2026-07-05 22:15:30,851 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:15:30,857 [DEBUG] Overlay window shown
+2026-07-05 22:15:30,857 [DEBUG] Set overlay owner on Windows: owner=3475424 child=3017186
+2026-07-05 22:15:30,858 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:15:30,859 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:15:33,591 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 22:17:22,107 [DEBUG] showEvent fired; video_container winId=1638742
+2026-07-05 22:17:22,108 [DEBUG] Assigning VLC video output to window id 1638742
+2026-07-05 22:17:22,108 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:17:22,115 [DEBUG] Overlay window shown
+2026-07-05 22:17:22,116 [DEBUG] Set overlay owner on Windows: owner=3475424 child=3017186
+2026-07-05 22:17:22,116 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:17:22,117 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:17:30,110 [INFO] Web overlay hidden
+2026-07-05 22:17:31,461 [INFO] Web overlay shown
+2026-07-05 22:17:32,604 [INFO] Web overlay hidden
+2026-07-05 22:17:37,799 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:17:37,799 [DEBUG] Stopping playback
+2026-07-05 22:17:37,844 [INFO] VLC stopped
+2026-07-05 22:17:41,943 [DEBUG] Recorder.stop() called
+2026-07-05 22:17:41,944 [DEBUG] Sent q to ffmpeg stdin
+2026-07-05 22:17:42,199 [DEBUG] ffmpeg exited cleanly
+2026-07-05 22:17:47,099 [INFO] Web overlay shown
+2026-07-05 22:17:48,759 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:17:48,763 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 22:17:48,766 [DEBUG] Setting player video output to winId 1638742
+2026-07-05 22:17:48,771 [DEBUG] player.play() returned: 0
+2026-07-05 22:17:48,894 [INFO] MediaParsedChanged
+2026-07-05 22:17:48,895 [INFO] VLC playing
+2026-07-05 22:17:49,272 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:17:50,786 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:17:56,821 [INFO] Recording cancelled by user (no output path chosen)
+2026-07-05 22:18:01,168 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:18:01,168 [DEBUG] Stopping playback
+2026-07-05 22:18:01,224 [INFO] VLC stopped
+2026-07-05 22:18:02,591 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:18:02,592 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 22:18:02,593 [DEBUG] Setting player video output to winId 1638742
+2026-07-05 22:18:02,594 [DEBUG] player.play() returned: 0
+2026-07-05 22:18:02,705 [INFO] MediaParsedChanged
+2026-07-05 22:18:02,705 [INFO] VLC playing
+2026-07-05 22:18:03,095 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-05 22:18:04,597 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:18:05,728 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:18:05,728 [DEBUG] Stopping playback
+2026-07-05 22:18:05,797 [INFO] VLC stopped
+2026-07-05 22:18:11,064 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:18:11,064 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 22:18:11,065 [DEBUG] Setting player video output to winId 1638742
+2026-07-05 22:18:11,066 [DEBUG] player.play() returned: 0
+2026-07-05 22:18:11,184 [INFO] MediaParsedChanged
+2026-07-05 22:18:11,184 [INFO] VLC playing
+2026-07-05 22:18:11,571 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:18:13,163 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:18:16,726 [DEBUG] Recorder.start() called
+2026-07-05 22:18:17,734 [INFO] Starting ffmpeg with command: ffmpeg -y -f gdigrab -framerate 30 -i title=RTSP + HTML Overlay -c:v libx264 -preset veryfast -crf 18 -r 30 C:/Users/vchikkay/OneDrive - Alstom/Data/projects/Vinnovation/TinyTechniques/EEjo/Working/Eejo_V3.0/Eejo/Eejo_Swimmer_Not Used/Video_py/recordings/record_20260705_221812.mp4
+2026-07-05 22:18:18,146 [DEBUG] ffmpeg PID: 25196, logging to: C:\Users\vchikkay\OneDrive - Alstom\Data\projects\Vinnovation\TinyTechniques\EEjo\Working\Eejo_V3.0\Eejo\Eejo_Swimmer_Not Used\Video_py\ffmpeg_record.log
+2026-07-05 22:18:25,591 [DEBUG] Recorder.stop() called
+2026-07-05 22:18:25,592 [DEBUG] Sent q to ffmpeg stdin
+2026-07-05 22:18:25,785 [DEBUG] ffmpeg exited cleanly
+2026-07-05 22:18:35,561 [DEBUG] Recorder.start() called
+2026-07-05 22:18:36,535 [INFO] Starting ffmpeg with command: ffmpeg -y -f gdigrab -framerate 30 -i title=RTSP + HTML Overlay -c:v libx264 -preset veryfast -crf 18 -r 30 C:/Users/vchikkay/OneDrive - Alstom/Data/projects/Vinnovation/TinyTechniques/EEjo/Working/Eejo_V3.0/Eejo/Eejo_Swimmer_Not Used/Video_py/recordings/test_Rec.mp4
+2026-07-05 22:18:36,943 [DEBUG] ffmpeg PID: 32600, logging to: C:\Users\vchikkay\OneDrive - Alstom\Data\projects\Vinnovation\TinyTechniques\EEjo\Working\Eejo_V3.0\Eejo\Eejo_Swimmer_Not Used\Video_py\ffmpeg_record.log
+2026-07-05 22:18:47,416 [DEBUG] Recorder.stop() called
+2026-07-05 22:18:47,416 [DEBUG] Sent q to ffmpeg stdin
+2026-07-05 22:18:48,039 [DEBUG] ffmpeg exited cleanly
+2026-07-05 22:18:54,469 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 22:19:54,106 [DEBUG] showEvent fired; video_container winId=1638742
+2026-07-05 22:19:54,107 [DEBUG] Assigning VLC video output to window id 1638742
+2026-07-05 22:19:54,111 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:19:54,118 [DEBUG] Overlay window shown
+2026-07-05 22:19:54,121 [DEBUG] Set overlay owner on Windows: owner=3475424 child=3017186
+2026-07-05 22:19:54,124 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:19:54,126 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:20:01,439 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 22:20:01,444 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:20:01,444 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 22:20:04,064 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:20:04,071 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:20:04,072 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:22:16,030 [DEBUG] Main window minimized; hiding overlay
+2026-07-05 22:22:28,639 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-05 22:22:29,668 [DEBUG] MainWindow.__init__
+2026-07-05 22:22:29,671 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-05 22:22:29,795 [DEBUG] python-vlc initialized
+2026-07-05 22:22:29,796 [DEBUG] VLC event handlers attached
+2026-07-05 22:22:32,025 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-05 22:22:32,046 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-05 22:22:32,220 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-05 22:22:32,228 [DEBUG] showEvent fired; video_container winId=3082722
+2026-07-05 22:22:32,228 [DEBUG] Assigning VLC video output to window id 3082722
+2026-07-05 22:22:32,229 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-05 22:22:32,281 [DEBUG] Overlay window shown
+2026-07-05 22:22:32,282 [DEBUG] Set overlay owner on Windows: owner=2885004 child=920086
+2026-07-05 22:22:32,283 [DEBUG] Auto-starting playback in showEvent
+2026-07-05 22:22:32,283 [DEBUG] player.play() called from showEvent
+2026-07-05 22:22:33,217 [INFO] Web overlay loadFinished: True
+2026-07-05 22:22:35,167 [DEBUG] toggle_play called; player present=True
+2026-07-05 22:22:35,167 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-05 22:22:35,168 [DEBUG] Setting player video output to winId 3082722
+2026-07-05 22:22:35,169 [DEBUG] player.play() returned: 0
+2026-07-05 22:22:35,346 [INFO] MediaParsedChanged
+2026-07-05 22:22:35,347 [INFO] VLC playing
+2026-07-05 22:22:35,659 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:22:35,673 [DEBUG] Main window restored; showing overlay
+2026-07-05 22:22:35,675 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-05 22:22:35,707 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:22:37,172 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-05 22:22:45,361 [DEBUG] Computed capture_rect for recording: (0, 64, 1920, 968)
+2026-07-05 22:22:45,361 [DEBUG] Recorder.start() called (capture_rect=(0, 64, 1920, 968))
+2026-07-05 22:22:46,357 [INFO] Starting ffmpeg with command: ffmpeg -y -f gdigrab -framerate 30 -offset_x 0 -offset_y 64 -video_size 1920x968 -i desktop -draw_mouse 1 -c:v libx264 -preset veryfast -crf 18 -r 30 C:/Users/vchikkay/OneDrive - Alstom/Data/projects/Vinnovation/TinyTechniques/EEjo/Working/Eejo_V3.0/Eejo/Eejo_Swimmer_Not Used/Video_py/recordings/testREC.mp4
+2026-07-05 22:22:46,841 [DEBUG] ffmpeg PID: 6184, logging to: C:/Users/vchikkay/OneDrive - Alstom/Data/projects/Vinnovation/TinyTechniques/EEjo/Working/Eejo_V3.0/Eejo/Eejo_Swimmer_Not Used/Video_py/recordings\ffmpeg_record.log
+2026-07-05 22:22:56,112 [DEBUG] Recorder.stop() called
+2026-07-05 22:22:56,112 [DEBUG] Sent q to ffmpeg stdin
+2026-07-05 22:22:56,578 [DEBUG] ffmpeg exited cleanly
+2026-07-05 22:23:04,432 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 13:29:28,625 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 13:29:29,434 [DEBUG] MainWindow.__init__
+2026-07-07 13:29:29,451 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 13:29:29,620 [DEBUG] python-vlc initialized
+2026-07-07 13:29:29,621 [DEBUG] VLC event handlers attached
+2026-07-07 13:29:31,790 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 13:29:31,888 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 13:29:32,008 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 13:29:32,013 [DEBUG] showEvent fired; video_container winId=4261738
+2026-07-07 13:29:32,014 [DEBUG] Assigning VLC video output to window id 4261738
+2026-07-07 13:29:32,015 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 13:29:32,083 [DEBUG] Overlay window shown
+2026-07-07 13:29:32,084 [DEBUG] Set overlay owner on Windows: owner=5965562 child=2819314
+2026-07-07 13:29:32,084 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 13:29:32,085 [DEBUG] player.play() called from showEvent
+2026-07-07 13:29:34,028 [DEBUG] toggle_play called; player present=True
+2026-07-07 13:29:34,029 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-07 13:29:34,032 [DEBUG] Setting player video output to winId 4261738
+2026-07-07 13:29:34,034 [DEBUG] player.play() returned: 0
+2026-07-07 13:29:34,366 [INFO] MediaParsedChanged
+2026-07-07 13:29:34,367 [INFO] VLC playing
+2026-07-07 13:29:34,537 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-07 13:29:34,777 [INFO] Web overlay loadFinished: False
+2026-07-07 13:29:34,778 [WARNING] Replaced overlay content with fallback due to load failure
+2026-07-07 13:29:34,799 [INFO] Web overlay loadFinished: True
+2026-07-07 13:29:36,036 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-07 13:29:36,921 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:29:36,938 [DEBUG] Main window restored; showing overlay
+2026-07-07 13:29:36,938 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:29:48,694 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 13:30:42,374 [DEBUG] showEvent fired; video_container winId=4261738
+2026-07-07 13:30:42,375 [DEBUG] Assigning VLC video output to window id 4261738
+2026-07-07 13:30:42,375 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:30:42,382 [DEBUG] Overlay window shown
+2026-07-07 13:30:42,382 [DEBUG] Set overlay owner on Windows: owner=5965562 child=2819314
+2026-07-07 13:30:42,383 [DEBUG] Main window restored; showing overlay
+2026-07-07 13:30:42,383 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:31:48,830 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 13:32:02,475 [DEBUG] showEvent fired; video_container winId=4261738
+2026-07-07 13:32:02,475 [DEBUG] Assigning VLC video output to window id 4261738
+2026-07-07 13:32:02,476 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:32:02,479 [DEBUG] Overlay window shown
+2026-07-07 13:32:02,479 [DEBUG] Set overlay owner on Windows: owner=5965562 child=2819314
+2026-07-07 13:32:02,479 [DEBUG] Main window restored; showing overlay
+2026-07-07 13:32:02,480 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:32:07,957 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 13:32:19,957 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 13:32:20,453 [DEBUG] MainWindow.__init__
+2026-07-07 13:32:20,454 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 13:32:20,502 [DEBUG] python-vlc initialized
+2026-07-07 13:32:20,502 [DEBUG] VLC event handlers attached
+2026-07-07 13:32:21,572 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 13:32:21,584 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 13:32:21,646 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 13:32:21,648 [DEBUG] showEvent fired; video_container winId=2164664
+2026-07-07 13:32:21,648 [DEBUG] Assigning VLC video output to window id 2164664
+2026-07-07 13:32:21,648 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 13:32:21,678 [DEBUG] Overlay window shown
+2026-07-07 13:32:21,679 [DEBUG] Set overlay owner on Windows: owner=6031098 child=1312702
+2026-07-07 13:32:21,679 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 13:32:21,679 [DEBUG] player.play() called from showEvent
+2026-07-07 13:32:24,146 [INFO] Web overlay loadFinished: False
+2026-07-07 13:32:24,148 [WARNING] Replaced overlay content with fallback due to load failure
+2026-07-07 13:32:24,156 [INFO] Web overlay loadFinished: True
+2026-07-07 13:32:30,840 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 13:32:58,881 [DEBUG] showEvent fired; video_container winId=2164664
+2026-07-07 13:32:58,881 [DEBUG] Assigning VLC video output to window id 2164664
+2026-07-07 13:32:58,881 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 13:32:58,887 [DEBUG] Overlay window shown
+2026-07-07 13:32:58,887 [DEBUG] Set overlay owner on Windows: owner=6031098 child=1312702
+2026-07-07 13:32:58,887 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 13:32:58,888 [DEBUG] player.play() called from showEvent
+2026-07-07 13:32:58,888 [DEBUG] Main window restored; showing overlay
+2026-07-07 13:32:58,888 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 13:33:08,136 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 13:35:41,129 [DEBUG] showEvent fired; video_container winId=2164664
+2026-07-07 13:35:41,129 [DEBUG] Assigning VLC video output to window id 2164664
+2026-07-07 13:35:41,129 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 13:35:41,136 [DEBUG] Overlay window shown
+2026-07-07 13:35:41,139 [DEBUG] Set overlay owner on Windows: owner=6031098 child=1312702
+2026-07-07 13:35:41,140 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 13:35:41,140 [DEBUG] player.play() called from showEvent
+2026-07-07 13:35:41,141 [DEBUG] Main window restored; showing overlay
+2026-07-07 13:35:41,141 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 13:35:49,177 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 13:35:49,724 [DEBUG] MainWindow.__init__
+2026-07-07 13:35:49,725 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 13:35:49,776 [DEBUG] python-vlc initialized
+2026-07-07 13:35:49,777 [DEBUG] VLC event handlers attached
+2026-07-07 13:35:50,739 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 13:35:50,750 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 13:35:50,811 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 13:35:50,812 [DEBUG] showEvent fired; video_container winId=2755060
+2026-07-07 13:35:50,813 [DEBUG] Assigning VLC video output to window id 2755060
+2026-07-07 13:35:50,813 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 13:35:50,848 [DEBUG] Overlay window shown
+2026-07-07 13:35:50,849 [DEBUG] Set overlay owner on Windows: owner=1378238 child=3214010
+2026-07-07 13:35:50,849 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 13:35:50,849 [DEBUG] player.play() called from showEvent
+2026-07-07 13:35:51,438 [INFO] Web overlay loadFinished: True
+2026-07-07 13:35:53,841 [DEBUG] toggle_play called; player present=True
+2026-07-07 13:35:53,842 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-07 13:35:53,845 [DEBUG] Setting player video output to winId 2755060
+2026-07-07 13:35:53,847 [DEBUG] player.play() returned: 0
+2026-07-07 13:35:54,054 [INFO] MediaParsedChanged
+2026-07-07 13:35:54,055 [INFO] VLC playing
+2026-07-07 13:35:54,350 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-07 13:35:55,848 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-07 13:35:56,289 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:35:56,297 [DEBUG] Main window restored; showing overlay
+2026-07-07 13:35:56,298 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:36:48,330 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 13:53:27,429 [DEBUG] showEvent fired; video_container winId=2755060
+2026-07-07 13:53:27,430 [DEBUG] Assigning VLC video output to window id 2755060
+2026-07-07 13:53:27,431 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 13:53:27,435 [DEBUG] Overlay window shown
+2026-07-07 13:53:27,436 [DEBUG] Set overlay owner on Windows: owner=1378238 child=3214010
+2026-07-07 13:53:27,439 [DEBUG] Main window restored; showing overlay
+2026-07-07 13:53:27,440 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:20:15,461 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:20:16,582 [DEBUG] MainWindow.__init__
+2026-07-07 17:20:16,598 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 17:20:16,774 [DEBUG] python-vlc initialized
+2026-07-07 17:20:16,775 [DEBUG] VLC event handlers attached
+2026-07-07 17:20:19,462 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:20:19,572 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 17:20:19,672 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 17:20:19,676 [DEBUG] showEvent fired; video_container winId=3606910
+2026-07-07 17:20:19,676 [DEBUG] Assigning VLC video output to window id 3606910
+2026-07-07 17:20:19,677 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:20:19,757 [DEBUG] Overlay window shown
+2026-07-07 17:20:19,758 [DEBUG] Set overlay owner on Windows: owner=4457662 child=2951976
+2026-07-07 17:20:19,758 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 17:20:19,759 [DEBUG] player.play() called from showEvent
+2026-07-07 17:20:20,142 [INFO] Web overlay loadFinished: True
+2026-07-07 17:20:23,539 [DEBUG] toggle_play called; player present=True
+2026-07-07 17:20:23,540 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-07 17:20:23,544 [DEBUG] Setting player video output to winId 3606910
+2026-07-07 17:20:23,545 [DEBUG] player.play() returned: 0
+2026-07-07 17:20:24,046 [INFO] VLC status: state=State.Opening playing=0 video_size=0x0 length=0 time=0
+2026-07-07 17:20:25,558 [INFO] VLC status: state=State.Opening playing=0 video_size=0x0 length=0 time=0
+2026-07-07 17:20:32,458 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:20:32,472 [DEBUG] Main window restored; showing overlay
+2026-07-07 17:20:32,473 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:20:38,744 [ERROR] VLC reported an error event: Event
+ type:	EventType.MediaPlayerEncounteredError
+ obj:	2236155094080
+ u:	<vlc.EventUnion object at 0x00000208A490D2D0>
+2026-07-07 17:20:38,745 [INFO] VLC stopped
+2026-07-07 17:26:32,849 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:26:33,674 [DEBUG] MainWindow.__init__
+2026-07-07 17:26:33,677 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 17:26:33,776 [DEBUG] python-vlc initialized
+2026-07-07 17:26:33,777 [DEBUG] VLC event handlers attached
+2026-07-07 17:26:35,308 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:26:35,329 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 17:26:35,392 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 17:26:35,395 [DEBUG] showEvent fired; video_container winId=2558230
+2026-07-07 17:26:35,396 [DEBUG] Assigning VLC video output to window id 2558230
+2026-07-07 17:26:35,396 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:26:35,445 [DEBUG] Overlay window shown
+2026-07-07 17:26:35,446 [DEBUG] Set overlay owner on Windows: owner=855280 child=2688700
+2026-07-07 17:26:35,447 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 17:26:35,447 [DEBUG] player.play() called from showEvent
+2026-07-07 17:26:35,708 [INFO] Web overlay loadFinished: True
+2026-07-07 17:34:16,950 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 17:34:22,365 [DEBUG] showEvent fired; video_container winId=2558230
+2026-07-07 17:34:22,367 [DEBUG] Assigning VLC video output to window id 2558230
+2026-07-07 17:34:22,368 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:34:22,377 [DEBUG] Overlay window shown
+2026-07-07 17:34:22,379 [DEBUG] Set overlay owner on Windows: owner=855280 child=2688700
+2026-07-07 17:34:22,379 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 17:34:22,380 [DEBUG] player.play() called from showEvent
+2026-07-07 17:34:22,380 [DEBUG] Main window restored; showing overlay
+2026-07-07 17:34:22,381 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:34:44,470 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 17:50:57,380 [DEBUG] showEvent fired; video_container winId=2558230
+2026-07-07 17:50:57,380 [DEBUG] Assigning VLC video output to window id 2558230
+2026-07-07 17:50:57,380 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:50:57,387 [DEBUG] Overlay window shown
+2026-07-07 17:50:57,387 [DEBUG] Set overlay owner on Windows: owner=855280 child=2688700
+2026-07-07 17:50:57,388 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 17:50:57,388 [DEBUG] player.play() called from showEvent
+2026-07-07 17:50:57,388 [DEBUG] Main window restored; showing overlay
+2026-07-07 17:50:57,388 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:51:03,365 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:51:04,014 [DEBUG] MainWindow.__init__
+2026-07-07 17:51:04,015 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 17:51:04,073 [DEBUG] python-vlc initialized
+2026-07-07 17:51:04,074 [DEBUG] VLC event handlers attached
+2026-07-07 17:51:05,518 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:51:05,532 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 17:51:05,578 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 17:51:05,581 [DEBUG] showEvent fired; video_container winId=1051986
+2026-07-07 17:51:05,581 [DEBUG] Assigning VLC video output to window id 1051986
+2026-07-07 17:51:05,581 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:51:05,631 [DEBUG] Overlay window shown
+2026-07-07 17:51:05,631 [DEBUG] Set overlay owner on Windows: owner=920816 child=1444762
+2026-07-07 17:51:05,632 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 17:51:05,632 [DEBUG] player.play() called from showEvent
+2026-07-07 17:51:06,033 [INFO] Web overlay loadFinished: True
+2026-07-07 17:51:07,154 [DEBUG] toggle_play called; player present=True
+2026-07-07 17:51:07,155 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-07 17:51:07,160 [DEBUG] Setting player video output to winId 1051986
+2026-07-07 17:51:07,162 [DEBUG] player.play() returned: 0
+2026-07-07 17:51:07,429 [INFO] MediaParsedChanged
+2026-07-07 17:51:07,429 [INFO] VLC playing
+2026-07-07 17:51:07,667 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-07 17:51:09,152 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-07 17:51:23,602 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 17:52:10,049 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:52:10,588 [DEBUG] MainWindow.__init__
+2026-07-07 17:52:10,589 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 17:52:10,637 [DEBUG] python-vlc initialized
+2026-07-07 17:52:10,637 [DEBUG] VLC event handlers attached
+2026-07-07 17:52:11,869 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:52:11,885 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 17:52:11,928 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 17:52:11,931 [DEBUG] showEvent fired; video_container winId=3279652
+2026-07-07 17:52:11,931 [DEBUG] Assigning VLC video output to window id 3279652
+2026-07-07 17:52:11,932 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:52:11,966 [DEBUG] Overlay window shown
+2026-07-07 17:52:11,967 [DEBUG] Set overlay owner on Windows: owner=986492 child=1969568
+2026-07-07 17:52:11,967 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 17:52:11,968 [DEBUG] player.play() called from showEvent
+2026-07-07 17:52:12,337 [INFO] Web overlay loadFinished: True
+2026-07-07 17:52:14,739 [DEBUG] toggle_play called; player present=True
+2026-07-07 17:52:14,739 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-07 17:52:14,742 [DEBUG] Setting player video output to winId 3279652
+2026-07-07 17:52:14,744 [DEBUG] player.play() returned: 0
+2026-07-07 17:52:14,879 [INFO] MediaParsedChanged
+2026-07-07 17:52:14,880 [INFO] VLC playing
+2026-07-07 17:52:15,245 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-07 17:52:16,750 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-07 17:52:44,253 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:52:44,259 [DEBUG] Main window restored; showing overlay
+2026-07-07 17:52:44,259 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:52:51,943 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 17:53:09,163 [DEBUG] showEvent fired; video_container winId=3279652
+2026-07-07 17:53:09,164 [DEBUG] Assigning VLC video output to window id 3279652
+2026-07-07 17:53:09,164 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:53:09,170 [DEBUG] Overlay window shown
+2026-07-07 17:53:09,171 [DEBUG] Set overlay owner on Windows: owner=986492 child=1969568
+2026-07-07 17:53:09,171 [DEBUG] Main window restored; showing overlay
+2026-07-07 17:53:09,172 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:53:14,188 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 17:59:06,145 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:59:06,699 [DEBUG] MainWindow.__init__
+2026-07-07 17:59:06,701 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 17:59:06,747 [DEBUG] python-vlc initialized
+2026-07-07 17:59:06,748 [DEBUG] VLC event handlers attached
+2026-07-07 17:59:07,629 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 17:59:07,647 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 17:59:07,711 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 17:59:07,713 [DEBUG] showEvent fired; video_container winId=2035104
+2026-07-07 17:59:07,713 [DEBUG] Assigning VLC video output to window id 2035104
+2026-07-07 17:59:07,714 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 17:59:07,746 [DEBUG] Overlay window shown
+2026-07-07 17:59:07,746 [DEBUG] Set overlay owner on Windows: owner=658836 child=396736
+2026-07-07 17:59:07,746 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 17:59:07,747 [DEBUG] player.play() called from showEvent
+2026-07-07 17:59:08,096 [INFO] Web overlay loadFinished: True
+2026-07-07 17:59:09,897 [DEBUG] toggle_play called; player present=True
+2026-07-07 17:59:09,897 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-07 17:59:09,898 [DEBUG] Setting player video output to winId 2035104
+2026-07-07 17:59:09,899 [DEBUG] player.play() returned: 0
+2026-07-07 17:59:10,028 [INFO] MediaParsedChanged
+2026-07-07 17:59:10,029 [INFO] VLC playing
+2026-07-07 17:59:10,398 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-07 17:59:11,889 [INFO] VLC status: state=State.Playing playing=1 video_size=1280x720 length=0 time=0
+2026-07-07 17:59:12,848 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:59:12,854 [DEBUG] Main window restored; showing overlay
+2026-07-07 17:59:12,855 [DEBUG] Overlay geometry updated to 0,64 1920x968
+2026-07-07 17:59:41,028 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 18:22:35,101 [INFO] Using overlay URL: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 18:22:36,033 [DEBUG] MainWindow.__init__
+2026-07-07 18:22:36,046 [INFO] VLC hardware acceleration disabled for better screen-capture compatibility
+2026-07-07 18:22:36,144 [DEBUG] python-vlc initialized
+2026-07-07 18:22:36,144 [DEBUG] VLC event handlers attached
+2026-07-07 18:22:37,678 [INFO] Attempting to load overlay URL in QWebEngineView: http://192.168.0.101:8002/EejoPages/testOverlay.html
+2026-07-07 18:22:37,738 [DEBUG] Recorder initialized with window_title=RTSP + HTML Overlay
+2026-07-07 18:22:37,827 [DEBUG] Overlay geometry updated to 320,156 100x30
+2026-07-07 18:22:37,830 [DEBUG] showEvent fired; video_container winId=592786
+2026-07-07 18:22:37,830 [DEBUG] Assigning VLC video output to window id 592786
+2026-07-07 18:22:37,830 [DEBUG] Overlay geometry updated to 320,197 1280x679
+2026-07-07 18:22:37,887 [DEBUG] Overlay window shown
+2026-07-07 18:22:37,888 [DEBUG] Set overlay owner on Windows: owner=396724 child=527738
+2026-07-07 18:22:37,888 [DEBUG] Auto-starting playback in showEvent
+2026-07-07 18:22:37,888 [DEBUG] player.play() called from showEvent
+2026-07-07 18:22:38,550 [INFO] Web overlay loadFinished: True
+2026-07-07 18:22:39,425 [DEBUG] toggle_play called; player present=True
+2026-07-07 18:22:39,425 [DEBUG] Starting playback for URL: rtsp://user:pass@192.168.0.100:554/Streaming/Channels/101
+2026-07-07 18:22:39,433 [DEBUG] Setting player video output to winId 592786
+2026-07-07 18:22:39,434 [DEBUG] player.play() returned: 0
+2026-07-07 18:22:39,685 [INFO] MediaParsedChanged
+2026-07-07 18:22:39,686 [INFO] VLC playing
+2026-07-07 18:22:39,935 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-07 18:22:41,436 [INFO] VLC status: state=State.Playing playing=1 video_size=0x0 length=0 time=0
+2026-07-07 18:22:55,739 [DEBUG] Overlay geometry updated to 1,72 958x959
+2026-07-07 18:38:37,240 [DEBUG] Main window minimized; hiding overlay
+2026-07-07 18:38:38,035 [DEBUG] showEvent fired; video_container winId=592786
+2026-07-07 18:38:38,036 [DEBUG] Assigning VLC video output to window id 592786
+2026-07-07 18:38:38,037 [DEBUG] Overlay geometry updated to 1,72 958x959
+2026-07-07 18:38:38,051 [DEBUG] Overlay window shown
+2026-07-07 18:38:38,083 [DEBUG] Set overlay owner on Windows: owner=396724 child=527738
+2026-07-07 18:38:38,098 [DEBUG] Main window restored; showing overlay
+2026-07-07 18:38:38,108 [DEBUG] Overlay geometry updated to 1,72 958x959

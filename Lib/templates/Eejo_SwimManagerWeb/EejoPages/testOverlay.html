@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Overlay Test</title>
+  <style>
+    /* Force full transparency for the page */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: transparent !important;
+      background-color: transparent !important;
+      -webkit-font-smoothing: antialiased;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+    }
+
+    /* Light translucent panel for readability */
+    .panel {
+      background: rgba(0, 0, 0, 0.45);
+      padding: 12px;
+      border-radius: 8px;
+      margin: 16px;
+      max-width: 720px;
+      backdrop-filter: blur(4px);
+    }
+
+    table.test {
+      width: 100%;
+      border-collapse: collapse;
+      color: #fff;
+      font-size: 14px;
+    }
+    table.test th, table.test td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+    }
+    table.test th {
+      font-weight: 700;
+      color: #eaf2ff;
+    }
+    .muted { color: rgba(255,255,255,0.7); font-size:13px }
+  </style>
+</head>
+<body>
+  <div class="panel" role="region" aria-label="Overlay Test Panel">
+    <h3 style="margin:0 0 8px 0">Overlay Test — Transparent Background</h3>
+    <p class="muted" style="margin:0 0 12px 0">This panel uses RGBA so the video remains visible behind it.</p>
+
+    <table class="test" role="table">
+      <thead>
+        <tr><th>ID</th><th>Name</th><th>Status</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Sensor A</td><td style="color:#7fffd4">OK</td><td>12.3</td></tr>
+        <tr><td>2</td><td>Sensor B</td><td style="color:#ffd27f">Warning</td><td>37.8</td></tr>
+        <tr><td>3</td><td>Sensor C</td><td style="color:#ff7f7f">Error</td><td>—</td></tr>
+        <tr><td>4</td><td>Camera 1</td><td style="color:#7fffd4">Streaming</td><td>1280x720</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Enforce transparency for pages that set a background
+    try {
+      document.documentElement.style.background = 'transparent';
+      document.body.style.background = 'transparent';
+      // inject rule to make any element backgrounds transparent unless explicitly styled
+      const s = document.createElement('style');
+      s.innerHTML = 'html,body,*{background: transparent !important; background-image: none !important;}';
+      document.head.appendChild(s);
+    } catch (e) { console.error(e); }
+  </script>
+</body>
+</html>
